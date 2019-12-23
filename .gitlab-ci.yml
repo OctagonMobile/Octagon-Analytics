@@ -1,0 +1,31 @@
+stages:
+  - build
+  - archive
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+
+before_script:
+  - pod install
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -workspace KibanaGo.xcworkspace -scheme KibanaGo | xcpretty
+  tags:
+    - KibanaGo
+
+archive_project:
+  stage: archive
+  script:
+    - xcodebuild clean archive -workspace KibanaGo.xcworkspace -archivePath KibanaGo.xcarchive -scheme KibanaGo
+    - xcodebuild -exportArchive -archivePath KibanaGo.xcarchive -exportOptionsPlist KibanaGo/exportOptions.plist -exportPath $PWD/build
+  only:
+    - master
+    - tags
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - build/
+  tags:
+    - KibanaGo

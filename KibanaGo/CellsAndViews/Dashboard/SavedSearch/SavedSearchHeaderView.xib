@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SavedSearchHeaderView" customModule="KibanaGo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="444" height="61"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfK-YG-OsO">
+                    <rect key="frame" x="0.0" y="0.0" width="444" height="61"/>
+                    <color key="backgroundColor" red="0.45424410700000001" green="0.76790571210000003" blue="0.8157393932" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="CfK-YG-OsO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9kQ-lC-WKC"/>
+                <constraint firstAttribute="bottom" secondItem="CfK-YG-OsO" secondAttribute="bottom" id="UMM-tk-mkZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CfK-YG-OsO" secondAttribute="trailing" id="oNT-HG-C0K"/>
+                <constraint firstItem="CfK-YG-OsO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t7T-0p-07g"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="0.0" y="77.5"/>
+        </view>
+    </objects>
+</document>

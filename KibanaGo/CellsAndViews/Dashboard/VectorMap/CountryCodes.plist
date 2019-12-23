@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AC</key>
+	<string>NOT FOUND</string>
+	<key>AD</key>
+	<string>NOT FOUND</string>
+	<key>AE</key>
+	<string>ARE</string>
+	<key>AF</key>
+	<string>AFG</string>
+	<key>AG</key>
+	<string>NOT FOUND</string>
+	<key>AI</key>
+	<string>NOT FOUND</string>
+	<key>AL</key>
+	<string>ALB</string>
+	<key>AM</key>
+	<string>ARM</string>
+	<key>AO</key>
+	<string>AGO</string>
+	<key>AQ</key>
+	<string>ATA</string>
+	<key>AR</key>
+	<string>ARG</string>
+	<key>AS</key>
+	<string>NOT FOUND</string>
+	<key>AT</key>
+	<string>AUT</string>
+	<key>AU</key>
+	<string>AUS</string>
+	<key>AW</key>
+	<string>NOT FOUND</string>
+	<key>AX</key>
+	<string>NOT FOUND</string>
+	<key>AZ</key>
+	<string>AZE</string>
+	<key>BA</key>
+	<string>BIH</string>
+	<key>BB</key>
+	<string>NOT FOUND</string>
+	<key>BD</key>
+	<string>BGD</string>
+	<key>BE</key>
+	<string>BEL</string>
+	<key>BF</key>
+	<string>BFA</string>
+	<key>BG</key>
+	<string>BGR</string>
+	<key>BH</key>
+	<string>NOT FOUND</string>
+	<key>BI</key>
+	<string>BDI</string>
+	<key>BJ</key>
+	<string>BEN</string>
+	<key>BL</key>
+	<string>NOT FOUND</string>
+	<key>BM</key>
+	<string>BMU</string>
+	<key>BN</key>
+	<string>BRN</string>
+	<key>BO</key>
+	<string>BOL</string>
+	<key>BQ</key>
+	<string>NOT FOUND</string>
+	<key>BR</key>
+	<string>BRA</string>
+	<key>BS</key>
+	<string>BHS</string>
+	<key>BT</key>
+	<string>BTN</string>
+	<key>BW</key>
+	<string>BWA</string>
+	<key>BY</key>
+	<string>BLR</string>
+	<key>BZ</key>
+	<string>BLZ</string>
+	<key>CA</key>
+	<string>CAN</string>
+	<key>CC</key>
+	<string>NOT FOUND</string>
+	<key>CD</key>
+	<string>COD</string>
+	<key>CF</key>
+	<string>CAF</string>
+	<key>CG</key>
+	<string>COG</string>
+	<key>CH</key>
+	<string>CHE</string>
+	<key>CI</key>
+	<string>CIV</string>
+	<key>CK</key>
+	<string>NOT FOUND</string>
+	<key>CL</key>
+	<string>CHL</string>
+	<key>CM</key>
+	<string>CMR</string>
+	<key>CN</key>
+	<string>CHN</string>
+	<key>CO</key>
+	<string>COL</string>
+	<key>CR</key>
+	<string>CRI</string>
+	<key>CU</key>
+	<string>CUB</string>
+	<key>CV</key>
+	<string>NOT FOUND</string>
+	<key>CW</key>
+	<string>NOT FOUND</string>
+	<key>CX</key>
+	<string>NOT FOUND</string>
+	<key>CY</key>
+	<string>CYP</string>
+	<key>CZ</key>
+	<string>CZE</string>
+	<key>DE</key>
+	<string>DEU</string>
+	<key>DG</key>
+	<string>NOT FOUND</string>
+	<key>DJ</key>
+	<string>DJI</string>
+	<key>DK</key>
+	<string>DNK</string>
+	<key>DM</key>
+	<string>DOM</string>
+	<key>DO</key>
+	<string>DOM</string>
+	<key>DZ</key>
+	<string>DZA</string>
+	<key>EA</key>
+	<string>NOT FOUND</string>
+	<key>EC</key>
+	<string>ECU</string>
+	<key>EE</key>
+	<string>EST</string>
+	<key>EG</key>
+	<string>EGY</string>
+	<key>EH</key>
+	<string>ESH</string>
+	<key>ER</key>
+	<string>ERI</string>
+	<key>ES</key>
+	<string>ESP</string>
+	<key>ET</key>
+	<string>ETH</string>
+	<key>FI</key>
+	<string>FIN</string>
+	<key>FJ</key>
+	<string>FJI</string>
+	<key>FK</key>
+	<string>FLK</string>
+	<key>FM</key>
+	<string>NOT FOUND</string>
+	<key>FO</key>
+	<string>NOT FOUND</string>
+	<key>FR</key>
+	<string>FRA</string>
+	<key>GA</key>
+	<string>GAB</string>
+	<key>GB</key>
+	<string>GBR</string>
+	<key>GD</key>
+	<string>NOT FOUND</string>
+	<key>GE</key>
+	<string>GEO</string>
+	<key>GF</key>
+	<string>GUF</string>
+	<key>GG</key>
+	<string>NOT FOUND</string>
+	<key>GH</key>
+	<string>GHA</string>
+	<key>GI</key>
+	<string>NOT FOUND</string>
+	<key>GL</key>
+	<string>GRL</string>
+	<key>GM</key>
+	<string>GMB</string>
+	<key>GN</key>
+	<string>GIN</string>
+	<key>GP</key>
+	<string>NOT FOUND</string>
+	<key>GQ</key>
+	<string>GNQ</string>
+	<key>GR</key>
+	<string>GRC</string>
+	<key>GS</key>
+	<string>NOT FOUND</string>
+	<key>GT</key>
+	<string>GTM</string>
+	<key>GU</key>
+	<string>NOT FOUND</string>
+	<key>GW</key>
+	<string>GNB</string>
+	<key>GY</key>
+	<string>GUY</string>
+	<key>HK</key>
+	<string>NOT FOUND</string>
+	<key>HN</key>
+	<string>HND</string>
+	<key>HR</key>
+	<string>HRV</string>
+	<key>HT</key>
+	<string>HTI</string>
+	<key>HU</key>
+	<string>HUN</string>
+	<key>IC</key>
+	<string>NOT FOUND</string>
+	<key>ID</key>
+	<string>IDN</string>
+	<key>IE</key>
+	<string>IRL</string>
+	<key>IL</key>
+	<string>ISR</string>
+	<key>IM</key>
+	<string>NOT FOUND</string>
+	<key>IN</key>
+	<string>IND</string>
+	<key>IO</key>
+	<string>NOT FOUND</string>
+	<key>IQ</key>
+	<string>IRQ</string>
+	<key>IR</key>
+	<string>IRN</string>
+	<key>IS</key>
+	<string>ISL</string>
+	<key>IT</key>
+	<string>ITA</string>
+	<key>JE</key>
+	<string>NOT FOUND</string>
+	<key>JM</key>
+	<string>JAM</string>
+	<key>JO</key>
+	<string>JOR</string>
+	<key>JP</key>
+	<string>JPN</string>
+	<key>KE</key>
+	<string>KEN</string>
+	<key>KG</key>
+	<string>KGZ</string>
+	<key>KH</key>
+	<string>KHM</string>
+	<key>KI</key>
+	<string>NOT FOUND</string>
+	<key>KM</key>
+	<string>NOT FOUND</string>
+	<key>KN</key>
+	<string>NOT FOUND</string>
+	<key>KP</key>
+	<string>PRK</string>
+	<key>KR</key>
+	<string>KOR</string>
+	<key>KW</key>
+	<string>KWT</string>
+	<key>KY</key>
+	<string>NOT FOUND</string>
+	<key>KZ</key>
+	<string>KAZ</string>
+	<key>LA</key>
+	<string>LAO</string>
+	<key>LB</key>
+	<string>LBN</string>
+	<key>LC</key>
+	<string>NOT FOUND</string>
+	<key>LI</key>
+	<string>NOT FOUND</string>
+	<key>LK</key>
+	<string>LKA</string>
+	<key>LR</key>
+	<string>LBR</string>
+	<key>LS</key>
+	<string>LSO</string>
+	<key>LT</key>
+	<string>LTU</string>
+	<key>LU</key>
+	<string>LUX</string>
+	<key>LV</key>
+	<string>LVA</string>
+	<key>LY</key>
+	<string>LBY</string>
+	<key>MA</key>
+	<string>MAR</string>
+	<key>MC</key>
+	<string>NOT FOUND</string>
+	<key>MD</key>
+	<string>MDA</string>
+	<key>ME</key>
+	<string>MNE</string>
+	<key>MF</key>
+	<string>NOT FOUND</string>
+	<key>MG</key>
+	<string>MDG</string>
+	<key>MH</key>
+	<string>NOT FOUND</string>
+	<key>MK</key>
+	<string>MKD</string>
+	<key>ML</key>
+	<string>MLI</string>
+	<key>MM</key>
+	<string>MMR</string>
+	<key>MN</key>
+	<string>MNG</string>
+	<key>MO</key>
+	<string>NOT FOUND</string>
+	<key>MP</key>
+	<string>NOT FOUND</string>
+	<key>MQ</key>
+	<string>NOT FOUND</string>
+	<key>MR</key>
+	<string>MRT</string>
+	<key>MS</key>
+	<string>NOT FOUND</string>
+	<key>MT</key>
+	<string>MLT</string>
+	<key>MU</key>
+	<string>NOT FOUND</string>
+	<key>MV</key>
+	<string>NOT FOUND</string>
+	<key>MW</key>
+	<string>MWI</string>
+	<key>MX</key>
+	<string>MEX</string>
+	<key>MY</key>
+	<string>MYS</string>
+	<key>MZ</key>
+	<string>MOZ</string>
+	<key>NA</key>
+	<string>NAM</string>
+	<key>NC</key>
+	<string>NCL</string>
+	<key>NE</key>
+	<string>NER</string>
+	<key>NF</key>
+	<string>NOT FOUND</string>
+	<key>NG</key>
+	<string>NGA</string>
+	<key>NI</key>
+	<string>NIC</string>
+	<key>NL</key>
+	<string>NLD</string>
+	<key>NO</key>
+	<string>NOR</string>
+	<key>NP</key>
+	<string>NPL</string>
+	<key>NR</key>
+	<string>NOT FOUND</string>
+	<key>NU</key>
+	<string>NOT FOUND</string>
+	<key>NZ</key>
+	<string>NZL</string>
+	<key>OM</key>
+	<string>OMN</string>
+	<key>PA</key>
+	<string>PAN</string>
+	<key>PE</key>
+	<string>PER</string>
+	<key>PF</key>
+	<string>NOT FOUND</string>
+	<key>PG</key>
+	<string>PNG</string>
+	<key>PH</key>
+	<string>PHL</string>
+	<key>PK</key>
+	<string>PAK</string>
+	<key>PL</key>
+	<string>POL</string>
+	<key>PM</key>
+	<string>NOT FOUND</string>
+	<key>PN</key>
+	<string>NOT FOUND</string>
+	<key>PR</key>
+	<string>PRI</string>
+	<key>PS</key>
+	<string>NOT FOUND</string>
+	<key>PT</key>
+	<string>PRT</string>
+	<key>PW</key>
+	<string>NOT FOUND</string>
+	<key>PY</key>
+	<string>PRY</string>
+	<key>QA</key>
+	<string>QAT</string>
+	<key>RE</key>
+	<string>NOT FOUND</string>
+	<key>RO</key>
+	<string>ROU</string>
+	<key>RS</key>
+	<string>SRB</string>
+	<key>RU</key>
+	<string>RUS</string>
+	<key>RW</key>
+	<string>RWA</string>
+	<key>SA</key>
+	<string>SAU</string>
+	<key>SB</key>
+	<string>SLB</string>
+	<key>SC</key>
+	<string>NOT FOUND</string>
+	<key>SD</key>
+	<string>SDN</string>
+	<key>SE</key>
+	<string>SWE</string>
+	<key>SG</key>
+	<string>NOT FOUND</string>
+	<key>SH</key>
+	<string>NOT FOUND</string>
+	<key>SI</key>
+	<string>SVN</string>
+	<key>SJ</key>
+	<string>NOT FOUND</string>
+	<key>SK</key>
+	<string>SVK</string>
+	<key>SL</key>
+	<string>SLE</string>
+	<key>SM</key>
+	<string>NOT FOUND</string>
+	<key>SN</key>
+	<string>SEN</string>
+	<key>SO</key>
+	<string>SOM</string>
+	<key>SR</key>
+	<string>SUR</string>
+	<key>SS</key>
+	<string>SSD</string>
+	<key>ST</key>
+	<string>NOT FOUND</string>
+	<key>SV</key>
+	<string>SLV</string>
+	<key>SX</key>
+	<string>NOT FOUND</string>
+	<key>SY</key>
+	<string>SYR</string>
+	<key>SZ</key>
+	<string>SWZ</string>
+	<key>TA</key>
+	<string>NOT FOUND</string>
+	<key>TC</key>
+	<string>NOT FOUND</string>
+	<key>TD</key>
+	<string>TCD</string>
+	<key>TF</key>
+	<string>ATF</string>
+	<key>TG</key>
+	<string>TGO</string>
+	<key>TH</key>
+	<string>THA</string>
+	<key>TJ</key>
+	<string>TJK</string>
+	<key>TK</key>
+	<string>NOT FOUND</string>
+	<key>TL</key>
+	<string>TLS</string>
+	<key>TM</key>
+	<string>TKM</string>
+	<key>TN</key>
+	<string>TUN</string>
+	<key>TO</key>
+	<string>NOT FOUND</string>
+	<key>TR</key>
+	<string>TUR</string>
+	<key>TT</key>
+	<string>TTO</string>
+	<key>TV</key>
+	<string>NOT FOUND</string>
+	<key>TW</key>
+	<string>TWN</string>
+	<key>TZ</key>
+	<string>TZA</string>
+	<key>UA</key>
+	<string>UKR</string>
+	<key>UG</key>
+	<string>UGA</string>
+	<key>UM</key>
+	<string>NOT FOUND</string>
+	<key>US</key>
+	<string>USA</string>
+	<key>UY</key>
+	<string>URY</string>
+	<key>UZ</key>
+	<string>UZB</string>
+	<key>VA</key>
+	<string>NOT FOUND</string>
+	<key>VC</key>
+	<string>NOT FOUND</string>
+	<key>VE</key>
+	<string>VEN</string>
+	<key>VG</key>
+	<string>NOT FOUND</string>
+	<key>VI</key>
+	<string>NOT FOUND</string>
+	<key>VN</key>
+	<string>VNM</string>
+	<key>VU</key>
+	<string>VUT</string>
+	<key>WF</key>
+	<string>NOT FOUND</string>
+	<key>WS</key>
+	<string>NOT FOUND</string>
+	<key>XK</key>
+	<string>CS-KM</string>
+	<key>YE</key>
+	<string>YEM</string>
+	<key>YT</key>
+	<string>NOT FOUND</string>
+	<key>ZA</key>
+	<string>ZAF</string>
+	<key>ZM</key>
+	<string>ZMB</string>
+	<key>ZW</key>
+	<string>ZWE</string>
+</dict>
+</plist>

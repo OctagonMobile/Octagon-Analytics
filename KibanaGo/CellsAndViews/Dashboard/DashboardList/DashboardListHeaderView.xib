@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DashboardListHeaderView" id="U6b-Vx-4bR" customClass="DashboardListHeaderView" customModule="KibanaGo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="389" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="yNe-Yx-2pn">
+                    <rect key="frame" x="7" y="0.0" width="375" height="67"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yNe-Yx-2pn" secondAttribute="trailing" constant="2" id="7uW-Gb-Pnb">
+                    <variation key="heightClass=regular-widthClass=compact" constant="7"/>
+                </constraint>
+                <constraint firstItem="yNe-Yx-2pn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="GL4-w5-ys5"/>
+                <constraint firstItem="yNe-Yx-2pn" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="2" id="QRS-41-lwS">
+                    <variation key="heightClass=regular-widthClass=compact" constant="7"/>
+                </constraint>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="yNe-Yx-2pn" secondAttribute="bottom" constant="8" id="a74-8a-V8X"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="searchBar" destination="yNe-Yx-2pn" id="qV3-6E-7CA"/>
+            </connections>
+            <point key="canvasLocation" x="-2.3999999999999999" y="64.31784107946028"/>
+        </collectionReusableView>
+    </objects>
+</document>

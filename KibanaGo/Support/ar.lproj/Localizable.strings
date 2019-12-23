@@ -1,0 +1,86 @@
+/* 
+  Localizable.strings
+  KibanaGo
+
+  Created by Rameez on 9/29/19.
+  Copyright © 2019 MyCompany. All rights reserved.
+*/
+
+"Kibana Go"         =   "كبنة غو";
+"Yes"               =   "نعم";
+"No"                =   "لا";
+"Ok"                =   "حسنا";
+"Cancel"            =   "إلغاء";
+
+//Login Screen
+"Username"                      =   "اسم المستخدم";
+"Password"                      =   "كلمه السر";
+"Sign In"                       =   "تسجيل الدخول";
+"I Agree to Terms & Condition"  =   "أوافق على الشروط والأحكام";
+"Terms & Condition"             =   "الشروط والأحكام";
+"Please enter the Username"     =   "من فضلك ادخل اسم المستخدم";
+"Please enter the Password"     =   "من فضلك أدخل كلمة المرور";
+"Please agree to terms & condition" =   "يرجى الموافقة على الشروط والأحكام";
+"Invalid Credentials"           =   "بيانات الاعتماد غير صالحة";
+"Sign in as different user"     =   "تسجيل الدخول كمستخدم مختلف";
+"Hello, "                       =   "مرحبا, ";
+"SmartLoginResetAlertMessage"   =   "سيتم إعادة ضبط التكوين الحالي % @. هل أنت متأكد أنك تريد المتابعة؟";
+
+//Terms & Condition
+"Agree"             =   "يوافق على";
+
+//Dashboard List
+"Dashboards"            =   "لوحات";
+"Search..."             =   "بحث...";
+"Loading..."            =   "جار التحميل...";
+"NoDashboardMessage"    =   "لم يتم العثور على لوحات معلومات!";
+
+//DropDown List
+"Settings"              =   "الإعدادات";
+"Sign Out"              =   "خروج";
+
+//Settings & Language
+"Language"                      =   "لغة";
+"Congratulations!!!"            =   "تهانينا!!!";
+"BiometricSuccessConfig"        =   "لقد نجحت في تكوين %@ تسجيل الدخول";
+"DisableBiometricTitle"         =   "تعطيل %@";
+"BiometricDisableAlert"         =   "هل أنت متأكد من أنك تريد تعطيل تسجيل الدخول %@ ؟";
+
+//Authenctication
+"Authentication"        =   "المصادقة";
+
+//Dashboard
+"Filters"           =   "مرشحات";
+"Field"             =   "مجال";
+"Value"             =   "القيمة";
+"Count"             =   "عد";
+"Drill Down"        =   "حفر أسفل";
+"Clear All"         =   "امسح الكل";
+"RemoveFilterAlert" =   "هل أنت متأكد أنك تريد إزالة جميع المرشحات؟";
+"JSON"              =   "جسن";
+"Sum"               =   "مجموع";
+"Max"               =   "ماكس";
+"Avg"               =   "متوسط";
+
+//Date Picker
+"Apply"                     =   "تطبيق";
+"Clear"                     =   "واضح";
+"FROM DATE"                 =   "من التاريخ";
+"TO DATE"                   =   "حتي اليوم";
+"SelectDatesError"          =   "يرجى اختيار من والى تاريخ";
+"DateValidationError"       =   "يجب أن يكون التاريخ متأخراً عن التاريخ";
+"Selected:"                 =   "المحدد:";
+"Today"                     =   "اليوم";
+"Yesterday"                 =   "في الامس";
+"Last 30 days"              =   "آخر 30 يومًا";
+"Last 60 days"              =   "آخر 60 يومًا";
+"Last 90 days"              =   "آخر 90 يومًا";
+"Last 6 months"             =   "آخر 6 أشهر";
+"Last 1 year"               =   "1 سنة الماضية";
+"Last 2 years"              =   "آخر 2 سنوات";
+"Last 5 years"              =   "آخر 5 سنوات";
+
+//Canvas
+"Canvas"            =   "كنفس";
+"Canvas List"       =   "كنفس لست";
+"NoCanvasFound"     =   "لم يتم العثور على قماش!";

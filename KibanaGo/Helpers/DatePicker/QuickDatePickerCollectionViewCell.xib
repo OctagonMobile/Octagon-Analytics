@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QuickDatePickerCollectionViewCell" id="U80-Zd-0cA" customClass="QuickDatePickerCollectionViewCell" customModule="DemoLargeRangeDatePicker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-s9-OnF">
+                        <rect key="frame" x="10" y="10" width="260" height="65"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.51764705879999995" green="0.81176470590000005" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="0eS-s9-OnF" firstAttribute="leading" secondItem="U80-Zd-0cA" secondAttribute="leading" constant="10" id="Ra2-ha-zZu"/>
+                <constraint firstItem="0eS-s9-OnF" firstAttribute="top" secondItem="U80-Zd-0cA" secondAttribute="top" constant="10" id="ZUu-2z-gZk"/>
+                <constraint firstAttribute="bottom" secondItem="0eS-s9-OnF" secondAttribute="bottom" constant="10" id="lVE-cx-lY5"/>
+                <constraint firstAttribute="trailing" secondItem="0eS-s9-OnF" secondAttribute="trailing" constant="10" id="w4i-My-pbb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="pnk-Oc-gvF"/>
+            <size key="customSize" width="280" height="85"/>
+            <connections>
+                <outlet property="titleLabel" destination="0eS-s9-OnF" id="1TF-gS-WvC"/>
+            </connections>
+            <point key="canvasLocation" x="-104" y="-6.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

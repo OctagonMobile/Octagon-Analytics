@@ -1,0 +1,195 @@
+{
+    "name":"Cell",
+    "root":{
+        "views":{
+            "!mainHolder:UIView":{
+                "constraints":{
+                    "top":"@super.top",
+                    "left":"@super.left",
+                    "right":"@super.right",
+                    "bottom":"@super.bottom"
+                },
+                "properties":{
+                    "cornerRadius":"10",
+                    "borderColor":"white",
+                    "borderWidth":"1",
+                    "backgroundColor":"black"
+                },
+                "views":{
+                    
+                    "!topHolder:UIView":{
+                        "constraints":{
+                            "top":"@super.top +15",
+                            "left":"@super.left +15",
+                            "right":"@super.right -15"
+                        },
+                        "views":{
+                            "!imageUrl:UIImageView":{
+                                "properties":{
+                                    "cornerRadius":"30",
+                                    "borderColor":"white",
+                                    "borderWidth":"1",
+                                    "clipToBounds":"true"
+                                },
+                                "constraints":{
+                                    "width height":"+60",
+                                    "top":"@super.top",
+                                    "leading":"@super",
+                                    "bottom":"@super.bottom $500"
+                                }
+                            },
+                            "!full_name:UILabel":{
+                                "properties":{
+                                    "numberOfLines":"0",
+                                    "fontSize":"16",
+                                    "textColor":"white"
+                                },
+                                "constraints":{
+                                    "leading":"@imageUrl.trailing +15",
+                                    "right":"@super.right",
+                                    "top":"@super.top"
+                                }
+                            },
+                            "!career:UILabel":{
+                                "properties":{
+                                    "numberOfLines":"0",
+                                    "fontSize":"12",
+                                    "textColor":"lightGray"
+                                },
+                                "constraints":{
+                                    "leading":"@imageUrl.trailing +15",
+                                    "right":"@super.right",
+                                    "top":"@full_name.bottom",
+                                    "bottom":"@super.bottom"
+                                }
+                            }
+                        }
+                    },
+                    "!bottomHolder:UIView":{
+                        "constraints":{
+                            "top":"@topHolder.bottom +10",
+                            "bottom":"@super.bottom -15",
+                            "left":"@super.left +15",
+                            "right":"@super.right -15"
+                        },
+                        "views": {
+                            "!firstHolder:UIView":{
+                                "constraints":{
+                                    "width":"@super.width *0.34",
+                                    "top":"@super.top",
+                                    "bottom":"@super.bottom",
+                                    "leading":"@super.leading"
+                                },
+                                "views": {
+                                    "!genderTitle:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "text":"Gender",
+                                            "fontSize":"12",
+                                            "textColor":"lightGray"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@super.top"
+                                        }
+                                    },
+                                    "!gender:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "textColor":"white",
+                                            "fontSize":"16"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@genderTitle.bottom +5",
+                                            "bottom":"@super.bottom"
+                                        }
+                                    }
+                                }
+                            },
+                            "!secondHolder:UIView":{
+                                "constraints":{
+                                    "width":"@super.width *0.34",
+                                    "top":"@super.top",
+                                    "bottom":"@super.bottom",
+                                    "leading":"@firstHolder.trailing",
+                                    "trailing":"@thirdHolder.leading"
+                                },
+                                "views": {
+                                    "!nationalityTitle:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "text":"Nationality",
+                                            "textColor":"lightGray",
+                                            "fontSize":"12"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@super.top"
+                                        }
+                                    },
+                                    "!nationality_prediction:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "textColor":"white",
+                                            "fontSize":"16"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@nationalityTitle.bottom +5",
+                                            "bottom":"@super.bottom"
+                                        }
+                                    }
+                                }
+                            },
+                            "!thirdHolder:UIView":{
+                                "constraints":{
+                                    "top":"@super.top",
+                                    "bottom":"@super.bottom",
+                                    "leading":"@secondHolder.trailing",
+                                    "trailing":"@super.trailing"
+                                },
+                                "views": {
+                                    "!phoneTitle:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "text":"Phone",
+                                            "textColor":"lightGray",
+                                            "fontSize":"12"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@super.top"
+                                        }
+                                    },
+                                    "!id:UILabel":{
+                                        "properties":{
+                                            "numberOfLines":"0",
+                                            "textColor":"white",
+                                            "fontSize":"16"
+                                        },
+                                        "constraints":{
+                                            "leading":"@super.leading",
+                                            "right":"@super.right",
+                                            "top":"@phoneTitle.bottom +5",
+                                            "bottom":"@super.bottom"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+

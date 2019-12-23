@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Touch ID</string>
+		<key>secondaryName</key>
+		<string>Face ID</string>
+		<key>identifier</key>
+		<string>TouchID</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Language</string>
+		<key>identifier</key>
+		<string>Language</string>
+	</dict>
+</array>
+</plist>
