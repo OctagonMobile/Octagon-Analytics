@@ -76,10 +76,10 @@ Open the Settings App and configure KibanaGo.
 *  Touch ID/Face ID login.
 *  App Theme (Light/Dark).
 *  Localization(English/Arabic)
-*  Supported visualizations are mentioned in [wiki](https://github.com/OctagonMobile/KibanaGo/wikis/home#supported-visualizations) page.
+*  Supported visualizations are mentioned in [wiki](https://github.com/OctagonMobile/Kibana-Go/wikis/home#supported-visualizations) page.
 
 ## Contributing<a id="contributing"></a>
 We welcome pull requests from the community!
 
 ## License<a id="license"></a>
-[MIT](https://github.com/OctagonMobile/KibanaGo/blob/master/LICENSE)
+[MIT](https://github.com/OctagonMobile/Kibana-Go/blob/master/LICENSE)
