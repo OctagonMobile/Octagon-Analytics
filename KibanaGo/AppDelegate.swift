@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let infoDict: [UIApplication.LaunchOptionsKey: Any] = [UIApplication.LaunchOptionsKey.url : url]
         
-        if url.scheme?.caseInsensitiveCompare("com.MyCompany.kibanaGoLaunchPad") == ComparisonResult.orderedSame {
+        if url.scheme?.caseInsensitiveCompare("com.octagonMobile.kibanaGoLaunchPad") == ComparisonResult.orderedSame {
             guard let dashboardId = url.query?.components(separatedBy: "=").last else { return true }
             Session.shared.dashboardIdToRedirect = dashboardId
             NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.redirectToUrl), object: url, userInfo: infoDict)
