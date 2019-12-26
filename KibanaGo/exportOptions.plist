@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>method</key>
-	<string>enterprise</string>
+	<string>ad-hoc</string>
 	<key>teamID</key>
-	<string>LZ4LCXUP6U</string>
+	<string>64H8D93LZ4</string>
 	<key>signingCertificate</key>
-	<string>iOS Distribution</string>
+	<string>Apple Distribution</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.MyCompany.kibanaGo</key>
-		<string>KibanaGo-Enterprise</string>
+		<key>com.octagonMobile.kibanaGo</key>
+		<string>Kibana-Go AdHoc</string>
 	</dict>
 </dict>
 </plist>

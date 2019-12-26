@@ -25,8 +25,8 @@
 			<string>oauth2Callback</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.MyCompany.kibanaGo</string>
-				<string>com.MyCompany.kibanaGoLaunchPad</string>
+				<string>com.octagonMobile.kibanaGo</string>
+				<string>com.octagonMobile.kibanaGoLaunchPad</string>
 			</array>
 		</dict>
 	</array>
