@@ -3,7 +3,7 @@
 //  KibanaGo
 //
 //  Created by Rameez on 10/25/17.
-//  Copyright © 2017 MyCompany. All rights reserved.
+//  Copyright © 2017 Octagon Mobile. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import UIKit
 func DLog(_ message: String?, function: String = #function) {
     #if DEBUG
         if let mess = message {
-            print("\(function): \(mess)")
+//            print("\(function): \(mess)")
         }
     #endif
 }

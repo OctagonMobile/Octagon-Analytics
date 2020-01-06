@@ -3,7 +3,7 @@
 //  KibanaGo
 //
 //  Created by Rameez on 3/26/18.
-//  Copyright © 2018 MyCompany. All rights reserved.
+//  Copyright © 2018 Octagon Mobile. All rights reserved.
 //
 
 import UIKit
@@ -118,7 +118,7 @@ class LoginViewController: BaseViewController {
             DLog("Custom type tapped: \(element)")
             // Show Terms And Condition
             let termsController = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.termsAndConditionViewController) as? TermsAndConditionViewController ?? TermsAndConditionViewController()
-            termsController.termsAndConditionString = "'By clicking ‘OK’ you agree to use this system or software only in accordance with MyCompany policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the MyCompany. Any personal use or use outside of authorized clearance by the MyCompany may result in civil and/or criminal penalties."
+            termsController.termsAndConditionString = "'By clicking ‘OK’ you agree to use this system or software only in accordance with Octagon Mobile policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Octagon Mobile. Any personal use or use outside of authorized clearance by the Octagon Mobile may result in civil and/or criminal penalties."
             
             termsController.didAccept = { [weak self] (accepted) in
                 guard let strongSelf = self else { return }

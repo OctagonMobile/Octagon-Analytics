@@ -3,7 +3,7 @@
 //  KibanaGo
 //
 //  Created by Rameez on 10/30/17.
-//  Copyright © 2017 MyCompany. All rights reserved.
+//  Copyright © 2017 Octagon Mobile. All rights reserved.
 //
 
 import UIKit
