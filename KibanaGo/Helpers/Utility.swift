@@ -11,7 +11,7 @@ import UIKit
 func DLog(_ message: String?, function: String = #function) {
     #if DEBUG
         if let mess = message {
-            print("\(function): \(mess)")
+//            print("\(function): \(mess)")
         }
     #endif
 }
