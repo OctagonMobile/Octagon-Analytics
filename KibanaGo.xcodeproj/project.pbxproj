@@ -195,6 +195,7 @@
 		51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E62922CDCC57001B390A /* CustomCardCell.swift */; };
 		51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */; };
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
+		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,6 +401,7 @@
 		51FABE9B2073602C0015C802 /* MapTrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackPoint.swift; sourceTree = "<group>"; };
 		65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.release.xcconfig"; sourceTree = "<group>"; };
 		69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.debug.xcconfig"; sourceTree = "<group>"; };
+		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KibanaGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -610,6 +612,7 @@
 				51B7C42C2059097300565D99 /* Metric */,
 				51CFC6A31FB9C4CB00B99018 /* SavedSearch */,
 				517F97DC1FB1AE5100CA6E55 /* PieChart */,
+				F145885823D5BF84006641FD /* BarChart */,
 				51512B6E2056974200DD0C8E /* Tile */,
 				5174FBAF219C279B003BEB1E /* Graph */,
 				51A6B32B1FCD404200F6A3E8 /* Metric.swift */,
@@ -1149,6 +1152,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		F145885823D5BF84006641FD /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				F145885923D5BF99006641FD /* BarChartDataProvider.swift */,
+			);
+			path = BarChart;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1352,6 +1363,7 @@
 				513F3F83206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */,
 				5114A1AB2074B99F00F3A419 /* MapTrackControlView.swift in Sources */,
+				F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */,
 				51D385E02370091F00C59220 /* CanvasLoader.swift in Sources */,
 				513467F31F9DDC5100F9B67D /* Configuration.swift in Sources */,
 				51477DE62068DF2500955394 /* LoginViewController.swift in Sources */,

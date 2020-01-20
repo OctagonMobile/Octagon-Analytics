@@ -13,6 +13,8 @@ import MarqueeLabel
 typealias FilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: FilterProtocol) -> Void
 typealias SelectFieldActionBlock = (_ sender: Any,_ item: FilterProtocol,_ widgetRect: CGRect?) -> Void
 typealias DeselectFieldActionBlock = (_ sender: Any) -> Void
+typealias MultiFilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: [FilterProtocol]) -> Void
+typealias ShowInfoFieldActionBlock = (_ sender: Any,_ item: [FilterProtocol],_ widgetRect: CGRect?) -> Void
 
 enum PanelMode: Int {
     case normal         = 0
@@ -33,9 +35,12 @@ class PanelBaseViewController: BaseViewController {
     var panelMode: PanelMode = .normal
     
     var filterAction: FilterAppliedActionBlock?
+    var multiFilterAction: MultiFilterAppliedActionBlock?
 
     var selectFieldAction: SelectFieldActionBlock?
     var deselectFieldAction: DeselectFieldActionBlock?
+
+    var showInfoFieldActionBlock: ShowInfoFieldActionBlock?
 
     var shouldLoadData: Bool = true
     

@@ -48,4 +48,13 @@ class BucketListTableViewCell: UITableViewCell {
 //            valueLabel.text = "\(String(describing: value))"
         }
     }
+    func updateCellContentLatest(_ title: String, value: String ) {
+            
+            titleLabel.text = title
+            valueLabel.text = value
+
+            //        if filter is SimpleFilter {
+    //            valueLabel.text = (filter as! SimpleFilter).fieldValue
+    //        }
+        }
 }
