@@ -249,8 +249,6 @@ class Panel: Mappable {
                 if let rangeItem = (filter.fieldValue as? RangeChartItem) {
                     params?["filterRangeFrom"] = rangeItem.from
                     params?["filterRangeTo"] = rangeItem.to
-                } else if let termsItem = (filter.fieldValue as? TermsChartItem) {
-                    params?["filterValue"] = termsItem.key
                 } else {
                     params?["filterValue"] = filter.fieldValue.key
                 }
@@ -278,6 +276,18 @@ class Panel: Mappable {
                           "filterValue": filter.fieldValue]
             }
 
+            if let filter = appliedFilter as? SimpleFilter {
+                params?["filterType"] = filter.bucketType.rawValue
+                params?["filterField"] = filter.fieldName
+                switch filter.bucketType {
+                case .range:
+                    let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
+                    params?["filterRangeFrom"] = ranges.first ?? ""
+                    params?["filterRangeTo"] = ranges.last ?? ""
+                default:
+                    params?["filterValue"] = filter.fieldValue
+                }
+            }
             
             params?["isFilterInverted"] = appliedFilter.isInverted
 
@@ -622,7 +632,7 @@ class Bucket {
     
     //MARK: Functions
     init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?) {
-        if let keyValue = dictionary["key"] {
+        if let keyValue = dictionary["key_as_string"] {
             key   = "\(keyValue)"
         }
         docCount            =   dictionary["doc_count"] as? Double ?? 0.0
