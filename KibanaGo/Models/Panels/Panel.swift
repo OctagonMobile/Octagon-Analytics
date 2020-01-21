@@ -588,10 +588,10 @@ class AggResult {
             switch currentAggs.bucketType {
             case .range:
                 bucket = RangeBucket(bucketData, visState: visState, index: index, parentBucket: parentBucket)
+                bucket.bucketType = currentAggs.bucketType
             default:
-                bucket = Bucket(bucketData, visState: visState, index: index, parentBucket: parentBucket)
+                bucket = Bucket(bucketData, visState: visState, index: index, parentBucket: parentBucket, bucketType: currentAggs.bucketType)
             }
-            bucket.bucketType = currentAggs.bucketType
             buckets.append(bucket)
         }
         
@@ -631,14 +631,23 @@ class Bucket {
     private var visState: VisState?
     
     //MARK: Functions
-    init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?) {
-        if let keyValue = dictionary["key_as_string"] {
-            key   = "\(keyValue)"
-        }
+    init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType) {
+        
         docCount            =   dictionary["doc_count"] as? Double ?? 0.0
         bucketValue         =   dictionary["bucketValue"] as? Double ?? 0.0
+        self.bucketType = bucketType
         self.visState = visState
         self.parentBucket = parentBucket
+        
+        switch bucketType {
+            case .dateHistogram:
+                if let dateKey = dictionary["key"] {
+                    key = "\(dateKey)"
+                }
+            default:
+                key = dictionary["key_as_string"] as? String ?? ""
+        }
+        
         
         if let firstMetricId = visState.metricAggregationsArray.first?.id,
             let dict = dictionary[firstMetricId] as? [String: Any] {
@@ -689,8 +698,8 @@ class RangeBucket: Bucket {
     var from: Double    =   0.0
     var to: Double      =   0.0
     
-    override init(_ dictionary: [String : Any], visState: VisState, index: Int, parentBucket: Bucket?) {
-        super.init(dictionary, visState: visState, index: index, parentBucket: parentBucket)
+    override init(_ dictionary: [String : Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType = .unKnown) {
+        super.init(dictionary, visState: visState, index: index, parentBucket: parentBucket, bucketType: bucketType)
         
         from        =   dictionary["from"] as? Double ?? 0.0
         to          =   dictionary["to"] as? Double ?? 0.0
