@@ -274,6 +274,19 @@ class Panel: Mappable {
                           "filterField": filter.fieldName,
                           "filterValue": filter.fieldValue]
             }
+            
+            if let filter = appliedFilter as? SimpleFilter {
+                params?["filterType"] = filter.bucketType.rawValue
+                params?["filterField"] = filter.fieldName
+                switch filter.bucketType {
+                case .range:
+                    let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
+                    params?["filterRangeFrom"] = ranges.first ?? ""
+                    params?["filterRangeTo"] = ranges.last ?? ""
+                default:
+                    params?["filterValue"] = filter.fieldValue
+                }
+            }
 
             
             params?["isFilterInverted"] = appliedFilter.isInverted
