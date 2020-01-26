@@ -196,11 +196,10 @@
 		51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */; };
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
-		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
-		F145885F23D5D808006641FD /* FiltersInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885B23D5D807006641FD /* FiltersInfoView.swift */; };
-		F145886023D5D808006641FD /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F145885C23D5D807006641FD /* FiltersInfoView.xib */; };
-		F145886123D5D808006641FD /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885D23D5D808006641FD /* FilterInfoTableViewCell.swift */; };
-		F145886223D5D808006641FD /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F145885E23D5D808006641FD /* FilterInfoTableViewCell.xib */; };
+		F10D6D5B23DD9D7500190754 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5723DD9D7500190754 /* FilterInfoTableViewCell.swift */; };
+		F10D6D5C23DD9D7500190754 /* FiltersInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5823DD9D7500190754 /* FiltersInfoView.swift */; };
+		F10D6D5D23DD9D7500190754 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10D6D5923DD9D7500190754 /* FiltersInfoView.xib */; };
+		F10D6D5E23DD9D7500190754 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F10D6D5A23DD9D7500190754 /* FilterInfoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -407,11 +406,10 @@
 		65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.release.xcconfig"; sourceTree = "<group>"; };
 		69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.debug.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
-		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
-		F145885B23D5D807006641FD /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
-		F145885C23D5D807006641FD /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
-		F145885D23D5D808006641FD /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
-		F145885E23D5D808006641FD /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F10D6D5723DD9D7500190754 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
+		F10D6D5823DD9D7500190754 /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
+		F10D6D5923DD9D7500190754 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
+		F10D6D5A23DD9D7500190754 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KibanaGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -755,6 +753,10 @@
 			children = (
 				51514521202876C100F52B02 /* InfoView.swift */,
 				51514523202876CF00F52B02 /* InfoView.xib */,
+				F10D6D5723DD9D7500190754 /* FilterInfoTableViewCell.swift */,
+				F10D6D5A23DD9D7500190754 /* FilterInfoTableViewCell.xib */,
+				F10D6D5823DD9D7500190754 /* FiltersInfoView.swift */,
+				F10D6D5923DD9D7500190754 /* FiltersInfoView.xib */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -1225,6 +1227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10D6D5D23DD9D7500190754 /* FiltersInfoView.xib in Resources */,
 				515DD7F91FC53DDB009EC716 /* Settings.bundle in Resources */,
 				51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
@@ -1240,6 +1243,7 @@
 				51A330B620270038001A1905 /* DashboardCollectionReusableView.xib in Resources */,
 				516292E81FA06171008A547B /* Charts.storyboard in Resources */,
 				513A909F229AA17400B7E844 /* Exo2-Bold.otf in Resources */,
+				F10D6D5E23DD9D7500190754 /* FilterInfoTableViewCell.xib in Resources */,
 				5127EB98222D3DB7000C4E79 /* DashboardListHeaderView.xib in Resources */,
 				5139104F21F0ACCF00304D21 /* TileCarouselView.xib in Resources */,
 				513A9090229AA17400B7E844 /* Exo2-SemiBold.otf in Resources */,
@@ -1452,6 +1456,7 @@
 				51E3941F204D664100AF22C8 /* KibanaGoMapView.swift in Sources */,
 				51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */,
 				5130A10E1FA7336A003D0525 /* DashboardCollectionViewCell.swift in Sources */,
+				F10D6D5B23DD9D7500190754 /* FilterInfoTableViewCell.swift in Sources */,
 				5174FBA7219C105E003BEB1E /* WeightedGraphInteractor.swift in Sources */,
 				510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */,
 				51DC04F120555F6000E4F1E0 /* Filter.swift in Sources */,
@@ -1480,6 +1485,7 @@
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,
 				5157C51E207A40B300CF0EB9 /* MapTrackingAnnotationView.swift in Sources */,
 				51CB2D231FBDA14C007BC0A0 /* DashboardListingViewController.swift in Sources */,
+				F10D6D5C23DD9D7500190754 /* FiltersInfoView.swift in Sources */,
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
 				511D3A7D2046905200BB80AC /* HorizontalBarChartViewController.swift in Sources */,

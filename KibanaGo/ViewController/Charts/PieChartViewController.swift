@@ -99,10 +99,6 @@ extension PieChartViewController: ChartViewDelegate {
         
         guard let chartItem = entry.data as? ChartItem,
             let agg = panel?.bucketAggregation else { return }
-            
-//        let fieldName = agg.field
-//        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-//        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
       
         var dateComponant: DateComponents?
         if let selectedDates =  panel?.currentSelectedDates,
