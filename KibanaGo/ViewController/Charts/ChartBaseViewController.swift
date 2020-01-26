@@ -69,6 +69,9 @@ class ChartBaseViewController: PanelBaseViewController {
     
     override func updatePanelContent() {
         super.updatePanelContent()
+        if panel?.bucketType == BucketType.histogram {
+            chart?.isUserInteractionEnabled = false
+        }
         chart?.data = nil
     }
 

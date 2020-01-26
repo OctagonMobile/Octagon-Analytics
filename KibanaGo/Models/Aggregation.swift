@@ -99,7 +99,7 @@ class AggregationParams: Mappable {
     var precision: Int      = 5
     var interval: IntervalType          = IntervalType.unKnown
     var customInterval: String          = ""
-
+    var intervalInt: Int                = 0
     required init?(map: Map) {
         // Empty Method
     }
@@ -108,6 +108,7 @@ class AggregationParams: Mappable {
         precision           <- map["precision"]
         interval            <- (map["interval"],EnumTransform<IntervalType>())
         customInterval      <- map["customInterval"]
+        intervalInt         <- map["interval"]
     }
     
 }

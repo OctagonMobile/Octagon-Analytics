@@ -99,7 +99,9 @@ extension PieChartViewController: ChartViewDelegate {
         
         guard let chartItem = entry.data as? ChartItem, let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
         let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
+        
+        let interval = (type == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
+        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType, interval: interval)
         if !Session.shared.containsFilter(selectedFilter) {
             selectFieldAction?(self, selectedFilter, nil)
         }

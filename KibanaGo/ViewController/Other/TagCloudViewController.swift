@@ -46,7 +46,8 @@ class TagCloudViewController: PanelBaseViewController {
             guard let strongSelf = self, let fieldName = panel.bucketAggregation?.field, index < panel.buckets.count else { return }
             
             let metricType = panel.metricAggregation?.metricType ?? .unKnown
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: panel.buckets[index], type: panel.bucketType, metricType: metricType)
+            let interval = (panel.bucketType == BucketType.histogram) ?  panel.bucketAggregation?.params?.intervalInt : nil
+            let selectedFilter = Filter(fieldName: fieldName, fieldValue: panel.buckets[index], type: panel.bucketType, metricType: metricType, interval: interval)
             if !Session.shared.containsFilter(selectedFilter) {
                 strongSelf.selectFieldAction?(strongSelf, selectedFilter, nil)
             }

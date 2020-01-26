@@ -240,7 +240,8 @@ extension PanelBaseViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let fieldValue = panel?.buckets[indexPath.row], let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
         let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: type, metricType: metricType)
+        let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
+        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: type, metricType: metricType, interval: interval)
         if !Session.shared.containsFilter(selectedFilter) {
             filterAction?(self, selectedFilter)
         }
