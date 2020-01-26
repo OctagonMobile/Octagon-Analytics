@@ -354,25 +354,7 @@ class DashboardViewController: BaseViewController {
         
         popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
     }
-    fileprivate func configureMultiFiltersInfoView(_ selectedItems: [FilterProtocol], widgetRect: CGRect) {
-           
-           guard let infoView = Bundle.main.loadNibNamed("FiltersInfoView", owner: self, options: nil)?.first as? FiltersInfoView else {
-                   return
-           }
-           
-           infoView.updateDetails(selectedItems)
 
-           infoView.drillDownAction = { [weak self] (sender, filtersToBeApplied) in
-               guard let filters = filtersToBeApplied else { return }
-               
-               self?.applyFilters(filters)
-               self?.popTip.hide()
-           }
-           
-           let originatingFrame = getCalculatedRectForInfoPopUp(infoView, widgetRect: widgetRect)
-           
-           popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
-       }
     private func getCalculatedRectForInfoPopUp(_ infoView: UIView, widgetRect: CGRect) -> CGRect {
         let rectInView = view.convert(widgetRect, from: dashBoardCollectionView)
         
