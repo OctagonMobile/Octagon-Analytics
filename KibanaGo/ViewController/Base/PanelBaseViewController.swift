@@ -243,11 +243,18 @@ extension PanelBaseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let fieldValue = panel?.buckets[indexPath.row], let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: type, metricType: metricType)
-        if !Session.shared.containsFilter(selectedFilter) {
-            filterAction?(self, selectedFilter)
+        guard let fieldValue = panel?.buckets[indexPath.row], let agg = panel?.bucketAggregation else { return }
+        
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
+        }
+        
+        
+        let filter = FilterProvider.shared.makeFilter(fieldValue, dateComponents: dateComponant, agg: agg)
+        if !Session.shared.containsFilter(filter) {
+            filterAction?(self, filter)
         }
     }
     

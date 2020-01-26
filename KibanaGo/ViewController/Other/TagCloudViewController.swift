@@ -43,12 +43,17 @@ class TagCloudViewController: PanelBaseViewController {
         tagCloudView.tagClickBlock =  { [weak self] (title: String?, index: Int) in
             DLog("Clicked \(String(describing: title))")
             // Show Details
-            guard let strongSelf = self, let fieldName = panel.bucketAggregation?.field, index < panel.buckets.count else { return }
+            guard let strongSelf = self, let agg = panel.bucketAggregation, index < panel.buckets.count else { return }
             
-            let metricType = panel.metricAggregation?.metricType ?? .unKnown
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: panel.buckets[index], type: panel.bucketType, metricType: metricType)
-            if !Session.shared.containsFilter(selectedFilter) {
-                strongSelf.selectFieldAction?(strongSelf, selectedFilter, nil)
+        
+            var dateComponant: DateComponents?
+            if let selectedDates =  panel.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            let filter = FilterProvider.shared.makeFilter(panel.buckets[index], dateComponents: dateComponant, agg: agg)
+            if !Session.shared.containsFilter(filter) {
+                strongSelf.selectFieldAction?(strongSelf, filter, nil)
             }
         }        
         

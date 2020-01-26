@@ -26,11 +26,18 @@ class VectorMapViewController: PanelBaseViewController {
             let mappedCountryCode = self?.countryCodes.allKeysForValue(val: selectedCountryCode).first
             guard let selectedCountry = buckets.filter({ $0.key == mappedCountryCode }).first else { return }
             
-            guard let fieldName = self?.panel?.bucketAggregation?.field, let type = self?.panel?.bucketType else { return }
-            let metricType = self?.panel?.metricAggregation?.metricType ?? .unKnown
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: selectedCountry, type: type, metricType: metricType)
-            if !Session.shared.containsFilter(selectedFilter) {
-                strongSelf.selectFieldAction?(strongSelf, selectedFilter, nil)
+            guard let agg = self?.panel?.bucketAggregation else { return }
+            
+            var dateComponant: DateComponents?
+            if let selectedDates =  self?.panel?.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            
+            let filter = FilterProvider.shared.makeFilter(selectedCountry, dateComponents: dateComponant, agg: agg)
+            
+            if !Session.shared.containsFilter(filter) {
+                strongSelf.selectFieldAction?(strongSelf, filter, nil)
             }
         }
         

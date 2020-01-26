@@ -52,12 +52,10 @@ extension FaceTileViewController: UICollectionViewDataSource, UICollectionViewDe
         let selectedFace = dataSource[indexPath.row]
         
         guard let fieldName = faceTilePanel?.filterName, let _ = panel?.bucketType, !selectedFace.faceUrl.isEmpty else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        guard let fieldValue = ChartItem(JSON: ["key" : "\(selectedFace.fileName)"]) else { return }
         
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: BucketType.terms, metricType: metricType)
-        if !Session.shared.containsFilter(selectedFilter) {
-            selectFieldAction?(self, selectedFilter, nil)
+        let filter = SimpleFilter(fieldName: fieldName, fieldValue: "\(selectedFace.fileName)", type: BucketType.terms)
+        if !Session.shared.containsFilter(filter) {
+            selectFieldAction?(self, filter, nil)
         }
     }
 }
