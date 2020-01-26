@@ -195,6 +195,12 @@
 		51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E62922CDCC57001B390A /* CustomCardCell.swift */; };
 		51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */; };
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
+		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
+		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
+		F145885F23D5D808006641FD /* FiltersInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885B23D5D807006641FD /* FiltersInfoView.swift */; };
+		F145886023D5D808006641FD /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F145885C23D5D807006641FD /* FiltersInfoView.xib */; };
+		F145886123D5D808006641FD /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885D23D5D808006641FD /* FilterInfoTableViewCell.swift */; };
+		F145886223D5D808006641FD /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F145885E23D5D808006641FD /* FilterInfoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,6 +406,12 @@
 		51FABE9B2073602C0015C802 /* MapTrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackPoint.swift; sourceTree = "<group>"; };
 		65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.release.xcconfig"; sourceTree = "<group>"; };
 		69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.debug.xcconfig"; sourceTree = "<group>"; };
+		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
+		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
+		F145885B23D5D807006641FD /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
+		F145885C23D5D807006641FD /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
+		F145885D23D5D808006641FD /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
+		F145885E23D5D808006641FD /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KibanaGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -624,6 +636,7 @@
 				518C61A11FB4646100F83381 /* TermsChartItem.swift */,
 				5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */,
 				51DC04F020555F6000E4F1E0 /* Filter.swift */,
+				F10D6D5523D8422C00190754 /* FilterConvertible.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1470,6 +1483,7 @@
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
 				511D3A7D2046905200BB80AC /* HorizontalBarChartViewController.swift in Sources */,
+				F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */,
 				51840DEC1FCE932B007B8D38 /* Extensions.swift in Sources */,
 				51923ABC207DF6B40023FE27 /* MapTrackingPanel.swift in Sources */,
 				51E93DC022F1BB5A006F3C3D /* MarkDownVisState.swift in Sources */,

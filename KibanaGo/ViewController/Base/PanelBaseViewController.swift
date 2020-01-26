@@ -14,6 +14,9 @@ typealias FilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: 
 typealias SelectFieldActionBlock = (_ sender: Any,_ item: FilterProtocol,_ widgetRect: CGRect?) -> Void
 typealias DeselectFieldActionBlock = (_ sender: Any) -> Void
 
+typealias MultiFilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: [FilterProtocol]) -> Void
+typealias ShowInfoFieldActionBlock = (_ sender: Any,_ item: [FilterProtocol],_ widgetRect: CGRect?) -> Void
+
 enum PanelMode: Int {
     case normal         = 0
     case listing        = 1
@@ -37,6 +40,8 @@ class PanelBaseViewController: BaseViewController {
     var selectFieldAction: SelectFieldActionBlock?
     var deselectFieldAction: DeselectFieldActionBlock?
 
+
+    var showInfoFieldActionBlock: ShowInfoFieldActionBlock?
     var shouldLoadData: Bool = true
     
     var panel: Panel? {

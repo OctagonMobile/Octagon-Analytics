@@ -97,12 +97,21 @@ extension PieChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         DLog("Chart Value Selected")
         
-        guard let chartItem = entry.data as? ChartItem, let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
-        if !Session.shared.containsFilter(selectedFilter) {
-            selectFieldAction?(self, selectedFilter, nil)
+        guard let chartItem = entry.data as? ChartItem,
+            let agg = panel?.bucketAggregation else { return }
+            
+//        let fieldName = agg.field
+//        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
+//        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
+      
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
         }
+        let filter = FilterProvider.shared.makeFilter(chartItem, dateComponents: dateComponant, agg: agg)
+        
+        showInfoFieldActionBlock?(self, [filter], nil)
     }
     
     func chartValueNothingSelected(_ chartView: ChartViewBase) {

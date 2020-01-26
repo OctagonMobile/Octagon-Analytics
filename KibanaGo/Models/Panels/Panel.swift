@@ -11,6 +11,7 @@ import ObjectMapper
 import Alamofire
 import SwiftDate
 
+// MARK: PanelType
 enum PanelType: String {
     case unKnown    =   "unKnown"
     case pieChart   =   "pie"
@@ -33,6 +34,7 @@ enum PanelType: String {
     case area           =   "area"
 }
 
+// MARK: Panel
 class Panel: Mappable {
 
     /**
@@ -457,4 +459,3 @@ extension Panel {
         static let visualizationData = "visualization-data"
     }
 }
-
