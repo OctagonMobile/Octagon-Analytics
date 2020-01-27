@@ -28,7 +28,9 @@ class VectorMapViewController: PanelBaseViewController {
             
             guard let fieldName = self?.panel?.bucketAggregation?.field, let type = self?.panel?.bucketType else { return }
             let metricType = self?.panel?.metricAggregation?.metricType ?? .unKnown
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: selectedCountry, type: type, metricType: metricType)
+
+            let interval = (self?.panel?.bucketType == BucketType.histogram) ?  self?.panel?.bucketAggregation?.params?.intervalInt : nil
+            let selectedFilter = Filter(fieldName: fieldName, fieldValue: selectedCountry, type: type, metricType: metricType, interval: interval)
             if !Session.shared.containsFilter(selectedFilter) {
                 strongSelf.selectFieldAction?(strongSelf, selectedFilter, nil)
             }

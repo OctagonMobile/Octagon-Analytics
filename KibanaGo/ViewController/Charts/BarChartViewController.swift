@@ -141,7 +141,8 @@ class BarChartViewController: ChartBaseViewController {
             
             selectedFilter = DateFilter(fieldName: fieldName, fieldValue: chartItem, metricType: metricType, interval: intervalType, dateComponant: dateComponant, customInterval: customInterval)
         } else {
-            selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
+            let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
+            selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType, interval: interval)
         }
         
         guard !Session.shared.containsFilter(selectedFilter) else { return }

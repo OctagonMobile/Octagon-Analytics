@@ -54,8 +54,9 @@ extension FaceTileViewController: UICollectionViewDataSource, UICollectionViewDe
         guard let fieldName = faceTilePanel?.filterName, let _ = panel?.bucketType, !selectedFace.faceUrl.isEmpty else { return }
         let metricType = panel?.metricAggregation?.metricType ?? .unKnown
         guard let fieldValue = ChartItem(JSON: ["key" : "\(selectedFace.fileName)"]) else { return }
-        
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: BucketType.terms, metricType: metricType)
+
+        let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
+        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: BucketType.terms, metricType: metricType, interval: interval)
         if !Session.shared.containsFilter(selectedFilter) {
             selectFieldAction?(self, selectedFilter, nil)
         }

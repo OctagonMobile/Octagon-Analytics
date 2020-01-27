@@ -290,7 +290,6 @@ class DashboardViewController: BaseViewController {
             }
             
             panelViewController.filterAction = { [weak self] (sender, itemSelected) in
-                
                 self?.applyFilters(itemSelected)
             }
             
