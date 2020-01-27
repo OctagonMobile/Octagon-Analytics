@@ -247,11 +247,13 @@ class Panel: Mappable {
                 } else if let termsItem = (filter.fieldValue as? TermsChartItem) {
                     params?["filterValue"] = termsItem.key
                 } else if filter.type == .histogram {
+                    //For Histogram use Range
                     let fVal = Int(filter.fieldValue.key) ?? 0
                     let interval = filter.interval ?? 0
-                    params?["filterRangeFrom"] = Double(fVal)
-                    params?["filterRangeTo"] = Double(fVal + interval)
-                    params?["filterType"] = BucketType.range.rawValue
+                    params = ["filterType": "range",
+                              "filterField": filter.fieldName,
+                              "filterRangeFrom": "\(filter.fieldValue.key)",
+                              "filterRangeTo": "\(fVal + interval)"]
                 } else {
                     params?["filterValue"] = filter.fieldValue.key
                 }
