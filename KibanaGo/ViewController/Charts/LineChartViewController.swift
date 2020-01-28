@@ -118,6 +118,7 @@ class LineChartViewController: ChartBaseViewController {
 extension LineChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         DLog("Chart Value Selected")
+
         guard let chartItem = entry.data as? ChartItem, let agg = panel?.bucketAggregation else { return }
         
         var dateComponant: DateComponents?

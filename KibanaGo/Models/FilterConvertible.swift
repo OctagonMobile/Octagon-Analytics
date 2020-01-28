@@ -52,6 +52,7 @@ class FilterProvider: FilterProviderType {
                      dateComponents: DateComponents?,
                      aggs: [Aggregation]) -> [FilterProtocol] {
         
+        
         var currentBucket: BucketAggType? = bucket
         var filtersList: [FilterProtocol] = []
         
@@ -85,6 +86,9 @@ class FilterProvider: FilterProviderType {
         switch agg.bucketType {
         case .dateHistogram:
             filter = makeDateFilter(dateComponents: dateComponents, aggregation: agg, key: bucket.bucketKey)
+        case .histogram:
+            let interval = agg.params?.intervalInt
+            filter = SimpleFilter(fieldName: agg.field, fieldValue: bucket.bucketKey, type: agg.bucketType, interval: interval)
         default:
             filter = SimpleFilter(fieldName: agg.field, fieldValue: bucket.bucketKey, type: agg.bucketType)
         }

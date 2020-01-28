@@ -52,8 +52,9 @@ extension FaceTileViewController: UICollectionViewDataSource, UICollectionViewDe
         let selectedFace = dataSource[indexPath.row]
         
         guard let fieldName = faceTilePanel?.filterName, let _ = panel?.bucketType, !selectedFace.faceUrl.isEmpty else { return }
+        let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
         
-        let filter = SimpleFilter(fieldName: fieldName, fieldValue: "\(selectedFace.fileName)", type: BucketType.terms)
+        let filter = SimpleFilter(fieldName: fieldName, fieldValue: "\(selectedFace.fileName)", type: BucketType.terms, interval: interval)
         if !Session.shared.containsFilter(filter) {
             selectFieldAction?(self, filter, nil)
         }

@@ -22,11 +22,9 @@ class VectorMapViewController: PanelBaseViewController {
         
         worldMapView.tapActionBlock = { [weak self] (selectedCountryCode, countryName) in
             
-            guard let strongSelf = self, let buckets = self?.panel?.buckets else { return }
+            guard let strongSelf = self, let buckets = self?.panel?.buckets, let agg = self?.panel?.bucketAggregation else { return }
             let mappedCountryCode = self?.countryCodes.allKeysForValue(val: selectedCountryCode).first
             guard let selectedCountry = buckets.filter({ $0.key == mappedCountryCode }).first else { return }
-            
-            guard let agg = self?.panel?.bucketAggregation else { return }
             
             var dateComponant: DateComponents?
             if let selectedDates =  self?.panel?.currentSelectedDates,

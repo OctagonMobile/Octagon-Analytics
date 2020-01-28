@@ -44,8 +44,7 @@ class TagCloudViewController: PanelBaseViewController {
             DLog("Clicked \(String(describing: title))")
             // Show Details
             guard let strongSelf = self, let agg = panel.bucketAggregation, index < panel.buckets.count else { return }
-            
-        
+                    
             var dateComponant: DateComponents?
             if let selectedDates =  panel.currentSelectedDates,
                 let fromDate = selectedDates.0, let toDate = selectedDates.1 {

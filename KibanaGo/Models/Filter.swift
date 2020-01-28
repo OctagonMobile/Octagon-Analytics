@@ -45,7 +45,8 @@ struct Filter: FilterProtocol {
     var fieldValue: ChartItem
     var type: BucketType
     var metricType: MetricType
-
+    var interval: Int?
+    
     var combinedFilterValue: String {
         
         switch type {
@@ -53,17 +54,21 @@ struct Filter: FilterProtocol {
             let termsDate = (fieldValue as? TermsChartItem)?.termsDateString ?? ""
             let value = termsDate.isEmpty ? fieldValue.key : termsDate
             return "\(fieldName):\"\(value)\""
+        case .histogram:
+            let fVal = Int(fieldValue.key) ?? 0
+            return "\(fieldName):\"\(fieldValue.key) to \(fVal + (interval ?? 0))\""
         default:
             return "\(fieldName):\"\(fieldValue.key)\""
         }
     }
     
-    init(fieldName: String, fieldValue: ChartItem, type: BucketType, metricType: MetricType, isInverted: Bool = false) {
+    init(fieldName: String, fieldValue: ChartItem, type: BucketType, metricType: MetricType, isInverted: Bool = false, interval: Int? = nil) {
         self.fieldName  = fieldName
         self.fieldValue = fieldValue
         self.type       = type
         self.metricType = metricType
         self.isInverted = isInverted
+        self.interval   = interval
     }
     
     func isEqual(_ object: Any) -> Bool {
@@ -330,6 +335,7 @@ struct SimpleFilter: FilterProtocol {
     var fieldName: String
     var fieldValue: String
     var bucketType: BucketType
+    var interval: Int?
     var combinedFilterValue: String {
         return "\(fieldName): \(displayValue)"
     }
@@ -341,11 +347,12 @@ struct SimpleFilter: FilterProtocol {
         return fieldValue
     }
     
-    init(fieldName: String, fieldValue: String, type: BucketType) {
+    init(fieldName: String, fieldValue: String, type: BucketType, interval: Int? = nil) {
         self.fieldName  = fieldName
         self.fieldValue = fieldValue
         self.bucketType = type
         self.isInverted = false
+        self.interval   = interval
     }
     
     func isEqual(_ object: Any) -> Bool {
