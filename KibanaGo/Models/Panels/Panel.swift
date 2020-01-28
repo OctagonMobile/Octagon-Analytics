@@ -357,7 +357,14 @@ class Panel: Mappable {
             buckets = Mapper<RangeChartItem>().mapArray(JSONArray: bucketsArray)
             buckets.sort(by: { ($0 as! RangeChartItem).from < ($1 as! RangeChartItem).from })
         case .terms:
-                buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
+            buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
+            if let termsBucket = buckets as? [TermsChartItem] {
+               buckets = termsBucket.map { bucket -> TermsChartItem in
+                    bucket.key = bucket.keyAsString
+                    return bucket
+                }
+            }
+            
         case .dateHistogram:
             buckets = Mapper<DateHistogramChartItem>().mapArray(JSONArray: bucketsArray)
         default:
@@ -365,7 +372,7 @@ class Panel: Mappable {
         }
         
         buckets = filterInvalidDataIfExist(buckets)
-
+        
         // Parse table headers for Tables
         if visState?.type == .table , let headersArray = responseJson.first?["tableHeaders"] as? [[String: Any]] {
             let idDictionary = headersArray.filter(( {($0["id"] as? String) == "2"} )).first
