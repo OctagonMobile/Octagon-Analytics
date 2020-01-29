@@ -337,7 +337,14 @@ struct SimpleFilter: FilterProtocol {
     var bucketType: BucketType
     var interval: Int?
     var combinedFilterValue: String {
-        return "\(fieldName): \(displayValue)"
+        switch bucketType {
+        case .histogram:
+            let fVal = Int(fieldValue) ?? 0
+            return "\(fieldName):\"\(fieldValue) to \(fVal + (interval ?? 0))\""
+        default:
+             return "\(fieldName): \(displayValue)"
+        }
+       
     }
     
     var displayValue: String {

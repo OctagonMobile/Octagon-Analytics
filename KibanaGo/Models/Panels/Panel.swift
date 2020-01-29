@@ -291,6 +291,14 @@ class Panel: Mappable {
                     let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
                     params?["filterRangeFrom"] = ranges.first ?? ""
                     params?["filterRangeTo"] = ranges.last ?? ""
+                case .histogram:
+                        //For Histogram use Range
+                        let fVal = Int(filter.fieldValue) ?? 0
+                        let interval = filter.interval ?? 0
+                        params = ["filterType": "range",
+                                  "filterField": filter.fieldName,
+                                  "filterRangeFrom": "\(filter.fieldValue)",
+                                  "filterRangeTo": "\(fVal + interval)"]
                 default:
                     params?["filterValue"] = filter.fieldValue
                 }
@@ -359,8 +367,10 @@ class Panel: Mappable {
         case .terms:
             buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
             if let termsBucket = buckets as? [TermsChartItem] {
-               buckets = termsBucket.map { bucket -> TermsChartItem in
-                    bucket.key = bucket.keyAsString
+                buckets = termsBucket.map { bucket -> TermsChartItem in
+                    if !bucket.keyAsString.isEmpty {
+                        bucket.key = bucket.keyAsString
+                    }
                     return bucket
                 }
             }
