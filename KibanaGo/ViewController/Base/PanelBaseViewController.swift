@@ -14,6 +14,9 @@ typealias FilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: 
 typealias SelectFieldActionBlock = (_ sender: Any,_ item: FilterProtocol,_ widgetRect: CGRect?) -> Void
 typealias DeselectFieldActionBlock = (_ sender: Any) -> Void
 
+typealias MultiFilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: [FilterProtocol]) -> Void
+typealias ShowInfoFieldActionBlock = (_ sender: Any,_ item: [FilterProtocol],_ widgetRect: CGRect?) -> Void
+
 enum PanelMode: Int {
     case normal         = 0
     case listing        = 1
@@ -37,6 +40,8 @@ class PanelBaseViewController: BaseViewController {
     var selectFieldAction: SelectFieldActionBlock?
     var deselectFieldAction: DeselectFieldActionBlock?
 
+
+    var showInfoFieldActionBlock: ShowInfoFieldActionBlock?
     var shouldLoadData: Bool = true
     
     var panel: Panel? {
@@ -238,12 +243,17 @@ extension PanelBaseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let fieldValue = panel?.buckets[indexPath.row], let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: type, metricType: metricType, interval: interval)
-        if !Session.shared.containsFilter(selectedFilter) {
-            filterAction?(self, selectedFilter)
+        guard let fieldValue = panel?.buckets[indexPath.row], let agg = panel?.bucketAggregation else { return }
+        
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
+        }
+        
+        let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)
+        if !Session.shared.containsFilter(filter) {
+            filterAction?(self, filter)
         }
     }
     

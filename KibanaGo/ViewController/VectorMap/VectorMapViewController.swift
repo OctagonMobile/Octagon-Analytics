@@ -22,17 +22,20 @@ class VectorMapViewController: PanelBaseViewController {
         
         worldMapView.tapActionBlock = { [weak self] (selectedCountryCode, countryName) in
             
-            guard let strongSelf = self, let buckets = self?.panel?.buckets else { return }
+            guard let strongSelf = self, let buckets = self?.panel?.buckets, let agg = self?.panel?.bucketAggregation else { return }
             let mappedCountryCode = self?.countryCodes.allKeysForValue(val: selectedCountryCode).first
             guard let selectedCountry = buckets.filter({ $0.key == mappedCountryCode }).first else { return }
             
-            guard let fieldName = self?.panel?.bucketAggregation?.field, let type = self?.panel?.bucketType else { return }
-            let metricType = self?.panel?.metricAggregation?.metricType ?? .unKnown
-
-            let interval = (self?.panel?.bucketType == BucketType.histogram) ?  self?.panel?.bucketAggregation?.params?.intervalInt : nil
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: selectedCountry, type: type, metricType: metricType, interval: interval)
-            if !Session.shared.containsFilter(selectedFilter) {
-                strongSelf.selectFieldAction?(strongSelf, selectedFilter, nil)
+            var dateComponant: DateComponents?
+            if let selectedDates =  self?.panel?.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            
+            let filter = FilterProvider.shared.createFilter(selectedCountry, dateComponents: dateComponant, agg: agg)
+            
+            if !Session.shared.containsFilter(filter) {
+                strongSelf.selectFieldAction?(strongSelf, filter, nil)
             }
         }
         

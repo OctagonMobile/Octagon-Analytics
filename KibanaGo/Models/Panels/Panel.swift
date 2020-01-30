@@ -11,6 +11,7 @@ import ObjectMapper
 import Alamofire
 import SwiftDate
 
+// MARK: PanelType
 enum PanelType: String {
     case unKnown    =   "unKnown"
     case pieChart   =   "pie"
@@ -24,6 +25,7 @@ enum PanelType: String {
     case heatMap    =   "tile_map"
     case mapTracking    =   "t4p-map"
     case vectorMap      =   "vectormap"
+    case regionMap      =   "region_map"
     case faceTile       =   "t4p-face"
     case neo4jGraph     =   "t4p-neo4j-graph-graph"
     case html           =   "html"
@@ -33,6 +35,7 @@ enum PanelType: String {
     case area           =   "area"
 }
 
+// MARK: Panel
 class Panel: Mappable {
 
     /**
@@ -280,6 +283,27 @@ class Panel: Mappable {
                           "filterField": filter.fieldName,
                           "filterValue": filter.fieldValue]
             }
+            
+            if let filter = appliedFilter as? SimpleFilter {
+                params?["filterType"] = filter.bucketType.rawValue
+                params?["filterField"] = filter.fieldName
+                switch filter.bucketType {
+                case .range:
+                    let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
+                    params?["filterRangeFrom"] = ranges.first ?? ""
+                    params?["filterRangeTo"] = ranges.last ?? ""
+                case .histogram:
+                        //For Histogram use Range
+                        let fVal = Int(filter.fieldValue) ?? 0
+                        let interval = filter.interval ?? 0
+                        params = ["filterType": "range",
+                                  "filterField": filter.fieldName,
+                                  "filterRangeFrom": "\(filter.fieldValue)",
+                                  "filterRangeTo": "\(fVal + interval)"]
+                default:
+                    params?["filterValue"] = filter.fieldValue
+                }
+            }
 
             
             params?["isFilterInverted"] = appliedFilter.isInverted
@@ -342,7 +366,16 @@ class Panel: Mappable {
             buckets = Mapper<RangeChartItem>().mapArray(JSONArray: bucketsArray)
             buckets.sort(by: { ($0 as! RangeChartItem).from < ($1 as! RangeChartItem).from })
         case .terms:
-                buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
+            buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
+            if let termsBucket = buckets as? [TermsChartItem] {
+                buckets = termsBucket.map { bucket -> TermsChartItem in
+                    if !bucket.keyAsString.isEmpty {
+                        bucket.key = bucket.keyAsString
+                    }
+                    return bucket
+                }
+            }
+            
         case .dateHistogram:
             buckets = Mapper<DateHistogramChartItem>().mapArray(JSONArray: bucketsArray)
         default:
@@ -350,7 +383,7 @@ class Panel: Mappable {
         }
         
         buckets = filterInvalidDataIfExist(buckets)
-
+        
         // Parse table headers for Tables
         if visState?.type == .table , let headersArray = responseJson.first?["tableHeaders"] as? [[String: Any]] {
             let idDictionary = headersArray.filter(( {($0["id"] as? String) == "2"} )).first
@@ -465,4 +498,3 @@ extension Panel {
         static let visualizationData = "visualization-data"
     }
 }
-

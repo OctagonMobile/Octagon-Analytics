@@ -118,13 +118,19 @@ class LineChartViewController: ChartBaseViewController {
 extension LineChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         DLog("Chart Value Selected")
-        guard let chartItem = entry.data as? ChartItem, let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
+
+        guard let chartItem = entry.data as? ChartItem, let agg = panel?.bucketAggregation else { return }
         
-        let interval = (panel?.bucketType == BucketType.histogram) ?  panel?.bucketAggregation?.params?.intervalInt : nil
-        let selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType, interval: interval)
-        if !Session.shared.containsFilter(selectedFilter) {
-            selectFieldAction?(self, selectedFilter, nil)
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
+        }
+        print(dateComponant ?? "Date components nil")
+        
+        let filter = FilterProvider.shared.createFilter(chartItem, dateComponents: dateComponant, agg: agg)
+        if !Session.shared.containsFilter(filter) {
+            showInfoFieldActionBlock?(self, [filter], nil)
         }
     }
     
