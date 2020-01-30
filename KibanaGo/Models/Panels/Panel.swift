@@ -25,6 +25,7 @@ enum PanelType: String {
     case heatMap    =   "tile_map"
     case mapTracking    =   "t4p-map"
     case vectorMap      =   "vectormap"
+    case regionMap      =   "region_map"
     case faceTile       =   "t4p-face"
     case neo4jGraph     =   "t4p-neo4j-graph-graph"
     case html           =   "html"

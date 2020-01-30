@@ -268,7 +268,7 @@ class DashboardViewController: BaseViewController {
                 }
             case .mapTracking:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.mapTrackingViewController) as? MapTrackingViewController ?? PanelBaseViewController()
-            case .vectorMap:
+            case .vectorMap, .regionMap:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.vectorMapViewController) as? VectorMapViewController ?? PanelBaseViewController()
             case .faceTile:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.faceTileViewController) as? FaceTileViewController ?? FaceTileViewController()
