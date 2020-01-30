@@ -251,7 +251,7 @@ extension PanelBaseViewController: UITableViewDelegate, UITableViewDataSource {
             dateComponant = fromDate.getDateComponents(toDate)
         }
         
-        let filter = FilterProvider.shared.makeFilter(fieldValue, dateComponents: dateComponant, agg: agg)
+        let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)
         if !Session.shared.containsFilter(filter) {
             filterAction?(self, filter)
         }

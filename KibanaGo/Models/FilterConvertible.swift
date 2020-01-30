@@ -15,16 +15,12 @@ protocol BucketAggType {
 }
 
 protocol FilterProviderType {
-   
-    func makeDateFilter(dateComponents: DateComponents?,
-                        aggregation: Aggregation,
-                        key: String) -> DateHistogramFilter
   
-    func makeFilters(_ bucket: BucketAggType,
+    func createFilters(_ bucket: BucketAggType,
                      dateComponents: DateComponents?,
                      aggs: [Aggregation]) -> [FilterProtocol]
    
-    func makeFilter(_ bucket: BucketAggType,
+    func createFilter(_ bucket: BucketAggType,
                     dateComponents: DateComponents?,
                     agg: Aggregation) -> FilterProtocol
 }
@@ -33,7 +29,7 @@ class FilterProvider: FilterProviderType {
     
     static let shared: FilterProviderType = FilterProvider()
     //Make Date Filter
-    func makeDateFilter(dateComponents: DateComponents?,
+    private func makeDateFilter(dateComponents: DateComponents?,
                         aggregation: Aggregation,
                         key: String) -> DateHistogramFilter {
         let interval = aggregation.params?.interval ?? AggregationParams.IntervalType.unKnown
@@ -48,7 +44,7 @@ class FilterProvider: FilterProviderType {
     
     
     //Make Filters to bucket with sub buckets
-    func makeFilters(_ bucket: BucketAggType,
+    func createFilters(_ bucket: BucketAggType,
                      dateComponents: DateComponents?,
                      aggs: [Aggregation]) -> [FilterProtocol] {
         
@@ -65,6 +61,9 @@ class FilterProvider: FilterProviderType {
                 filter = makeDateFilter(dateComponents: dateComponents,
                                         aggregation: agg,
                                         key: val)
+            case .histogram:
+                let interval = agg.params?.intervalInt
+                filter = SimpleFilter(fieldName: agg.field, fieldValue: bucket.bucketKey, type: agg.bucketType, interval: interval)
             default:
                 filter = SimpleFilter(fieldName: agg.field,
                                       fieldValue: val,
@@ -80,7 +79,7 @@ class FilterProvider: FilterProviderType {
     
     //Make Filter without Sub bucket, just for the current bucket.
     //Will be deprecated soon
-    func makeFilter(_ bucket: BucketAggType, dateComponents: DateComponents?, agg: Aggregation) -> FilterProtocol {
+    func createFilter(_ bucket: BucketAggType, dateComponents: DateComponents?, agg: Aggregation) -> FilterProtocol {
         var filter: FilterProtocol
         
         switch agg.bucketType {

@@ -50,7 +50,7 @@ class TagCloudViewController: PanelBaseViewController {
                 let fromDate = selectedDates.0, let toDate = selectedDates.1 {
                 dateComponant = fromDate.getDateComponents(toDate)
             }
-            let filter = FilterProvider.shared.makeFilter(panel.buckets[index], dateComponents: dateComponant, agg: agg)
+            let filter = FilterProvider.shared.createFilter(panel.buckets[index], dateComponents: dateComponant, agg: agg)
             if !Session.shared.containsFilter(filter) {
                 strongSelf.selectFieldAction?(strongSelf, filter, nil)
             }

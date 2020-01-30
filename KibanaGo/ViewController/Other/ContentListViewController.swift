@@ -128,7 +128,7 @@ extension ContentListViewController {
                 let fromDate = selectedDates.0, let toDate = selectedDates.1 {
                 dateComponant = fromDate.getDateComponents(toDate)
             }
-            let filter = FilterProvider.shared.makeFilter(fieldValue, dateComponents: dateComponant, agg: agg)            
+            let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)            
             if !Session.shared.containsFilter(filter) {
                 filterAction?(self, filter)
             }

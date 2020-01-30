@@ -126,8 +126,9 @@ extension LineChartViewController: ChartViewDelegate {
             let fromDate = selectedDates.0, let toDate = selectedDates.1 {
             dateComponant = fromDate.getDateComponents(toDate)
         }
+        print(dateComponant ?? "Date components nil")
         
-        let filter = FilterProvider.shared.makeFilter(chartItem, dateComponents: dateComponant, agg: agg)
+        let filter = FilterProvider.shared.createFilter(chartItem, dateComponents: dateComponant, agg: agg)
         if !Session.shared.containsFilter(filter) {
             showInfoFieldActionBlock?(self, [filter], nil)
         }

@@ -105,7 +105,7 @@ extension PieChartViewController: ChartViewDelegate {
             let fromDate = selectedDates.0, let toDate = selectedDates.1 {
             dateComponant = fromDate.getDateComponents(toDate)
         }
-        let filter = FilterProvider.shared.makeFilter(chartItem, dateComponents: dateComponant, agg: agg)
+        let filter = FilterProvider.shared.createFilter(chartItem, dateComponents: dateComponant, agg: agg)
         
         showInfoFieldActionBlock?(self, [filter], nil)
     }

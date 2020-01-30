@@ -32,7 +32,7 @@ class VectorMapViewController: PanelBaseViewController {
                 dateComponant = fromDate.getDateComponents(toDate)
             }
             
-            let filter = FilterProvider.shared.makeFilter(selectedCountry, dateComponents: dateComponant, agg: agg)
+            let filter = FilterProvider.shared.createFilter(selectedCountry, dateComponents: dateComponant, agg: agg)
             
             if !Session.shared.containsFilter(filter) {
                 strongSelf.selectFieldAction?(strongSelf, filter, nil)

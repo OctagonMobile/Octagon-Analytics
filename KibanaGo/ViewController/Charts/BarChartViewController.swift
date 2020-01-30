@@ -134,7 +134,7 @@ class BarChartViewController: ChartBaseViewController {
         }
 
 //        let filtersToBeApplied: [FilterProtocol] = bucket.getRelatedfilters(dateComponant)
-        let filter: FilterProtocol = FilterProvider.shared.makeFilter(bucket, dateComponents: dateComponant, agg: agg)
+        let filter: FilterProtocol = FilterProvider.shared.createFilter(bucket, dateComponents: dateComponant, agg: agg)
 
         if applyImmedietly {
             filterAction?(self, filter)
