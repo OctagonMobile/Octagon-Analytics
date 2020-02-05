@@ -587,13 +587,14 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         savedSearchViewController?.enableTableViewScrolling()
+        if (!decelerate) {
+            view.layoutIfNeeded()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         popTip.hide()
-        
-        view.layoutIfNeeded()
-        
+                
         let searchBarHeightToHide: CGFloat = 50
         searchBarHeightConstraint.constant = scrollView.contentOffset.y > searchBarHeightToHide ? 0 : 56
         
@@ -602,11 +603,16 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         filtersHeightConstraint.constant = shouldShowFilter ? filtersHeight : 0
         filtersTopConstraint.constant = shouldShowFilter ? filtersTopConstraintHeight : 0
 
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+//        UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction], animations: {
+//            self.view.layoutIfNeeded()
+//        }, completion: nil)
 
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        view.layoutIfNeeded()
+    }
+    
 }
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
