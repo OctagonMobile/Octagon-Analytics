@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class TermsAndConditionViewController: BaseViewController {
 
@@ -14,7 +15,7 @@ class TermsAndConditionViewController: BaseViewController {
 
     var didAccept: DidAcceptTermsAndCondition?
 
-    @IBOutlet weak var termsAndConditionWebView: UIWebView!
+    @IBOutlet weak var termsAndConditionWebView: WKWebView!
     
     var termsAndConditionLink: String?
     
@@ -63,7 +64,7 @@ class TermsAndConditionViewController: BaseViewController {
             }
             
             let request = URLRequest(url: url)
-            termsAndConditionWebView.loadRequest(request)
+            termsAndConditionWebView.load(request)
         } else if let termsAndConditionString = termsAndConditionString {
             termsAndConditionWebView.loadHTMLString(termsAndConditionString, baseURL: nil)
         }

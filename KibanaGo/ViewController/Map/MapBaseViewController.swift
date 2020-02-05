@@ -55,7 +55,7 @@ class MapBaseViewController: PanelBaseViewController {
         // Do any additional setup after loading the view.
         displayContainerView.style(.shadow())
         mapView.style(.roundCorner(5.0, 0.0, .clear))
-
+        layerSwitchHolder?.isHidden = true
     }
     
     override func setupPanel() {
@@ -122,7 +122,9 @@ class MapBaseViewController: PanelBaseViewController {
         }
         addWMSLayer(currentSelectedLayerName)
         
-        layerSwitchHolder?.layers = (panel?.visState as? MapVisState)?.mapLayers ?? []
+        let mapLayersList = (panel?.visState as? MapVisState)?.mapLayers ?? []
+        layerSwitchHolder?.layers = mapLayersList
+        layerSwitchHolder?.isHidden = mapLayersList.count <= 1
         layerSwitchHolder?.layerSwitchActionBlock = { [weak self] (sender, selectedLayer) in
             self?.currentSelectedLayerName = selectedLayer.layerName
             if let tileOverlay = self?.overlay, self?.layers.count ?? 0 > 0 {

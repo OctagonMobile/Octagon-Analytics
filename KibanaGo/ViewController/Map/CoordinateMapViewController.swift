@@ -14,6 +14,7 @@ class CoordinateMapViewController: BaseHeatMapViewController {
 
     var tapGesture: UITapGestureRecognizer?
 
+    var zoomToShowAllAnnotation: Bool   =   true
     //MARK:
     
     override func updatePanelContent() {
@@ -59,8 +60,25 @@ class CoordinateMapViewController: BaseHeatMapViewController {
             tapGesture = UITapGestureRecognizer(target: self, action: #selector(BaseHeatMapViewController.tapGestureHandler(_:)))
             mapView.addGestureRecognizer(tapGesture!)
         }
-
+        
+        guard zoomToShowAllAnnotation else { return }
+        zoomForAllOverlays()
     }
+    
+    func zoomForAllOverlays() {
+        let allCircles = mapView.overlays.filter({ $0 is MKCircle })
+
+        guard allCircles.count > 0 else { return }
+        guard let initial = allCircles.first?.boundingMapRect else { return }
+
+        let insets = UIEdgeInsets(top: 500, left: 500, bottom: 500, right: 500)
+        let mapRect = allCircles
+            .dropFirst()
+            .reduce(initial) { $0.union($1.boundingMapRect) }
+        mapView.setVisibleMapRect(mapRect, edgePadding: insets, animated: true)
+        zoomToShowAllAnnotation = false
+    }
+
 }
 
 extension CoordinateMapViewController {

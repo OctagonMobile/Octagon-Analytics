@@ -23,7 +23,7 @@ class TermsChartItem: ChartItem {
     override func mapping(map: Map) {
         super.mapping(map: map)
         
-        key             <- (map["key"], StringTransform())
+        key             <- map["key"]
         keyAsString     <- map["key_as_string"]
         
         let dateFormatter = DateFormatter()

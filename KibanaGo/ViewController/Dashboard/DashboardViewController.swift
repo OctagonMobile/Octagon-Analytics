@@ -268,7 +268,7 @@ class DashboardViewController: BaseViewController {
                 }
             case .mapTracking:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.mapTrackingViewController) as? MapTrackingViewController ?? PanelBaseViewController()
-            case .vectorMap:
+            case .vectorMap, .regionMap:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.vectorMapViewController) as? VectorMapViewController ?? PanelBaseViewController()
             case .faceTile:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.faceTileViewController) as? FaceTileViewController ?? FaceTileViewController()
@@ -289,9 +289,8 @@ class DashboardViewController: BaseViewController {
                 break
             }
             
-            panelViewController.filterAction = { [weak self] (sender, itemSelected) in
-                
-                self?.applyFilters(itemSelected)
+            panelViewController.filterAction = { [weak self] (sender, itemSelected) in   
+                self?.applyFilters([itemSelected])
             }
             
             widgetsDictionary["\(index)"] = panelViewController
@@ -334,8 +333,28 @@ class DashboardViewController: BaseViewController {
         
         popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
     }
-    
-    private func getCalculatedRectForInfoPopUp(_ infoView: InfoView, widgetRect: CGRect) -> CGRect {
+
+    fileprivate func configureMultiFiltersInfoView(_ selectedItems: [FilterProtocol], widgetRect: CGRect) {
+        
+        guard let infoView = Bundle.main.loadNibNamed("FiltersInfoView", owner: self, options: nil)?.first as? FiltersInfoView else {
+                return
+        }
+        
+        infoView.updateDetails(selectedItems)
+
+        infoView.drillDownAction = { [weak self] (sender, filtersToBeApplied) in
+            guard let filters = filtersToBeApplied else { return }
+            
+            self?.applyFilters(filters)
+            self?.popTip.hide()
+        }
+        
+        let originatingFrame = getCalculatedRectForInfoPopUp(infoView, widgetRect: widgetRect)
+        
+        popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
+    }
+
+    private func getCalculatedRectForInfoPopUp(_ infoView: UIView, widgetRect: CGRect) -> CGRect {
         let rectInView = view.convert(widgetRect, from: dashBoardCollectionView)
         
         // Try Right side
@@ -392,6 +411,39 @@ class DashboardViewController: BaseViewController {
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.style(CurrentTheme.subHeadTextStyle())
         textFieldInsideSearchBar?.backgroundColor = CurrentTheme.cellBackgroundColor
+    }
+    
+    private func applyFilters(_ itemsSelected: [FilterProtocol]) {
+        
+        let dateFilters = itemsSelected.filter({ $0 is DateHistogramFilter}) as? [DateHistogramFilter]
+        let otherFilters = itemsSelected.filter({ !($0 is DateHistogramFilter) })
+
+        var indexPathList: [IndexPath] = []
+        for item in otherFilters {
+            let success = Session.shared.addFilters(item)
+            guard success else { continue }
+                let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
+                indexPathList.append(indexPath)
+        }
+
+        filterCollectionView.insertItems(at: indexPathList)
+        if Session.shared.appliedFilters.count > 1, let indexPath = indexPathList.last {
+            filterCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        }
+        
+        guard let dateFilter = dateFilters?.first else {
+            refreshDashboard()
+            return
+        }
+        applyDateFilter(dateFilter)
+    }
+    
+    
+    private func applyDateFilter(_ dateFilter: DateHistogramFilter) {
+        let fromDateString = dateFilter.calculatedFromDate?.toFormat("MMM dd yyyy HH:mm:ss") ?? ""
+        let toDateString = dateFilter.calculatedToDate?.toFormat("MMM dd yyyy HH:mm:ss") ?? ""
+        let selectedDateString = fromDateString + " - " + toDateString
+        didSelectDate(dateFilter.calculatedFromDate, toDate: dateFilter.calculatedToDate, selectedDateString: selectedDateString)
     }
 
     
@@ -497,15 +549,20 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.viewController = widgetViewController
         cell.selectFieldAction = { [weak self] (sender, selectedItem, widgetRect) in
             
-            if selectedItem is Filter  || selectedItem is DateFilter {
+            if selectedItem is Filter  || selectedItem is DateFilter || selectedItem is SimpleFilter {
                 guard let rect = widgetRect else { return }
-                self?.configureInfoView(selectedItem, widgetRect: rect)
+                self?.configureMultiFiltersInfoView([selectedItem], widgetRect: rect)
             } else if selectedItem is ImageFilter {
                 self?.applyImageFilter(selectedItem)
             } else if selectedItem is LocationFilter {
                 self?.applyFilters(selectedItem)
             }
 
+        }
+
+        cell.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
+            guard let rect = widgetRect else { return }
+            self?.configureMultiFiltersInfoView(selectedItems, widgetRect: rect)
         }
         
         cell.deselectFieldAction = { [weak self] (sender) in

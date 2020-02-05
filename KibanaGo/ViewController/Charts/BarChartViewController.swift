@@ -121,34 +121,25 @@ class BarChartViewController: ChartBaseViewController {
         let shouldHide = (panel?.buckets.count ?? 0) <= 0
         legendHolder.isHidden = shouldHide || (mode == .listing)
     }
-    
-    private func applyFiltersWith(_ chartItem: ChartItem, applyImmedietly: Bool = false) {
-        
-        guard let fieldName = panel?.bucketAggregation?.field, let type = panel?.bucketType else { return }
-        let metricType = panel?.metricAggregation?.metricType ?? .unKnown
 
-        let selectedFilter: FilterProtocol
-        if panel?.bucketType == BucketType.dateHistogram {
-            guard let selectedDates = panel?.currentSelectedDates else { return }
-            
-            let intervalType: AggregationParams.IntervalType = panel?.bucketAggregation?.params?.interval ?? .unKnown
-            let customInterval: String =  panel?.bucketAggregation?.params?.customInterval ?? ""
-            
-            var dateComponant: DateComponents?
-            if let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-                dateComponant = fromDate.getDateComponents(toDate)
-            }
-            
-            selectedFilter = DateFilter(fieldName: fieldName, fieldValue: chartItem, metricType: metricType, interval: intervalType, dateComponant: dateComponant, customInterval: customInterval)
-        } else {
-            selectedFilter = Filter(fieldName: fieldName, fieldValue: chartItem, type: type, metricType: metricType)
+    
+    internal func applyFiltersWith(_ bucket: ChartItem, applyImmedietly: Bool = false) {
+      
+        guard let agg = panel?.bucketAggregation else { return }
+
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
         }
-        
-        guard !Session.shared.containsFilter(selectedFilter) else { return }
+
+//        let filtersToBeApplied: [FilterProtocol] = bucket.getRelatedfilters(dateComponant)
+        let filter: FilterProtocol = FilterProvider.shared.createFilter(bucket, dateComponents: dateComponant, agg: agg)
+
         if applyImmedietly {
-            filterAction?(self, selectedFilter)
-        } else  {
-            selectFieldAction?(self, selectedFilter, nil)
+            filterAction?(self, filter)
+        } else {
+            showInfoFieldActionBlock?(self, [filter], nil)
         }
     }
 }
