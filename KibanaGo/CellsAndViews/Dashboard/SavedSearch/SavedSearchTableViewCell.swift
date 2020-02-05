@@ -59,7 +59,7 @@ class SavedSearchTableViewCell: UITableViewCell {
 
                 if let fieldValue = ChartItem(JSON: ["key" : "\(value)"]) {
                     ///TODO Metric type need to be updated
-                    let filter = Filter(fieldName: key, fieldValue: fieldValue, type: BucketType.terms, metricType: .unKnown)
+                    let filter = SimpleFilter(fieldName: key, fieldValue: "\(value)", type: BucketType.terms)
                     let longPressGesture = SearchLongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(_:)), filter: filter)
                     label.addGestureRecognizer(longPressGesture)
                 }
@@ -106,10 +106,10 @@ class SavedSearchTableViewCell: UITableViewCell {
 }
 
 class SearchLongPressGestureRecognizer: UILongPressGestureRecognizer {
-    var filter : Filter?
+    var filter : FilterProtocol?
     // any more custom variables here
     
-    init(target: AnyObject?, action: Selector, filter : Filter?) {
+    init(target: AnyObject?, action: Selector, filter : FilterProtocol?) {
         super.init(target: target, action: action)
         self.filter = filter
     }

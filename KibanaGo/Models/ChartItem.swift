@@ -36,3 +36,17 @@ class ChartItem: Mappable {
     }
 
 }
+
+extension ChartItem: BucketAggType {
+    var bucketKey: String {
+        return key
+    }
+    
+    var aggType: BucketType {
+        return .unKnown
+    }
+    
+    var parent: BucketAggType? {
+        return nil
+    }
+}

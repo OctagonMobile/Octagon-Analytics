@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="shY-MF-Zk5">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="4352" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -115,7 +115,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jt6-sK-PQu">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" canCancelContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jt6-sK-PQu">
                                 <rect key="frame" x="10" y="138" width="1004" height="615"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewLayout key="collectionViewLayout" id="MqB-5w-Oaj" customClass="MosaicLayout"/>
@@ -748,10 +748,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wP0-Ob-HYx">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jd-pI-ZVT">
                                 <rect key="frame" x="45" y="0.0" width="934" height="768"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-ra-3iq">
                                 <rect key="frame" x="10" y="0.0" width="30" height="768"/>
                                 <connections>
@@ -769,23 +773,23 @@
                         <constraints>
                             <constraint firstItem="wQH-8Y-R2V" firstAttribute="centerY" secondItem="ynY-K9-b5K" secondAttribute="centerY" id="9Mi-Ez-Mzn"/>
                             <constraint firstItem="86B-5m-DlG" firstAttribute="bottom" secondItem="wQH-8Y-R2V" secondAttribute="bottom" id="CJn-O7-t1L"/>
+                            <constraint firstItem="86B-5m-DlG" firstAttribute="bottom" secondItem="5jd-pI-ZVT" secondAttribute="bottom" id="Dnr-BX-IPq"/>
                             <constraint firstItem="wQH-8Y-R2V" firstAttribute="top" secondItem="86B-5m-DlG" secondAttribute="top" id="HO6-2i-3fO"/>
                             <constraint firstItem="9BV-ra-3iq" firstAttribute="leading" secondItem="86B-5m-DlG" secondAttribute="leading" constant="10" id="Hyw-QU-lla"/>
+                            <constraint firstItem="5jd-pI-ZVT" firstAttribute="leading" secondItem="9BV-ra-3iq" secondAttribute="trailing" constant="5" id="KuH-jH-BTi"/>
+                            <constraint firstItem="5jd-pI-ZVT" firstAttribute="top" secondItem="86B-5m-DlG" secondAttribute="top" id="ONL-Fy-Qe3"/>
                             <constraint firstItem="9BV-ra-3iq" firstAttribute="centerY" secondItem="ynY-K9-b5K" secondAttribute="centerY" id="OUj-qH-0ye"/>
                             <constraint firstItem="86B-5m-DlG" firstAttribute="trailing" secondItem="wQH-8Y-R2V" secondAttribute="trailing" constant="10" id="Q2a-Is-YLF"/>
-                            <constraint firstItem="wQH-8Y-R2V" firstAttribute="leading" secondItem="wP0-Ob-HYx" secondAttribute="trailing" constant="5" id="hmM-di-c0u"/>
-                            <constraint firstItem="86B-5m-DlG" firstAttribute="bottom" secondItem="wP0-Ob-HYx" secondAttribute="bottom" id="jBM-yx-ka8"/>
+                            <constraint firstItem="wQH-8Y-R2V" firstAttribute="leading" secondItem="5jd-pI-ZVT" secondAttribute="trailing" constant="5" id="kAD-vZ-Ssd"/>
                             <constraint firstItem="9BV-ra-3iq" firstAttribute="top" secondItem="86B-5m-DlG" secondAttribute="top" id="kCQ-FL-UCe"/>
-                            <constraint firstItem="wP0-Ob-HYx" firstAttribute="top" secondItem="86B-5m-DlG" secondAttribute="top" id="qWe-7Z-77k"/>
                             <constraint firstItem="9BV-ra-3iq" firstAttribute="bottom" secondItem="86B-5m-DlG" secondAttribute="bottom" id="rI5-qJ-the"/>
-                            <constraint firstItem="wP0-Ob-HYx" firstAttribute="leading" secondItem="9BV-ra-3iq" secondAttribute="trailing" constant="5" id="uLC-wZ-G6c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="86B-5m-DlG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Canvas" id="xit-CI-YXj"/>
                     <navigationItem key="navigationItem" title="Canvas" id="r8Z-4g-vXZ"/>
                     <connections>
-                        <outlet property="canvasWebView" destination="wP0-Ob-HYx" id="54Y-IV-Gs2"/>
+                        <outlet property="canvasWebView" destination="5jd-pI-ZVT" id="iRl-Cr-4VO"/>
                         <outlet property="nextButton" destination="wQH-8Y-R2V" id="AkI-ML-YtE"/>
                         <outlet property="prevButton" destination="9BV-ra-3iq" id="vmq-oV-qal"/>
                     </connections>
@@ -998,10 +1002,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUC-HQ-Tic">
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiN-9f-3FE">
                                         <rect key="frame" x="0.0" y="90" width="1004" height="606"/>
-                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </webView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZK-Hi-xPM">
                                         <rect key="frame" x="944" y="712" width="60" height="40"/>
                                         <constraints>
@@ -1033,18 +1041,18 @@
                                 <constraints>
                                     <constraint firstItem="XZK-Hi-xPM" firstAttribute="leading" secondItem="SQ7-6L-igx" secondAttribute="trailing" constant="40" id="AJl-dk-HrC"/>
                                     <constraint firstAttribute="bottom" secondItem="SQ7-6L-igx" secondAttribute="bottom" constant="16" id="AjQ-fC-Jc9"/>
-                                    <constraint firstItem="dUC-HQ-Tic" firstAttribute="top" secondItem="kLB-1K-FZG" secondAttribute="bottom" constant="10" id="DmC-Rt-b1Y"/>
-                                    <constraint firstItem="SQ7-6L-igx" firstAttribute="top" secondItem="dUC-HQ-Tic" secondAttribute="bottom" constant="16" id="Rid-M9-55D"/>
-                                    <constraint firstAttribute="trailing" secondItem="dUC-HQ-Tic" secondAttribute="trailing" id="Vde-Zb-gaf"/>
+                                    <constraint firstItem="SQ7-6L-igx" firstAttribute="top" secondItem="FiN-9f-3FE" secondAttribute="bottom" constant="16" id="IyU-iv-BE2"/>
                                     <constraint firstItem="kLB-1K-FZG" firstAttribute="top" secondItem="ic5-KR-hrz" secondAttribute="top" id="Y6K-wz-5nV"/>
-                                    <constraint firstItem="XZK-Hi-xPM" firstAttribute="top" secondItem="dUC-HQ-Tic" secondAttribute="bottom" constant="16" id="b2H-ED-0YS"/>
                                     <constraint firstItem="sfN-H2-cya" firstAttribute="top" secondItem="ic5-KR-hrz" secondAttribute="top" id="e76-9Q-nXu"/>
                                     <constraint firstAttribute="bottom" secondItem="XZK-Hi-xPM" secondAttribute="bottom" constant="16" id="e9G-18-C2L"/>
-                                    <constraint firstItem="dUC-HQ-Tic" firstAttribute="leading" secondItem="ic5-KR-hrz" secondAttribute="leading" id="epY-Nv-9qw"/>
                                     <constraint firstItem="sfN-H2-cya" firstAttribute="leading" secondItem="kLB-1K-FZG" secondAttribute="trailing" constant="5" id="jzh-E0-qCt"/>
+                                    <constraint firstItem="FiN-9f-3FE" firstAttribute="top" secondItem="sfN-H2-cya" secondAttribute="bottom" constant="10" id="ls5-RZ-ysH"/>
                                     <constraint firstItem="kLB-1K-FZG" firstAttribute="leading" secondItem="ic5-KR-hrz" secondAttribute="leading" id="mO0-30-80W"/>
                                     <constraint firstAttribute="trailing" secondItem="sfN-H2-cya" secondAttribute="trailing" id="s7n-j3-uom"/>
+                                    <constraint firstItem="XZK-Hi-xPM" firstAttribute="top" secondItem="FiN-9f-3FE" secondAttribute="bottom" constant="16" id="tFG-Oj-2iZ"/>
+                                    <constraint firstItem="FiN-9f-3FE" firstAttribute="leading" secondItem="ic5-KR-hrz" secondAttribute="leading" id="uRJ-KP-tS3"/>
                                     <constraint firstAttribute="trailing" secondItem="XZK-Hi-xPM" secondAttribute="trailing" id="w43-wg-FSJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="FiN-9f-3FE" secondAttribute="trailing" id="yws-if-RQi"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1062,7 +1070,7 @@
                         <outlet property="cancelButton" destination="SQ7-6L-igx" id="cCn-yr-utf"/>
                         <outlet property="closeButton" destination="sfN-H2-cya" id="27j-qP-sNr"/>
                         <outlet property="holderView" destination="ic5-KR-hrz" id="7mY-Op-jTZ"/>
-                        <outlet property="termsAndConditionWebView" destination="dUC-HQ-Tic" id="FyQ-6e-SAa"/>
+                        <outlet property="termsAndConditionWebView" destination="FiN-9f-3FE" id="1rB-I8-8gc"/>
                         <outlet property="titleLabel" destination="kLB-1K-FZG" id="IUQ-CJ-3bL"/>
                     </connections>
                 </viewController>

@@ -69,6 +69,10 @@ class ChartBaseViewController: PanelBaseViewController {
     
     override func updatePanelContent() {
         super.updatePanelContent()
+        if panel?.bucketType == BucketType.histogram {
+            //For Histogram, Filter not supported from chart view
+            chart?.isUserInteractionEnabled = false
+        }
         chart?.data = nil
     }
 

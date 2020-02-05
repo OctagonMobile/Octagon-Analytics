@@ -9,7 +9,7 @@
 import UIKit
 
 typealias SavedSearchCellSelectionBlock = (_ sender: SavedSearchTableViewCell, _ selectedSavedSearch: SavedSearch) -> Void
-typealias SavedSearchCellLongPressBlock = (_ sender: SavedSearchTableViewCell, _ filter: Filter) -> Void
+typealias SavedSearchCellLongPressBlock = (_ sender: SavedSearchTableViewCell, _ filter: FilterProtocol) -> Void
 typealias DidScrollToBoundary = (_ scrollView: UIScrollView) -> Void
 
 class SavedSearchCollectionViewCell: UICollectionViewCell {
