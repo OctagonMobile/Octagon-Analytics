@@ -603,9 +603,9 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         filtersHeightConstraint.constant = shouldShowFilter ? filtersHeight : 0
         filtersTopConstraint.constant = shouldShowFilter ? filtersTopConstraintHeight : 0
 
-//        UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction], animations: {
-//            self.view.layoutIfNeeded()
-//        }, completion: nil)
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
 
     }
     
