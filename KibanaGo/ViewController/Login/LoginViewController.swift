@@ -118,7 +118,7 @@ class LoginViewController: BaseViewController {
             DLog("Custom type tapped: \(element)")
             // Show Terms And Condition
             let termsController = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.termsAndConditionViewController) as? TermsAndConditionViewController ?? TermsAndConditionViewController()
-            termsController.termsAndConditionString = "'By clicking ‘OK’ you agree to use this system or software only in accordance with Octagon Mobile policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Octagon Mobile. Any personal use or use outside of authorized clearance by the Octagon Mobile may result in civil and/or criminal penalties."
+            termsController.termsAndConditionString = "Terms and Condition Content".localiz()
             
             termsController.didAccept = { [weak self] (accepted) in
                 guard let strongSelf = self else { return }
