@@ -37,6 +37,7 @@ class TermsAndConditionViewController: BaseViewController {
         view.backgroundColor = theme.cellBackgroundColor
         holderView?.backgroundColor = theme.cellBackgroundColor
         termsAndConditionWebView.backgroundColor = theme.cellBackgroundColor
+        termsAndConditionWebView.navigationDelegate = self
         
         titleLabel.text = "Terms & Condition".localiz()
         titleLabel.style(theme.headLineTextStyle())
@@ -85,5 +86,14 @@ class TermsAndConditionViewController: BaseViewController {
     
     @IBAction func closeButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension TermsAndConditionViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        // This is required inorder to set the zoom level of the webview to fit the content
+        let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+        webView.evaluateJavaScript(jscript)
     }
 }

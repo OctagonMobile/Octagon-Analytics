@@ -25,6 +25,7 @@
 "Sign in as different user"     =   "Sign in as different user";
 "Hello, "                       =   "Hello, ";
 "SmartLoginResetAlertMessage"   =   "Your current %@ configuration will be reset. Are you sure you want to continue?";
+"Terms and Condition Content"   =   "'By clicking ‘Agree’ you agree to use this system or software only in accordance with Kibana Go policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Kibana Go.";
 
 //Terms & Condition
 "Agree"             =   "Agree";
