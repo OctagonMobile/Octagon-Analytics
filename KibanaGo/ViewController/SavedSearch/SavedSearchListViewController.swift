@@ -259,7 +259,7 @@ class SavedSearchListViewController: PanelBaseViewController {
         if savedSearchPanel.totalSavedSearchCount <= SavedSearchPanel.Constant.pageSize {
             pageNumberLabel.text = "\(pageStartNumber)-\(savedSearchPanel.totalSavedSearchCount) / \(savedSearchPanel.totalSavedSearchCount)"
         } else {
-            pageNumberLabel.text = "\(pageStartNumber)-\(pageEndNumber) / \(totalNumberOfPages)"
+            pageNumberLabel.text = "\(pageStartNumber)-\(pageEndNumber) / \(savedSearchPanel.totalSavedSearchCount)"
         }
     }
     
