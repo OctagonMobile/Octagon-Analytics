@@ -50,7 +50,7 @@
 "Authentication"        =   "المصادقة";
 
 //Dashboard
-"Filters"           =   "مرشحات";
+"Filters"           =   "مرشحات:";
 "Field"             =   "مجال";
 "Value"             =   "القيمة";
 "Count"             =   "عد";
