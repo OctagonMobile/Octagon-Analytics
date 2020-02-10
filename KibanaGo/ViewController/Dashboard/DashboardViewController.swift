@@ -72,7 +72,6 @@ class DashboardViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        dashBoardCollectionView.register(UINib(nibName: "DashboardCollectionReusableView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
 
         dashBoardCollectionView.alwaysBounceVertical = true
         dashBoardCollectionView.showsVerticalScrollIndicator = true
@@ -98,7 +97,6 @@ class DashboardViewController: BaseViewController {
         
         //Configure Search bar
         configureSearchBar()
-        setupFilterHeader()
     }
     
     override func rightBarButtons() -> [UIBarButtonItem] {
@@ -209,22 +207,7 @@ class DashboardViewController: BaseViewController {
         filtersHeightConstraint.constant =  hasFilters ? filtersHeight : 0
         filtersTopConstraint.constant = hasFilters ? filtersTopConstraintHeight : 0
     }
-    
-    fileprivate func setupFilterHeader() {
-        if isIPhone {
-            let width:CGFloat = 50
-            let rect = CGRect(x: 0, y: 0, width: -width, height: filtersHeight)
-            let header = UIView(frame: rect)
-            let label = UILabel(frame: header.bounds)
-            header.backgroundColor = .clear
-            label.style(CurrentTheme.subHeadTextStyle())
-            label.text = "Filters:"
-            header.addSubview(label)
-            filterCollectionView.addSubview(header)
-            filterCollectionView.contentInset = UIEdgeInsets(top: 0, left: width, bottom: 0, right: 0)
-        }
-    }
-    
+        
     fileprivate func setupWidgets() {
         for (index,panel) in panels.enumerated() {
             var panelViewController = PanelBaseViewController()

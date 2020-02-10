@@ -51,7 +51,7 @@
 "Authentication"    =   "Authentication";
 
 //Dashboard
-"Filters"           =   "Filters";
+"Filters"           =   "Filters:";
 "Field"             =   "Field";
 "Value"             =   "Value";
 "Count"             =   "Count";
