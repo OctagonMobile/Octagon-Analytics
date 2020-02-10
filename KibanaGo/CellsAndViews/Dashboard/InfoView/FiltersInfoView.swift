@@ -96,3 +96,24 @@ extension FiltersInfoView {
         static let filterInfoTableViewCell = "FilterInfoTableViewCell"
     }
 }
+
+class DrillDownButton: UIButton {
+    
+    override var isHighlighted: Bool {
+        get {
+            return super.isHighlighted
+        }
+        set {
+            if newValue {
+                let alpha: CGFloat = CurrentTheme.isDarkTheme ? 1.0 : 0.1
+                backgroundColor = CurrentTheme.lightBackgroundColor.withAlphaComponent(alpha)
+                style(.roundCorner(3.0, 0.0, UIColor.clear))
+            } else {
+                backgroundColor = CurrentTheme.drillDownButtonBackgroundColor
+                style(.roundCorner(3.0, 1.0, UIColor.white))
+            }
+            super.isHighlighted = newValue
+        }
+
+    }
+}

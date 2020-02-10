@@ -71,17 +71,7 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
 
         return tracks
     }
-    
-    func loadFromJson() ->  [[String:Any]]{
         
-        guard let path = Bundle.main.path(forResource: "response", ofType: "json") else { return [] }
-        let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-        let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-        guard let response = json as? [String: Any], let result = response["testHits"] as? [[String:Any]] else { return [] }
-        return result
-        
-    }
-    
     //MARK: Private Functions
     
     /**

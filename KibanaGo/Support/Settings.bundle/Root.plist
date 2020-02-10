@@ -98,7 +98,7 @@
 			<key>Key</key>
 			<string>base_url</string>
 			<key>DefaultValue</key>
-			<string>BASE_URL</string>
+			<string>ec2-35-158-106-139.eu-central-1.compute.amazonaws.com</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
@@ -116,7 +116,7 @@
 			<key>Key</key>
 			<string>port</string>
 			<key>DefaultValue</key>
-			<string>PORT</string>
+			<string>5601</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>

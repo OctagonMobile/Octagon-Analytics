@@ -311,28 +311,6 @@ class DashboardViewController: BaseViewController {
         widgetsDictionary.forEach( { $0.value.shouldLoadData = true } )
         dashBoardCollectionView.reloadData()
     }
-    
-    fileprivate func configureInfoView(_ selectedItem: FilterProtocol?, widgetRect: CGRect) {
-        
-        guard let infoView = Bundle.main.loadNibNamed("InfoView", owner: self, options: nil)?.first as? InfoView,
-            let selectedFilter = selectedItem else {
-            return
-        }
-
-        infoView.updateDetails(selectedFilter)
-
-        infoView.drillDownAction = { [weak self] (sender, filterToBeApplied) in
-            guard let filter = filterToBeApplied else { return }
-            if !Session.shared.containsFilter(selectedFilter) {
-                self?.applyFilters(filter)
-            }
-            self?.popTip.hide()
-        }
-        
-        let originatingFrame = getCalculatedRectForInfoPopUp(infoView, widgetRect: widgetRect)
-        
-        popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
-    }
 
     fileprivate func configureMultiFiltersInfoView(_ selectedItems: [FilterProtocol], widgetRect: CGRect) {
         
