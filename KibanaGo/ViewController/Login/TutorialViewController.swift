@@ -11,7 +11,7 @@ import iCarousel
 
 typealias TutorialButtonActionBlock = (_ sender: UIButton) -> Void
 
-class TutorialViewController: UIViewController {
+class TutorialViewController: BaseViewController {
 
     var showAutoFill: Bool  =   true
     var tutorialAutoFillActionBlock: TutorialButtonActionBlock?
