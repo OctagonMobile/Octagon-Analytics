@@ -71,6 +71,14 @@ class LoginViewController: BaseViewController {
         differentUserButton?.style(CurrentTheme.textStyleWith(size, weight: .medium, color: CurrentTheme.standardColor))
         loginButton.style(CurrentTheme.textStyleWith(loginButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
         termsAndCinditionLabel.style(CurrentTheme.textStyleWith(termsAndCinditionLabel.font.pointSize, weight: .regular, color: CurrentTheme.secondaryTitleColor))
+        
+        if !Session.shared.isTouchIdUserAvailable() {
+            NavigationManager.shared.showTutorial() { [weak self] sender in
+                // Auto Fill Action Block
+                self?.userNameTextField.text  =   "demouser"
+                self?.passwordTextField.text  =   "demouser654321"
+            }
+        }
     }
     
     //MARK: Private Functions

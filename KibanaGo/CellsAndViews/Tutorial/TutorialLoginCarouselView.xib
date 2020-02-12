@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialLoginCarouselView" customModule="KibanaGo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arj-8T-Ube">
+                    <rect key="frame" x="20" y="304.5" width="1040" height="601.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-uW-Eh8">
+                            <rect key="frame" x="744" y="562.5" width="76" height="39"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <state key="normal" title="Auto Fill">
+                                <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="autoFillButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="e5U-Ua-Dd9"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use demo account to play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-QE-EbP">
+                            <rect key="frame" x="396.5" y="287" width="247" height="26.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-GQ-Yt8">
+                            <rect key="frame" x="495" y="222" width="50" height="50"/>
+                            <color key="backgroundColor" red="0.2218379378" green="0.46194130179999998" blue="0.9608753324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="RvU-k6-V0F"/>
+                                <constraint firstAttribute="width" constant="50" id="wug-zP-Zcr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialCredentialsiPhone" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-yd-0kn">
+                            <rect key="frame" x="220" y="323.5" width="600" height="214"/>
+                            <variation key="heightClass=regular-widthClass=regular" image="TutorialCredentialsiPad"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialArrowLeft" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-dj-ych">
+                            <rect key="frame" x="436" y="10" width="88" height="202"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VZe-QE-EbP" firstAttribute="centerX" secondItem="Arj-8T-Ube" secondAttribute="centerX" id="6Sk-kt-JCQ"/>
+                        <constraint firstItem="uEt-yd-0kn" firstAttribute="centerX" secondItem="Arj-8T-Ube" secondAttribute="centerX" id="72u-8k-KQt"/>
+                        <constraint firstItem="oEo-uW-Eh8" firstAttribute="top" secondItem="uEt-yd-0kn" secondAttribute="bottom" constant="25" id="7v3-4H-Egc"/>
+                        <constraint firstItem="iJB-dj-ych" firstAttribute="top" secondItem="Arj-8T-Ube" secondAttribute="top" constant="10" id="EUU-rD-HuQ"/>
+                        <constraint firstItem="cFu-GQ-Yt8" firstAttribute="top" secondItem="iJB-dj-ych" secondAttribute="bottom" constant="10" id="Imi-HO-Bpj"/>
+                        <constraint firstItem="cFu-GQ-Yt8" firstAttribute="centerX" secondItem="Arj-8T-Ube" secondAttribute="centerX" id="O65-id-s6Q"/>
+                        <constraint firstItem="iJB-dj-ych" firstAttribute="centerX" secondItem="Arj-8T-Ube" secondAttribute="centerX" constant="-40" id="SAT-8I-afm"/>
+                        <constraint firstAttribute="bottom" secondItem="oEo-uW-Eh8" secondAttribute="bottom" id="ceP-On-52x"/>
+                        <constraint firstItem="VZe-QE-EbP" firstAttribute="top" secondItem="cFu-GQ-Yt8" secondAttribute="bottom" constant="15" id="dcF-4C-Hdl"/>
+                        <constraint firstItem="cFu-GQ-Yt8" firstAttribute="top" secondItem="Arj-8T-Ube" secondAttribute="top" constant="20" id="dzJ-3g-exo"/>
+                        <constraint firstItem="uEt-yd-0kn" firstAttribute="top" secondItem="VZe-QE-EbP" secondAttribute="bottom" constant="10" id="qA8-z8-XPB"/>
+                        <constraint firstItem="oEo-uW-Eh8" firstAttribute="trailing" secondItem="uEt-yd-0kn" secondAttribute="trailing" id="t66-eL-LWe"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="iJB-dj-ych"/>
+                        </mask>
+                        <mask key="constraints">
+                            <exclude reference="dzJ-3g-exo"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="dzJ-3g-exo"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="subviews">
+                            <include reference="iJB-dj-ych"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="subviews">
+                            <include reference="iJB-dj-ych"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Arj-8T-Ube" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="N0X-jz-Qso"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Arj-8T-Ube" secondAttribute="trailing" constant="20" id="hbr-JJ-9Cq"/>
+                <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hpt-u3-qxH"/>
+                <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="50" id="qRj-5s-MyE"/>
+                <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="200" id="rOZ-gN-vSX"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="hpt-u3-qxH"/>
+                    <exclude reference="qRj-5s-MyE"/>
+                    <exclude reference="rOZ-gN-vSX"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="hpt-u3-qxH"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="qRj-5s-MyE"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="rOZ-gN-vSX"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="arrowLeftImageView" destination="iJB-dj-ych" id="rL6-LA-sS4"/>
+                <outlet property="centerAlignmentIPadConstraint" destination="rOZ-gN-vSX" id="ERL-ha-PuY"/>
+                <outlet property="fillButton" destination="oEo-uW-Eh8" id="1Yf-sg-ckm"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="148.66071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="TutorialArrowLeft" width="44" height="101"/>
+        <image name="TutorialCredentialsiPad" width="300" height="107"/>
+        <image name="TutorialCredentialsiPhone" width="224" height="100"/>
+    </resources>
+</document>

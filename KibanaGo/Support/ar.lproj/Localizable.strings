@@ -11,6 +11,10 @@
 "Ok"                =   "حسنا";
 "Cancel"            =   "إلغاء";
 
+//Tutorial
+"Watch Tutorial"    =   "مشاهدة البرنامج التعليمي";
+"Auto Fill"         =   "ملء السيارات";
+
 //Login Screen
 "Username"                      =   "اسم المستخدم";
 "Password"                      =   "كلمه السر";

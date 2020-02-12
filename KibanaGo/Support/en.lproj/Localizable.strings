@@ -12,6 +12,10 @@
 "Ok"                =   "Ok";
 "Cancel"            =   "Cancel";
 
+//Tutorial
+"Watch Tutorial"    =   "Watch Tutorial";
+"Auto Fill"         =   "Auto Fill";
+
 //Login Screen
 "Username"                      =   "Username";
 "Password"                      =   "Password";
