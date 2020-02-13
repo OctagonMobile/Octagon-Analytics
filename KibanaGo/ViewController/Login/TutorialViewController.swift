@@ -46,6 +46,8 @@ class TutorialViewController: BaseViewController {
         tutorialCarouselView.delegate = self
         tutorialCarouselView.dataSource = self
         tutorialCarouselView.isPagingEnabled = true
+        tutorialCarouselView.type = .linear
+        tutorialCarouselView.decelerationRate = 0.0
         
         tutorialPageControl.numberOfPages   =   tutorials.count
         tutorialPageControl.currentPage     =   0
@@ -53,8 +55,9 @@ class TutorialViewController: BaseViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        tutorialCarouselView.reloadData()
+        coordinator.animate(alongsideTransition: { _ in
+            self.tutorialCarouselView.reloadData()
+        }, completion: nil)
     }
     
     @objc func handleTapGesture(_ tapGesture: UITapGestureRecognizer) {
@@ -79,7 +82,7 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
         
         let cellId = tutorials[index].cellId
         guard let carouselView = Bundle.main.loadNibNamed(cellId, owner: self, options: nil)?.first as? UIView else { return UIView() }
-        carouselView.frame = tutorialCarouselView.bounds
+        carouselView.frame = tutorialCarouselView.frame
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_ :)))
         carouselView.addGestureRecognizer(tapGesture)
@@ -95,6 +98,10 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
         default: break
         }
         return carouselView
+    }
+    
+    func carouselItemWidth(_ carousel: iCarousel) -> CGFloat {
+        return tutorialCarouselView.bounds.width
     }
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
