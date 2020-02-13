@@ -23,7 +23,7 @@ class TutorialLoginCarouselView: UIView {
     @IBOutlet weak var arrowLeftImageView: UIImageView?
     @IBOutlet var fillButton: UIButton!
     
-    //MARK: Actions
+    //MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         

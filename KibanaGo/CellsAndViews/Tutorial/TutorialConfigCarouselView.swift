@@ -10,11 +10,25 @@ import UIKit
 
 class TutorialConfigCarouselView: UIView {
 
-    var tutorialConfigActionBlock: TutorialButtonActionBlock?
+    @IBOutlet var copyToClipboardButton: UIButton!
+    @IBOutlet var kibanaPluginUrlLabel: UILabel?
+    //MARK: Life Cycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let copyToClipboardTitle = NSAttributedString(string: "Copy to Clipboard".localiz(), attributes:
+            [.foregroundColor: UIColor.systemBlue,
+             .underlineColor: UIColor.systemBlue,
+             .underlineStyle: NSUnderlineStyle.single.rawValue])
+        copyToClipboardButton?.setAttributedTitle(copyToClipboardTitle, for: .normal)
+        
+        kibanaPluginUrlLabel?.text = "https://github.com/OctagonMobile/Kibana-Go-Plugin"
+    }
 
+    
     //MARK: Button Actions
-    @IBAction func infoButtonAction(_ sender: UIButton) {
-        tutorialConfigActionBlock?(sender)
+    @IBAction func copyToClipboardButtonAction(_ sender: UIButton) {
+        UIPasteboard.general.string = kibanaPluginUrlLabel?.text
     }
     
 }

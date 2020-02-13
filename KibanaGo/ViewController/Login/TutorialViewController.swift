@@ -18,19 +18,22 @@ class TutorialViewController: BaseViewController {
 
     private var kibanaGoPluginUrl: String   =   "https://github.com/OctagonMobile/Kibana-Go-Plugin"
     private var tutorials: [TutorialType]   =   [TutorialType.config,
+                                                 TutorialType.settings,
                                                  TutorialType.login]
     
 
-    @IBOutlet weak var pageNumberLabel: UILabel!
+    @IBOutlet weak var tutorialPageControl: UIPageControl!
     @IBOutlet weak var tutorialCarouselView: iCarousel!
 
     public enum TutorialType {
         case config
+        case settings
         case login
         
         var cellId: String {
             switch self {
             case .config: return NibNames.tutorialConfigCarouselView
+            case .settings: return NibNames.tutorialSettingsCarouselView
             case .login: return NibNames.tutorialLoginCarouselView
             }
         }
@@ -44,7 +47,8 @@ class TutorialViewController: BaseViewController {
         tutorialCarouselView.dataSource = self
         tutorialCarouselView.isPagingEnabled = true
         
-        pageNumberLabel.text = "\(tutorialCarouselView.currentItemIndex + 1)/\(tutorials.count)"
+        tutorialPageControl.numberOfPages   =   tutorials.count
+        tutorialPageControl.currentPage     =   0
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -59,6 +63,10 @@ class TutorialViewController: BaseViewController {
         } else {
             tutorialCarouselView.scrollToItem(at: tutorialCarouselView.currentItemIndex + 1, animated: true)
         }
+    }
+    
+    @IBAction func pageControlAction(_ sender: UIPageControl) {
+        tutorialCarouselView.scrollToItem(at: sender.currentPage, animated: true)
     }
 }
 
@@ -76,16 +84,7 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_ :)))
         carouselView.addGestureRecognizer(tapGesture)
 
-        
         switch tutorials[index] {
-        case .config:
-            (carouselView as? TutorialConfigCarouselView)?.tutorialConfigActionBlock = { sender in
-                // Redirect to Kibana Go Plugin Download Page
-                guard let url = URL(string: self.kibanaGoPluginUrl) else { return }
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
-                }
-            }
         case .login:
             (carouselView as? TutorialLoginCarouselView)?.showAutoFill = showAutoFill
             (carouselView as? TutorialLoginCarouselView)?.tutorialAutoFillActionBlock = {[weak self] sender in
@@ -93,18 +92,20 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
                     self?.tutorialAutoFillActionBlock?(sender)
                 })
             }
+        default: break
         }
         return carouselView
     }
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        pageNumberLabel.text = "\(tutorialCarouselView.currentItemIndex + 1)/\(tutorials.count)"
+        tutorialPageControl.currentPage = tutorialCarouselView.currentItemIndex
     }
 }
 
 extension TutorialViewController {
     struct NibNames {
         static let tutorialConfigCarouselView = "TutorialConfigCarouselView"
+        static let tutorialSettingsCarouselView = "TutorialSettingsCarouselView"
         static let tutorialLoginCarouselView = "TutorialLoginCarouselView"
     }
 }

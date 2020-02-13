@@ -16,6 +16,8 @@
 		5114A1AD2074B9B000F3A419 /* MapTrackControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5114A1AC2074B9B000F3A419 /* MapTrackControlView.xib */; };
 		51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51192C981FDD40E100C67459 /* TileVideoCollectionViewCell.swift */; };
 		51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51192C991FDD40E100C67459 /* TileVideoCollectionViewCell.xib */; };
+		511A64CB23F52F76007E90C8 /* TutorialSettingsCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511A64CA23F52F76007E90C8 /* TutorialSettingsCarouselView.xib */; };
+		511A64CD23F52F84007E90C8 /* TutorialSettingsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511A64CC23F52F84007E90C8 /* TutorialSettingsCarouselView.swift */; };
 		511D3A7D2046905200BB80AC /* HorizontalBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D3A7C2046905200BB80AC /* HorizontalBarChartViewController.swift */; };
 		511DDC1C1FB05C15000A6394 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511DDC1A1FB05C15000A6394 /* ListTableViewCell.swift */; };
 		511DDC1D1FB05C15000A6394 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511DDC1B1FB05C15000A6394 /* ListTableViewCell.xib */; };
@@ -207,6 +209,8 @@
 		5114A1AC2074B9B000F3A419 /* MapTrackControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTrackControlView.xib; sourceTree = "<group>"; };
 		51192C981FDD40E100C67459 /* TileVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		51192C991FDD40E100C67459 /* TileVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TileVideoCollectionViewCell.xib; sourceTree = "<group>"; };
+		511A64CA23F52F76007E90C8 /* TutorialSettingsCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialSettingsCarouselView.xib; sourceTree = "<group>"; };
+		511A64CC23F52F84007E90C8 /* TutorialSettingsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSettingsCarouselView.swift; sourceTree = "<group>"; };
 		511D3A7C2046905200BB80AC /* HorizontalBarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarChartViewController.swift; sourceTree = "<group>"; };
 		511DDC1A1FB05C15000A6394 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		511DDC1B1FB05C15000A6394 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
@@ -1036,6 +1040,8 @@
 			children = (
 				51CD9A9D23F29E60005ACD46 /* TutorialConfigCarouselView.swift */,
 				51CD9A9F23F29E6A005ACD46 /* TutorialConfigCarouselView.xib */,
+				511A64CC23F52F84007E90C8 /* TutorialSettingsCarouselView.swift */,
+				511A64CA23F52F76007E90C8 /* TutorialSettingsCarouselView.xib */,
 				51CD9AA423F2A366005ACD46 /* TutorialLoginCarouselView.swift */,
 				51CD9AA223F2A35B005ACD46 /* TutorialLoginCarouselView.xib */,
 			);
@@ -1248,6 +1254,7 @@
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
 				517585DD1FB03705002AFB73 /* MetricsCollectionViewCell.xib in Resources */,
 				511DDC211FB05D84000A6394 /* ListTableHeaderView.xib in Resources */,
+				511A64CB23F52F76007E90C8 /* TutorialSettingsCarouselView.xib in Resources */,
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
@@ -1466,6 +1473,7 @@
 				51512B702056975B00DD0C8E /* TileVisState.swift in Sources */,
 				514211DF21808012006E64DD /* FaceTile.swift in Sources */,
 				51477DEB2068EBED00955394 /* NavigationManager.swift in Sources */,
+				511A64CD23F52F84007E90C8 /* TutorialSettingsCarouselView.swift in Sources */,
 				517585D61FB029FF002AFB73 /* LineChartViewController.swift in Sources */,
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,
 				5157C51E207A40B300CF0EB9 /* MapTrackingAnnotationView.swift in Sources */,

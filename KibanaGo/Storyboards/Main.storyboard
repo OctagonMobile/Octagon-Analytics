@@ -1107,14 +1107,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCellIdentifier" id="nmf-pi-LSQ" customClass="DropDownTableViewCell" customModule="KibanaGo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="51"/>
+                                        <rect key="frame" x="0.0" y="28" width="300" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmf-pi-LSQ" id="BNB-mt-SEQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDa-u0-t8F">
-                                                    <rect key="frame" x="0.0" y="15" width="300" height="21"/>
+                                                    <rect key="frame" x="0.0" y="15" width="300" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1165,33 +1165,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYW-de-sPx" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="0.0" width="1080" height="795"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="763"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzu-l0-eqb">
-                                <rect key="frame" x="540" y="805" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                </variation>
-                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="KLO-B1-bE8">
+                                <rect key="frame" x="536.5" y="768" width="7" height="37"/>
+                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="pageControlAction:" destination="Ksb-lP-F7Y" eventType="touchUpInside" id="8uu-tf-jXv"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Dzu-l0-eqb" firstAttribute="centerX" secondItem="ff8-3w-HBz" secondAttribute="centerX" id="CXg-mm-MK0"/>
                             <constraint firstItem="mYW-de-sPx" firstAttribute="top" secondItem="h73-Pi-ILn" secondAttribute="top" id="J3r-ZA-Csm"/>
-                            <constraint firstItem="Dzu-l0-eqb" firstAttribute="top" secondItem="mYW-de-sPx" secondAttribute="bottom" constant="10" id="Kon-mr-bTd"/>
                             <constraint firstItem="h73-Pi-ILn" firstAttribute="trailing" secondItem="mYW-de-sPx" secondAttribute="trailing" id="Nkt-Hc-bZ0"/>
-                            <constraint firstItem="h73-Pi-ILn" firstAttribute="bottom" secondItem="Dzu-l0-eqb" secondAttribute="bottom" constant="5" id="gyb-ME-jRq"/>
+                            <constraint firstItem="KLO-B1-bE8" firstAttribute="top" secondItem="mYW-de-sPx" secondAttribute="bottom" constant="5" id="UWm-m8-o17"/>
+                            <constraint firstAttribute="bottom" secondItem="KLO-B1-bE8" secondAttribute="bottom" constant="5" id="cIF-2a-xje"/>
+                            <constraint firstItem="KLO-B1-bE8" firstAttribute="centerX" secondItem="ff8-3w-HBz" secondAttribute="centerX" id="m7g-XV-CQ3"/>
                             <constraint firstItem="mYW-de-sPx" firstAttribute="leading" secondItem="h73-Pi-ILn" secondAttribute="leading" id="oOF-HK-dUT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h73-Pi-ILn"/>
                     </view>
                     <connections>
-                        <outlet property="pageNumberLabel" destination="Dzu-l0-eqb" id="ueK-nF-X3O"/>
                         <outlet property="tutorialCarouselView" destination="mYW-de-sPx" id="tXu-OS-7BH"/>
+                        <outlet property="tutorialPageControl" destination="KLO-B1-bE8" id="z9x-NU-cj2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cW-l8-840" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
