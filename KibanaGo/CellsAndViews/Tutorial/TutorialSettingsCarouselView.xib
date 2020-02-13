@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialSettingsCarouselView" customModule="KibanaGo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDW-1q-DtY" userLabel="Holder">
-                    <rect key="frame" x="0.0" y="233" width="1366" height="558.5"/>
+                    <rect key="frame" x="44" y="3" width="808" height="408"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7er-Zd-Lcv">
-                            <rect key="frame" x="658" y="20" width="50" height="50"/>
+                            <rect key="frame" x="379" y="20" width="50" height="50"/>
                             <color key="backgroundColor" red="0.2218379378" green="0.46194130179999998" blue="0.9608753324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="m2Z-nc-pnj"/>
@@ -38,7 +38,7 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="CustomKibanaConfiguration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qph-6U-jw4">
-                            <rect key="frame" x="548" y="90" width="270.5" height="26.5"/>
+                            <rect key="frame" x="280.5" y="90" width="247" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -47,14 +47,17 @@
                             </variation>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="TutorialConfigScreeniPhone" translatesAutoresizingMaskIntoConstraints="NO" id="hIX-Gf-H8n">
-                            <rect key="frame" x="322" y="156.5" width="722" height="382"/>
+                            <rect key="frame" x="270.5" y="134" width="267" height="254"/>
                             <variation key="heightClass=regular-widthClass=regular" image="TutorialConfigScreeniPad"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="qph-6U-jw4" firstAttribute="centerX" secondItem="EDW-1q-DtY" secondAttribute="centerX" id="Hjz-Bf-pJj"/>
-                        <constraint firstItem="hIX-Gf-H8n" firstAttribute="top" secondItem="qph-6U-jw4" secondAttribute="bottom" constant="40" id="Jif-sC-RTs"/>
+                        <constraint firstItem="hIX-Gf-H8n" firstAttribute="top" secondItem="qph-6U-jw4" secondAttribute="bottom" constant="40" id="Jif-sC-RTs">
+                            <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                            <variation key="heightClass=compact-widthClass=regular" constant="20"/>
+                        </constraint>
                         <constraint firstItem="7er-Zd-Lcv" firstAttribute="centerX" secondItem="EDW-1q-DtY" secondAttribute="centerX" id="MDe-ae-4Wr"/>
                         <constraint firstItem="qph-6U-jw4" firstAttribute="top" secondItem="7er-Zd-Lcv" secondAttribute="bottom" constant="20" id="NE4-bL-1L5"/>
                         <constraint firstAttribute="bottom" secondItem="hIX-Gf-H8n" secondAttribute="bottom" constant="20" id="Q59-iE-MQY"/>
@@ -92,7 +95,7 @@
                     <include reference="fcs-SM-Lmq"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="138.98050974512745" y="152.80000000000001"/>
+            <point key="canvasLocation" x="138.61607142857142" y="152.17391304347828"/>
         </view>
     </objects>
     <resources>
