@@ -75,7 +75,7 @@ class LoginViewController: BaseViewController {
         let didShowTutorial = UserDefaults.standard.bool(forKey: UserDefaultKeys.didShowTutorial)
         if !Session.shared.isTouchIdUserAvailable(), !didShowTutorial {
             showTutorial()
-//            UserDefaults.standard.set(true, forKey: UserDefaultKeys.didShowTutorial)
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.didShowTutorial)
         }
     }
     
