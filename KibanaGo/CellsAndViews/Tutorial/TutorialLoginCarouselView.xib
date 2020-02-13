@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialLoginCarouselView" customModule="KibanaGo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arj-8T-Ube">
-                    <rect key="frame" x="20" y="304.5" width="1040" height="601.5"/>
+                    <rect key="frame" x="20" y="168.5" width="280" height="381"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-uW-Eh8">
-                            <rect key="frame" x="744" y="562.5" width="76" height="39"/>
+                            <rect key="frame" x="182" y="345" width="70" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="Auto Fill">
                                 <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -31,7 +31,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UseDemoAccount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-QE-EbP">
-                            <rect key="frame" x="433" y="287" width="174.5" height="26.5"/>
+                            <rect key="frame" x="60.5" y="186" width="159.5" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -40,13 +40,13 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFu-GQ-Yt8">
-                            <rect key="frame" x="495" y="222" width="50" height="50"/>
+                            <rect key="frame" x="115" y="121" width="50" height="50"/>
                             <color key="backgroundColor" red="0.2218379378" green="0.46194130179999998" blue="0.9608753324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="RvU-k6-V0F"/>
                                 <constraint firstAttribute="width" constant="50" id="wug-zP-Zcr"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -56,15 +56,15 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                             <variation key="heightClass=regular-widthClass=regular">
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             </variation>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialCredentialsiPhone" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-yd-0kn">
-                            <rect key="frame" x="220" y="323.5" width="600" height="214"/>
+                            <rect key="frame" x="28" y="220" width="224" height="100"/>
                             <variation key="heightClass=regular-widthClass=regular" image="TutorialCredentialsiPad"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialArrowLeft" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-dj-ych">
-                            <rect key="frame" x="436" y="10" width="88" height="202"/>
+                            <rect key="frame" x="78" y="10" width="44" height="101"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,7 +112,9 @@
                 <constraint firstItem="Arj-8T-Ube" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="N0X-jz-Qso"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Arj-8T-Ube" secondAttribute="trailing" constant="20" id="hbr-JJ-9Cq"/>
                 <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hpt-u3-qxH"/>
-                <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="50" id="qRj-5s-MyE"/>
+                <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="50" id="qRj-5s-MyE">
+                    <variation key="heightClass=regular-widthClass=compact" constant="75"/>
+                </constraint>
                 <constraint firstItem="Arj-8T-Ube" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="200" id="rOZ-gN-vSX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

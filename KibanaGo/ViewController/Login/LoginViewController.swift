@@ -72,16 +72,22 @@ class LoginViewController: BaseViewController {
         loginButton.style(CurrentTheme.textStyleWith(loginButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
         termsAndCinditionLabel.style(CurrentTheme.textStyleWith(termsAndCinditionLabel.font.pointSize, weight: .regular, color: CurrentTheme.secondaryTitleColor))
         
-        if !Session.shared.isTouchIdUserAvailable() {
-            NavigationManager.shared.showTutorial() { [weak self] sender in
-                // Auto Fill Action Block
-                self?.userNameTextField.text  =   "demouser"
-                self?.passwordTextField.text  =   "demouser654321"
-            }
+        let didShowTutorial = UserDefaults.standard.bool(forKey: UserDefaultKeys.didShowTutorial)
+        if !Session.shared.isTouchIdUserAvailable(), !didShowTutorial {
+            showTutorial()
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.didShowTutorial)
         }
     }
     
     //MARK: Private Functions
+    private func showTutorial() {
+        NavigationManager.shared.showTutorial() { [weak self] sender in
+            // Auto Fill Action Block
+            self?.userNameTextField.text  =   "demouser"
+            self?.passwordTextField.text  =   "demouser654321"
+        }
+    }
+    
     private func configureLoginView() {
         let theme = CurrentTheme
 
@@ -279,6 +285,10 @@ class LoginViewController: BaseViewController {
         NavigationManager.shared.resetAppLanguage(code)
         updateLanguageButtonTitle()
     }
+    
+    @IBAction func tutorialButtonAction(_ sender: UIButton) {
+        showTutorial()
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -298,6 +308,7 @@ extension LoginViewController {
     
     struct UserDefaultKeys {
         static let enableFaceIdPrompt  =   "enableFaceIdPrompt"
+        static let didShowTutorial      =   "didShowTutorial"
     }
     
     var checkBoxNormalIcon: String {
