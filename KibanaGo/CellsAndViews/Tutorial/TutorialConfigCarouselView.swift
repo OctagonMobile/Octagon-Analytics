@@ -10,6 +10,7 @@ import UIKit
 
 class TutorialConfigCarouselView: UIView {
 
+    @IBOutlet weak var pageNumberLabel: UILabel!
     @IBOutlet var copyToClipboardButton: UIButton!
     @IBOutlet var kibanaPluginUrlLabel: UILabel?
     //MARK: Life Cycle
@@ -17,12 +18,19 @@ class TutorialConfigCarouselView: UIView {
         super.awakeFromNib()
         
         let copyToClipboardTitle = NSAttributedString(string: "Copy to Clipboard".localiz(), attributes:
-            [.foregroundColor: UIColor.systemBlue,
-             .underlineColor: UIColor.systemBlue,
+            [.foregroundColor: CurrentTheme.tutorialButtonColor,
+             .underlineColor: CurrentTheme.tutorialButtonColor,
              .underlineStyle: NSUnderlineStyle.single.rawValue])
         copyToClipboardButton?.setAttributedTitle(copyToClipboardTitle, for: .normal)
         
-        kibanaPluginUrlLabel?.text = "https://github.com/OctagonMobile/Kibana-Go-Plugin"
+        let copyToClipboardHighlightedTitle = NSAttributedString(string: "Copy to Clipboard".localiz(), attributes:
+            [.foregroundColor: CurrentTheme.tutorialHighlightedButtonColor,
+             .underlineColor: CurrentTheme.tutorialHighlightedButtonColor,
+             .underlineStyle: NSUnderlineStyle.single.rawValue])
+        copyToClipboardButton?.setAttributedTitle(copyToClipboardHighlightedTitle, for: .highlighted)
+
+        pageNumberLabel.backgroundColor = CurrentTheme.tutorialHighlightedButtonColor
+        kibanaPluginUrlLabel?.text = "https://octagonmobile.github.io/Kibana-Go-Plugin-Download/kibana-go-6.5.4.zip"
     }
 
     

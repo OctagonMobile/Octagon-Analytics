@@ -124,6 +124,7 @@
             <connections>
                 <outlet property="copyToClipboardButton" destination="F2m-XK-nNX" id="fqg-vi-Cqy"/>
                 <outlet property="kibanaPluginUrlLabel" destination="c3J-gi-Yhm" id="7eP-p7-zRH"/>
+                <outlet property="pageNumberLabel" destination="bYI-ZC-Y44" id="J6R-dh-xej"/>
             </connections>
             <point key="canvasLocation" x="135" y="148.125"/>
         </view>

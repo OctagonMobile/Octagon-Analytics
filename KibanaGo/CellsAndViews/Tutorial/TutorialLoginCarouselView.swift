@@ -19,6 +19,8 @@ class TutorialLoginCarouselView: UIView {
     }
     var tutorialAutoFillActionBlock: TutorialButtonActionBlock?
 
+    @IBOutlet weak var tutorialCredentialsImageView: UIImageView!
+    @IBOutlet weak var pageNumberLabel: UILabel!
     @IBOutlet weak var centerAlignmentIPadConstraint: NSLayoutConstraint?
     @IBOutlet weak var arrowLeftImageView: UIImageView?
     @IBOutlet var fillButton: UIButton!
@@ -28,10 +30,19 @@ class TutorialLoginCarouselView: UIView {
         super.awakeFromNib()
         
         let autoFillTitle = NSAttributedString(string: "Auto Fill".localiz(), attributes:
-            [.foregroundColor: UIColor.systemBlue,
-             .underlineColor: UIColor.systemBlue,
+            [.foregroundColor: CurrentTheme.tutorialButtonColor,
+             .underlineColor: CurrentTheme.tutorialButtonColor,
              .underlineStyle: NSUnderlineStyle.single.rawValue])
         fillButton.setAttributedTitle(autoFillTitle, for: .normal)
+        pageNumberLabel.backgroundColor = CurrentTheme.tutorialHighlightedButtonColor
+        
+        let arrowImageName = "TutorialArrowLeft-" + CurrentTheme.rawValue
+        arrowLeftImageView?.image = UIImage(named: arrowImageName)
+        
+        var credentialsImageName = "TutorialCredentials"
+        credentialsImageName += (isIPhone ? "iPhone" : "iPad")
+        credentialsImageName += CurrentTheme.isDarkTheme ? "-Dark" : "-Light"
+        tutorialCredentialsImageView.image = UIImage(named: credentialsImageName)
     }
     
     //MARK: Button Actions

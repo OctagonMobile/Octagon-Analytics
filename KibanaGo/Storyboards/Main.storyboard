@@ -46,7 +46,7 @@
                                         </variation>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-Oy-cQ2">
-                                        <rect key="frame" x="58.5" y="0.0" width="880.5" height="0.0"/>
+                                        <rect key="frame" x="58.5" y="0.0" width="844.5" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="AXp-Ud-nGp">
                                             <size key="itemSize" width="30" height="20"/>
@@ -61,7 +61,7 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apQ-Xy-54d">
-                                        <rect key="frame" x="945" y="0.0" width="103" height="0.0"/>
+                                        <rect key="frame" x="909" y="0.0" width="139" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Clear All" image="ClearAll">
@@ -354,10 +354,10 @@
                                                     <rect key="frame" x="15" y="10" width="1050" height="64"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uae" translatesAutoresizingMaskIntoConstraints="NO" id="MZc-az-1pB">
-                                                            <rect key="frame" x="10" y="22" width="20" height="20"/>
+                                                            <rect key="frame" x="10" y="12" width="40" height="40"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-hA-Y4V">
-                                                            <rect key="frame" x="38" y="32" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="58" y="32" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -366,7 +366,7 @@
                                                             </variation>
                                                         </label>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkbox-Selected" translatesAutoresizingMaskIntoConstraints="NO" id="5FL-6o-e7t">
-                                                            <rect key="frame" x="1020" y="22" width="20" height="20"/>
+                                                            <rect key="frame" x="1000" y="12" width="40" height="40"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -437,7 +437,7 @@
                                                 <rect key="frame" x="20" y="10" width="1040" height="68"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXT-OH-2PE">
-                                                        <rect key="frame" x="56" y="0.0" width="984" height="53"/>
+                                                        <rect key="frame" x="88" y="0.0" width="952" height="53"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="53" id="hm3-48-ILh">
                                                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
@@ -449,7 +449,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-76-jHr">
-                                                        <rect key="frame" x="8" y="10.5" width="32" height="32"/>
+                                                        <rect key="frame" x="8" y="-5.5" width="64" height="64"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0p5-TH-Doo">
                                                         <rect key="frame" x="0.0" y="55" width="1040" height="1"/>
@@ -485,7 +485,7 @@
                                                 <rect key="frame" x="20" y="94" width="1040" height="68"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="if3-wH-gbp">
-                                                        <rect key="frame" x="56" y="0.0" width="984" height="53"/>
+                                                        <rect key="frame" x="88" y="0.0" width="952" height="53"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="53" id="WKB-Fw-rRI">
                                                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
@@ -497,7 +497,7 @@
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="wlE-9U-zie">
-                                                        <rect key="frame" x="8" y="10.5" width="32" height="32"/>
+                                                        <rect key="frame" x="8" y="-5.5" width="64" height="64"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCq-oh-ky3">
                                                         <rect key="frame" x="0.0" y="55" width="1040" height="1"/>
@@ -637,10 +637,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7m-4z-ZCn" userLabel="View -Top">
-                                <rect key="frame" x="431.5" y="60" width="217.5" height="188"/>
+                                <rect key="frame" x="431.5" y="60" width="217.5" height="298"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KibanaGoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6rS-3I-8hl">
-                                        <rect key="frame" x="53.5" y="0.0" width="110" height="110"/>
+                                        <rect key="frame" x="-1.5" y="0.0" width="220" height="220"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="o6D-VX-OLY">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="75"/>
@@ -668,7 +668,7 @@
                                         </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kibana Go" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSx-2E-amr">
-                                        <rect key="frame" x="20" y="140" width="177.5" height="48"/>
+                                        <rect key="frame" x="20" y="250" width="177.5" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1107,14 +1107,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCellIdentifier" id="nmf-pi-LSQ" customClass="DropDownTableViewCell" customModule="KibanaGo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="300" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmf-pi-LSQ" id="BNB-mt-SEQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDa-u0-t8F">
-                                                    <rect key="frame" x="0.0" y="15" width="300" height="21.5"/>
+                                                    <rect key="frame" x="0.0" y="15" width="300" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1613,7 +1613,7 @@
                                     <constraint firstAttribute="width" constant="25" id="Ewi-Ty-LvG"/>
                                     <constraint firstAttribute="height" constant="25" id="pY1-uz-cji"/>
                                 </constraints>
-                                <state key="normal" image="QuestionMark"/>
+                                <state key="normal" image="QuestionMark-Light"/>
                                 <connections>
                                     <action selector="tutorialButtonAction:" destination="shY-MF-Zk5" eventType="touchUpInside" id="6dT-VH-BcH"/>
                                 </connections>
@@ -1710,6 +1710,7 @@
                         <outlet property="termsAndCinditionLabel" destination="sNB-Lg-ngC" id="gML-9K-W89"/>
                         <outlet property="touchIdButton" destination="lmv-VJ-ijI" id="QTr-Tw-zqd"/>
                         <outlet property="touchIdButtonWidthConstraint" destination="R0O-2R-BhC" id="MJv-jT-zVb"/>
+                        <outlet property="tutorialButton" destination="K1Q-7l-vBY" id="Jln-uU-9ol"/>
                         <outlet property="userNameErrorLabel" destination="saD-8C-sWt" id="n7V-CR-ApY"/>
                         <outlet property="userNameHolderView" destination="Ggp-h8-6GE" id="gIA-sx-kjr"/>
                         <outlet property="userNameLabel" destination="L11-fP-FIF" id="84J-Wt-0xX"/>
@@ -1750,7 +1751,7 @@
                                                     <rect key="frame" x="2" y="2" width="352" height="81"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mobile" translatesAutoresizingMaskIntoConstraints="NO" id="YQ5-eR-GOH">
-                                                            <rect key="frame" x="40" y="17.5" width="26" height="46"/>
+                                                            <rect key="frame" x="40" y="-5.5" width="26" height="92"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="YQ5-eR-GOH" secondAttribute="height" multiplier="13:23" id="Ec7-z4-krz"/>
                                                                 <constraint firstAttribute="width" constant="26" id="PRl-tw-uh9">
@@ -1772,7 +1773,7 @@
                                                             </variation>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDj-jp-vGQ">
-                                                            <rect key="frame" x="284" y="26.5" width="28" height="28"/>
+                                                            <rect key="frame" x="284" y="12.5" width="28" height="56"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="28" id="659-J8-xvg">
                                                                     <variation key="heightClass=compact-widthClass=compact" constant="20"/>
@@ -2491,7 +2492,7 @@
         <image name="ClearAllSelected" width="36" height="36"/>
         <image name="KibanaGoLogo" width="110" height="110"/>
         <image name="LeftArrowDateRange" width="11" height="17"/>
-        <image name="QuestionMark" width="18" height="18"/>
+        <image name="QuestionMark-Light" width="18" height="18"/>
         <image name="RightArrowDateRange" width="11" height="17"/>
         <image name="TabCanvasNormal" width="24" height="25"/>
         <image name="TabCanvasSelected" width="24" height="25"/>
