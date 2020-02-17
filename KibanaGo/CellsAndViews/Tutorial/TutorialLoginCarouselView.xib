@@ -59,11 +59,11 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             </variation>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialCredentialsiPhone" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-yd-0kn">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialCredentialsiPhone-Light" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-yd-0kn">
                             <rect key="frame" x="363" y="323.5" width="600" height="214"/>
-                            <variation key="heightClass=regular-widthClass=regular" image="TutorialCredentialsiPad"/>
+                            <variation key="heightClass=regular-widthClass=regular" image="TutorialCredentialsiPad-Light"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialArrowLeft" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-dj-ych">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialArrowLeft-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-dj-ych">
                             <rect key="frame" x="579" y="10" width="88" height="202"/>
                         </imageView>
                     </subviews>
@@ -154,13 +154,15 @@
                 <outlet property="arrowLeftImageView" destination="iJB-dj-ych" id="rL6-LA-sS4"/>
                 <outlet property="centerAlignmentIPadConstraint" destination="rOZ-gN-vSX" id="ERL-ha-PuY"/>
                 <outlet property="fillButton" destination="oEo-uW-Eh8" id="1Yf-sg-ckm"/>
+                <outlet property="pageNumberLabel" destination="cFu-GQ-Yt8" id="byk-l7-Nmh"/>
+                <outlet property="tutorialCredentialsImageView" destination="uEt-yd-0kn" id="9tZ-RI-CCe"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="148.66071428571428"/>
         </view>
     </objects>
     <resources>
-        <image name="TutorialArrowLeft" width="44" height="101"/>
-        <image name="TutorialCredentialsiPad" width="300" height="107"/>
-        <image name="TutorialCredentialsiPhone" width="224" height="100"/>
+        <image name="TutorialArrowLeft-Light" width="44" height="101"/>
+        <image name="TutorialCredentialsiPad-Light" width="300" height="107"/>
+        <image name="TutorialCredentialsiPhone-Light" width="224" height="100"/>
     </resources>
 </document>

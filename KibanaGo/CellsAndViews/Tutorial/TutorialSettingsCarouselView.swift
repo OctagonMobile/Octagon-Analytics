@@ -8,4 +8,13 @@
 
 import UIKit
 
-class TutorialSettingsCarouselView: UIView {}
+class TutorialSettingsCarouselView: UIView {
+    
+    @IBOutlet weak var pageNumberLabel: UILabel!
+    
+    //MARK: Life Cycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        pageNumberLabel.backgroundColor = CurrentTheme.tutorialHighlightedButtonColor
+    }
+}

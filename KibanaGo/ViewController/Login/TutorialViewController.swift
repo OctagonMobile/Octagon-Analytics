@@ -16,7 +16,6 @@ class TutorialViewController: BaseViewController {
     var showAutoFill: Bool  =   true
     var tutorialAutoFillActionBlock: TutorialButtonActionBlock?
 
-    private var kibanaGoPluginUrl: String   =   "https://github.com/OctagonMobile/Kibana-Go-Plugin"
     private var tutorials: [TutorialType]   =   [TutorialType.config,
                                                  TutorialType.settings,
                                                  TutorialType.login]
@@ -43,14 +42,20 @@ class TutorialViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
+        if Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5601" {
+            // Remove the Login Credentials Tutorial
+            tutorials.removeLast()
+        }
+
         tutorialCarouselView.delegate = self
         tutorialCarouselView.dataSource = self
         tutorialCarouselView.isPagingEnabled = true
         tutorialCarouselView.type = .linear
-        tutorialCarouselView.decelerationRate = 0.0
+        tutorialCarouselView.decelerationRate = 0.25
         
         tutorialPageControl.numberOfPages   =   tutorials.count
         tutorialPageControl.currentPage     =   0
+        tutorialPageControl.currentPageIndicatorTintColor = CurrentTheme.tutorialButtonColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

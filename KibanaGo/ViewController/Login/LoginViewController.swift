@@ -36,6 +36,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet var userNameSeparatorLine: UIView?
     @IBOutlet var passwordSeparatorLine: UIView?
     @IBOutlet weak var languageButton: UIButton?
+    @IBOutlet weak var tutorialButton: UIButton!
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -118,6 +119,9 @@ class LoginViewController: BaseViewController {
         userNameSeparatorLine?.backgroundColor = CurrentTheme.separatorColorSecondary
         passwordSeparatorLine?.backgroundColor = CurrentTheme.separatorColorSecondary
         setupTermsAndCondition()
+        
+        let tutorialImageName = "QuestionMark-" + CurrentTheme.rawValue
+        tutorialButton.setImage(UIImage(named: tutorialImageName), for: .normal)
     }
     
     private func setupTermsAndCondition() {
@@ -150,6 +154,7 @@ class LoginViewController: BaseViewController {
         userNameLabel.isHidden = true
         userNameHolderView.isHidden = false
         userNameTextField.text = ""
+        passwordTextField.text = ""
         userNameLabel.text = ""
         touchIdButtonWidthConstraint.constant = 0
         checkBoxButton.isSelected = true

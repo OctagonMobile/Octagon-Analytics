@@ -95,6 +95,9 @@
                     <include reference="fcs-SM-Lmq"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="pageNumberLabel" destination="7er-Zd-Lcv" id="xz1-xN-Q6n"/>
+            </connections>
             <point key="canvasLocation" x="138.61607142857142" y="152.17391304347828"/>
         </view>
     </objects>
