@@ -11,6 +11,13 @@
 "Ok"                =   "حسنا";
 "Cancel"            =   "إلغاء";
 
+//Tutorial
+"Watch Tutorial"    =   "مشاهدة البرنامج التعليمي";
+"Auto Fill"         =   "ملء السيارات";
+"DownloadKibanaGoPlugin"    =   "قم بتنزيل / تثبيت \"Kibana-Go Plugin\" لـ Kibana";
+"CustomKibanaConfiguration" =   "الإشارة إلى Kibana الخاصة بك عن طريق تغيير الإعدادات التالية";
+"UseDemoAccount"            =   "استخدام حساب تجريبي للعب";
+
 //Login Screen
 "Username"                      =   "اسم المستخدم";
 "Password"                      =   "كلمه السر";

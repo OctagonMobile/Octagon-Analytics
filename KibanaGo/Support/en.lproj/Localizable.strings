@@ -12,6 +12,13 @@
 "Ok"                =   "Ok";
 "Cancel"            =   "Cancel";
 
+//Tutorial
+"Watch Tutorial"    =   "Watch Tutorial";
+"Auto Fill"         =   "Auto Fill";
+"DownloadKibanaGoPlugin"    =   "Download/Install the \"Kibana-Go Plugin\" for your Kibana";
+"CustomKibanaConfiguration" =   "Pointing to your own Kibana by changing the following settings";
+"UseDemoAccount"            =   "Use demo account to play";
+
 //Login Screen
 "Username"                      =   "Username";
 "Password"                      =   "Password";

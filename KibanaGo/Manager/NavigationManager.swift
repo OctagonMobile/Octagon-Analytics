@@ -83,6 +83,19 @@ class NavigationManager: NSObject {
         window.rootViewController = initialController
     }
     
+    
+    func showTutorial(_ showAutoFill: Bool = true,_ autoFillActionBlock: TutorialButtonActionBlock? = nil) {
+        guard let tutorialViewCtr = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.tutorialViewController) as? TutorialViewController else { return }
+        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let rootViewController = window.visibleViewController() else { return }
+
+        tutorialViewCtr.modalPresentationStyle = .overCurrentContext
+        tutorialViewCtr.showAutoFill = showAutoFill
+        tutorialViewCtr.tutorialAutoFillActionBlock = autoFillActionBlock
+        rootViewController.present(tutorialViewCtr, animated: true, completion: nil)
+    }
+
+    
     private func getInitialEntryPoint () -> UIViewController {
 
         var identifier: String
@@ -155,6 +168,7 @@ extension NavigationManager {
         static let keycloakLoginViewController = "KeycloakLoginViewController"
         static let dashboardListingNavigationController = "DashboardListingNavigationController"
         static let dashboardTabBarController = "DashboardTabBarController"
+        static let tutorialViewController  = "TutorialViewController"
     }
 
     struct Constants {

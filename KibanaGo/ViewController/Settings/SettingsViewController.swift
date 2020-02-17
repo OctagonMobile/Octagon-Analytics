@@ -146,6 +146,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         if settingsItem.identifier == Identifiers.language {
             let languageList = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.languageSelectionCtr)
             navigationController?.pushViewController(languageList, animated: true)
+        } else if settingsItem.identifier == Identifiers.tutorial {
+            if isIPhone {
+                NavigationManager.shared.showTutorial(false)
+            } else {
+                navigationController?.dismiss(animated: true, completion: {
+                    NavigationManager.shared.showTutorial(false)
+                })
+            }
         }
     }
 }
@@ -159,6 +167,7 @@ extension SettingsViewController {
     struct Identifiers {
         static let touchId      =   "TouchID"
         static let language     =   "Language"
+        static let tutorial     =   "Tutorial"
     }
     
     struct ViewControllerIdentifiers {
