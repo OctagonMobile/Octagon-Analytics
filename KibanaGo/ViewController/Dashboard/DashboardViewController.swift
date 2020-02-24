@@ -267,6 +267,9 @@ class DashboardViewController: BaseViewController {
             case .markdown:
                 panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.markDownViewController) as? MarkDownViewController ?? MarkDownViewController()
 
+            case .inputControls:
+                panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsViewController) as? ControlsViewController ?? ControlsViewController()
+
             default :
                 DLog("Something wrong with Visualization Type: \(type.rawValue)")
                 break
@@ -667,6 +670,7 @@ extension DashboardViewController {
         static let webContentViewController         = "WebContentViewController"
         static let lineChartViewController          = "LineChartViewController"
         static let markDownViewController           = "MarkDownViewController"
+        static let controlsViewController           = "ControlsViewController"
     }
 }
 

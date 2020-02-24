@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C84B499E444EEBBA67FD77E /* Pods_KibanaGo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */; };
+		5104EF7F2402897800A4B053 /* RangeControlsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */; };
+		5104EF812402899900A4B053 /* ListControlsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */; };
 		5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */; };
 		510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */; };
 		511342811FFE24AE00A7787E /* LocationPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511342801FFE24AE00A7787E /* LocationPopUpView.swift */; };
@@ -61,6 +63,7 @@
 		514211DB21807E83006E64DD /* FaceTilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DA21807E83006E64DD /* FaceTilePanel.swift */; };
 		514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DC21807F44006E64DD /* FaceTileViewController.swift */; };
 		514211DF21808012006E64DD /* FaceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DE21808012006E64DD /* FaceTile.swift */; };
+		514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */; };
 		5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146761F22E45CA900D9FE8C /* CanvasViewController.swift */; };
 		51477DE62068DF2500955394 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE52068DF2500955394 /* LoginViewController.swift */; };
 		51477DE92068E6AE00955394 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE82068E6AE00955394 /* User.swift */; };
@@ -168,6 +171,8 @@
 		51D493FA1FE15C6100CC4A05 /* TileAudioCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51D493F81FE15C6100CC4A05 /* TileAudioCollectionViewCell.xib */; };
 		51D5777620DB83410080608D /* DatePickerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D5777520DB83410080608D /* DatePickerMapper.swift */; };
 		51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D7EC2B200DD3A400BF23F5 /* DateHelpers.swift */; };
+		51D8ECA024025A4A009158C5 /* InputControlsVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8EC9F24025A4A009158C5 /* InputControlsVisState.swift */; };
+		51D8ECA224026493009158C5 /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8ECA124026493009158C5 /* ControlsViewController.swift */; };
 		51DC04F120555F6000E4F1E0 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC04F020555F6000E4F1E0 /* Filter.swift */; };
 		51DF3FDD2340D3F3002B41DE /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF3FDC2340D3F3002B41DE /* LanguageSelectionViewController.swift */; };
 		51DF3FDF2340E298002B41DE /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF3FDE2340E298002B41DE /* LanguageTableViewCell.swift */; };
@@ -201,6 +206,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeControlsCollectionViewCell.swift; sourceTree = "<group>"; };
+		5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListControlsCollectionViewCell.swift; sourceTree = "<group>"; };
 		5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHistogramChartItem.swift; sourceTree = "<group>"; };
 		510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		511342801FFE24AE00A7787E /* LocationPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpView.swift; sourceTree = "<group>"; };
@@ -261,6 +268,7 @@
 		514211DA21807E83006E64DD /* FaceTilePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTilePanel.swift; sourceTree = "<group>"; };
 		514211DC21807F44006E64DD /* FaceTileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTileViewController.swift; sourceTree = "<group>"; };
 		514211DE21808012006E64DD /* FaceTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTile.swift; sourceTree = "<group>"; };
+		514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5146761F22E45CA900D9FE8C /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		51477DE52068DF2500955394 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		51477DE82068E6AE00955394 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -374,6 +382,8 @@
 		51D493F81FE15C6100CC4A05 /* TileAudioCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TileAudioCollectionViewCell.xib; sourceTree = "<group>"; };
 		51D5777520DB83410080608D /* DatePickerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerMapper.swift; sourceTree = "<group>"; };
 		51D7EC2B200DD3A400BF23F5 /* DateHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		51D8EC9F24025A4A009158C5 /* InputControlsVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputControlsVisState.swift; sourceTree = "<group>"; };
+		51D8ECA124026493009158C5 /* ControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
 		51DC04F020555F6000E4F1E0 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		51DF3FDC2340D3F3002B41DE /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		51DF3FDE2340E298002B41DE /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
@@ -438,6 +448,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5104EF7D2402895100A4B053 /* ControlsView */ = {
+			isa = PBXGroup;
+			children = (
+				514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */,
+				5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */,
+				5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */,
+			);
+			path = ControlsView;
+			sourceTree = "<group>";
+		};
 		5113427F1FFE248700A7787E /* HeatMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +520,7 @@
 		5130A10A1FA73313003D0525 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				5104EF7D2402895100A4B053 /* ControlsView */,
 				5127EB94222D3D56000C4E79 /* DashboardList */,
 				5174FBB6219C4E8C003BEB1E /* Graph */,
 				514211D521807E05006E64DD /* FaceTile */,
@@ -613,6 +634,7 @@
 				51CFC6A31FB9C4CB00B99018 /* SavedSearch */,
 				517F97DC1FB1AE5100CA6E55 /* PieChart */,
 				51512B6E2056974200DD0C8E /* Tile */,
+				51D8EC9E24025A29009158C5 /* InputControls */,
 				5174FBAF219C279B003BEB1E /* Graph */,
 				51A6B32B1FCD404200F6A3E8 /* Metric.swift */,
 				51840DFD1FCED7BE007B8D38 /* Tile.swift */,
@@ -644,6 +666,7 @@
 			children = (
 				5136038E2226713A002D12B6 /* WebContentViewController.swift */,
 				51E93DBC22F1B9F8006F3C3D /* MarkDownViewController.swift */,
+				51D8ECA124026493009158C5 /* ControlsViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1106,6 +1129,14 @@
 			path = DateHelper;
 			sourceTree = "<group>";
 		};
+		51D8EC9E24025A29009158C5 /* InputControls */ = {
+			isa = PBXGroup;
+			children = (
+				51D8EC9F24025A4A009158C5 /* InputControlsVisState.swift */,
+			);
+			path = InputControls;
+			sourceTree = "<group>";
+		};
 		51E3941D204D662E00AF22C8 /* KibanaGoMapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1331,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/TGPControls/TGPControls.framework",
+				"${BUILT_PRODUCTS_DIR}/TTRangeSlider/TTRangeSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/WMSKit/WMSKit.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 			);
@@ -1326,6 +1358,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGPControls.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTRangeSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WMSKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 			);
@@ -1368,6 +1401,7 @@
 				513467F31F9DDC5100F9B67D /* Configuration.swift in Sources */,
 				51477DE62068DF2500955394 /* LoginViewController.swift in Sources */,
 				51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */,
+				51D8ECA024025A4A009158C5 /* InputControlsVisState.swift in Sources */,
 				51E8BF4D20F38048004B5D20 /* QuickDatePickerCollectionViewCell.swift in Sources */,
 				51923ABF207E13490023FE27 /* MapTrackingViewController.swift in Sources */,
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
@@ -1382,6 +1416,7 @@
 				51B0C9AC1FC174DF00BDF269 /* BucketListTableViewCell.swift in Sources */,
 				5174FBA2219C105E003BEB1E /* TouchVelocityTracker.swift in Sources */,
 				513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */,
+				5104EF7F2402897800A4B053 /* RangeControlsCollectionViewCell.swift in Sources */,
 				51840DF31FCEA2F8007B8D38 /* TagCloudViewController.swift in Sources */,
 				51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */,
 				5174FBB1219C27B7003BEB1E /* GraphVisState.swift in Sources */,
@@ -1390,12 +1425,14 @@
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
 				516292EA1FA06319008A547B /* StoryboardManager.swift in Sources */,
 				511DDC1C1FB05C15000A6394 /* ListTableViewCell.swift in Sources */,
+				5104EF812402899900A4B053 /* ListControlsCollectionViewCell.swift in Sources */,
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
 				51840DF11FCEA2F2007B8D38 /* ContentListViewController.swift in Sources */,
 				518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */,
 				51CB2D221FBDA149007BC0A0 /* BaseViewController.swift in Sources */,
+				51D8ECA224026493009158C5 /* ControlsViewController.swift in Sources */,
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
 				51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */,
@@ -1404,6 +1441,7 @@
 				51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */,
 				5164A92F1F9F0BC800BE2358 /* ThemeManager.swift in Sources */,
 				5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */,
+				514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */,
 				5174FBAC219C2335003BEB1E /* GraphPanel.swift in Sources */,
 				51D5777620DB83410080608D /* DatePickerMapper.swift in Sources */,
 				5174FBB8219C4EA1003BEB1E /* GraphNodeView.swift in Sources */,

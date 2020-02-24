@@ -21,6 +21,7 @@ target 'KibanaGo' do
     pod 'SwiftKeychainWrapper'
     pod 'MarqueeLabel'
     pod 'MarkdownView'
+    pod 'TTRangeSlider'
     
 #Animation
     pod 'iCarousel'
