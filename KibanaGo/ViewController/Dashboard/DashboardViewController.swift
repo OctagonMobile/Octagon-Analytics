@@ -513,7 +513,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.viewController = widgetViewController
         cell.selectFieldAction = { [weak self] (sender, selectedItem, widgetRect) in
             
-            if selectedItem is Filter  || selectedItem is DateFilter || selectedItem is SimpleFilter {
+            if selectedItem is DateFilter || selectedItem is SimpleFilter {
                 guard let rect = widgetRect else { return }
                 self?.configureMultiFiltersInfoView([selectedItem], widgetRect: rect)
             } else if selectedItem is ImageFilter {

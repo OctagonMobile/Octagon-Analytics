@@ -37,57 +37,6 @@ extension FilterProtocol {
     }
 }
 
-struct Filter: FilterProtocol {
-    var isInverted: Bool
-    
-    var fieldName: String
-    
-    var fieldValue: ChartItem
-    var type: BucketType
-    var metricType: MetricType
-    var interval: Int?
-    
-    var combinedFilterValue: String {
-        
-        switch type {
-        case .terms, .dateHistogram:
-            let termsDate = (fieldValue as? TermsChartItem)?.termsDateString ?? ""
-            let value = termsDate.isEmpty ? fieldValue.key : termsDate
-            return "\(fieldName):\"\(value)\""
-        case .histogram:
-            let fVal = Int(fieldValue.key) ?? 0
-            return "\(fieldName):\"\(fieldValue.key) to \(fVal + (interval ?? 0))\""
-        default:
-            return "\(fieldName):\"\(fieldValue.key)\""
-        }
-    }
-    
-    init(fieldName: String, fieldValue: ChartItem, type: BucketType, metricType: MetricType, isInverted: Bool = false, interval: Int? = nil) {
-        self.fieldName  = fieldName
-        self.fieldValue = fieldValue
-        self.type       = type
-        self.metricType = metricType
-        self.isInverted = isInverted
-        self.interval   = interval
-    }
-    
-    func isEqual(_ object: Any) -> Bool {
-        guard let rhs = object as? Filter else { return false }
-        var isEqual = (self.fieldName == rhs.fieldName)
-        
-        if let lhsRangeChartItem = (self.fieldValue as? RangeChartItem), let rhsRangeChartItem = (rhs.fieldValue as? RangeChartItem) {
-            isEqual = isEqual && (lhsRangeChartItem == rhsRangeChartItem)
-        } else if let lhsTermsChartItem = (self.fieldValue as? TermsChartItem), let rhsTermsChartItem = (rhs.fieldValue as? TermsChartItem) {
-            isEqual = isEqual && (lhsTermsChartItem == rhsTermsChartItem)
-        } else {
-            isEqual = isEqual && (self.fieldValue == rhs.fieldValue)
-        }
-        
-        return isEqual
-    }
-
-}
-
 struct ImageFilter: FilterProtocol {
 
     /// ID is used just to identify that this is Image filter

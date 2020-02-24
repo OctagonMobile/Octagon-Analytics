@@ -245,27 +245,6 @@ class Panel: Mappable {
             
             var params: [String: Any]? = [:]
             
-            if let filter = appliedFilter as? Filter {
-                params = ["filterType": filter.type.rawValue,
-                          "filterField": filter.fieldName]
-                if let rangeItem = (filter.fieldValue as? RangeChartItem) {
-                    params?["filterRangeFrom"] = rangeItem.from
-                    params?["filterRangeTo"] = rangeItem.to
-                } else if let termsItem = (filter.fieldValue as? TermsChartItem) {
-                    params?["filterValue"] = termsItem.key
-                } else if filter.type == .histogram {
-                    //For Histogram use Range
-                    let fVal = Int(filter.fieldValue.key) ?? 0
-                    let interval = filter.interval ?? 0
-                    params = ["filterType": "range",
-                              "filterField": filter.fieldName,
-                              "filterRangeFrom": "\(filter.fieldValue.key)",
-                              "filterRangeTo": "\(fVal + interval)"]
-                } else {
-                    params?["filterValue"] = filter.fieldValue.key
-                }
-            }
-            
             if let filter = appliedFilter as? ImageFilter {
                 params = ["filterType": "terms",
                           "filterField": filter.fieldName,
