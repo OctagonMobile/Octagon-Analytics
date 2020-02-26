@@ -21,7 +21,6 @@ target 'KibanaGo' do
     pod 'SwiftKeychainWrapper'
     pod 'MarqueeLabel'
     pod 'MarkdownView'
-    pod 'TTRangeSlider'
     
 #Animation
     pod 'iCarousel'
@@ -38,4 +37,7 @@ target 'KibanaGo' do
     
 #Localization
     pod 'LanguageManager-iOS', :git => 'https://github.com/OctagonMobile/LanguageManager-iOS.git'
+    
+#Range Slider
+    pod 'TTRangeSlider', :git => 'https://github.com/OctagonMobile/TTRangeSlider.git', :branch => 'feature-rectangleHandle'
 end

@@ -239,6 +239,13 @@ enum Theme: String {
         }
     }
 
+    var textFieldBorderColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("EAEAEA")
+        case .dark: return UIColor.white
+        }
+    }
+
 
     //MARK: Styles
     /// Styles

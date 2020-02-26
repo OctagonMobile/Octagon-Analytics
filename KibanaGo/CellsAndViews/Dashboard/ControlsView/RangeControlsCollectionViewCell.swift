@@ -28,7 +28,24 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         minValueTextField.delegate = self
         maxValueTextField.delegate = self
         
+        minValueTextField.textColor = CurrentTheme.titleColor
+        maxValueTextField.textColor = CurrentTheme.titleColor
+        minValueTextField.layer.borderWidth = 2.0
+        maxValueTextField.layer.borderWidth = 2.0
+        minValueTextField.layer.cornerRadius = 5.0
+        maxValueTextField.layer.cornerRadius = 5.0
+        minValueTextField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
+        maxValueTextField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
+
         rangeSlider.delegate = self
+        rangeSlider.handleType = .rectangle
+        rangeSlider.handleSize = CGSize(width: 25.0, height: 25.0)
+        rangeSlider.lineHeight = 4.0
+        rangeSlider.selectedHandleDiameterMultiplier = 1.0
+        rangeSlider.handleColor = CurrentTheme.standardColor
+        rangeSlider.tintColorBetweenHandles = CurrentTheme.standardColor
+        rangeSlider.handleBorderWidth = 2.0
+        rangeSlider.handleBorderColor = CurrentTheme.secondaryTitleColor
     }
     
     override func updateCellContent() {

@@ -31,6 +31,11 @@ class ControlsViewController: PanelBaseViewController {
         clearFormButton.backgroundColor = CurrentTheme.standardColor
         cancelChangesButton.backgroundColor = CurrentTheme.standardColor
         applyChangesButton.backgroundColor = CurrentTheme.standardColor
+        
+        clearFormButton.layer.cornerRadius = 5.0
+        cancelChangesButton.layer.cornerRadius = 5.0
+        applyChangesButton.layer.cornerRadius = 5.0
+
 
         clearFormButton.style(CurrentTheme.textStyleWith(clearFormButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
         cancelChangesButton.style(CurrentTheme.textStyleWith(cancelChangesButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
@@ -50,6 +55,12 @@ class ControlsViewController: PanelBaseViewController {
     }
     
     @IBAction func applyChangesAction(_ sender: Any) {
+
+        for filter in controlsFiltersList {
+            if !Session.shared.containsFilter(filter) {
+                filterAction?(self, filter)
+            }
+        }
     }
 }
 
@@ -89,7 +100,7 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
 
 extension ControlsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        return CGSize(width: collectionView.frame.width, height: 200)
     }
 }
 

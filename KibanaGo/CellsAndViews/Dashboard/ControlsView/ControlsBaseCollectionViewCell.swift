@@ -19,6 +19,11 @@ class ControlsBaseCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Functions
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        headerLabel?.textColor = CurrentTheme.titleColor
+    }
+    
     internal func updateCellContent() {
         headerLabel?.text = control?.fieldName
     }
