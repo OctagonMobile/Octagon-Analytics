@@ -35,6 +35,9 @@ class ControlsViewController: PanelBaseViewController {
         clearFormButton.layer.cornerRadius = 5.0
         cancelChangesButton.layer.cornerRadius = 5.0
         applyChangesButton.layer.cornerRadius = 5.0
+        
+        clearFormButton?.setTitleColor(CurrentTheme.titleColor, for: .normal)
+        clearFormButton?.setTitleColor(CurrentTheme.titleColor.withAlphaComponent(0.3), for: .disabled)
 
 
         clearFormButton.style(CurrentTheme.textStyleWith(clearFormButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))

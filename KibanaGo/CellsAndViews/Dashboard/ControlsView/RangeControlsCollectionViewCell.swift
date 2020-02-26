@@ -30,22 +30,28 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         
         minValueTextField.textColor = CurrentTheme.titleColor
         maxValueTextField.textColor = CurrentTheme.titleColor
-        minValueTextField.layer.borderWidth = 2.0
-        maxValueTextField.layer.borderWidth = 2.0
+        minValueTextField.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 2.0
+        maxValueTextField.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 2.0
         minValueTextField.layer.cornerRadius = 5.0
         maxValueTextField.layer.cornerRadius = 5.0
         minValueTextField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
         maxValueTextField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
+        minValueTextField.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
+        maxValueTextField.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
+        minValueTextField.tintColor = CurrentTheme.titleColor
+        maxValueTextField.tintColor = CurrentTheme.titleColor
 
         rangeSlider.delegate = self
         rangeSlider.handleType = .rectangle
         rangeSlider.handleSize = CGSize(width: 25.0, height: 25.0)
         rangeSlider.lineHeight = 4.0
-        rangeSlider.selectedHandleDiameterMultiplier = 1.0
-        rangeSlider.handleColor = CurrentTheme.standardColor
+        rangeSlider.selectedHandleDiameterMultiplier = 1.1
+        rangeSlider.tintColor = CurrentTheme.sliderLineColor
+        
         rangeSlider.tintColorBetweenHandles = CurrentTheme.standardColor
+        rangeSlider.handleColor = CurrentTheme.standardColor
         rangeSlider.handleBorderWidth = 2.0
-        rangeSlider.handleBorderColor = CurrentTheme.secondaryTitleColor
+        rangeSlider.handleBorderColor = CurrentTheme.cellBackgroundColor
     }
     
     override func updateCellContent() {
@@ -60,16 +66,26 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         
         rangeSlider.selectedMinimum = min > max ? max : min
         rangeSlider.selectedMaximum = max < min ? min : max
+        
+        minValueTextField.text = "\(Int(rangeSlider.selectedMinimum))"
+        maxValueTextField.text = "\(Int(rangeSlider.selectedMaximum))"
     }
     
 }
 
 extension RangeControlsCollectionViewCell: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return (string == string.filter("0123456789.".contains))
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSliderValue()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        updateSliderValue()
+        textField.resignFirstResponder()
         return true
     }
 }

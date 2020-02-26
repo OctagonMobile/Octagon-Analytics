@@ -229,7 +229,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fte-vd-Rat">
-                                                                    <rect key="frame" x="67.5" y="89" width="1216" height="0.0"/>
+                                                                    <rect key="frame" x="67.5" y="93" width="1216" height="0.0"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -261,25 +261,25 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Min" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZr-R9-Wd9">
-                                                                    <rect key="frame" x="67.5" y="178" width="338" height="50"/>
+                                                                    <rect key="frame" x="67.5" y="174" width="338" height="45"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="1O9-OL-f1C"/>
+                                                                        <constraint firstAttribute="height" constant="45" id="1O9-OL-f1C"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Max" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="beM-H6-PXr">
-                                                                    <rect key="frame" x="945.5" y="178" width="338" height="50"/>
+                                                                    <rect key="frame" x="945.5" y="174" width="338" height="45"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="BhM-wX-FaC"/>
+                                                                        <constraint firstAttribute="height" constant="45" id="BhM-wX-FaC"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reK-EN-7F4">
-                                                                    <rect key="frame" x="668" y="178" width="15" height="50"/>
+                                                                    <rect key="frame" x="668" y="174" width="15" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="15" id="203-yL-jje"/>
                                                                     </constraints>
@@ -303,11 +303,11 @@
                                                                 <constraint firstItem="SGX-58-iSC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5EF-Gv-jft" secondAttribute="leading" id="PNu-6M-V0r"/>
                                                                 <constraint firstItem="fte-vd-Rat" firstAttribute="trailing" secondItem="SGX-58-iSC" secondAttribute="trailing" id="UwG-LR-CLg"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SGX-58-iSC" secondAttribute="trailing" id="Xwi-ME-uK7"/>
-                                                                <constraint firstItem="SGX-58-iSC" firstAttribute="top" secondItem="fte-vd-Rat" secondAttribute="bottom" constant="24" id="Z3N-Sk-8oG"/>
+                                                                <constraint firstItem="SGX-58-iSC" firstAttribute="top" secondItem="fte-vd-Rat" secondAttribute="bottom" constant="20" id="Z3N-Sk-8oG"/>
                                                                 <constraint firstItem="pZr-R9-Wd9" firstAttribute="width" secondItem="5EF-Gv-jft" secondAttribute="width" multiplier="0.25" priority="750" id="Zcy-1I-qpq"/>
                                                                 <constraint firstItem="beM-H6-PXr" firstAttribute="trailing" secondItem="SGX-58-iSC" secondAttribute="trailing" id="afU-IE-hwP"/>
                                                                 <constraint firstItem="fte-vd-Rat" firstAttribute="leading" secondItem="SGX-58-iSC" secondAttribute="leading" id="dYX-Zw-GsK"/>
-                                                                <constraint firstItem="reK-EN-7F4" firstAttribute="top" secondItem="SGX-58-iSC" secondAttribute="bottom" constant="24" id="fCQ-Nm-1uo"/>
+                                                                <constraint firstItem="reK-EN-7F4" firstAttribute="top" secondItem="SGX-58-iSC" secondAttribute="bottom" constant="20" id="fCQ-Nm-1uo"/>
                                                                 <constraint firstItem="reK-EN-7F4" firstAttribute="height" secondItem="pZr-R9-Wd9" secondAttribute="height" id="jXS-Gw-sgs"/>
                                                                 <constraint firstItem="beM-H6-PXr" firstAttribute="width" secondItem="5EF-Gv-jft" secondAttribute="width" multiplier="0.25" priority="750" id="oKe-nS-i9i"/>
                                                                 <constraint firstItem="SGX-58-iSC" firstAttribute="centerX" secondItem="5EF-Gv-jft" secondAttribute="centerX" id="xk1-Ee-UcQ"/>
@@ -339,7 +339,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQt-UU-Tse">
                                                         <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
-                                                        <state key="normal" title="Clear Form"/>
+                                                        <state key="normal" title="Reset"/>
                                                         <connections>
                                                             <action selector="clearFormButtonAction:" destination="hXw-kz-q8E" eventType="touchUpInside" id="dDJ-WR-R2v"/>
                                                         </connections>

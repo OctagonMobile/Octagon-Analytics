@@ -241,11 +241,16 @@ enum Theme: String {
 
     var textFieldBorderColor: UIColor {
         switch self {
-        case .light: return UIColor.colorFromHexString("EAEAEA")
-        case .dark: return UIColor.white
+        case .light, .dark: return UIColor.colorFromHexString("EAEAEA")
         }
     }
 
+    var sliderLineColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("EAEAEA")
+        case .dark: return UIColor.DarkThemeColors.lightBackgroundColor
+        }
+    }
 
     //MARK: Styles
     /// Styles
