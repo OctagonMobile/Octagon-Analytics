@@ -12,7 +12,7 @@ class ControlsBaseCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var headerLabel: UILabel?
     
-    var control: Control? {
+    var controlWidget: ControlsWidgetBase? {
         didSet {
             updateCellContent()
         }
@@ -25,6 +25,6 @@ class ControlsBaseCollectionViewCell: UICollectionViewCell {
     }
     
     internal func updateCellContent() {
-        headerLabel?.text = control?.fieldName
+        headerLabel?.text = controlWidget?.control.fieldName
     }
 }

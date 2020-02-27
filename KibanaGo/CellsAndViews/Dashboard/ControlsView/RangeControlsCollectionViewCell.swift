@@ -11,10 +11,10 @@ import TTRangeSlider
 
 
 class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
-    
-    typealias ControlsRangeSelectionBlock = (_ control: Control?,_ min: Float,_ max: Float) -> Void
-
-    var rangeSelectionBlock: ControlsRangeSelectionBlock?
+        
+    var rangeControl: RangeControlsWidget? {
+        return controlWidget as? RangeControlsWidget
+    }
     
     //MARK: Outlets
     @IBOutlet weak var rangeSlider: TTRangeSlider!
@@ -27,7 +27,7 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         super.awakeFromNib()
         minValueTextField.delegate = self
         maxValueTextField.delegate = self
-        
+                
         minValueTextField.textColor = CurrentTheme.titleColor
         maxValueTextField.textColor = CurrentTheme.titleColor
         minValueTextField.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 2.0
@@ -57,7 +57,15 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     override func updateCellContent() {
         super.updateCellContent()
         rangeSlider.enableStep = true
-        rangeSlider.step = Float(control?.rangeOptions?.step ?? 1)
+        rangeSlider.step = Float(controlWidget?.control.rangeOptions?.step ?? 1)
+        
+        if let rangeCtr = rangeControl {
+            minValueTextField.text = rangeCtr.selectedMinValue == nil ? "" : "\(Int(rangeCtr.selectedMinValue ?? 0.0))"
+            maxValueTextField.text = rangeCtr.selectedMaxValue == nil ? "" : "\(Int(rangeCtr.selectedMaxValue ?? 0.0))"
+        }
+        
+        rangeSlider?.selectedMinimum = rangeControl?.selectedMinValue ?? 0.0
+        rangeSlider?.selectedMaximum = rangeControl?.selectedMaxValue ?? 0.0
     }
     
     private func updateSliderValue() {
@@ -69,6 +77,9 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         
         minValueTextField.text = "\(Int(rangeSlider.selectedMinimum))"
         maxValueTextField.text = "\(Int(rangeSlider.selectedMaximum))"
+        
+        rangeControl?.selectedMinValue = rangeSlider.selectedMinimum
+        rangeControl?.selectedMaxValue = rangeSlider.selectedMaximum
     }
     
 }
@@ -98,6 +109,7 @@ extension RangeControlsCollectionViewCell: TTRangeSliderDelegate {
     }
     
     func didEndTouches(in sender: TTRangeSlider!) {
-        rangeSelectionBlock?(control, sender.selectedMinimum, sender.selectedMaximum)
+        rangeControl?.selectedMinValue = sender.selectedMinimum
+        rangeControl?.selectedMaxValue = sender.selectedMaximum
     }
 }

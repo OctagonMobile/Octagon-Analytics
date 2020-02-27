@@ -65,6 +65,7 @@
 		514211DF21808012006E64DD /* FaceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DE21808012006E64DD /* FaceTile.swift */; };
 		514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */; };
 		5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146761F22E45CA900D9FE8C /* CanvasViewController.swift */; };
+		5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146FE7A2407BB3F0014A67D /* Controls.swift */; };
 		51477DE62068DF2500955394 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE52068DF2500955394 /* LoginViewController.swift */; };
 		51477DE92068E6AE00955394 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE82068E6AE00955394 /* User.swift */; };
 		51477DEB2068EBED00955394 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DEA2068EBED00955394 /* NavigationManager.swift */; };
@@ -270,6 +271,7 @@
 		514211DE21808012006E64DD /* FaceTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTile.swift; sourceTree = "<group>"; };
 		514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5146761F22E45CA900D9FE8C /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		5146FE7A2407BB3F0014A67D /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		51477DE52068DF2500955394 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		51477DE82068E6AE00955394 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51477DEA2068EBED00955394 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -1133,6 +1135,7 @@
 			isa = PBXGroup;
 			children = (
 				51D8EC9F24025A4A009158C5 /* InputControlsVisState.swift */,
+				5146FE7A2407BB3F0014A67D /* Controls.swift */,
 			);
 			path = InputControls;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				51E94653221C281200F30D1F /* AuthenticationViewController.swift in Sources */,
 				51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */,
 				5164A92F1F9F0BC800BE2358 /* ThemeManager.swift in Sources */,
+				5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */,
 				5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */,
 				514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */,
 				5174FBAC219C2335003BEB1E /* GraphPanel.swift in Sources */,

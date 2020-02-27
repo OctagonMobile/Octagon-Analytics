@@ -251,6 +251,20 @@ enum Theme: String {
         case .dark: return UIColor.DarkThemeColors.lightBackgroundColor
         }
     }
+    
+    var controlsApplyButtonBackgroundColor: UIColor {
+        switch self {
+        case .light: return UIColor.Primary.viking
+        case .dark: return UIColor.white
+        }
+    }
+
+    var controlsApplyButtonTitleColor: UIColor {
+        switch self {
+        case .light: return UIColor.white
+        case .dark: return UIColor.DarkThemeColors.buttonColor
+        }
+    }
 
     //MARK: Styles
     /// Styles

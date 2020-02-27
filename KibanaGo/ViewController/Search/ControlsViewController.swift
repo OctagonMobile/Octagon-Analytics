@@ -15,6 +15,8 @@ class ControlsViewController: PanelBaseViewController {
         return (panel?.visState as? InputControlsVisState)?.controls ?? []
     }
     
+    private var dataSource: [ControlsWidgetBase]    =   []
+    
     //MARK: Outlets
     @IBOutlet weak var controlsCollectionView: UICollectionView!
     @IBOutlet weak var clearFormButton: UIButton!
@@ -24,79 +26,124 @@ class ControlsViewController: PanelBaseViewController {
     //MARK: Overridden Functions
     override func setupPanel() {
         super.setupPanel()
-        
+              
+        initialSetup()
         controlsCollectionView.dataSource = self
         controlsCollectionView.delegate = self
-        
-        clearFormButton.backgroundColor = CurrentTheme.standardColor
-        cancelChangesButton.backgroundColor = CurrentTheme.standardColor
-        applyChangesButton.backgroundColor = CurrentTheme.standardColor
-        
+                
         clearFormButton.layer.cornerRadius = 5.0
         cancelChangesButton.layer.cornerRadius = 5.0
         applyChangesButton.layer.cornerRadius = 5.0
         
-        clearFormButton?.setTitleColor(CurrentTheme.titleColor, for: .normal)
-        clearFormButton?.setTitleColor(CurrentTheme.titleColor.withAlphaComponent(0.3), for: .disabled)
+        applyChangesButton.backgroundColor = CurrentTheme.controlsApplyButtonBackgroundColor
+        applyChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonTitleColor, for: .normal)
+        applyChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonTitleColor.withAlphaComponent(0.3), for: .disabled)
 
+        clearFormButton.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
+        clearFormButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
+        clearFormButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor.withAlphaComponent(0.3), for: .disabled)
+        clearFormButton.layer.borderColor = CurrentTheme.controlsApplyButtonBackgroundColor.cgColor
+        clearFormButton.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
 
-        clearFormButton.style(CurrentTheme.textStyleWith(clearFormButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
-        cancelChangesButton.style(CurrentTheme.textStyleWith(cancelChangesButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
-        applyChangesButton.style(CurrentTheme.textStyleWith(applyChangesButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
-
+        cancelChangesButton.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
+        cancelChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
+        cancelChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor.withAlphaComponent(0.3), for: .disabled)
+        cancelChangesButton.layer.borderColor = CurrentTheme.controlsApplyButtonBackgroundColor.cgColor
+        cancelChangesButton.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
     }
     
     override func loadChartData() {
         // nothing to load from server
     }
     
+    private func initialSetup() {
+        dataSource.removeAll()
+        
+        if let controlObj = controlsList.first, controlObj.type == .range {
+            let rangeControl = RangeControlsWidget(controlObj)
+            //Update the Range selected based on applied filter
+            let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlObj.fieldName}).first
+            if let ranges: [String] = (appliedFilter as? SimpleFilter)?.fieldValue.components(separatedBy: "-"),
+                ranges.count > 1 {
+                rangeControl.selectedMinValue = Float(ranges.first!)
+                rangeControl.selectedMaxValue = Float(ranges.last!)
+            }
+            dataSource.append(rangeControl)
+        }
+    }
+    
+    private func applyFilters() {
+        
+        for controlsObj in dataSource {
+            let control = controlsObj.control
+            if control.type == .range {
+                let rangeControls = controlsObj as? RangeControlsWidget
+                guard let min = rangeControls?.selectedMinValue, let max = rangeControls?.selectedMaxValue else { continue }
+                
+                let matchedFilter = controlsFiltersList.filter({ $0.fieldName == control.fieldName}).first
+                if matchedFilter == nil {
+                    let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
+                    controlsFiltersList.append(filter)
+                } else {
+                    controlsFiltersList.removeAll(where: { $0.fieldName == matchedFilter?.fieldName })
+                    controlsFiltersList.append(matchedFilter!)
+                }
+                
+            } else {
+                // create filters for List
+            }
+        }
+        
+        // Call multiFilterAction
+        controlsFiltersList.forEach { (filter) in
+            
+            if Session.shared.containsFilter(filter) {
+                Session.shared.appliedFilters.removeAll(where: { $0.fieldName == filter.fieldName })
+            }
+            
+            filterAction?(self, filter)
+        }
+        
+        controlsCollectionView.reloadData()
+    }
+    
     //MARK: Button Actions
     @IBAction func clearFormButtonAction(_ sender: Any) {
+        // Reset to 0
+        controlsFiltersList.removeAll()
+        for controlObj in dataSource {
+            if controlObj.control.type == .range {
+                (controlObj as? RangeControlsWidget)?.selectedMinValue = nil
+                (controlObj as? RangeControlsWidget)?.selectedMaxValue = nil
+            }
+        }
+        controlsCollectionView?.reloadData()
     }
     
     @IBAction func cancelChangesAction(_ sender: Any) {
     }
     
     @IBAction func applyChangesAction(_ sender: Any) {
-
-        for filter in controlsFiltersList {
-            if !Session.shared.containsFilter(filter) {
-                filterAction?(self, filter)
-            }
-        }
+        applyFilters()
     }
 }
 
 extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return controlsList.count
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let control = controlsList[indexPath.row]
-        let cellId = control.type == .range ? CellIdentifiers.rangeControlsCell : CellIdentifiers.listControlsCell
+        let controlWidget = dataSource[indexPath.row]
+        let controlType = controlWidget.control.type
+        let cellId = controlType == .range ? CellIdentifiers.rangeControlsCell : CellIdentifiers.listControlsCell
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ControlsBaseCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.control = control
         
-        switch control.type {
-        case .range:
-            (cell as? RangeControlsCollectionViewCell)?.rangeSelectionBlock = { [weak self] (control, min, max) in
-                let filter = SimpleFilter(fieldName: control!.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
-                let matchedFilter = self?.controlsFiltersList.filter({ $0.fieldName == filter.fieldName }).first
-                if matchedFilter == nil {
-                    self?.controlsFiltersList.append(filter)
-                } else {
-                    self?.controlsFiltersList.removeAll(where: { $0.fieldName == filter.fieldName })
-                    self?.controlsFiltersList.append(filter)
-                }
-            }
-        case .list:
-            DLog("Control Type = List")
-        }
-        
+        cell.controlWidget = controlWidget
+                
         return cell
     }
 }
