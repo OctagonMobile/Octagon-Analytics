@@ -72,7 +72,6 @@ class DashboardViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        dashBoardCollectionView.register(UINib(nibName: "DashboardCollectionReusableView", bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
 
         dashBoardCollectionView.alwaysBounceVertical = true
         dashBoardCollectionView.showsVerticalScrollIndicator = true
@@ -98,7 +97,6 @@ class DashboardViewController: BaseViewController {
         
         //Configure Search bar
         configureSearchBar()
-        setupFilterHeader()
     }
     
     override func rightBarButtons() -> [UIBarButtonItem] {
@@ -209,22 +207,7 @@ class DashboardViewController: BaseViewController {
         filtersHeightConstraint.constant =  hasFilters ? filtersHeight : 0
         filtersTopConstraint.constant = hasFilters ? filtersTopConstraintHeight : 0
     }
-    
-    fileprivate func setupFilterHeader() {
-        if isIPhone {
-            let width:CGFloat = 50
-            let rect = CGRect(x: 0, y: 0, width: -width, height: filtersHeight)
-            let header = UIView(frame: rect)
-            let label = UILabel(frame: header.bounds)
-            header.backgroundColor = .clear
-            label.style(CurrentTheme.subHeadTextStyle())
-            label.text = "Filters:"
-            header.addSubview(label)
-            filterCollectionView.addSubview(header)
-            filterCollectionView.contentInset = UIEdgeInsets(top: 0, left: width, bottom: 0, right: 0)
-        }
-    }
-    
+        
     fileprivate func setupWidgets() {
         for (index,panel) in panels.enumerated() {
             var panelViewController = PanelBaseViewController()
@@ -268,7 +251,7 @@ class DashboardViewController: BaseViewController {
                 }
             case .mapTracking:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.mapTrackingViewController) as? MapTrackingViewController ?? PanelBaseViewController()
-            case .vectorMap:
+            case .vectorMap, .regionMap:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.vectorMapViewController) as? VectorMapViewController ?? PanelBaseViewController()
             case .faceTile:
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.faceTileViewController) as? FaceTileViewController ?? FaceTileViewController()
@@ -289,9 +272,8 @@ class DashboardViewController: BaseViewController {
                 break
             }
             
-            panelViewController.filterAction = { [weak self] (sender, itemSelected) in
-                
-                self?.applyFilters(itemSelected)
+            panelViewController.filterAction = { [weak self] (sender, itemSelected) in   
+                self?.applyFilters([itemSelected])
             }
             
             widgetsDictionary["\(index)"] = panelViewController
@@ -312,29 +294,7 @@ class DashboardViewController: BaseViewController {
         widgetsDictionary.forEach( { $0.value.shouldLoadData = true } )
         dashBoardCollectionView.reloadData()
     }
-    
-    fileprivate func configureInfoView(_ selectedItem: FilterProtocol?, widgetRect: CGRect) {
-        
-        guard let infoView = Bundle.main.loadNibNamed("InfoView", owner: self, options: nil)?.first as? InfoView,
-            let selectedFilter = selectedItem else {
-            return
-        }
 
-        infoView.updateDetails(selectedFilter)
-
-        infoView.drillDownAction = { [weak self] (sender, filterToBeApplied) in
-            guard let filter = filterToBeApplied else { return }
-            if !Session.shared.containsFilter(selectedFilter) {
-                self?.applyFilters(filter)
-            }
-            self?.popTip.hide()
-        }
-        
-        let originatingFrame = getCalculatedRectForInfoPopUp(infoView, widgetRect: widgetRect)
-        
-        popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
-    }
-    
     fileprivate func configureMultiFiltersInfoView(_ selectedItems: [FilterProtocol], widgetRect: CGRect) {
         
         guard let infoView = Bundle.main.loadNibNamed("FiltersInfoView", owner: self, options: nil)?.first as? FiltersInfoView else {
@@ -354,6 +314,7 @@ class DashboardViewController: BaseViewController {
         
         popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
     }
+    
     
     private func getCalculatedRectForInfoPopUp(_ infoView: UIView, widgetRect: CGRect) -> CGRect {
         let rectInView = view.convert(widgetRect, from: dashBoardCollectionView)
@@ -549,15 +510,20 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.viewController = widgetViewController
         cell.selectFieldAction = { [weak self] (sender, selectedItem, widgetRect) in
             
-            if selectedItem is Filter  || selectedItem is DateFilter {
+            if selectedItem is Filter  || selectedItem is DateFilter || selectedItem is SimpleFilter {
                 guard let rect = widgetRect else { return }
-                self?.configureInfoView(selectedItem, widgetRect: rect)
+                self?.configureMultiFiltersInfoView([selectedItem], widgetRect: rect)
             } else if selectedItem is ImageFilter {
                 self?.applyImageFilter(selectedItem)
             } else if selectedItem is LocationFilter {
                 self?.applyFilters(selectedItem)
             }
 
+        }
+
+        cell.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
+            guard let rect = widgetRect else { return }
+            self?.configureMultiFiltersInfoView(selectedItems, widgetRect: rect)
         }
         
         cell.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
@@ -587,13 +553,14 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         savedSearchViewController?.enableTableViewScrolling()
+        if (!decelerate) {
+            view.layoutIfNeeded()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         popTip.hide()
-        
-        view.layoutIfNeeded()
-        
+                
         let searchBarHeightToHide: CGFloat = 50
         searchBarHeightConstraint.constant = scrollView.contentOffset.y > searchBarHeightToHide ? 0 : 56
         
@@ -607,6 +574,11 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         }, completion: nil)
 
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        view.layoutIfNeeded()
+    }
+    
 }
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {

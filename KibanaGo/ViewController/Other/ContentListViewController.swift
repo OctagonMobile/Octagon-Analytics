@@ -121,11 +121,16 @@ extension ContentListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let fieldName = panel?.bucketAggregation?.field, let fieldValue = panel?.buckets[indexPath.row], let type = panel?.bucketType {
-            let metricType = panel?.metricAggregation?.metricType ?? .unKnown
-            let selectedFilter = Filter(fieldName: fieldName, fieldValue: fieldValue, type: type, metricType: metricType)
-            if !Session.shared.containsFilter(selectedFilter) {
-                filterAction?(self, selectedFilter)
+        if let agg = panel?.bucketAggregation, let fieldValue = panel?.buckets[indexPath.row] {
+            
+            var dateComponant: DateComponents?
+            if let selectedDates =  panel?.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)            
+            if !Session.shared.containsFilter(filter) {
+                filterAction?(self, filter)
             }
         }
 

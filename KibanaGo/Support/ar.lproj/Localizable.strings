@@ -5,12 +5,18 @@
   Created by Rameez on 9/29/19.
   Copyright © 2019 Octagon Mobile. All rights reserved.
 */
-
 "Kibana Go"         =   "كبنة غو";
 "Yes"               =   "نعم";
 "No"                =   "لا";
 "Ok"                =   "حسنا";
 "Cancel"            =   "إلغاء";
+
+//Tutorial
+"Watch Tutorial"    =   "مشاهدة البرنامج التعليمي";
+"Auto Fill"         =   "ملء السيارات";
+"DownloadKibanaGoPlugin"    =   "قم بتنزيل / تثبيت \"Kibana-Go Plugin\" لـ Kibana";
+"CustomKibanaConfiguration" =   "الإشارة إلى Kibana الخاصة بك عن طريق تغيير الإعدادات التالية";
+"UseDemoAccount"            =   "استخدام حساب تجريبي للعب";
 
 //Login Screen
 "Username"                      =   "اسم المستخدم";
@@ -25,6 +31,7 @@
 "Sign in as different user"     =   "تسجيل الدخول كمستخدم مختلف";
 "Hello, "                       =   "مرحبا, ";
 "SmartLoginResetAlertMessage"   =   "سيتم إعادة ضبط التكوين الحالي % @. هل أنت متأكد أنك تريد المتابعة؟";
+"Terms and Condition Content"   =   "بالنقر فوق 'موافڨ ، فإنك توافق على استخدام هذا النظام أو البرنامج فقط وفقًا لسياسات وأنظمة كبنة غو. قد يؤدي أي سوء استخدام لهذا النظام أو البرنامج إلى عقوبات مدنية و / أو جنائية. هذا النظام أو البرنامج مخصص للاستخدام فقط مع كبنة غو";
 
 //Terms & Condition
 "Agree"             =   "يوافق على";
@@ -50,7 +57,7 @@
 "Authentication"        =   "المصادقة";
 
 //Dashboard
-"Filters"           =   "مرشحات";
+"Filters"           =   "مرشحات:";
 "Field"             =   "مجال";
 "Value"             =   "القيمة";
 "Count"             =   "عد";

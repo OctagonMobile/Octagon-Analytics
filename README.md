@@ -14,7 +14,9 @@ Supported Devices: iPhone & iPad.
 
 ## Prerequisites<a id="prerequisites"></a>
 Make sure that you have the following applications:
-1.  Kibana server(v-6.5.4) with [KibanaGo-Plugin](https://github.com/OctagonMobile/Kibana-Go-Plugin.git).
+1.  Kibana server(v-6.5.4) with KibanaGo-Plugin :
+	* [Build](https://octagonmobile.github.io/Kibana-Go-Plugin-Download/kibana-go-6.5.4.zip).
+	* [Source Code](https://github.com/OctagonMobile/Kibana-Go-Plugin.git).
 2.  Xcode (version 11.0 or above).
 3.  [Cocoapods](https://cocoapods.org) installed on Mac.
 

@@ -12,6 +12,13 @@
 "Ok"                =   "Ok";
 "Cancel"            =   "Cancel";
 
+//Tutorial
+"Watch Tutorial"    =   "Watch Tutorial";
+"Auto Fill"         =   "Auto Fill";
+"DownloadKibanaGoPlugin"    =   "Download/Install the \"Kibana-Go Plugin\" for your Kibana";
+"CustomKibanaConfiguration" =   "Pointing to your own Kibana by changing the following settings";
+"UseDemoAccount"            =   "Use demo account to play";
+
 //Login Screen
 "Username"                      =   "Username";
 "Password"                      =   "Password";
@@ -25,6 +32,7 @@
 "Sign in as different user"     =   "Sign in as different user";
 "Hello, "                       =   "Hello, ";
 "SmartLoginResetAlertMessage"   =   "Your current %@ configuration will be reset. Are you sure you want to continue?";
+"Terms and Condition Content"   =   "'By clicking ‘Agree’ you agree to use this system or software only in accordance with Kibana Go policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Kibana Go.";
 
 //Terms & Condition
 "Agree"             =   "Agree";
@@ -50,7 +58,7 @@
 "Authentication"    =   "Authentication";
 
 //Dashboard
-"Filters"           =   "Filters";
+"Filters"           =   "Filters:";
 "Field"             =   "Field";
 "Value"             =   "Value";
 "Count"             =   "Count";

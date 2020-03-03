@@ -149,6 +149,8 @@ class BarChartViewController: ChartBaseViewController {
         let shouldHide = (panel?.buckets.count ?? 0) <= 0
         legendHolder.isHidden = shouldHide || (mode == .listing)
     }
+
+    
     
      internal func applyFiltersWith(_ bucket: Bucket, applyImmedietly: Bool = false) {
            

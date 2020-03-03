@@ -16,5 +16,11 @@
 		<key>identifier</key>
 		<string>Language</string>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>Watch Tutorial</string>
+		<key>identifier</key>
+		<string>Tutorial</string>
+	</dict>
 </array>
 </plist>

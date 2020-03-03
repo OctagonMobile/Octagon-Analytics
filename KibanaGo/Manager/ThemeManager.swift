@@ -224,6 +224,21 @@ enum Theme: String {
         case .dark: return UIColor.colorFromHexString("#0091FF")
         }
     }
+    
+    var tutorialButtonColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("59c8d3")
+        case .dark: return UIColor.systemBlue
+        }
+    }
+
+    var tutorialHighlightedButtonColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("287982")
+        case .dark: return UIColor.colorFromHexString("004AB2")
+        }
+    }
+
 
     //MARK: Styles
     /// Styles

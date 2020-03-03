@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import WebKit
 
 class CanvasViewController: BaseViewController {
 
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet var canvasWebView: UIWebView!
+    @IBOutlet var canvasWebView: WKWebView!
     
     var canvas: Canvas?
         
@@ -24,7 +25,7 @@ class CanvasViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         title   =  canvas?.name ??  "Canvas".localiz()
-        canvasWebView.delegate = self
+        canvasWebView.navigationDelegate = self
         
         let pagingRightArrowIcon = CurrentTheme.isDarkTheme ? "PagingRightArrow-Dark" : "PagingRightArrow"
         nextButton.setImage(UIImage(named: pagingRightArrowIcon), for: .normal)
@@ -45,7 +46,7 @@ class CanvasViewController: BaseViewController {
         guard let id = canvas?.id else { return }
         let urlString = Configuration.shared.environment.baseUrl + "/app/canvas#/workpad/\(id)/page/\(currentPage)?__fullscreen=true"
         guard let url = URL(string: urlString) else { return }
-        canvasWebView?.loadRequest(URLRequest(url: url))
+        _ = canvasWebView?.load(URLRequest(url: url))
         
         guard let canvas = canvas else { return }
         
@@ -69,20 +70,19 @@ class CanvasViewController: BaseViewController {
     }
 }
 
-extension CanvasViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        guard let tabbarController = self.tabBarController as? DashboardTabBarController,
-            navigationType == .linkClicked else { return true }
+extension CanvasViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        //        guard let dashboardId = request.url?.pathComponents.last else { return true }
-        //        tabbarController.showDashboard(dashboardId)
-        //        return false
+        guard let tabbarController = self.tabBarController as? DashboardTabBarController,
+            navigationAction.navigationType == .linkActivated else { decisionHandler(.allow); return }
 
         //Note: Since the url has an unsafe charecter '#' in the url, url.pathComponents isn't working as expected
-        let urlString = request.url?.absoluteString
+        let urlString = navigationAction.request.url?.absoluteString
         let urlPart = urlString?.components(separatedBy: "?").first
-        guard let dashboardId = urlPart?.components(separatedBy: "#").last?.components(separatedBy: "/").last else { return true }
+        guard let dashboardId = urlPart?.components(separatedBy: "#").last?.components(separatedBy: "/").last else { decisionHandler(.allow); return }
         tabbarController.showDashboard(dashboardId)
-        return false
+        
+        decisionHandler(.cancel)
     }
 }
+

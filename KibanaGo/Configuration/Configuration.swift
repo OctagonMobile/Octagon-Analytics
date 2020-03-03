@@ -8,9 +8,9 @@
 
 import Foundation
 
-fileprivate let defScheme   =   "SCHEME"
-fileprivate let defBaseUrl  =   "BASE_URL"
-fileprivate let defPort     =   "PORT"
+fileprivate let defScheme   =   "http"
+fileprivate let defBaseUrl  =   "ec2-35-158-106-139.eu-central-1.compute.amazonaws.com"
+fileprivate let defPort     =   "5601"
 
 enum Environment: String {
     

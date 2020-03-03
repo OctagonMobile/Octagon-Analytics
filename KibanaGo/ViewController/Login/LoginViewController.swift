@@ -36,6 +36,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet var userNameSeparatorLine: UIView?
     @IBOutlet var passwordSeparatorLine: UIView?
     @IBOutlet weak var languageButton: UIButton?
+    @IBOutlet weak var tutorialButton: UIButton!
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -71,9 +72,23 @@ class LoginViewController: BaseViewController {
         differentUserButton?.style(CurrentTheme.textStyleWith(size, weight: .medium, color: CurrentTheme.standardColor))
         loginButton.style(CurrentTheme.textStyleWith(loginButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
         termsAndCinditionLabel.style(CurrentTheme.textStyleWith(termsAndCinditionLabel.font.pointSize, weight: .regular, color: CurrentTheme.secondaryTitleColor))
+        
+        let didShowTutorial = UserDefaults.standard.bool(forKey: UserDefaultKeys.didShowTutorial)
+        if !Session.shared.isTouchIdUserAvailable(), !didShowTutorial {
+            showTutorial()
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.didShowTutorial)
+        }
     }
     
     //MARK: Private Functions
+    private func showTutorial() {
+        NavigationManager.shared.showTutorial() { [weak self] sender in
+            // Auto Fill Action Block
+            self?.userNameTextField.text  =   "demouser"
+            self?.passwordTextField.text  =   "demouser654321"
+        }
+    }
+    
     private func configureLoginView() {
         let theme = CurrentTheme
 
@@ -104,6 +119,9 @@ class LoginViewController: BaseViewController {
         userNameSeparatorLine?.backgroundColor = CurrentTheme.separatorColorSecondary
         passwordSeparatorLine?.backgroundColor = CurrentTheme.separatorColorSecondary
         setupTermsAndCondition()
+        
+        let tutorialImageName = "QuestionMark-" + CurrentTheme.rawValue
+        tutorialButton.setImage(UIImage(named: tutorialImageName), for: .normal)
     }
     
     private func setupTermsAndCondition() {
@@ -118,7 +136,7 @@ class LoginViewController: BaseViewController {
             DLog("Custom type tapped: \(element)")
             // Show Terms And Condition
             let termsController = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.termsAndConditionViewController) as? TermsAndConditionViewController ?? TermsAndConditionViewController()
-            termsController.termsAndConditionString = "'By clicking ‘OK’ you agree to use this system or software only in accordance with Octagon Mobile policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Octagon Mobile. Any personal use or use outside of authorized clearance by the Octagon Mobile may result in civil and/or criminal penalties."
+            termsController.termsAndConditionString = "Terms and Condition Content".localiz()
             
             termsController.didAccept = { [weak self] (accepted) in
                 guard let strongSelf = self else { return }
@@ -136,6 +154,7 @@ class LoginViewController: BaseViewController {
         userNameLabel.isHidden = true
         userNameHolderView.isHidden = false
         userNameTextField.text = ""
+        passwordTextField.text = ""
         userNameLabel.text = ""
         touchIdButtonWidthConstraint.constant = 0
         checkBoxButton.isSelected = true
@@ -271,6 +290,10 @@ class LoginViewController: BaseViewController {
         NavigationManager.shared.resetAppLanguage(code)
         updateLanguageButtonTitle()
     }
+    
+    @IBAction func tutorialButtonAction(_ sender: UIButton) {
+        showTutorial()
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -290,6 +313,7 @@ extension LoginViewController {
     
     struct UserDefaultKeys {
         static let enableFaceIdPrompt  =   "enableFaceIdPrompt"
+        static let didShowTutorial      =   "didShowTutorial"
     }
     
     var checkBoxNormalIcon: String {
