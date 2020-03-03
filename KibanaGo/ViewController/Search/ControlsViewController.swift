@@ -52,23 +52,46 @@ class ControlsViewController: PanelBaseViewController {
         cancelChangesButton.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
     }
     
-    override func loadChartData() {
-        // nothing to load from server
+//    override func loadChartData() {
+//        // nothing to load from server
+//    }
+    
+    override func updatePanelContent() {
+        super.updatePanelContent()
+        
+        // Supporting only one Type
+        guard let controlsWidget = dataSource.first else { return }
+        
+        if controlsWidget.control.type == .range {
+            (controlsWidget as? RangeControlsWidget)?.minValue = Float((panel as? ControlsPanel)?.minAgg ?? 0)
+            (controlsWidget as? RangeControlsWidget)?.maxValue = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
+        }
+//        else {
+//            (controlsWidget as? ListControlsWidget)?.selectedList = (panel as? ControlsPanel)?.buckets ?? []
+//        }
+        controlsCollectionView.reloadData()
     }
     
     private func initialSetup() {
         dataSource.removeAll()
         
-        if let controlObj = controlsList.first, controlObj.type == .range {
+        guard let controlObj = controlsList.first else { return }
+        
+        let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlObj.fieldName}).first
+
+        if controlObj.type == .range {
             let rangeControl = RangeControlsWidget(controlObj)
             //Update the Range selected based on applied filter
-            let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlObj.fieldName}).first
             if let ranges: [String] = (appliedFilter as? SimpleFilter)?.fieldValue.components(separatedBy: "-"),
                 ranges.count > 1 {
                 rangeControl.selectedMinValue = Float(ranges.first!)
                 rangeControl.selectedMaxValue = Float(ranges.last!)
             }
             dataSource.append(rangeControl)
+        } else {
+            let listControl = ListControlsWidget(controlObj, list: [])
+            //TODO : Update the object
+            dataSource.append(listControl)
         }
     }
     
@@ -118,6 +141,8 @@ class ControlsViewController: PanelBaseViewController {
             }
         }
         controlsCollectionView?.reloadData()
+        clearFormButton.isEnabled = false
+        applyChangesButton.isEnabled = false
     }
     
     @IBAction func cancelChangesAction(_ sender: Any) {
@@ -142,9 +167,43 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
             return UICollectionViewCell()
         }
         
+        if controlType == .range {
+            (cell as? RangeControlsCollectionViewCell)?.rangeSelectionUpdateBlock = { [weak self] (sender, max, min) in
+                self?.clearFormButton.isEnabled = true
+                self?.applyChangesButton.isEnabled = true
+            }
+        }
+        
         cell.controlWidget = controlWidget
                 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let controlWidget = dataSource[indexPath.row]
+        guard controlWidget.control.type == .list,
+            let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let rootViewController = window.rootViewController else { return }
+
+        let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
+        
+        popOverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = popOverContent.popoverPresentationController
+        popover?.backgroundColor = CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0)
+        
+        if !isIPhone {
+            popOverContent.preferredContentSize = CGSize(width: 200, height: 300)
+            popover?.delegate = self
+            popover?.permittedArrowDirections = .any
+            popover?.sourceRect = cell.frame
+            popover?.sourceView = cell
+        }
+        
+        rootViewController.present(popOverContent, animated: true, completion: nil)
     }
 }
 
@@ -158,5 +217,9 @@ extension ControlsViewController {
     struct CellIdentifiers {
         static let rangeControlsCell    =   "RangeControlsCollectionViewCell"
         static let listControlsCell     =   "ListControlsCollectionViewCell"
+    }
+    
+    struct ViewControllerIdentifiers {
+        static let controlsListPopOverViewController     =   "ControlsListPopOverViewController"
     }
 }

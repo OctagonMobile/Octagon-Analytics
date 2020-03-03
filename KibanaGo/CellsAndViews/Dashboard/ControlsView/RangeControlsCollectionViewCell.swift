@@ -11,7 +11,11 @@ import TTRangeSlider
 
 
 class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
-        
+    
+    typealias ControlsRangeSelectionBlock = (_ control: ControlsWidgetBase?,_ min: Float,_ max: Float) -> Void
+
+    var rangeSelectionUpdateBlock: ControlsRangeSelectionBlock?
+    
     var rangeControl: RangeControlsWidget? {
         return controlWidget as? RangeControlsWidget
     }
@@ -80,6 +84,8 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
         
         rangeControl?.selectedMinValue = rangeSlider.selectedMinimum
         rangeControl?.selectedMaxValue = rangeSlider.selectedMaximum
+        
+        rangeSelectionUpdateBlock?(controlWidget, rangeSlider.selectedMinimum, rangeSlider.selectedMaximum)
     }
     
 }
@@ -111,5 +117,6 @@ extension RangeControlsCollectionViewCell: TTRangeSliderDelegate {
     func didEndTouches(in sender: TTRangeSlider!) {
         rangeControl?.selectedMinValue = sender.selectedMinimum
         rangeControl?.selectedMaxValue = sender.selectedMaximum
+        rangeSelectionUpdateBlock?(controlWidget, sender.selectedMinimum, sender.selectedMaximum)
     }
 }

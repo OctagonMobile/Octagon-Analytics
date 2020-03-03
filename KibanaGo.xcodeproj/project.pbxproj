@@ -58,6 +58,7 @@
 		513D898221761035001B12D6 /* CountryCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 513D898121761035001B12D6 /* CountryCodes.plist */; };
 		513F3F80206A3E9C00221F27 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 513F3F7E206A3E9B00221F27 /* TPKeyboardAvoidingScrollView.m */; };
 		513F3F83206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 513F3F81206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		51401585240E41BE00A095AC /* ControlsListPopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51401584240E41BE00A095AC /* ControlsListPopOverViewController.swift */; };
 		514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 514211D621807E29006E64DD /* FaceTileCollectionViewCell.xib */; };
 		514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211D721807E29006E64DD /* FaceTileCollectionViewCell.swift */; };
 		514211DB21807E83006E64DD /* FaceTilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DA21807E83006E64DD /* FaceTilePanel.swift */; };
@@ -66,6 +67,7 @@
 		514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */; };
 		5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146761F22E45CA900D9FE8C /* CanvasViewController.swift */; };
 		5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146FE7A2407BB3F0014A67D /* Controls.swift */; };
+		5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146FE7C240BD2F50014A67D /* ControlsPanel.swift */; };
 		51477DE62068DF2500955394 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE52068DF2500955394 /* LoginViewController.swift */; };
 		51477DE92068E6AE00955394 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DE82068E6AE00955394 /* User.swift */; };
 		51477DEB2068EBED00955394 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51477DEA2068EBED00955394 /* NavigationManager.swift */; };
@@ -264,6 +266,7 @@
 		513F3F7F206A3E9C00221F27 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		513F3F81206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		513F3F82206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		51401584240E41BE00A095AC /* ControlsListPopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsListPopOverViewController.swift; sourceTree = "<group>"; };
 		514211D621807E29006E64DD /* FaceTileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceTileCollectionViewCell.xib; sourceTree = "<group>"; };
 		514211D721807E29006E64DD /* FaceTileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceTileCollectionViewCell.swift; sourceTree = "<group>"; };
 		514211DA21807E83006E64DD /* FaceTilePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTilePanel.swift; sourceTree = "<group>"; };
@@ -272,6 +275,7 @@
 		514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5146761F22E45CA900D9FE8C /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		5146FE7A2407BB3F0014A67D /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
+		5146FE7C240BD2F50014A67D /* ControlsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsPanel.swift; sourceTree = "<group>"; };
 		51477DE52068DF2500955394 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		51477DE82068E6AE00955394 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51477DEA2068EBED00955394 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -669,6 +673,7 @@
 				5136038E2226713A002D12B6 /* WebContentViewController.swift */,
 				51E93DBC22F1B9F8006F3C3D /* MarkDownViewController.swift */,
 				51D8ECA124026493009158C5 /* ControlsViewController.swift */,
+				51401584240E41BE00A095AC /* ControlsListPopOverViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1017,6 +1022,7 @@
 				51840DFB1FCED792007B8D38 /* TilePanel.swift */,
 				514211DA21807E83006E64DD /* FaceTilePanel.swift */,
 				5174FBAB219C2335003BEB1E /* GraphPanel.swift */,
+				5146FE7C240BD2F50014A67D /* ControlsPanel.swift */,
 				51923AB8207DF6980023FE27 /* Map */,
 			);
 			path = Panels;
@@ -1485,12 +1491,14 @@
 				516E2A9E1FBAB2AA00E4D752 /* SavedSearchPopOverViewController.swift in Sources */,
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
+				5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
 				5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
 				5174FBA5219C105E003BEB1E /* GraphWeightView.swift in Sources */,
 				51E3941F204D664100AF22C8 /* KibanaGoMapView.swift in Sources */,
 				51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */,
+				51401585240E41BE00A095AC /* ControlsListPopOverViewController.swift in Sources */,
 				5130A10E1FA7336A003D0525 /* DashboardCollectionViewCell.swift in Sources */,
 				F10D6D5B23DD9D7500190754 /* FilterInfoTableViewCell.swift in Sources */,
 				5174FBA7219C105E003BEB1E /* WeightedGraphInteractor.swift in Sources */,

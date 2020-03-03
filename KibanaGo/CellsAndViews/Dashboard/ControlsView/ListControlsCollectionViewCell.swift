@@ -10,4 +10,15 @@ import UIKit
 
 class ListControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func updateCellContent() {
+        super.updateCellContent()
+        guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return }
+        titleLabel.text = selectedList.compactMap({ $0.key }).joined(separator: ",")
+    }
 }

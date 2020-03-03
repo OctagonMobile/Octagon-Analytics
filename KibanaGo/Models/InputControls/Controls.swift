@@ -16,6 +16,9 @@ class ControlsWidgetBase {
 }
 
 class RangeControlsWidget: ControlsWidgetBase {
+    var minValue: Float?
+    var maxValue: Float?
+
     var selectedMinValue: Float?
     var selectedMaxValue: Float?
     
@@ -26,12 +29,12 @@ class RangeControlsWidget: ControlsWidgetBase {
     }
 }
 
-class ListCControlsWidget: ControlsWidgetBase {
+class ListControlsWidget: ControlsWidgetBase {
     
-    var list: [String]  =   []
+    var selectedList: [ChartItem]  =   []
     
-    init(_ control: Control, list: [String]) {
+    init(_ control: Control, list: [ChartItem]) {
         super.init(control)
-        self.list = list
+        self.selectedList = list
     }
 }
