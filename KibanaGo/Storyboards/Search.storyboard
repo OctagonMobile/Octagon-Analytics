@@ -338,13 +338,13 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="BRj-7N-GUe" secondAttribute="trailing" id="Hie-tc-sch"/>
-                                                                <constraint firstAttribute="bottom" secondItem="BRj-7N-GUe" secondAttribute="bottom" id="I4Z-zm-D9G"/>
-                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="top" secondItem="t03-Wj-u0G" secondAttribute="top" id="mYy-8P-9ta"/>
-                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="leading" secondItem="t03-Wj-u0G" secondAttribute="leading" id="sXl-gN-wO8"/>
+                                                                <constraint firstAttribute="trailing" secondItem="BRj-7N-GUe" secondAttribute="trailing" constant="20" id="Hie-tc-sch"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BRj-7N-GUe" secondAttribute="bottom" constant="20" id="I4Z-zm-D9G"/>
+                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="centerY" secondItem="t03-Wj-u0G" secondAttribute="centerY" id="RKb-af-ula"/>
+                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t03-Wj-u0G" secondAttribute="top" constant="20" id="mYy-8P-9ta"/>
+                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="leading" secondItem="t03-Wj-u0G" secondAttribute="leading" constant="20" id="sXl-gN-wO8"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
-                                                        <size key="customSize" width="1336" height="220"/>
                                                         <connections>
                                                             <outlet property="titleLabel" destination="BRj-7N-GUe" id="XO8-sF-3vT"/>
                                                         </connections>
@@ -528,7 +528,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="doneButtonAction:" destination="EvZ-aG-IPP" eventType="touchUpInside" id="y8d-O9-0Tk"/>
+                                    <action selector="doneButtonAction:" destination="lxZ-gd-431" eventType="touchUpInside" id="Thr-Nn-6az"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -549,7 +549,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZh-gI-Uus" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="EvZ-aG-IPP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1646.7057101024889" y="1422.65625"/>
         </scene>

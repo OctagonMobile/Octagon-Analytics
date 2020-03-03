@@ -31,10 +31,10 @@ class RangeControlsWidget: ControlsWidgetBase {
 
 class ListControlsWidget: ControlsWidgetBase {
     
-    var selectedList: [ChartItem]  =   []
+    var list: [ChartItem]  =   []
     
     init(_ control: Control, list: [ChartItem]) {
         super.init(control)
-        self.selectedList = list
+        self.list = list
     }
 }

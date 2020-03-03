@@ -65,10 +65,9 @@ class ControlsViewController: PanelBaseViewController {
         if controlsWidget.control.type == .range {
             (controlsWidget as? RangeControlsWidget)?.minValue = Float((panel as? ControlsPanel)?.minAgg ?? 0)
             (controlsWidget as? RangeControlsWidget)?.maxValue = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
+        } else {
+            (controlsWidget as? ListControlsWidget)?.list = (panel as? ControlsPanel)?.buckets ?? []
         }
-//        else {
-//            (controlsWidget as? ListControlsWidget)?.selectedList = (panel as? ControlsPanel)?.buckets ?? []
-//        }
         controlsCollectionView.reloadData()
     }
     
@@ -90,7 +89,6 @@ class ControlsViewController: PanelBaseViewController {
             dataSource.append(rangeControl)
         } else {
             let listControl = ListControlsWidget(controlObj, list: [])
-            //TODO : Update the object
             dataSource.append(listControl)
         }
     }
@@ -183,14 +181,16 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let controlWidget = dataSource[indexPath.row]
-        guard controlWidget.control.type == .list,
+        guard controlWidget.control.type == .list, (controlWidget as? ListControlsWidget)?.list.count ?? 0 > 0,
             let cell = collectionView.cellForItem(at: indexPath) else { return }
         
         guard let window = UIApplication.shared.keyWindow else { return }
         guard let rootViewController = window.rootViewController else { return }
 
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
-        
+        popOverContent.selectionBlock = { (sender, selectedList) in
+            //Update UI
+        }
         popOverContent.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover = popOverContent.popoverPresentationController
         popover?.backgroundColor = CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0)

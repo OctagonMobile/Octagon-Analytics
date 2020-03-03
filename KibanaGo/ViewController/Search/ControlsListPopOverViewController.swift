@@ -10,6 +10,9 @@ import UIKit
 
 class ControlsListPopOverViewController: BaseViewController {
     
+    public typealias ControlsListSelectionBlock = (_ sender: ControlsListPopOverViewController,_ selectedList: [ControlsListOption]) -> Void
+    
+    var selectionBlock: ControlsListSelectionBlock?
     var multiSelectionEnabled: Bool =   true
     
     var list: [ControlsListOption]  =   [] {
@@ -26,6 +29,12 @@ class ControlsListPopOverViewController: BaseViewController {
         controlsListView?.dataSource = self
         controlsListView?.delegate = self
     }
+    
+    //MARK: Button Action
+    @IBAction func doneButtonAction(_ sender: UIButton) {
+        let selectedDataList = list.filter({ $0.isSelected == true })
+        selectionBlock?(self, selectedDataList)
+    }
 }
 
 extension ControlsListPopOverViewController: UITableViewDataSource, UITableViewDelegate {
@@ -37,14 +46,14 @@ extension ControlsListPopOverViewController: UITableViewDataSource, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.controlsListTableViewCell, for: indexPath) as? ControlsListTableViewCell else {
             return UITableViewCell()
         }
-        cell.item = list[indexPath.row].title
+        cell.controlOption = list[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         list[indexPath.row].isSelected = !list[indexPath.row].isSelected
+        tableView.reloadData()
     }
 }
 
@@ -57,9 +66,9 @@ extension ControlsListPopOverViewController {
 
 class ControlsListTableViewCell: UITableViewCell {
     
-    var item: String? {
+    var controlOption: ControlsListOption? {
         didSet {
-            titleLabel.text = item
+            titleLabel.text = controlOption?.data?.key
         }
     }
     
@@ -78,13 +87,9 @@ class ControlsListTableViewCell: UITableViewCell {
         let image = UIImage(named: normalImageName)
         checkBoxButton.setImage(image, for: .normal)
     }
-    
-    //MARK: Button Action
-    @IBAction func doneButtonAction(_ sender: UIButton) {
-    }
 }
 
 class ControlsListOption {
     var isSelected: Bool    = false
-    var title: String?
+    var data: ChartItem?
 }
