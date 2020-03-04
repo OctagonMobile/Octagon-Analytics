@@ -688,7 +688,7 @@ class Bucket {
                     key = "\(dateKey)"
                 }
             default:
-                key = dictionary["key_as_string"] as? String ?? ""
+                key = bucketValueAsString(dictionary)
         }
         
         
@@ -731,6 +731,26 @@ class Bucket {
         return filtersList
     }
     
+    func bucketValueAsString(_ dict: [String: Any]) -> String {
+        
+        guard let val = dict["key"] else {
+            return ""
+        }
+        let keyAsString = dict["key_as_string"] as? String
+        
+        if let number = val as? NSNumber {
+            if number.isNumberFractional {
+                return String(format: "%0.2f", number.floatValue)
+            } else if keyAsString == "false" || keyAsString == "true" {
+                return keyAsString!
+            } else {
+                return number.stringValue
+            }
+        } else {
+            return val as? String ?? ""
+        }
+    }
+    
     static func ==(lhs: Bucket, rhs: Bucket) -> Bool {
         return lhs.key == rhs.key && lhs.docCount == rhs.docCount && lhs.bucketValue == rhs.bucketValue
     }
@@ -766,5 +786,13 @@ class ChartContent {
             return date.toFormat("YYYY-MM-dd HH:mm:ss")
         }
         return key
+    }
+}
+
+
+extension NSNumber {
+    var isNumberFractional: Bool {
+        let str = self.stringValue
+        return (str.split(separator: ".").count > 1)
     }
 }
