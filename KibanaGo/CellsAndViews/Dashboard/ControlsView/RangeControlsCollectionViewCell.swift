@@ -60,6 +60,10 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     
     override func updateCellContent() {
         super.updateCellContent()
+        
+        rangeSlider.minValue = rangeControl?.minValue ?? 0
+        rangeSlider.maxValue = rangeControl?.maxValue ?? 0
+        
         rangeSlider.enableStep = true
         rangeSlider.step = Float(controlWidget?.control.rangeOptions?.step ?? 1)
         

@@ -23,15 +23,15 @@ class ControlsPanel: Panel {
     override func parseData(_ result: Any?) -> [Any] {
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
-            let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any], let maxAgg = maxAggDict["maxAgg"] as? Int,
-            let minAggDict = aggregationsDict["minAgg"] as? [String: Any], let minAgg = minAggDict["minAgg"] as? Int else {
+            let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any], let maxAgg = maxAggDict["value"] as? Int,
+            let minAggDict = aggregationsDict["minAgg"] as? [String: Any], let minAgg = minAggDict["value"] as? Int else {
                 return []
         }
         
         self.maxAgg = maxAgg
         self.minAgg = minAgg
 
-        return []
+        return [["min": self.minAgg, "max":self.maxAgg]]
     }
 
 }
