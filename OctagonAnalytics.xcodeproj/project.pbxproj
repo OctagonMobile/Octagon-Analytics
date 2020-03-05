@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C84B499E444EEBBA67FD77E /* Pods_KibanaGo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */; };
 		5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */; };
 		510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */; };
 		511342811FFE24AE00A7787E /* LocationPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511342801FFE24AE00A7787E /* LocationPopUpView.swift */; };
@@ -193,6 +192,7 @@
 		51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E62922CDCC57001B390A /* CustomCardCell.swift */; };
 		51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */; };
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
+		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
 		F10D6D5B23DD9D7500190754 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5723DD9D7500190754 /* FilterInfoTableViewCell.swift */; };
 		F10D6D5C23DD9D7500190754 /* FiltersInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5823DD9D7500190754 /* FiltersInfoView.swift */; };
@@ -230,7 +230,7 @@
 		5130A10C1FA73334003D0525 /* DashboardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewCell.swift; sourceTree = "<group>"; };
 		5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardCollectionViewCell.xib; sourceTree = "<group>"; };
 		5130A1191FA86C26003D0525 /* Aggregation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aggregation.swift; sourceTree = "<group>"; };
-		513467CD1F9DD1B900F9B67D /* KibanaGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KibanaGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		513467CD1F9DD1B900F9B67D /* Octagon Analytics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Octagon Analytics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		513467D01F9DD1B900F9B67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		513467D71F9DD1B900F9B67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		513467DA1F9DD1B900F9B67D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -401,12 +401,14 @@
 		51FABE9B2073602C0015C802 /* MapTrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackPoint.swift; sourceTree = "<group>"; };
 		65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.release.xcconfig"; sourceTree = "<group>"; };
 		69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.debug.xcconfig"; sourceTree = "<group>"; };
+		90E5BD8CABC854702A563173 /* Pods-OctagonAnalytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.debug.xcconfig"; sourceTree = "<group>"; };
+		B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctagonAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.release.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
 		F10D6D5723DD9D7500190754 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F10D6D5823DD9D7500190754 /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
 		F10D6D5923DD9D7500190754 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
 		F10D6D5A23DD9D7500190754 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
-		FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KibanaGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,7 +416,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C84B499E444EEBBA67FD77E /* Pods_KibanaGo.framework in Frameworks */,
+				72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +428,8 @@
 			children = (
 				69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */,
 				65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */,
+				90E5BD8CABC854702A563173 /* Pods-OctagonAnalytics.debug.xcconfig */,
+				DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -433,7 +437,7 @@
 		1AC4CB62C9CEF0D8F2BD6FD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */,
+				B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -529,7 +533,7 @@
 		513467C41F9DD1B900F9B67D = {
 			isa = PBXGroup;
 			children = (
-				513467CF1F9DD1B900F9B67D /* KibanaGo */,
+				513467CF1F9DD1B900F9B67D /* OctagonAnalytics */,
 				513467CE1F9DD1B900F9B67D /* Products */,
 				1A6DD9DE88DE5D5054F347BD /* Pods */,
 				1AC4CB62C9CEF0D8F2BD6FD2 /* Frameworks */,
@@ -539,12 +543,12 @@
 		513467CE1F9DD1B900F9B67D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				513467CD1F9DD1B900F9B67D /* KibanaGo.app */,
+				513467CD1F9DD1B900F9B67D /* Octagon Analytics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		513467CF1F9DD1B900F9B67D /* KibanaGo */ = {
+		513467CF1F9DD1B900F9B67D /* OctagonAnalytics */ = {
 			isa = PBXGroup;
 			children = (
 				5189D5BA2015B99200B61EEA /* Style */,
@@ -564,7 +568,7 @@
 				513467DC1F9DD1B900F9B67D /* Info.plist */,
 				51363A1C22E6E812003EDDE5 /* exportOptions.plist */,
 			);
-			path = KibanaGo;
+			path = OctagonAnalytics;
 			sourceTree = "<group>";
 		};
 		513467E21F9DD3EA00F9B67D /* ViewController */ = {
@@ -1161,9 +1165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		513467CC1F9DD1B900F9B67D /* KibanaGo */ = {
+		513467CC1F9DD1B900F9B67D /* OctagonAnalytics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 513467DF1F9DD1B900F9B67D /* Build configuration list for PBXNativeTarget "KibanaGo" */;
+			buildConfigurationList = 513467DF1F9DD1B900F9B67D /* Build configuration list for PBXNativeTarget "OctagonAnalytics" */;
 			buildPhases = (
 				DD43D1BB9FD8DF43BD68068A /* [CP] Check Pods Manifest.lock */,
 				513467C91F9DD1B900F9B67D /* Sources */,
@@ -1175,9 +1179,9 @@
 			);
 			dependencies = (
 			);
-			name = KibanaGo;
+			name = OctagonAnalytics;
 			productName = MarbleDemo;
-			productReference = 513467CD1F9DD1B900F9B67D /* KibanaGo.app */;
+			productReference = 513467CD1F9DD1B900F9B67D /* Octagon Analytics.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1197,7 +1201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 513467C81F9DD1B900F9B67D /* Build configuration list for PBXProject "KibanaGo" */;
+			buildConfigurationList = 513467C81F9DD1B900F9B67D /* Build configuration list for PBXProject "OctagonAnalytics" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1211,7 +1215,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				513467CC1F9DD1B900F9B67D /* KibanaGo */,
+				513467CC1F9DD1B900F9B67D /* OctagonAnalytics */,
 			);
 		};
 /* End PBXProject section */
@@ -1278,7 +1282,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KibanaGo/Pods-KibanaGo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AMPopTip/AMPopTip.framework",
 				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/AeroGearHttp/AeroGearHttp.framework",
@@ -1331,7 +1335,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KibanaGo/Pods-KibanaGo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD43D1BB9FD8DF43BD68068A /* [CP] Check Pods Manifest.lock */ = {
@@ -1345,7 +1349,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KibanaGo-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OctagonAnalytics-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1645,7 +1649,7 @@
 		};
 		513467E01F9DD1B900F9B67D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */;
+			baseConfigurationReference = 90E5BD8CABC854702A563173 /* Pods-OctagonAnalytics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1659,15 +1663,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = KibanaGo/Info.plist;
+				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
 				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "KibanaGo/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1676,7 +1680,7 @@
 		};
 		513467E11F9DD1B900F9B67D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */;
+			baseConfigurationReference = DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1691,15 +1695,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = KibanaGo/Info.plist;
+				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
 				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "KibanaGo/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1708,7 +1712,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		513467C81F9DD1B900F9B67D /* Build configuration list for PBXProject "KibanaGo" */ = {
+		513467C81F9DD1B900F9B67D /* Build configuration list for PBXProject "OctagonAnalytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				513467DD1F9DD1B900F9B67D /* Debug */,
@@ -1717,7 +1721,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		513467DF1F9DD1B900F9B67D /* Build configuration list for PBXNativeTarget "KibanaGo" */ = {
+		513467DF1F9DD1B900F9B67D /* Build configuration list for PBXNativeTarget "OctagonAnalytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				513467E01F9DD1B900F9B67D /* Debug */,

@@ -11,15 +11,15 @@ before_script:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -workspace KibanaGo.xcworkspace -scheme KibanaGo | xcpretty
+    - xcodebuild clean -workspace OctagonAnalytics.xcworkspace -scheme OctagonAnalytics | xcpretty
   tags:
-    - KibanaGo
+    - OctagonAnalytics
 
 archive_project:
   stage: archive
   script:
-    - xcodebuild clean archive -workspace KibanaGo.xcworkspace -archivePath KibanaGo.xcarchive -scheme KibanaGo
-    - xcodebuild -exportArchive -archivePath KibanaGo.xcarchive -exportOptionsPlist KibanaGo/exportOptions.plist -exportPath $PWD/build
+    - xcodebuild clean archive -workspace OctagonAnalytics.xcworkspace -archivePath OctagonAnalytics.xcarchive -scheme OctagonAnalytics
+    - xcodebuild -exportArchive -archivePath OctagonAnalytics.xcarchive -exportOptionsPlist OctagonAnalytics/exportOptions.plist -exportPath $PWD/build
   only:
     - master
     - tags
@@ -28,4 +28,4 @@ archive_project:
     paths:
       - build/
   tags:
-    - KibanaGo
+    - OctagonAnalytics

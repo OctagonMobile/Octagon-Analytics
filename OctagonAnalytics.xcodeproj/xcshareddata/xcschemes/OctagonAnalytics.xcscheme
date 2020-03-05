@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-               BuildableName = "KibanaGo.app"
-               BlueprintName = "KibanaGo"
-               ReferencedContainer = "container:KibanaGo.xcodeproj">
+               BuildableName = "Octagon Analytics.app"
+               BlueprintName = "OctagonAnalytics"
+               ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "KibanaGo.app"
-            BlueprintName = "KibanaGo"
-            ReferencedContainer = "container:KibanaGo.xcodeproj">
+            BuildableName = "Octagon Analytics.app"
+            BlueprintName = "OctagonAnalytics"
+            ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "KibanaGo.app"
-            BlueprintName = "KibanaGo"
-            ReferencedContainer = "container:KibanaGo.xcodeproj">
+            BuildableName = "Octagon Analytics.app"
+            BlueprintName = "OctagonAnalytics"
+            ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "KibanaGo.app"
-            BlueprintName = "KibanaGo"
-            ReferencedContainer = "container:KibanaGo.xcodeproj">
+            BuildableName = "Octagon Analytics.app"
+            BlueprintName = "OctagonAnalytics"
+            ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
