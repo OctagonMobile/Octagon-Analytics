@@ -16,7 +16,7 @@ func DLog(_ message: String?, function: String = #function) {
     #endif
 }
 
-let AppName         =   (Bundle.main.displayName ?? "Kibana Go").localiz()
+let AppName         =   (Bundle.main.displayName ?? "Octagon Analytics").localiz()
 let YES             =   "Yes".localiz()
 let NO              =   "No".localiz()
 let OK              =   "Ok".localiz()
