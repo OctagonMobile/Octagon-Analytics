@@ -30,7 +30,7 @@ class TutorialConfigCarouselView: UIView {
         copyToClipboardButton?.setAttributedTitle(copyToClipboardHighlightedTitle, for: .highlighted)
 
         pageNumberLabel.backgroundColor = CurrentTheme.tutorialHighlightedButtonColor
-        kibanaPluginUrlLabel?.text = "https://octagonmobile.github.io/Kibana-Go-Plugin-Download/kibana-go-6.5.4.zip"
+        kibanaPluginUrlLabel?.text = "https://octagonmobile.github.io/Octagon-Analytics-Plugin-Download/Octagon-Analytics-6.5.4.zip"
     }
 
     
