@@ -1,7 +1,7 @@
 platform :ios, '10.0'
 use_frameworks!
 
-target 'KibanaGo' do
+target 'OctagonAnalytics' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'AlamofireObjectMapper'
