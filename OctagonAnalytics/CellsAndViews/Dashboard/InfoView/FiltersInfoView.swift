@@ -1,6 +1,6 @@
 //
 //  FiltersInfoView.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 8/18/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

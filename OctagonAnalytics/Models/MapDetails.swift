@@ -1,6 +1,6 @@
 //
 //  MapDetails.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 1/2/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.

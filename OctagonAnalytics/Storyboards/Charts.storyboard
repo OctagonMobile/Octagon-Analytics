@@ -11,7 +11,7 @@
         <!--Pie Chart View Controller-->
         <scene sceneID="zPz-ue-epx">
             <objects>
-                <viewController storyboardIdentifier="PieChartViewController" automaticallyAdjustsScrollViewInsets="NO" id="jYu-Ur-SwF" customClass="PieChartViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PieChartViewController" automaticallyAdjustsScrollViewInsets="NO" id="jYu-Ur-SwF" customClass="PieChartViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="a7K-mJ-18D">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,7 +141,7 @@
         <!--Bar Chart View Controller-->
         <scene sceneID="FXD-Tf-wIy">
             <objects>
-                <viewController storyboardIdentifier="BarChartViewController" id="cdi-1W-BPs" customClass="BarChartViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarChartViewController" id="cdi-1W-BPs" customClass="BarChartViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u2B-M6-1ad">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,7 +288,7 @@
         <!--Tag Cloud View Controller-->
         <scene sceneID="drX-R2-jQ3">
             <objects>
-                <viewController storyboardIdentifier="TagCloudViewController" id="fWC-AV-3FM" customClass="TagCloudViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagCloudViewController" id="fWC-AV-3FM" customClass="TagCloudViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zun-yG-eO2">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,7 +400,7 @@
         <!--Line Chart View Controller-->
         <scene sceneID="Va3-TD-bIb">
             <objects>
-                <viewController storyboardIdentifier="LineChartViewController" id="Wd6-4S-a9k" customClass="LineChartViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LineChartViewController" id="Wd6-4S-a9k" customClass="LineChartViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q5R-rJ-2RE">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -548,7 +548,7 @@
         <!--Content List View Controller-->
         <scene sceneID="vZJ-Nj-R9v">
             <objects>
-                <viewController storyboardIdentifier="ContentListViewController" id="usM-1P-1Ru" customClass="ContentListViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentListViewController" id="usM-1P-1Ru" customClass="ContentListViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FAz-2s-0sE">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -640,7 +640,7 @@
         <!--Heat Map View Controller-->
         <scene sceneID="aXo-82-MYp">
             <objects>
-                <viewController storyboardIdentifier="HeatMapViewController" id="m7k-4s-xQD" customClass="HeatMapViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeatMapViewController" id="m7k-4s-xQD" customClass="HeatMapViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IF4-MD-rm8">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -655,7 +655,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h45-hR-0vD">
                                         <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                         <subviews>
-                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rhw-IV-W1x" customClass="KibanaGoMapView" customModule="KibanaGo" customModuleProvider="target">
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rhw-IV-W1x" customClass="CustomMapView" customModule="Octagon_Analytics" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                             </mapView>
                                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nf5-6n-ZVp">
@@ -819,7 +819,7 @@
         <!--Metrics View Controller-->
         <scene sceneID="QY4-aO-QFq">
             <objects>
-                <viewController storyboardIdentifier="MetricsViewController" id="KdS-1a-2xc" customClass="MetricsViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MetricsViewController" id="KdS-1a-2xc" customClass="MetricsViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z4o-UH-aPe">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -902,7 +902,7 @@
         <!--Tile Info View Controller-->
         <scene sceneID="sQq-he-Rnq">
             <objects>
-                <viewController storyboardIdentifier="TileInfoViewController" id="FVX-Q2-ozv" customClass="TileInfoViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TileInfoViewController" id="FVX-Q2-ozv" customClass="TileInfoViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gNU-ID-SIx">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -932,7 +932,7 @@
         <!--Tile View Controller-->
         <scene sceneID="Qz4-gC-nme">
             <objects>
-                <viewController storyboardIdentifier="TileViewController" id="kPO-qd-uGG" customClass="TileViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TileViewController" id="kPO-qd-uGG" customClass="TileViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w0W-X8-hc0">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1064,7 +1064,7 @@
         <!--Horizontal Bar Chart View Controller-->
         <scene sceneID="1hi-8B-NWn">
             <objects>
-                <viewController storyboardIdentifier="HorizontalBarChartViewController" id="12Y-AU-vyj" customClass="HorizontalBarChartViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HorizontalBarChartViewController" id="12Y-AU-vyj" customClass="HorizontalBarChartViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uO0-LZ-gEX">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1211,7 +1211,7 @@
         <!--Map Tracking View Controller-->
         <scene sceneID="JD7-Te-3VK">
             <objects>
-                <viewController storyboardIdentifier="MapTrackingViewController" id="AOG-oR-p4G" customClass="MapTrackingViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapTrackingViewController" id="AOG-oR-p4G" customClass="MapTrackingViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b5g-iy-abm">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1226,7 +1226,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idr-Ax-gK7">
                                         <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                         <subviews>
-                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dh1-7a-Wky" customClass="KibanaGoMapView" customModule="KibanaGo" customModuleProvider="target">
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dh1-7a-Wky" customClass="CustomMapView" customModule="Octagon_Analytics" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                             </mapView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEC-yD-smY" userLabel="View - Zoom">
@@ -1281,7 +1281,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="284" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackingPathListCell" rowHeight="78" id="rxz-vo-1EE" customClass="TrackingPathListCell" customModule="KibanaGo" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackingPathListCell" rowHeight="78" id="rxz-vo-1EE" customClass="TrackingPathListCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="284" height="78"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rxz-vo-1EE" id="1cG-zj-BWK">
@@ -1459,7 +1459,7 @@
         <!--Vector Map View Controller-->
         <scene sceneID="76Z-7d-zAz">
             <objects>
-                <viewController storyboardIdentifier="VectorMapViewController" id="5hl-dF-wu9" customClass="VectorMapViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VectorMapViewController" id="5hl-dF-wu9" customClass="VectorMapViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gR1-od-0pd">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1471,7 +1471,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cu-cR-Ntn">
                                 <rect key="frame" x="5" y="5" width="1014" height="758"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxb-dp-gRQ" customClass="WorldMapView" customModule="KibanaGo" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxb-dp-gRQ" customClass="WorldMapView" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                         <subviews>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ocv-HY-yzv">
@@ -1549,7 +1549,7 @@
         <!--Graph View Controller-->
         <scene sceneID="XhR-Gu-7ZJ">
             <objects>
-                <viewController storyboardIdentifier="GraphViewController" id="Cr7-bc-PCN" customClass="GraphViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GraphViewController" id="Cr7-bc-PCN" customClass="GraphViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cGd-UR-iaA">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1652,7 +1652,7 @@
         <!--Face Tile View Controller-->
         <scene sceneID="w2C-0o-aRj">
             <objects>
-                <viewController storyboardIdentifier="FaceTileViewController" id="deb-W1-sKr" customClass="FaceTileViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FaceTileViewController" id="deb-W1-sKr" customClass="FaceTileViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hvg-yf-W2u">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1739,7 +1739,7 @@
         <!--Coordinate Map View Controller-->
         <scene sceneID="rE0-R7-41b">
             <objects>
-                <viewController storyboardIdentifier="CoordinateMapViewController" id="fbP-Ht-j8g" customClass="CoordinateMapViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CoordinateMapViewController" id="fbP-Ht-j8g" customClass="CoordinateMapViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JT0-bq-CKi">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1754,7 +1754,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bop-od-po9">
                                         <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                         <subviews>
-                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-nH-tnF" customClass="KibanaGoMapView" customModule="KibanaGo" customModuleProvider="target">
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-nH-tnF" customClass="CustomMapView" customModule="Octagon_Analytics" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="1014" height="758"/>
                                             </mapView>
                                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0o-yA-qA9">
@@ -1835,7 +1835,7 @@
                                                     <constraint firstItem="srE-Js-d0d" firstAttribute="leading" secondItem="bsl-bT-yJ5" secondAttribute="leading" id="lN5-G7-hOp"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-5b-23Y" customClass="LayerSwitchHolderView" customModule="KibanaGo" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-5b-23Y" customClass="LayerSwitchHolderView" customModule="Octagon_Analytics" customModuleProvider="target">
                                                 <rect key="frame" x="968.5" y="12" width="33.5" height="33.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPU-Lt-CMW">

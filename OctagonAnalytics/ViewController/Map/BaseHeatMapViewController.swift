@@ -1,6 +1,6 @@
 //
 //  BaseHeatMapViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 12/23/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.
@@ -232,10 +232,10 @@ extension BaseHeatMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        guard let kibanaGoMapView = (mapView as? KibanaGoMapView) else { return }
+        guard let customMapView = (mapView as? CustomMapView) else { return }
         
         let oldPrecision = precision
-        mapPanel?.updatePrecisionFor(kibanaGoMapView.getZoom())
+        mapPanel?.updatePrecisionFor(customMapView.getZoom())
         let newPrecision = precision
         
         if oldPrecision != newPrecision {

@@ -1,6 +1,6 @@
 //
 //  MapBaseViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 4/11/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.
@@ -21,7 +21,7 @@ class MapBaseViewController: PanelBaseViewController {
         return (panel?.visState as? MapVisState)
     }
     
-    @IBOutlet weak var mapView: KibanaGoMapView!
+    @IBOutlet weak var mapView: CustomMapView!
     @IBOutlet weak var zoomInButton: UIButton!
     @IBOutlet weak var zoomOutButton: UIButton!
     @IBOutlet weak var layerSwitchHolder: LayerSwitchHolderView?

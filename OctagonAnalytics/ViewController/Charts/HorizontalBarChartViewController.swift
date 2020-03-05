@@ -1,6 +1,6 @@
 //
 //  HorizontalBarChartViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 2/28/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.

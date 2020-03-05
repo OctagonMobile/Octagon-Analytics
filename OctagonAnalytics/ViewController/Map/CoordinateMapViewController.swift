@@ -1,6 +1,6 @@
 //
 //  CoordinateMapViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 12/17/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.

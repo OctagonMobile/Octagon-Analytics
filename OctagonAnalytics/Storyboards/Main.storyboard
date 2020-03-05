@@ -12,7 +12,7 @@
         <!--Dashboard-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DashboardViewController" title="Dashboard" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="DashboardViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardViewController" title="Dashboard" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="DashboardViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                         </variation>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-Oy-cQ2">
-                                        <rect key="frame" x="58.5" y="0.0" width="844.5" height="0.0"/>
+                                        <rect key="frame" x="58.5" y="0.0" width="880.5" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="AXp-Ud-nGp">
                                             <size key="itemSize" width="30" height="20"/>
@@ -61,7 +61,7 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apQ-Xy-54d">
-                                        <rect key="frame" x="909" y="0.0" width="139" height="0.0"/>
+                                        <rect key="frame" x="945" y="0.0" width="103" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Clear All" image="ClearAll">
@@ -192,7 +192,7 @@
         <!--Settings View Controller-->
         <scene sceneID="Wfn-rX-y4b">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="lum-Xe-35j" customClass="SettingsViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="lum-Xe-35j" customClass="SettingsViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1RU-wH-aQK">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TouchIdTableViewCell" rowHeight="84" id="9WT-dR-fux" customClass="TouchIdTableViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TouchIdTableViewCell" rowHeight="84" id="9WT-dR-fux" customClass="TouchIdTableViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="1080" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9WT-dR-fux" id="7Ip-tD-ybe">
@@ -253,7 +253,7 @@
                                             <outlet property="touchIdSwitch" destination="tdM-3Q-Po1" id="fLZ-1s-Goi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" rowHeight="84" id="89e-yK-hIb" customClass="SettingsTableViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" rowHeight="84" id="89e-yK-hIb" customClass="SettingsTableViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="112" width="1080" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="89e-yK-hIb" id="uiN-ge-9Xt">
@@ -334,7 +334,7 @@
         <!--Language Selection View Controller-->
         <scene sceneID="6ew-Jy-CRO">
             <objects>
-                <viewController storyboardIdentifier="LanguageSelectionViewController" id="3EO-DB-yM8" customClass="LanguageSelectionViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageSelectionViewController" id="3EO-DB-yM8" customClass="LanguageSelectionViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4RX-6U-rtH">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -343,7 +343,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LanguageCell" rowHeight="84" id="2Nd-AS-k0u" customClass="LanguageTableViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LanguageCell" rowHeight="84" id="2Nd-AS-k0u" customClass="LanguageTableViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="1080" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Nd-AS-k0u" id="vtd-pZ-9Fe">
@@ -354,10 +354,10 @@
                                                     <rect key="frame" x="15" y="10" width="1050" height="64"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uae" translatesAutoresizingMaskIntoConstraints="NO" id="MZc-az-1pB">
-                                                            <rect key="frame" x="10" y="12" width="40" height="40"/>
+                                                            <rect key="frame" x="10" y="22" width="20" height="20"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-hA-Y4V">
-                                                            <rect key="frame" x="58" y="32" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="38" y="32" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -366,7 +366,7 @@
                                                             </variation>
                                                         </label>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkbox-Selected" translatesAutoresizingMaskIntoConstraints="NO" id="5FL-6o-e7t">
-                                                            <rect key="frame" x="1000" y="12" width="40" height="40"/>
+                                                            <rect key="frame" x="1020" y="22" width="20" height="20"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -422,7 +422,7 @@
         <!--Authentication View Controller-->
         <scene sceneID="HXA-Wn-8WY">
             <objects>
-                <viewController storyboardIdentifier="AuthenticationViewController" id="ezk-zV-B4V" customClass="AuthenticationViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthenticationViewController" id="ezk-zV-B4V" customClass="AuthenticationViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UdI-uE-rNv">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,7 +437,7 @@
                                                 <rect key="frame" x="20" y="10" width="1040" height="68"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXT-OH-2PE">
-                                                        <rect key="frame" x="88" y="0.0" width="952" height="53"/>
+                                                        <rect key="frame" x="56" y="0.0" width="984" height="53"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="53" id="hm3-48-ILh">
                                                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
@@ -449,7 +449,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-76-jHr">
-                                                        <rect key="frame" x="8" y="-5.5" width="64" height="64"/>
+                                                        <rect key="frame" x="8" y="10.5" width="32" height="32"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0p5-TH-Doo">
                                                         <rect key="frame" x="0.0" y="55" width="1040" height="1"/>
@@ -485,7 +485,7 @@
                                                 <rect key="frame" x="20" y="94" width="1040" height="68"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="if3-wH-gbp">
-                                                        <rect key="frame" x="88" y="0.0" width="952" height="53"/>
+                                                        <rect key="frame" x="56" y="0.0" width="984" height="53"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="53" id="WKB-Fw-rRI">
                                                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
@@ -497,7 +497,7 @@
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="wlE-9U-zie">
-                                                        <rect key="frame" x="8" y="-5.5" width="64" height="64"/>
+                                                        <rect key="frame" x="8" y="10.5" width="32" height="32"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCq-oh-ky3">
                                                         <rect key="frame" x="0.0" y="55" width="1040" height="1"/>
@@ -612,7 +612,7 @@
         <!--Keycloak Login View Controller-->
         <scene sceneID="aqv-p9-yuX">
             <objects>
-                <viewController storyboardIdentifier="KeycloakLoginViewController" id="j64-dB-qAG" customClass="KeycloakLoginViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KeycloakLoginViewController" id="j64-dB-qAG" customClass="KeycloakLoginViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cW6-KU-vfu">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -637,10 +637,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7m-4z-ZCn" userLabel="View -Top">
-                                <rect key="frame" x="431.5" y="60" width="217.5" height="298"/>
+                                <rect key="frame" x="431.5" y="60" width="217.5" height="188"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KibanaGoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6rS-3I-8hl">
-                                        <rect key="frame" x="-1.5" y="0.0" width="220" height="220"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OctagonAnalyticsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6rS-3I-8hl">
+                                        <rect key="frame" x="53.5" y="0.0" width="110" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="o6D-VX-OLY">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="75"/>
@@ -668,7 +668,7 @@
                                         </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kibana Go" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSx-2E-amr">
-                                        <rect key="frame" x="20" y="250" width="177.5" height="48"/>
+                                        <rect key="frame" x="20" y="140" width="177.5" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -759,7 +759,7 @@
         <!--Canvas-->
         <scene sceneID="XTF-oe-pFW">
             <objects>
-                <viewController storyboardIdentifier="CanvasViewController" id="Px3-Qj-2zJ" customClass="CanvasViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CanvasViewController" id="Px3-Qj-2zJ" customClass="CanvasViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ynY-K9-b5K">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -817,7 +817,7 @@
         <!--Canvas List View Controller-->
         <scene sceneID="FIw-ER-vAn">
             <objects>
-                <viewController storyboardIdentifier="CanvasListViewController" id="yDf-rt-eRA" customClass="CanvasListViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CanvasListViewController" id="yDf-rt-eRA" customClass="CanvasListViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7zh-r1-NGN">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -841,7 +841,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CanvasListCollectionViewCell" id="UVt-03-8hg" customClass="CanvasListCollectionViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CanvasListCollectionViewCell" id="UVt-03-8hg" customClass="CanvasListCollectionViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="239" y="0.0" width="552" height="114"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DNy-Bc-At3">
@@ -935,7 +935,7 @@
         <!--Dashboard Tab Bar Controller-->
         <scene sceneID="dSE-fU-Apa">
             <objects>
-                <tabBarController storyboardIdentifier="DashboardTabBarController" id="6AS-ZP-ofN" customClass="DashboardTabBarController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="DashboardTabBarController" id="6AS-ZP-ofN" customClass="DashboardTabBarController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="iol-dQ-spp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -988,7 +988,7 @@
         <!--Terms And Condition View Controller-->
         <scene sceneID="UrY-gl-ZN0">
             <objects>
-                <viewController storyboardIdentifier="TermsAndConditionViewController" modalPresentationStyle="formSheet" id="7mS-E5-gWf" customClass="TermsAndConditionViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAndConditionViewController" modalPresentationStyle="formSheet" id="7mS-E5-gWf" customClass="TermsAndConditionViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dt-Mk-HZY">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1097,7 +1097,7 @@
         <!--Drop Down Pop Over View Controller-->
         <scene sceneID="OMJ-GL-W5n">
             <objects>
-                <viewController storyboardIdentifier="DropDownPopOverViewController" id="gVt-bc-Oae" customClass="DropDownPopOverViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DropDownPopOverViewController" id="gVt-bc-Oae" customClass="DropDownPopOverViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8M-ZF-skI">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1106,15 +1106,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCellIdentifier" id="nmf-pi-LSQ" customClass="DropDownTableViewCell" customModule="KibanaGo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="51"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCellIdentifier" id="nmf-pi-LSQ" customClass="DropDownTableViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="300" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmf-pi-LSQ" id="BNB-mt-SEQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDa-u0-t8F">
-                                                    <rect key="frame" x="0.0" y="15" width="300" height="21"/>
+                                                    <rect key="frame" x="0.0" y="15" width="300" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1159,7 +1159,7 @@
         <!--Tutorial View Controller-->
         <scene sceneID="E1Z-mB-kWF">
             <objects>
-                <viewController storyboardIdentifier="TutorialViewController" id="Ksb-lP-F7Y" customClass="TutorialViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController" id="Ksb-lP-F7Y" customClass="TutorialViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ff8-3w-HBz">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1200,7 +1200,7 @@
         <!--Login View Controller-->
         <scene sceneID="Ra6-07-fHj">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="shY-MF-Zk5" customClass="LoginViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="shY-MF-Zk5" customClass="LoginViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OAU-iJ-dZW">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1214,7 +1214,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3n7-CU-Kqn" userLabel="View -Top">
                                                 <rect key="frame" x="80.5" y="0.0" width="217.5" height="188"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KibanaGoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Pov-Os-lYm">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OctagonAnalyticsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Pov-Os-lYm">
                                                         <rect key="frame" x="53.5" y="0.0" width="110" height="110"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="VIw-Lu-3F5">
@@ -1725,7 +1725,7 @@
         <!--Kibana Go-->
         <scene sceneID="ood-pb-dYh">
             <objects>
-                <viewController title="Kibana Go" automaticallyAdjustsScrollViewInsets="NO" id="nER-6f-PCy" customClass="DashboardListingViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Kibana Go" automaticallyAdjustsScrollViewInsets="NO" id="nER-6f-PCy" customClass="DashboardListingViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dtp-WU-ENL">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1740,7 +1740,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dashboardListCellID" id="CNl-2f-49l" customClass="DashboardListCollectionViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dashboardListCellID" id="CNl-2f-49l" customClass="DashboardListCollectionViewCell" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="356" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1751,7 +1751,7 @@
                                                     <rect key="frame" x="2" y="2" width="352" height="81"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mobile" translatesAutoresizingMaskIntoConstraints="NO" id="YQ5-eR-GOH">
-                                                            <rect key="frame" x="40" y="-5.5" width="26" height="92"/>
+                                                            <rect key="frame" x="40" y="17.5" width="26" height="46"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="YQ5-eR-GOH" secondAttribute="height" multiplier="13:23" id="Ec7-z4-krz"/>
                                                                 <constraint firstAttribute="width" constant="26" id="PRl-tw-uh9">
@@ -1773,7 +1773,7 @@
                                                             </variation>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDj-jp-vGQ">
-                                                            <rect key="frame" x="284" y="12.5" width="28" height="56"/>
+                                                            <rect key="frame" x="284" y="26.5" width="28" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="28" id="659-J8-xvg">
                                                                     <variation key="heightClass=compact-widthClass=compact" constant="20"/>
@@ -1923,12 +1923,12 @@
         <!--Multi Date Picker View Controller-->
         <scene sceneID="JxM-gU-9sc">
             <objects>
-                <viewController storyboardIdentifier="MultiDatePickerViewController" id="VxP-Bx-pZX" customClass="MultiDatePickerViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultiDatePickerViewController" id="VxP-Bx-pZX" customClass="MultiDatePickerViewController" customModule="Octagon_Analytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ea1-pt-dRn">
                         <rect key="frame" x="0.0" y="0.0" width="660" height="550"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-Tv-XoZ" userLabel="QuickPickerContainer" customClass="QuickDatePickerView" customModule="KibanaGo" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-Tv-XoZ" userLabel="QuickPickerContainer" customClass="QuickDatePickerView" customModule="Octagon_Analytics" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="660" height="100"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-bt-gU5">
@@ -1942,7 +1942,7 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7h-yr-vPn" userLabel="View-Left" customClass="HorizontalGradientView" customModule="KibanaGo" customModuleProvider="target">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7h-yr-vPn" userLabel="View-Left" customClass="HorizontalGradientView" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="66" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -1957,7 +1957,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-Sy-edV" userLabel="View-Right" customClass="HorizontalGradientView" customModule="KibanaGo" customModuleProvider="target">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-Sy-edV" userLabel="View-Right" customClass="HorizontalGradientView" customModule="Octagon_Analytics" customModuleProvider="target">
                                         <rect key="frame" x="594" y="0.0" width="66" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -2004,7 +2004,7 @@
                                     <outlet property="quickPickerCollectionView" destination="zGR-bt-gU5" id="vTT-ze-1HH"/>
                                 </connections>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-Vl-rZK" userLabel="CalendarContainer" customClass="CalendarPickerView" customModule="KibanaGo" customModuleProvider="target">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-Vl-rZK" userLabel="CalendarContainer" customClass="CalendarPickerView" customModule="Octagon_Analytics" customModuleProvider="target">
                                 <rect key="frame" x="35" y="130" width="590" height="390"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg3-ys-tu4" userLabel="From">
@@ -2490,9 +2490,9 @@
         <image name="Checkbox-Selected" width="20" height="20"/>
         <image name="ClearAll" width="36" height="36"/>
         <image name="ClearAllSelected" width="36" height="36"/>
-        <image name="KibanaGoLogo" width="110" height="110"/>
         <image name="LeftArrowDateRange" width="11" height="17"/>
-        <image name="QuestionMark-Light" width="18" height="18"/>
+        <image name="OctagonAnalyticsLogo" width="110" height="110"/>
+        <image name="QuestionMark-Light" width="15" height="14"/>
         <image name="RightArrowDateRange" width="11" height="17"/>
         <image name="TabCanvasNormal" width="24" height="25"/>
         <image name="TabCanvasSelected" width="24" height="25"/>

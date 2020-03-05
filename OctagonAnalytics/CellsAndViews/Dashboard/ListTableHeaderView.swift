@@ -1,6 +1,6 @@
 //
 //  ListTableHeaderView.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 11/6/17.
 //  Copyright © 2017 Octagon Mobile. All rights reserved.

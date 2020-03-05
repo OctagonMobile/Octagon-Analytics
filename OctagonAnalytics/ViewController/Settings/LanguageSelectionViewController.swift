@@ -1,6 +1,6 @@
 //
 //  LanguageSelectionViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 9/29/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

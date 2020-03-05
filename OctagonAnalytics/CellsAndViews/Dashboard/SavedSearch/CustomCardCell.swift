@@ -1,6 +1,6 @@
 //
 //  CustomCardCell.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 7/4/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

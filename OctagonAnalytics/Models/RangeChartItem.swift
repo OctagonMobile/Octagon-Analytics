@@ -1,6 +1,6 @@
 //
 //  RangeChartItem.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 11/9/17.
 //  Copyright © 2017 Octagon Mobile. All rights reserved.

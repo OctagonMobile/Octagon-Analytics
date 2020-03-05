@@ -1,6 +1,6 @@
 //
 //  Canvas.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 11/4/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

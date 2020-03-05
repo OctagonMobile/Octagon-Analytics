@@ -1,6 +1,6 @@
 //
 //  DatePickerCollectionReusableView.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 6/12/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.

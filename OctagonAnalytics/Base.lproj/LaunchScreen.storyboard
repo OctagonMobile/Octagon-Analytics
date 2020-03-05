@@ -19,7 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="674-Wc-Y6d">
                                 <rect key="frame" x="624" y="437.5" width="118.5" height="149.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KibanaGoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OHJ-kg-2Ug">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OctagonAnalyticsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OHJ-kg-2Ug">
                                         <rect key="frame" x="4" y="0.0" width="110" height="110"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kibana Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5G-Ge-WjD">
@@ -54,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="KibanaGoLogo" width="110" height="110"/>
+        <image name="OctagonAnalyticsLogo" width="110" height="110"/>
     </resources>
 </document>

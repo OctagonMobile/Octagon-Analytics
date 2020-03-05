@@ -1,6 +1,6 @@
 //
-//  KibanaGoMapView.swift
-//  KibanaGo
+//  CustomMapView.swift
+//  OctagonAnalytics
 //
 //  Created by Rameez on 3/5/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.
@@ -9,13 +9,13 @@
 import UIKit
 import MapKit
 
-@objc public protocol KibanaGoMapViewDelegate {
+@objc public protocol CustomMapViewDelegate {
     
-    @objc optional func mapView(_ mapView: KibanaGoMapView, rotationDidChange rotation: Double)
+    @objc optional func mapView(_ mapView: CustomMapView, rotationDidChange rotation: Double)
     // message is sent when map rotation is changed
 }
 
-public class KibanaGoMapView : MKMapView, MKMapViewDelegate {
+public class CustomMapView : MKMapView, MKMapViewDelegate {
     
     private var mapContainerView : UIView? // MKScrollContainerView - map container that rotates and scales
     
@@ -24,7 +24,7 @@ public class KibanaGoMapView : MKMapView, MKMapViewDelegate {
     
     private var changesTimer : Timer? // timer to track map changes; nil when changes are not tracked
     
-    public var listener : KibanaGoMapViewDelegate? // map listener to receive rotation changes
+    public var listener : CustomMapViewDelegate? // map listener to receive rotation changes
     
     
     override public init(frame: CGRect) {
@@ -107,7 +107,7 @@ public class KibanaGoMapView : MKMapView, MKMapViewDelegate {
     private func startTrackingChanges() {
         // function starts tracking map changes
         if self.changesTimer == nil {
-            self.changesTimer = Timer(timeInterval: 0.1, target: self, selector: #selector(KibanaGoMapView.trackChanges), userInfo: nil, repeats: true)
+            self.changesTimer = Timer(timeInterval: 0.1, target: self, selector: #selector(CustomMapView.trackChanges), userInfo: nil, repeats: true)
             RunLoop.current.add(self.changesTimer!, forMode: RunLoop.Mode.common)
         }
     }
@@ -146,7 +146,7 @@ public class KibanaGoMapView : MKMapView, MKMapViewDelegate {
     }
 }
 
-extension KibanaGoMapView {
+extension CustomMapView {
     func setCenterCoordinate(coordinate: CLLocationCoordinate2D, zoomLevel: Int, animated: Bool){
         let span = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 360 / pow(2, Double(zoomLevel)) * Double(self.frame.size.width) / 256)
         setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animated)

@@ -1,6 +1,6 @@
 //
 //  CanvasViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 7/21/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

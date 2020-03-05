@@ -1,6 +1,6 @@
 //
 //  TouchIdHelper.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 2/20/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

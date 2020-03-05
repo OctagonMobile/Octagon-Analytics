@@ -170,7 +170,7 @@
 		51DC04F120555F6000E4F1E0 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC04F020555F6000E4F1E0 /* Filter.swift */; };
 		51DF3FDD2340D3F3002B41DE /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF3FDC2340D3F3002B41DE /* LanguageSelectionViewController.swift */; };
 		51DF3FDF2340E298002B41DE /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DF3FDE2340E298002B41DE /* LanguageTableViewCell.swift */; };
-		51E3941F204D664100AF22C8 /* KibanaGoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3941E204D664100AF22C8 /* KibanaGoMapView.swift */; };
+		51E3941F204D664100AF22C8 /* CustomMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3941E204D664100AF22C8 /* CustomMapView.swift */; };
 		51E5311D1FFBAABD0065680B /* MapDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E5311C1FFBAABD0065680B /* MapDetails.swift */; };
 		51E8BF4620F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E8BF3D20F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib */; };
 		51E8BF4720F38048004B5D20 /* DatePickerCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E8BF3E20F38048004B5D20 /* DatePickerCollectionReusableView.swift */; };
@@ -310,7 +310,7 @@
 		517585DB1FB03705002AFB73 /* MetricsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetricsCollectionViewCell.xib; sourceTree = "<group>"; };
 		517F97DA1FB1A8B900CA6E55 /* VisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisState.swift; sourceTree = "<group>"; };
 		517F97DD1FB1AE6A00CA6E55 /* PieChartVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartVisState.swift; sourceTree = "<group>"; };
-		51831C241FA89C9C0017173B /* KibanaGo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KibanaGo-Bridging-Header.h"; sourceTree = "<group>"; };
+		51831C241FA89C9C0017173B /* OctagonAnalytics-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OctagonAnalytics-Bridging-Header.h"; sourceTree = "<group>"; };
 		51831C251FA89C9D0017173B /* DKTagCloudView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DKTagCloudView.m; sourceTree = "<group>"; };
 		51831C261FA89C9D0017173B /* DKTagCloudView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DKTagCloudView.h; sourceTree = "<group>"; };
 		51840DEB1FCE932B007B8D38 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		51DC04F020555F6000E4F1E0 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		51DF3FDC2340D3F3002B41DE /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		51DF3FDE2340E298002B41DE /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
-		51E3941E204D664100AF22C8 /* KibanaGoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KibanaGoMapView.swift; sourceTree = "<group>"; };
+		51E3941E204D664100AF22C8 /* CustomMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapView.swift; sourceTree = "<group>"; };
 		51E5311C1FFBAABD0065680B /* MapDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetails.swift; sourceTree = "<group>"; };
 		51E8BF3D20F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickDatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
 		51E8BF3E20F38048004B5D20 /* DatePickerCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -899,7 +899,7 @@
 			children = (
 				513F3F7D206A3E6F00221F27 /* TPKeyboardAvoiding */,
 				51841EC92063D57600A9C856 /* SPUserResizableView */,
-				51E3941D204D662E00AF22C8 /* KibanaGoMapView */,
+				51E3941D204D662E00AF22C8 /* CustomMapView */,
 				51D7EC2A200DD38F00BF23F5 /* DateHelper */,
 				51664E4F1FAB109000D01AC7 /* MosaicLayout */,
 				51831C201FA89C6F0017173B /* DKTagCloudView */,
@@ -912,7 +912,7 @@
 			children = (
 				51831C261FA89C9D0017173B /* DKTagCloudView.h */,
 				51831C251FA89C9D0017173B /* DKTagCloudView.m */,
-				51831C241FA89C9C0017173B /* KibanaGo-Bridging-Header.h */,
+				51831C241FA89C9C0017173B /* OctagonAnalytics-Bridging-Header.h */,
 			);
 			path = DKTagCloudView;
 			sourceTree = "<group>";
@@ -1110,12 +1110,12 @@
 			path = DateHelper;
 			sourceTree = "<group>";
 		};
-		51E3941D204D662E00AF22C8 /* KibanaGoMapView */ = {
+		51E3941D204D662E00AF22C8 /* CustomMapView */ = {
 			isa = PBXGroup;
 			children = (
-				51E3941E204D664100AF22C8 /* KibanaGoMapView.swift */,
+				51E3941E204D664100AF22C8 /* CustomMapView.swift */,
 			);
-			path = KibanaGoMapView;
+			path = CustomMapView;
 			sourceTree = "<group>";
 		};
 		51E8BF3C20F38048004B5D20 /* DatePicker */ = {
@@ -1451,7 +1451,7 @@
 				5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
 				5174FBA5219C105E003BEB1E /* GraphWeightView.swift in Sources */,
-				51E3941F204D664100AF22C8 /* KibanaGoMapView.swift in Sources */,
+				51E3941F204D664100AF22C8 /* CustomMapView.swift in Sources */,
 				51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */,
 				5130A10E1FA7336A003D0525 /* DashboardCollectionViewCell.swift in Sources */,
 				F10D6D5B23DD9D7500190754 /* FilterInfoTableViewCell.swift in Sources */,
@@ -1671,7 +1671,7 @@
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
 				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/OctagonAnalytics-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1703,7 +1703,7 @@
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
 				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/KibanaGo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/OctagonAnalytics-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

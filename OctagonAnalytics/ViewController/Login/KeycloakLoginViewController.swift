@@ -1,6 +1,6 @@
 //
 //  KeycloakLoginViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 7/10/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

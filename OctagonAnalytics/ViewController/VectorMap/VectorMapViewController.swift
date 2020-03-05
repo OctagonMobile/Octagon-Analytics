@@ -1,6 +1,6 @@
 //
 //  VectorMapViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 10/16/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.

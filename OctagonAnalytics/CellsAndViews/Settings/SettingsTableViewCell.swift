@@ -1,6 +1,6 @@
 //
 //  SettingsTableViewCell.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 2/19/19.
 //  Copyright © 2019 Octagon Mobile. All rights reserved.

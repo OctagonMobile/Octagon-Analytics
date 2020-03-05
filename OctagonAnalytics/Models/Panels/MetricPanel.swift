@@ -1,6 +1,6 @@
 //
 //  MetricPanel.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 11/28/17.
 //  Copyright © 2017 Octagon Mobile. All rights reserved.

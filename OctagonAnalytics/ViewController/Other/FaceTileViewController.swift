@@ -1,6 +1,6 @@
 //
 //  FaceTileViewController.swift
-//  KibanaGo
+//  OctagonAnalytics
 //
 //  Created by Rameez on 10/24/18.
 //  Copyright © 2018 Octagon Mobile. All rights reserved.
