@@ -1,0 +1,94 @@
+/* 
+  Localizable.strings
+  OctagonAnalytics
+
+  Created by Rameez on 9/29/19.
+  Copyright © 2019 Octagon Mobile. All rights reserved.
+*/
+
+"Octagon Analytics"         =   "Octagon Analytics";
+"Yes"               =   "Yes";
+"No"                =   "No";
+"Ok"                =   "Ok";
+"Cancel"            =   "Cancel";
+
+//Tutorial
+"Watch Tutorial"    =   "Watch Tutorial";
+"Auto Fill"         =   "Auto Fill";
+"DownloadOctagonAnalyticsPlugin"    =   "Download/Install the \"Octagon-Analytics Plugin\" for your Kibana";
+"CustomKibanaConfiguration" =   "Pointing to your own Kibana by changing the following settings";
+"UseDemoAccount"            =   "Use demo account to play";
+
+//Login Screen
+"Username"                      =   "Username";
+"Password"                      =   "Password";
+"Sign In"                       =   "Sign In";
+"I Agree to Terms & Condition"  =   "I Agree to Terms & Condition";
+"Terms & Condition"             =   "Terms & Condition";
+"Please enter the Username"     =   "Please enter the Username";
+"Please enter the Password"     =   "Please enter the Password";
+"Please agree to terms & condition" =   "Please agree to terms & condition";
+"Invalid Credentials"           =   "Invalid Credentials";
+"Sign in as different user"     =   "Sign in as different user";
+"Hello, "                       =   "Hello, ";
+"SmartLoginResetAlertMessage"   =   "Your current %@ configuration will be reset. Are you sure you want to continue?";
+"Terms and Condition Content"   =   "'By clicking ‘Agree’ you agree to use this system or software only in accordance with Octagon Analytics policies and regulations. Any misuse of this system or software may result in civil and/or criminal penalties.This system or software is only for use associated with the Octagon Analytics.";
+
+//Terms & Condition
+"Agree"             =   "Agree";
+
+//Dashboard List
+"Dashboards"        =   "Dashboards";
+"Search..."         =   "Search...";
+"Loading..."        =   "Loading...";
+"NoDashboardMessage"=   "No dashboards found!";
+
+//DropDown List
+"Settings"                      =   "Settings";
+"Sign Out"                      =   "Sign Out";
+
+//Settings & Language
+"Language"          =   "Language";
+"Congratulations!!!"            =   "Congratulations!!!";
+"BiometricSuccessConfig"        =   "You have successfully configured %@ login";
+"DisableBiometricTitle"         =   "Disable %@";
+"BiometricDisableAlert"         =   "Are you sure you want to disable %@ login?";
+
+//Authenctication
+"Authentication"    =   "Authentication";
+
+//Dashboard
+"Filters"           =   "Filters:";
+"Field"             =   "Field";
+"Value"             =   "Value";
+"Count"             =   "Count";
+"Drill Down"        =   "Drill Down";
+"Clear All"         =   "Clear All";
+"RemoveFilterAlert" =   "Are you sure you want to remove ALL filters?";
+"JSON"              =   "JSON";
+"Sum"               =   "Sum";
+"Max"               =   "Max";
+"Avg"               =   "Avg";
+
+//Date Picker
+"Apply"                     =   "Apply";
+"Clear"                     =   "Clear";
+"FROM DATE"                 =   "FROM DATE";
+"TO DATE"                   =   "TO DATE";
+"SelectDatesError"          =   "Please select From and To date";
+"DateValidationError"       =   "To date should be later than from date";
+"Selected:"                 =   "Selected:";
+"Today"                     =   "Today";
+"Yesterday"                 =   "Yesterday";
+"Last 30 days"              =   "Last 30 days";
+"Last 60 days"              =   "Last 60 days";
+"Last 90 days"              =   "Last 90 days";
+"Last 6 months"             =   "Last 6 months";
+"Last 1 year"               =   "Last 1 year";
+"Last 2 years"              =   "Last 2 years";
+"Last 5 years"              =   "Last 5 years";
+
+//Canvas
+"Canvas"            =   "Canvas";
+"Canvas List"       =   "Canvas List";
+"NoCanvasFound"     =   "No canvas found";

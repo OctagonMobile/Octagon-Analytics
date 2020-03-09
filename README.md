@@ -1,4 +1,4 @@
-# Kibana Go
+# Octagon Analytics
 
 This is the native iOS Application for [Kibana](https://www.elastic.co/products/kibana).<br/>
 Supported Devices: iPhone & iPad.
@@ -14,15 +14,15 @@ Supported Devices: iPhone & iPad.
 
 ## Prerequisites<a id="prerequisites"></a>
 Make sure that you have the following applications:
-1.  Kibana server(v-6.5.4) with KibanaGo-Plugin :
-	* [Build](https://octagonmobile.github.io/Kibana-Go-Plugin-Download/kibana-go-6.5.4.zip).
-	* [Source Code](https://github.com/OctagonMobile/Kibana-Go-Plugin.git).
+1.  Kibana server(v-6.5.4) with Octagon-Analytics-Plugin :
+	* [Build](https://octagonmobile.github.io/Octagon-Analytics-Plugin-Download/Octagon-Analytics-6.5.4.zip).
+	* [Source Code](https://github.com/OctagonMobile/Octagon-Analytics-Plugin.git).
 2.  Xcode (version 11.0 or above).
 3.  [Cocoapods](https://cocoapods.org) installed on Mac.
 
 ## Installation<a id="installation"></a>
 
-* Checkout the sourcecode from [here](https://github.com/OctagonMobile/Kibana-Go.git).
+* Checkout the sourcecode from [here](https://github.com/OctagonMobile/Octagon-Analytics.git).
 * Open 'Terminal' and change directory to project directory.<br/>
 ```bash
 cd ~/Your_Project_Folder
@@ -31,7 +31,7 @@ cd ~/Your_Project_Folder
 * Run the command.<br/>
 `pod install`
 
-* Open "*KibanaGo.xcworkspace*" file.
+* Open "*OctagonAnalytics.xcworkspace*" file.
 
 ## Configure App Settings<a id="configure-app-settings"></a>
 
@@ -49,8 +49,8 @@ cd ~/Your_Project_Folder
 | KEYCLOAK_HOST  			| Keycloak host<br/>(Required only if you integrate keycloak)  |enum **Environment**|
 | KEYCLOAK_REALM  			| Keycloak realm name<br/>(Required only if you integrate keycloak)  |enum **Environment**|
 
-- Open ***Info.plist*** and Replace "*com.MyCompany.kibanaGo*" under ++URL Schemes++ with your app bundle identifier. (Required for Keycloak)
-- Open ***exportOptions.plist*** and Replace "*com.MyCompany.kibanaGo*" under ++provisioningProfiles++ with your app bundle identifier. (Auto Build generation - CICD)
+- Open ***Info.plist*** and Replace "*com.MyCompany.octagonAnalytics*" under ++URL Schemes++ with your app bundle identifier. (Required for Keycloak)
+- Open ***exportOptions.plist*** and Replace "*com.MyCompany.octagonAnalytics*" under ++provisioningProfiles++ with your app bundle identifier. (Auto Build generation - CICD)
 - Open ***Root.plist*** under *"Settings.bundle"* and set default values for the following:
 	1. Protocol: Http/Https
 	2. Base Url: XX.XX.XX.XX
@@ -61,7 +61,7 @@ cd ~/Your_Project_Folder
 
 Generate the build and install it on the device or simulator.
 
-Open the Settings App and configure KibanaGo.
+Open the Settings App and configure Octagon Analytics.
 *  Setup the following:
     *  URL
     *  Port
@@ -78,10 +78,10 @@ Open the Settings App and configure KibanaGo.
 *  Touch ID/Face ID login.
 *  App Theme (Light/Dark).
 *  Localization(English/Arabic)
-*  Supported visualizations are mentioned in [wiki](https://github.com/OctagonMobile/Kibana-Go/wikis/home#supported-visualizations) page.
+*  Supported visualizations are mentioned in [wiki](https://github.com/OctagonMobile/Octagon-Analytics/wikis/home#supported-visualizations) page.
 
 ## Contributing<a id="contributing"></a>
 We welcome pull requests from the community!
 
 ## License<a id="license"></a>
-[MIT](https://github.com/OctagonMobile/Kibana-Go/blob/master/LICENSE)
+[MIT](https://github.com/OctagonMobile/Octagon-Analytics/blob/master/LICENSE)
