@@ -421,18 +421,10 @@
                                                     <action selector="flipButtonAction:" destination="Wd6-4S-a9k" eventType="touchUpInside" id="8vg-FN-ZYf"/>
                                                 </connections>
                                             </button>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-Uo-eBD" userLabel="LegendHolder">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-Uo-eBD" userLabel="LegendHolder">
                                                 <rect key="frame" x="929" y="0.0" width="30" height="45"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-Lm-3le" userLabel="View-Legend">
-                                                        <rect key="frame" x="0.0" y="12.5" width="25" height="20"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="air-sb-NEg"/>
-                                                            <constraint firstAttribute="height" constant="20" id="se8-Eh-bes"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQH-d5-4Dr">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQH-d5-4Dr">
                                                         <rect key="frame" x="30" y="0.0" width="0.0" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -441,13 +433,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="p6e-Lm-3le" firstAttribute="centerY" secondItem="7ed-Uo-eBD" secondAttribute="centerY" id="BhJ-8u-Xn1"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="G4T-fQ-d5T"/>
                                                     <constraint firstItem="QQH-d5-4Dr" firstAttribute="top" secondItem="7ed-Uo-eBD" secondAttribute="top" id="TpN-lQ-3sY"/>
                                                     <constraint firstAttribute="trailing" secondItem="QQH-d5-4Dr" secondAttribute="trailing" id="YJ1-a1-JD8"/>
                                                     <constraint firstAttribute="bottom" secondItem="QQH-d5-4Dr" secondAttribute="bottom" id="hNJ-Ir-zk0"/>
-                                                    <constraint firstItem="QQH-d5-4Dr" firstAttribute="leading" secondItem="p6e-Lm-3le" secondAttribute="trailing" constant="5" id="j7y-rc-53B"/>
-                                                    <constraint firstItem="p6e-Lm-3le" firstAttribute="leading" secondItem="7ed-Uo-eBD" secondAttribute="leading" id="yRd-Zd-KXM"/>
+                                                    <constraint firstItem="QQH-d5-4Dr" firstAttribute="leading" secondItem="7ed-Uo-eBD" secondAttribute="leading" id="poc-SR-cMl"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -524,7 +514,6 @@
                         <outlet property="headerview" destination="LwO-bT-OAl" id="cIl-nV-C4g"/>
                         <outlet property="legendHolder" destination="7ed-Uo-eBD" id="vSC-9b-sp6"/>
                         <outlet property="legendLabel" destination="QQH-d5-4Dr" id="jJR-RB-Smk"/>
-                        <outlet property="legendView" destination="p6e-Lm-3le" id="e9R-JZ-YN7"/>
                         <outlet property="listTableView" destination="Qne-3n-wrU" id="Hfr-63-d7F"/>
                         <outlet property="mainContainerView" destination="U3J-6p-t3u" id="ilJ-pC-uaT"/>
                         <outlet property="shadowView" destination="Dab-Da-oqd" id="3F4-AY-FE6"/>
@@ -943,10 +932,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="largeThumbnailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6Yf-HC-fbN">
-                                                <rect key="frame" x="977" y="11.5" width="27" height="22"/>
+                                                <rect key="frame" x="950" y="0.5" width="54" height="44"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1s-aK-VuE" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="772" y="2" width="200" height="41"/>
+                                                <rect key="frame" x="745" y="2" width="200" height="41"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="gMD-9W-ugD">
@@ -958,7 +947,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallThumbnailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nuh-ze-fLp">
-                                                <rect key="frame" x="740.5" y="11.5" width="26.5" height="22"/>
+                                                <rect key="frame" x="687" y="0.5" width="53" height="44"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1075,18 +1064,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iV9-UL-5Rg" userLabel="LegendHolder">
-                                                <rect key="frame" x="929" y="0.0" width="30" height="45"/>
+                                                <rect key="frame" x="959" y="0.0" width="0.0" height="45"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-wy-Vnf" userLabel="View-Legend">
-                                                        <rect key="frame" x="0.0" y="12.5" width="25" height="20"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="0YT-du-4WX"/>
-                                                            <constraint firstAttribute="height" constant="20" id="0ah-Hp-Lqe"/>
-                                                        </constraints>
-                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nv-PX-iHF">
-                                                        <rect key="frame" x="30" y="0.0" width="0.0" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -1096,10 +1077,8 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="9nv-PX-iHF" secondAttribute="trailing" id="2EK-VS-ppI"/>
                                                     <constraint firstItem="9nv-PX-iHF" firstAttribute="top" secondItem="iV9-UL-5Rg" secondAttribute="top" id="Cxc-d2-ty0"/>
-                                                    <constraint firstItem="ubg-wy-Vnf" firstAttribute="centerY" secondItem="iV9-UL-5Rg" secondAttribute="centerY" id="RxF-X4-FSa"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="dU9-0I-H3D"/>
-                                                    <constraint firstItem="ubg-wy-Vnf" firstAttribute="leading" secondItem="iV9-UL-5Rg" secondAttribute="leading" id="rrM-xp-QjI"/>
-                                                    <constraint firstItem="9nv-PX-iHF" firstAttribute="leading" secondItem="ubg-wy-Vnf" secondAttribute="trailing" constant="5" id="sX2-CI-51l"/>
+                                                    <constraint firstItem="9nv-PX-iHF" firstAttribute="leading" secondItem="iV9-UL-5Rg" secondAttribute="leading" id="rSx-To-QoX"/>
                                                     <constraint firstAttribute="bottom" secondItem="9nv-PX-iHF" secondAttribute="bottom" id="ya8-co-kL4"/>
                                                 </constraints>
                                             </view>
@@ -1187,7 +1166,6 @@
                         <outlet property="headerview" destination="ocl-Cb-787" id="QQ3-tk-fKk"/>
                         <outlet property="legendHolder" destination="iV9-UL-5Rg" id="Ayc-gh-Baf"/>
                         <outlet property="legendLabel" destination="9nv-PX-iHF" id="uGj-ZQ-4DM"/>
-                        <outlet property="legendView" destination="ubg-wy-Vnf" id="dF2-DH-qYR"/>
                         <outlet property="listTableView" destination="8am-4i-xcP" id="PIh-5D-AEA"/>
                         <outlet property="mainContainerView" destination="X5a-tp-NzA" id="4Dg-ht-BKP"/>
                         <outlet property="shadowView" destination="eAM-ex-uQA" id="AJK-4u-QNC"/>
@@ -1825,17 +1803,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-5b-23Y" customClass="LayerSwitchHolderView" customModule="Octagon_Analytics" customModuleProvider="target">
-                                                <rect key="frame" x="968.5" y="12" width="33.5" height="33.5"/>
+                                                <rect key="frame" x="935" y="12" width="67" height="67"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPU-Lt-CMW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="33.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="67" height="67"/>
                                                         <state key="normal" image="mapLayer"/>
                                                         <connections>
                                                             <action selector="showOrHideLayersAction:" destination="qE1-5b-23Y" eventType="touchUpInside" id="eUZ-kr-DZj"/>
                                                         </connections>
                                                     </button>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuB-VJ-qQq">
-                                                        <rect key="frame" x="0.0" y="33.5" width="33.5" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="67" width="67" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="zkf-jF-WPi"/>
