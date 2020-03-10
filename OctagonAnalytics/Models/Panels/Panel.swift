@@ -557,7 +557,7 @@ extension Panel {
                 items = [bucket1]
                 break
             case 2:
-                items = bucket1.subAggsResult?.buckets ?? []
+                items = bucket1.subAggsResult?.buckets.sorted(by: { $0.key < $1.key }) ?? []
                 break
             default:
                 counter = aggregationsCount - 1
@@ -577,8 +577,8 @@ extension Panel {
     private func loopThroughAllBuckets(_ bucket: Bucket, maxLoop: Int) -> [Bucket] {
         
         guard let aggResult = bucket.subAggsResult else { return [] }
-        let bucketList = aggResult.buckets
-        
+        var bucketList = aggResult.buckets
+        bucketList.sort(by: { $0.key < $1.key })
         var finalResult: [Bucket] = []
         
         for (index,b1) in bucketList.enumerated() {
@@ -590,7 +590,7 @@ extension Panel {
                 continue
             }
             
-            let lastBucketsList = b1.subAggsResult?.buckets ?? []
+            let lastBucketsList = b1.subAggsResult?.buckets.sorted(by: { $0.key < $1.key }) ?? []
             
             finalResult.append(contentsOf: lastBucketsList)
             

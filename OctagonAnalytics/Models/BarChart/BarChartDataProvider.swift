@@ -33,17 +33,28 @@ extension BarChartDataProvider {
         
         if !isGrouped {
             var barChartDataEntry: [ChartDataEntry] = []
+            
+            var colorsList: [UIColor]   =   []
+            
+            var colorIndex = 0
             for (index, itm) in chartContentList.enumerated() {
                 
                 let yValues = itm.items.compactMap { (buck) -> Double in
+                    colorIndex += 1
+                    if colorIndex >= CurrentTheme.allChartColors.count {
+                        colorIndex = 0
+                    }
+                    colorsList.append(CurrentTheme.allChartColors[colorIndex])
                     return buck.displayValue
                 }
+                colorIndex = 0
+                
                 let entry = BarChartDataEntry(x: Double(index), yValues: yValues, data: itm as AnyObject)
                 barChartDataEntry.append(entry)
             }
             
             let dataSet = BarChartDataSet(entries: barChartDataEntry, label: "")
-            dataSet.colors = CurrentTheme.chartColors1 + CurrentTheme.chartColors2 + CurrentTheme.chartColors3
+            dataSet.colors = colorsList
             
             dataSet.drawValuesEnabled = false
             return BarChartData(dataSet: dataSet)
@@ -54,7 +65,7 @@ extension BarChartDataProvider {
             let barWidth = ((1.00 - groupSpace) / Double(largest.count)) - barSpace
             
             var colorIndex = 0
-            var colors = CurrentTheme.chartColors1 + CurrentTheme.chartColors2
+            let colors = CurrentTheme.allChartColors
             var dataSetList: [BarChartDataSet] = []
             for i in 0..<largest.count {
                 

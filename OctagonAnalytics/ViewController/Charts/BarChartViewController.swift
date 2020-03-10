@@ -11,7 +11,6 @@ import Charts
 
 class BarChartViewController: ChartBaseViewController {
 
-    @IBOutlet weak var legendView: UIView!
     @IBOutlet weak var legendLabel: UILabel!
     @IBOutlet weak var legendHolder: UIView!
     
@@ -65,7 +64,6 @@ class BarChartViewController: ChartBaseViewController {
         super.setupLegend()
         
         let theme = CurrentTheme
-        legendView.style(.roundCorner(5.0, 0.0))
         legendLabel.style(theme.bodyTextStyle(theme.disabledStateBackgroundColor))
         
         chart?.extraBottomOffset = 3
@@ -247,8 +245,9 @@ extension BarChartViewController {
             dateComponant = fromDate.getDateComponents(toDate)
         }
         
-        guard let filter = bucket.getRelatedfilters(dateComponant).first else { return }
-        multiFilterAction?(self, [filter])
+        let filterList = bucket.getRelatedfilters(dateComponant)
+        guard filterList.count > 0  else { return }
+        multiFilterAction?(self, filterList)
 
     }
 }

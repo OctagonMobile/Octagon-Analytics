@@ -163,18 +163,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBZ-gu-Gz0" userLabel="LegendHolder">
-                                                <rect key="frame" x="929" y="0.0" width="30" height="45"/>
+                                                <rect key="frame" x="959" y="0.0" width="0.0" height="45"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jro-wS-dsZ" userLabel="View-Legend">
-                                                        <rect key="frame" x="0.0" y="12.5" width="25" height="20"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="6gY-W7-NR4"/>
-                                                            <constraint firstAttribute="height" constant="20" id="Bmd-XE-FuB"/>
-                                                        </constraints>
-                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouq-O3-Bm2">
-                                                        <rect key="frame" x="30" y="0.0" width="0.0" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -182,10 +174,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="Jro-wS-dsZ" firstAttribute="leading" secondItem="NBZ-gu-Gz0" secondAttribute="leading" id="1R7-0l-rsK"/>
-                                                    <constraint firstItem="Jro-wS-dsZ" firstAttribute="centerY" secondItem="NBZ-gu-Gz0" secondAttribute="centerY" id="3sd-bE-kxs"/>
+                                                    <constraint firstItem="Ouq-O3-Bm2" firstAttribute="leading" secondItem="NBZ-gu-Gz0" secondAttribute="leading" id="0FR-LX-azB"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ouq-O3-Bm2" secondAttribute="trailing" id="PY2-n3-NMe"/>
-                                                    <constraint firstItem="Ouq-O3-Bm2" firstAttribute="leading" secondItem="Jro-wS-dsZ" secondAttribute="trailing" constant="5" id="Unb-bE-Jts"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="gio-kc-K3h"/>
                                                     <constraint firstItem="Ouq-O3-Bm2" firstAttribute="top" secondItem="NBZ-gu-Gz0" secondAttribute="top" id="gnY-C5-PNP"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ouq-O3-Bm2" secondAttribute="bottom" id="jc9-Wb-QEI"/>
@@ -275,7 +265,6 @@
                         <outlet property="headerview" destination="Hup-Tz-hwR" id="P8I-9j-XKu"/>
                         <outlet property="legendHolder" destination="NBZ-gu-Gz0" id="hAt-OT-Dhn"/>
                         <outlet property="legendLabel" destination="Ouq-O3-Bm2" id="Mih-Ze-tUh"/>
-                        <outlet property="legendView" destination="Jro-wS-dsZ" id="ifO-3k-aGI"/>
                         <outlet property="listTableView" destination="UjD-fi-ZOR" id="rk2-F0-AgX"/>
                         <outlet property="mainContainerView" destination="4t7-0y-YI7" id="7vu-YA-eyo"/>
                         <outlet property="shadowView" destination="clt-30-NNG" id="eBR-uc-Bvb"/>

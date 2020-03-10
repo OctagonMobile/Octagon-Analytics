@@ -276,6 +276,10 @@ class DashboardViewController: BaseViewController {
                 self?.applyFilters([itemSelected])
             }
             
+            panelViewController.multiFilterAction = { [weak self] (sender, filtersList) in
+                self?.applyFilters(filtersList)
+            }
+            
             widgetsDictionary["\(index)"] = panelViewController
         }
     }
