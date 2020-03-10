@@ -104,15 +104,20 @@ extension BarChartDataProvider {
 }
 
 //MARK: Line Chart Data Provider
-protocol LineChartDataProvider: BarChartDataProvider {}
+protocol LineChartDataProvider: BarChartDataProvider {
+    var isAreaGraph: Bool { get }
+}
 
 extension LineChartDataProvider {
+    
+    var isAreaGraph: Bool { return false }
+    
     func generateChartData(_ chartContentList: [ChartContent]) -> ChartData? {
         
         let largest = chartContentList.max { $0.items.count < $1.items.count }?.items ?? []
         
         var colorIndex = 0
-        var colors = CurrentTheme.chartColors1 + CurrentTheme.chartColors2
+        let colors = CurrentTheme.allChartColors
         var dataSetList: [LineChartDataSet] = []
         for i in 0..<largest.count {
             
@@ -137,6 +142,10 @@ extension LineChartDataProvider {
             set.setColor(colors[colorIndex])
             set.setCircleColor(colors[colorIndex])
             set.drawValuesEnabled = false
+            if isAreaGraph {
+                set.drawFilledEnabled = true
+                set.fillColor = colors[colorIndex]
+            }
             colorIndex += 1
             
             dataSetList.append(set)

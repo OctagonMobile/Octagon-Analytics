@@ -15,6 +15,10 @@ class LineChartViewController: BarChartViewController, LineChartDataProvider {
         return (chart as? LineChartView)
     }
     
+    var isAreaGraph: Bool {
+        panel?.visState?.type == PanelType.area
+    }
+    
     override internal var xAxis: Charts.XAxis? {
         return lineChartView?.xAxis
     }
