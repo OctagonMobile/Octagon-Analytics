@@ -411,7 +411,6 @@
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
 		F17AA028240E7F3F00BDB6B7 /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
-		FACF1622D22492BD221A2526 /* Pods_KibanaGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KibanaGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1687,7 +1686,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
@@ -1719,7 +1718,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
