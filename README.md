@@ -85,3 +85,6 @@ We welcome pull requests from the community!
 
 ## License<a id="license"></a>
 [MIT](https://github.com/OctagonMobile/Octagon-Analytics/blob/master/LICENSE)
+
+
+* Kibana is a trademark of Elasticsearch BV, registered in the US and in other countries.
