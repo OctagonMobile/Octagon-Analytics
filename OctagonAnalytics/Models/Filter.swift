@@ -297,9 +297,6 @@ struct SimpleFilter: FilterProtocol {
     }
     
     var displayValue: String {
-        if let val = Double(fieldValue) {
-            return String(format: "%0.2f", val)
-        }
         return fieldValue
     }
     

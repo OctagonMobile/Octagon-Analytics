@@ -279,6 +279,10 @@ class DashboardViewController: BaseViewController {
                 self?.applyFilters([itemSelected])
             }
             
+            panelViewController.multiFilterAction = { [weak self] (sender, filtersList) in
+                self?.applyFilters(filtersList)
+            }
+            
             widgetsDictionary["\(index)"] = panelViewController
         }
     }
@@ -317,7 +321,8 @@ class DashboardViewController: BaseViewController {
         
         popTip.show(customView: infoView, direction: .none, in: view, from: originatingFrame)
     }
-
+    
+    
     private func getCalculatedRectForInfoPopUp(_ infoView: UIView, widgetRect: CGRect) -> CGRect {
         let rectInView = view.convert(widgetRect, from: dashBoardCollectionView)
         
@@ -401,7 +406,6 @@ class DashboardViewController: BaseViewController {
         }
         applyDateFilter(dateFilter)
     }
-    
     
     private func applyDateFilter(_ dateFilter: DateHistogramFilter) {
         let fromDateString = dateFilter.calculatedFromDate?.toFormat("MMM dd yyyy HH:mm:ss") ?? ""
@@ -524,6 +528,11 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
         }
 
+        cell.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
+            guard let rect = widgetRect else { return }
+            self?.configureMultiFiltersInfoView(selectedItems, widgetRect: rect)
+        }
+        
         cell.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
             guard let rect = widgetRect else { return }
             self?.configureMultiFiltersInfoView(selectedItems, widgetRect: rect)

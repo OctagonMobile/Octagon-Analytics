@@ -178,6 +178,18 @@ enum Theme: String {
         case .dark: return UIColor.ChartColorsDarkSet3.all
         }
     }
+    
+    private var firstSetChartColors: [UIColor] {
+        return chartColors1 + chartColors2 + chartColors3 + UIColor.ChartColorsSetVolcano.all + UIColor.ChartColorsSetSunsetOrange.all
+    }
+    
+    private var secondSetChartColors: [UIColor] {
+        return UIColor.ChartColorsCalendulaGold.all + UIColor.ChartColorsSunriseYellow.all + UIColor.ChartColorsLime.all + UIColor.ChartColorsCyan.all
+    }
+
+    var allChartColors: [UIColor] {
+        return firstSetChartColors + secondSetChartColors
+    }
 
     var mapTrackingColors: [UIColor] {
         switch self {

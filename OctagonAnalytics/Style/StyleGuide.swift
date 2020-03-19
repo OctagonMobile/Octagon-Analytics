@@ -224,6 +224,96 @@ extension UIColor {
         static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
     }
     
+    struct ChartColorsSetVolcano {
+        static var first: UIColor       { return UIColor.colorFromHexString("#fff2e8") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#ffd8bf") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#ffbb96") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#ff9c6e") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#ff7a45") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#fa541c") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#d4380d") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#ad2102") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#871400") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#610b00") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+    
+    struct ChartColorsSetSunsetOrange {
+        static var first: UIColor       { return UIColor.colorFromHexString("#fff7e6") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#ffe7ba") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#ffd591") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#ffc069") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#ffa940") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#fa8c16") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#d46b08") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#ad4e00") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#873800") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#612500") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+
+    struct ChartColorsCalendulaGold {
+        static var first: UIColor       { return UIColor.colorFromHexString("#fffbe6") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#fff1b8") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#ffe58f") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#ffd666") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#ffc53d") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#faad14") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#d48806") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#ad6800") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#874d00") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#613400") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+    
+    struct ChartColorsSunriseYellow {
+        static var first: UIColor       { return UIColor.colorFromHexString("#feffe6") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#ffffb8") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#fffb8f") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#fff566") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#ffec3d") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#fadb14") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#d4b106") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#ad8b00") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#876800") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#614700") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+
+    struct ChartColorsLime {
+        static var first: UIColor       { return UIColor.colorFromHexString("#fcffe6") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#f4ffb8") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#eaff8f") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#d3f261") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#bae637") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#a0d911") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#7cb305") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#5b8c00") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#3f6600") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#254000") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+
+    struct ChartColorsCyan{
+        static var first: UIColor       { return UIColor.colorFromHexString("#e6fffb") }
+        static var second: UIColor      { return UIColor.colorFromHexString("#b5f5ec") }
+        static var third: UIColor       { return UIColor.colorFromHexString("#87e8de") }
+        static var fourth: UIColor      { return UIColor.colorFromHexString("#5cdbd3") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#36cfc9") }
+        static var sixth: UIColor       { return UIColor.colorFromHexString("#13c2c2") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#08979c") }
+        static var eighth: UIColor      { return UIColor.colorFromHexString("#006d75") }
+        static var ninth: UIColor       { return UIColor.colorFromHexString("#00474f") }
+        static var tenth: UIColor       { return UIColor.colorFromHexString("#002329") }
+        
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth]
+    }
+
     struct ChartColorsDarkSet1 {
         static var second: UIColor      { return UIColor.colorFromHexString("#BAE7FF") }
         static var third: UIColor       { return UIColor.colorFromHexString("#91D4FF") }

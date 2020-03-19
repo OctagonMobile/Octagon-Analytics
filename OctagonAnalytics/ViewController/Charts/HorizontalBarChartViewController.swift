@@ -15,18 +15,7 @@ class HorizontalBarChartViewController: BarChartViewController {
         return (chart as? HorizontalBarChartView)
     }
 
-    override var buckets: [ChartItem] {
-        //Note: Array is reversed to draw the horizontal bars from top to bottom
-        return panel?.buckets.reversed() ?? []
-    }
-    
     //MARK:
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
     override func setupLegend() {
         super.setupLegend()
         
@@ -40,10 +29,10 @@ class HorizontalBarChartViewController: BarChartViewController {
         xAxis?.labelRotationAngle = 360
     }
     
-    override func updatePanelContent() {
-        super.updatePanelContent()
-        
-        horizontalBarChartView?.xAxis.labelCount = totalChartEntries
-
+    override func reOrderChartContent() {
+        panel?.chartContentList.reverse()
+        if isGroupedBarChart {
+            panel?.chartContentList.forEach({ $0.items.reverse() })
+        }
     }
 }

@@ -11,7 +11,6 @@ import Charts
 
 class BarChartViewController: ChartBaseViewController {
 
-    @IBOutlet weak var legendView: UIView!
     @IBOutlet weak var legendLabel: UILabel!
     @IBOutlet weak var legendHolder: UIView!
     
@@ -19,12 +18,30 @@ class BarChartViewController: ChartBaseViewController {
         return (chart as? BarChartView)
     }
     
-    internal var buckets: [ChartItem] {
-        return panel?.buckets ?? []
-    }
-    
     internal var totalChartEntries: Int     =   0
     
+    var chartContentList: [ChartContent] {
+        return panel?.chartContentList ?? []
+    }
+    
+    var bucketsList: [Bucket] = []
+
+    var isGroupedBarChart: Bool {
+        let largest = chartContentList.max { $0.items.count < $1.items.count }?.items ?? []
+        let isGrouped = (panel?.visState?.seriesMode == .normal) && largest.count > 1
+        return isGrouped
+    }
+
+    internal var xAxis: Charts.XAxis? {
+        return barChartView?.xAxis
+    }
+    
+    internal var leftAxis: Charts.YAxis? {
+        return barChartView?.leftAxis
+    }
+
+    
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,11 +64,10 @@ class BarChartViewController: ChartBaseViewController {
         super.setupLegend()
         
         let theme = CurrentTheme
-        legendView.style(.roundCorner(5.0, 0.0))
         legendLabel.style(theme.bodyTextStyle(theme.disabledStateBackgroundColor))
         
         chart?.extraBottomOffset = 3
-        let xAxis = barChartView?.xAxis
+
         xAxis?.wordWrapEnabled = false
         xAxis?.labelPosition = .bottom;
         xAxis?.labelFont = UIFont.systemFont(ofSize: 10.0)
@@ -62,11 +78,9 @@ class BarChartViewController: ChartBaseViewController {
 
         // Update X-Axis Value
         let formatter = BarChartFormatter()
-        formatter.bucketType = panel?.bucketType ?? .unKnown
-        formatter.valueList = panel?.buckets ?? [] //.flatMap( {$0.key} ) ?? []
+        formatter.valueList =  chartContentList
         xAxis?.valueFormatter = formatter
         
-        let leftAxis = barChartView?.leftAxis
         leftAxis?.labelFont = UIFont.systemFont(ofSize: 10.0)
         leftAxis?.labelCount = 4
         leftAxis?.labelPosition = .outsideChart
@@ -87,34 +101,46 @@ class BarChartViewController: ChartBaseViewController {
     
     override func updatePanelContent() {
         super.updatePanelContent()
-
-        guard let panel = panel else { return }
         
+        bucketsList = chartContentList.reduce([]) { (res, item) -> [Bucket] in
+            return res + item.items
+        }
+        listTableView?.reloadData()
+        legendLabel.text = panel?.visState?.metricAggregationsArray.first?.metricType.rawValue.capitalized
+
+        xAxis?.centerAxisLabelsEnabled = isGroupedBarChart
+        xAxis?.resetCustomAxisMax()
+        xAxis?.resetCustomAxisMin()
+
+        refreshChartContent()
+    }
+    
+    internal func refreshChartContent() {
+        
+        // Re-order chart content if required.(Required for horizontal bar chart to look same as in web)
+        reOrderChartContent()
+        
+        guard let data = generateChartData(chartContentList) as? BarChartData else { return }
+        if isGroupedBarChart {
+            xAxis?.axisMinimum = initialXValue
+            let groupCount = chartContentList.count
+            let axisMaxVal = initialXValue + data.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(groupCount)
+            xAxis?.axisMaximum = axisMaxVal
+            data.groupBars(fromX: initialXValue, groupSpace: groupSpace, barSpace: barSpace)
+        }
+
         // Update X-Axis Value
-        let formatter = barChartView?.xAxis.valueFormatter as? BarChartFormatter
-        formatter?.valueList = buckets
+        let formatter = xAxis?.valueFormatter as? BarChartFormatter
+        formatter?.valueList = chartContentList
 
-        let barChartDataEntry: [ChartDataEntry] = buckets.enumerated().map( {
-            let metricTypeValue = panel.metricAggregation?.metricType
-            let shouldShowBucketValue = (metricTypeValue == .sum || metricTypeValue == .max || metricTypeValue == .average)
-              let value = shouldShowBucketValue ? Double($1.bucketValue.magnitude)  : Double($1.docCount.magnitude)
-            return BarChartDataEntry(x: Double($0), y: value, data: $1)
-        } )
-        
-        totalChartEntries = barChartDataEntry.count
-        
-        let legendText = panel.metricAggregation?.metricType.rawValue
-        let dataSet = BarChartDataSet(entries: barChartDataEntry, label: legendText)
-        dataSet.colors = [defaultColors.first ?? UIColor.gray]
-        dataSet.drawValuesEnabled = false
-        chart?.data = BarChartData(dataSet: dataSet)
-        
-        legendView.backgroundColor = defaultColors.first ?? UIColor.white
-        legendLabel.text = legendText
-        
+        chart?.data = data
         chart?.animate(yAxisDuration: 1.5)
     }
-
+    
+    internal func reOrderChartContent() {
+        // Do nothing
+    }
+    
     override func flipPanel(_ mode: PanelMode) {
         super.flipPanel(mode)
         
@@ -123,32 +149,45 @@ class BarChartViewController: ChartBaseViewController {
     }
 
     
-    internal func applyFiltersWith(_ bucket: ChartItem, applyImmedietly: Bool = false) {
-      
-        guard let agg = panel?.bucketAggregation else { return }
+    
+     internal func applyFiltersWith(_ bucket: Bucket, applyImmedietly: Bool = false) {
+           
+           var dateComponant: DateComponents?
+           if let selectedDates =  panel?.currentSelectedDates,
+               let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+               dateComponant = fromDate.getDateComponents(toDate)
+           }
 
-        var dateComponant: DateComponents?
-        if let selectedDates =  panel?.currentSelectedDates,
-            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-            dateComponant = fromDate.getDateComponents(toDate)
-        }
+           let filtersToBeApplied: [FilterProtocol] = bucket.getRelatedfilters(dateComponant)
 
-//        let filtersToBeApplied: [FilterProtocol] = bucket.getRelatedfilters(dateComponant)
-        let filter: FilterProtocol = FilterProvider.shared.createFilter(bucket, dateComponents: dateComponant, agg: agg)
-
-        if applyImmedietly {
-            filterAction?(self, filter)
-        } else {
-            showInfoFieldActionBlock?(self, [filter], nil)
-        }
-    }
+           if applyImmedietly {
+               multiFilterAction?(self, filtersToBeApplied)
+           } else {
+               showInfoFieldActionBlock?(self, filtersToBeApplied, nil)
+           }
+       }
 }
 
 extension BarChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        DLog("Chart Value Selected")
-        guard let chartItem = entry.data as? ChartItem else { return }
-        applyFiltersWith(chartItem)
+
+        var bucket: Bucket
+        if isGroupedBarChart {
+            guard let buck = entry.data as? Bucket else { return }
+            bucket = buck
+        } else {
+            guard let chartContent = entry.data as? ChartContent,
+                highlight.stackIndex < chartContent.items.count else { return }
+            
+            var itemIndex = highlight.stackIndex
+            if itemIndex == -1 {
+                itemIndex = 0
+            }
+            bucket = chartContent.items[itemIndex]
+        }
+
+        barChartView?.highlightValues(nil)
+        applyFiltersWith(bucket)
     }
 
     
@@ -160,35 +199,61 @@ extension BarChartViewController: ChartViewDelegate {
 }
 
 extension BarChartViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bucketsList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.bucketListCellId) as? BucketListTableViewCell
+        cell?.backgroundColor = .clear
+
+        let bucket = bucketsList[indexPath.row]
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
+        }
+        
+        let filters = bucket.getRelatedfilters(dateComponant).reversed()
+        
+        let result = filters.reduce("") { (res, filter) -> String in
+            var val = ""
+            if let fil = (filter as? SimpleFilter) {
+                val = fil.fieldValue
+            } else if let fil = (filter as? DateHistogramFilter) {
+                guard let value = Int(fil.fieldValue) else { return fil.fieldValue }
+                let date = Date(milliseconds: value)
+                val = date.toFormat("YYYY-MM-dd HH:mm:ss")
+            }
+            
+            return res.isEmpty ? val : (res + " - " + val)
+        }
+        let title = result
+        let value = bucket.displayValue.format(f: "0.2")
+        cell?.updateCellContentLatest(title, value: value)
+        return cell ?? UITableViewCell()
+
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let chartItem = panel?.buckets[indexPath.row] else { return }
-        applyFiltersWith(chartItem, applyImmedietly: true)
-    }
-}
-
-class BarChartFormatter: NSObject, IAxisValueFormatter {
-    
-    var valueList: [ChartItem]  =   []
-    var bucketType: BucketType  =   .unKnown
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let index = Int(value)
-        guard index >= 0 && index < valueList.count else {
-            return "NA"
+        let bucket = bucketsList[indexPath.row]
+        
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
         }
         
-        let selectedItem = valueList[index]
-        if bucketType == .terms {
-            let termsDate = (selectedItem as? TermsChartItem)?.termsDateString ?? ""
-            return termsDate.isEmpty ? selectedItem.key : termsDate
-        } else if bucketType == .dateHistogram {
-            let termsDate = (selectedItem as? DateHistogramChartItem)?.termsDateString ?? ""
-            return termsDate.isEmpty ? selectedItem.key : termsDate
-        } else if let keyValue = Double(valueList[index].key) {
-            return String(format: "%.3f", keyValue)
-        }
-        return valueList[index].key
+        let filterList = bucket.getRelatedfilters(dateComponant)
+        guard filterList.count > 0  else { return }
+        multiFilterAction?(self, filterList)
+
     }
 }
 
+extension BarChartViewController: BarChartDataProvider {
+    func panelForChart() -> Panel? {
+        return panel
+    }
+}
