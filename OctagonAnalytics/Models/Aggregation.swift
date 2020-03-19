@@ -60,15 +60,14 @@ class Aggregation : Mappable {
         id                  <- map["id"]
         schema              <- map["schema"]
         
-        switch id {
-        case AggregationId.metric.rawValue:
+        field               <- map["params.field"]
+        params              <- map["params"]
+        
+        switch schema {
+        case "metric":
             metricType          <- (map["type"],EnumTransform<MetricType>())
-        case AggregationId.bucket.rawValue:
-            field               <- map["params.field"]
-            bucketType          <- (map["type"],EnumTransform<BucketType>())
-            params              <- map["params"]
         default:
-            break
+            bucketType          <- (map["type"],EnumTransform<BucketType>())
         }
     }
     

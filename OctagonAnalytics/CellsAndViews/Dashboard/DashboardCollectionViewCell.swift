@@ -18,8 +18,9 @@ class DashboardCollectionViewCell: UICollectionViewCell {
     
     var selectFieldAction: SelectFieldActionBlock?
     var deselectFieldAction: DeselectFieldActionBlock?
-
+   
     var showInfoFieldActionBlock: ShowInfoFieldActionBlock?
+
 
     //MARK: Functions
     override func awakeFromNib() {
@@ -42,10 +43,11 @@ class DashboardCollectionViewCell: UICollectionViewCell {
         viewController.deselectFieldAction = { [weak self] (sender) in
             self?.deselectFieldAction?(sender)
         }
-
+        
         viewController.showInfoFieldActionBlock = { [weak self] (sender, selectedItems, widgetRect) in
             guard let strongSelf = self else { return }
             strongSelf.showInfoFieldActionBlock?(strongSelf, selectedItems, strongSelf.frame)
         }
+
     }
 }
