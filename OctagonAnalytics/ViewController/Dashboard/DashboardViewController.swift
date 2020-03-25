@@ -389,10 +389,9 @@ class DashboardViewController: BaseViewController {
 
         var indexPathList: [IndexPath] = []
         for item in otherFilters {
-            let success = Session.shared.addFilters(item)
-            guard success else { continue }
-                let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
-                indexPathList.append(indexPath)
+            Session.shared.addFilters(item)
+            let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
+            indexPathList.append(indexPath)
         }
 
         filterCollectionView.insertItems(at: indexPathList)

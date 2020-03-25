@@ -36,13 +36,12 @@ class Session: NSObject {
     fileprivate var config: KeycloakConfig?
     fileprivate var oauth2Module:  KeycloakOAuth2Module?
 
-    @discardableResult
-    func addFilters(_ filter: FilterProtocol) -> Bool {
-        if !containsFilter(filter) {
-            appliedFilters.append(filter)
-            return true
+    func addFilters(_ filter: FilterProtocol) {
+        if let matchedFilter = appliedFilters.filter( {($0.hasSameFieldName(filter))} ).first {
+            removeFilter(matchedFilter)
         }
-        return false
+
+        appliedFilters.append(filter)
     }
     
     func removeFilter(_ filter: FilterProtocol) {

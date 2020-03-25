@@ -102,29 +102,21 @@ class ControlsViewController: PanelBaseViewController {
                 guard let min = rangeControls?.selectedMinValue, let max = rangeControls?.selectedMaxValue else { continue }
                 
                 let matchedFilter = controlsFiltersList.filter({ $0.fieldName == control.fieldName}).first
-                if matchedFilter == nil {
-                    let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
-                    controlsFiltersList.append(filter)
-                } else {
-                    controlsFiltersList.removeAll(where: { $0.fieldName == matchedFilter?.fieldName })
-                    controlsFiltersList.append(matchedFilter!)
-                }
                 
+                if matchedFilter != nil {
+                    controlsFiltersList.removeAll(where: { $0.fieldName == matchedFilter?.fieldName })
+                }
+
+                let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
+                controlsFiltersList.append(filter)
+
             } else {
                 // create filters for List
             }
         }
-        
-        // Call multiFilterAction
-        controlsFiltersList.forEach { (filter) in
-            
-            if Session.shared.containsFilter(filter) {
-                Session.shared.appliedFilters.removeAll(where: { $0.fieldName == filter.fieldName })
-            }
-            
-            filterAction?(self, filter)
-        }
-        
+                
+        multiFilterAction?(self, controlsFiltersList)
+
         controlsCollectionView.reloadData()
     }
     
@@ -141,13 +133,18 @@ class ControlsViewController: PanelBaseViewController {
         controlsCollectionView?.reloadData()
         clearFormButton.isEnabled = false
         applyChangesButton.isEnabled = false
+        cancelChangesButton.isEnabled = true
     }
     
     @IBAction func cancelChangesAction(_ sender: Any) {
+        initialSetup()
+        updatePanelContent()
+        cancelChangesButton.isEnabled = false
     }
     
     @IBAction func applyChangesAction(_ sender: Any) {
         applyFilters()
+        cancelChangesButton.isEnabled = false
     }
 }
 
@@ -169,6 +166,8 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
             (cell as? RangeControlsCollectionViewCell)?.rangeSelectionUpdateBlock = { [weak self] (sender, max, min) in
                 self?.clearFormButton.isEnabled = true
                 self?.applyChangesButton.isEnabled = true
+                self?.cancelChangesButton.isEnabled = true
+
             }
         }
         

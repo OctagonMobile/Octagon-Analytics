@@ -16,6 +16,7 @@ protocol FilterProtocol {
     var combinedFilterValue: String { get }
     
     func isEqual(_ object: Any) -> Bool
+    func hasSameFieldName(_ object: Any) -> Bool
 }
 
 extension FilterProtocol {
@@ -34,6 +35,11 @@ extension FilterProtocol {
     
     func isEqual(_ object: Any) -> Bool {
         return false
+    }
+    
+    func hasSameFieldName(_ object: Any) -> Bool {
+        guard let obj = (object as? FilterProtocol) else { return false }
+        return fieldName == obj.fieldName
     }
 }
 
