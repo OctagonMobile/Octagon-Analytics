@@ -195,6 +195,7 @@
 		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
+		F175513024277A0C00A4BA63 /* TableVizDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
@@ -407,6 +408,7 @@
 		DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.release.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
+		F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVizDataProvider.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 		513467E41F9DD3FF00F9B67D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F175512E242779DB00A4BA63 /* UIDataProvider */,
 				512D8C3623AFA4F0005A6B92 /* TagCloud */,
 				51D385DE2370090D00C59220 /* Canvas */,
 				51E93DBE22F1BB28006F3C3D /* MarkDown */,
@@ -1174,6 +1177,14 @@
 			path = BarChart;
 			sourceTree = "<group>";
 		};
+		F175512E242779DB00A4BA63 /* UIDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */,
+			);
+			path = UIDataProvider;
+			sourceTree = "<group>";
+		};
 		F17AA024240E7DD500BDB6B7 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1490,6 +1501,7 @@
 				51D3E7061FF508AE00CC4F2B /* SavedSearchPanel.swift in Sources */,
 				5168C3B81FC2FDD400AB77C6 /* FilterCollectionViewCell.swift in Sources */,
 				514211DB21807E83006E64DD /* FaceTilePanel.swift in Sources */,
+				F175513024277A0C00A4BA63 /* TableVizDataProvider.swift in Sources */,
 				51D385DD2370084A00C59220 /* CanvasListViewController.swift in Sources */,
 				51D3E70A1FF5094200CC4F2B /* DashboardItemsLoader.swift in Sources */,
 				5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */,
