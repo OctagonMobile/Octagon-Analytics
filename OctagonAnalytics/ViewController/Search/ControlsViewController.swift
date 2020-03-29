@@ -111,7 +111,10 @@ class ControlsViewController: PanelBaseViewController {
                 controlsFiltersList.append(filter)
 
             } else {
-                // create filters for List
+                let listControls = controlsObj as? ListControlsWidget
+                guard let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
+                let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: BucketType.terms)
+                controlsFiltersList.append(filter)
             }
         }
                 
@@ -187,8 +190,22 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         guard let rootViewController = window.rootViewController else { return }
 
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
-        popOverContent.selectionBlock = { (sender, selectedList) in
+        
+        guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return }
+
+        let list = panel?.buckets.compactMap({ (item) -> ControlsListOption? in
+            let option = ControlsListOption()
+            option.data = item
+            option.isSelected = selectedList.contains(where: { $0.key == item.key })
+            return option
+        })
+        popOverContent.list = list ?? []
+        popOverContent.multiSelectionEnabled = (controlWidget as? ListControlsWidget)?.control.listOptions?.multiselect ?? false
+        popOverContent.selectionBlock = {[weak self] (sender, selectedList) in
             //Update UI
+            guard let controlsWidget = self?.dataSource.first else { return }
+            (controlsWidget as? ListControlsWidget)?.selectedList = selectedList.compactMap({ $0.data })
+            self?.controlsCollectionView?.reloadData()
         }
         popOverContent.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover = popOverContent.popoverPresentationController

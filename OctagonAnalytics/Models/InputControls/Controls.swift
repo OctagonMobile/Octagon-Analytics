@@ -33,6 +33,8 @@ class ListControlsWidget: ControlsWidgetBase {
     
     var list: [ChartItem]  =   []
     
+    var selectedList: [ChartItem]   =   []
+    
     init(_ control: Control, list: [ChartItem]) {
         super.init(control)
         self.list = list

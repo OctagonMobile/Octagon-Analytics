@@ -21,6 +21,7 @@ class ControlsListPopOverViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var doneButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var controlsListView: UITableView?
 
     //MARK: Life Cycles
@@ -28,12 +29,21 @@ class ControlsListPopOverViewController: BaseViewController {
         super.viewDidLoad()
         controlsListView?.dataSource = self
         controlsListView?.delegate = self
+        
+        doneButtonHeightConstraint.constant = multiSelectionEnabled ? 50 : 0
+    }
+    
+    func selectControlOptionAndDismiss(_ selectedDataList: [ControlsListOption]) {
+        dismiss(animated: true) { [weak self] in
+            guard let strongSelf = self else { return }
+            self?.selectionBlock?(strongSelf, selectedDataList)
+        }
     }
     
     //MARK: Button Action
     @IBAction func doneButtonAction(_ sender: UIButton) {
         let selectedDataList = list.filter({ $0.isSelected == true })
-        selectionBlock?(self, selectedDataList)
+        selectControlOptionAndDismiss(selectedDataList)
     }
 }
 
@@ -46,12 +56,18 @@ extension ControlsListPopOverViewController: UITableViewDataSource, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.controlsListTableViewCell, for: indexPath) as? ControlsListTableViewCell else {
             return UITableViewCell()
         }
+        cell.multiSelectionEnabled = multiSelectionEnabled
         cell.controlOption = list[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard multiSelectionEnabled else {
+            selectControlOptionAndDismiss([list[indexPath.row]])
+            return
+        }
+        
         list[indexPath.row].isSelected = !list[indexPath.row].isSelected
         tableView.reloadData()
     }
@@ -66,12 +82,20 @@ extension ControlsListPopOverViewController {
 
 class ControlsListTableViewCell: UITableViewCell {
     
-    var controlOption: ControlsListOption? {
+    var multiSelectionEnabled: Bool =   true {
         didSet {
-            titleLabel.text = controlOption?.data?.key
+            checkBoxWidthConstraint.constant = multiSelectionEnabled ? 20 : 0
         }
     }
     
+    var controlOption: ControlsListOption? {
+        didSet {
+            titleLabel.text = controlOption?.data?.key
+            updateCell()
+        }
+    }
+    
+    @IBOutlet weak var checkBoxWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
     
@@ -86,6 +110,10 @@ class ControlsListTableViewCell: UITableViewCell {
         let normalImageName = CurrentTheme.isDarkTheme ? "Checkbox-Normal-Dark" : "Checkbox-Normal"
         let image = UIImage(named: normalImageName)
         checkBoxButton.setImage(image, for: .normal)
+    }
+    
+    func updateCell() {
+        checkBoxButton.isSelected = controlOption?.isSelected ?? false
     }
 }
 

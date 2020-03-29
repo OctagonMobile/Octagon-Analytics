@@ -22,15 +22,25 @@ class ControlsPanel: Panel {
      */
     override func parseData(_ result: Any?) -> [Any] {
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
-            let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any], let maxAgg = maxAggDict["value"] as? Int,
-            let minAggDict = aggregationsDict["minAgg"] as? [String: Any], let minAgg = minAggDict["value"] as? Int else {
+            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any] else {
                 return []
         }
         
-        self.maxAgg = maxAgg
-        self.minAgg = minAgg
+        let type = (visState as? InputControlsVisState)?.controls.first?.type
+        
+        if type == Control.ControlType.range {
+            let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any]
+            self.maxAgg = maxAggDict?["value"] as? Int
+            let minAggDict = aggregationsDict["minAgg"] as? [String: Any]
+            self.maxAgg = minAggDict?["value"] as? Int
+        } else {
+            if let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],
+                let bucketsList = termsAggs["buckets"] as? [[String: Any]] {
+                buckets = Mapper<ChartItem>().mapArray(JSONArray: bucketsList)
+            }
 
+        }
+        
         return [["min": self.minAgg, "max":self.maxAgg]]
     }
 

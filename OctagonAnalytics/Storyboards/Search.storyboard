@@ -12,7 +12,7 @@
         <!--Web Content View Controller-->
         <scene sceneID="obn-dW-Ymm">
             <objects>
-                <viewController storyboardIdentifier="WebContentViewController" id="9P2-wX-b2U" customClass="WebContentViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebContentViewController" id="9P2-wX-b2U" customClass="WebContentViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G8J-kE-Zfl">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
         <!--Mark Down View Controller-->
         <scene sceneID="Yu0-kI-2Pd">
             <objects>
-                <viewController storyboardIdentifier="MarkDownViewController" id="uco-Nu-Mj2" customClass="MarkDownViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MarkDownViewController" id="uco-Nu-Mj2" customClass="MarkDownViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qj6-uo-Vcx">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,7 +177,7 @@
         <!--Controls View Controller-->
         <scene sceneID="4de-3L-5in">
             <objects>
-                <viewController storyboardIdentifier="ControlsViewController" id="hXw-kz-q8E" customClass="ControlsViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ControlsViewController" id="hXw-kz-q8E" customClass="ControlsViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dvt-iT-VhK">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,7 +221,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RangeControlsCollectionViewCell" id="7Cx-R3-beU" customClass="RangeControlsCollectionViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RangeControlsCollectionViewCell" id="7Cx-R3-beU" customClass="RangeControlsCollectionViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
                                                         <rect key="frame" x="2.5" y="0.0" width="1351" height="267"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5EF-Gv-jft">
@@ -322,15 +322,15 @@
                                                             <outlet property="rangeSlider" destination="SGX-58-iSC" id="QbL-Vk-ePK"/>
                                                         </connections>
                                                     </collectionViewCell>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListControlsCollectionViewCell" id="6zU-WF-oZu" customClass="ListControlsCollectionViewCell" customModule="KibanaGo" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="267" width="1336" height="220"/>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListControlsCollectionViewCell" id="6zU-WF-oZu" customClass="ListControlsCollectionViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
+                                                        <rect key="frame" x="526" y="267" width="304" height="201"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t03-Wj-u0G">
-                                                            <rect key="frame" x="0.0" y="0.0" width="1336" height="220"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="201"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRj-7N-GUe">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="1336" height="220"/>
+                                                                    <rect key="frame" x="20" y="100.5" width="264" height="0.0"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -470,23 +470,23 @@
         <!--Controls List Pop Over View Controller-->
         <scene sceneID="Wx2-KV-2mK">
             <objects>
-                <viewController storyboardIdentifier="ControlsListPopOverViewController" id="lxZ-gd-431" customClass="ControlsListPopOverViewController" customModule="KibanaGo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ControlsListPopOverViewController" id="lxZ-gd-431" customClass="ControlsListPopOverViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YNZ-L1-anT">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-Nk-cJl">
-                                <rect key="frame" x="0.0" y="0.0" width="1366" height="964"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ControlsListTableViewCell" id="NUR-Dc-ntM" customClass="ControlsListTableViewCell" customModule="KibanaGo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ControlsListTableViewCell" id="NUR-Dc-ntM" customClass="ControlsListTableViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="1366" height="42.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NUR-Dc-ntM" id="XYI-sr-PaG">
                                             <rect key="frame" x="0.0" y="0.0" width="1366" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iK-om-5pT">
+                                                <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iK-om-5pT">
                                                     <rect key="frame" x="10" y="10.5" width="20" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Ane-w6-cUg"/>
@@ -515,15 +515,16 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkBoxButton" destination="1iK-om-5pT" id="Rue-Oj-8DQ"/>
+                                            <outlet property="checkBoxWidthConstraint" destination="Ane-w6-cUg" id="cs7-2o-rsD"/>
                                             <outlet property="titleLabel" destination="ZsE-WX-uqq" id="yPf-Ds-noq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="395-7x-Dj8">
-                                <rect key="frame" x="20" y="964" width="1326" height="50"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="395-7x-Dj8">
+                                <rect key="frame" x="20" y="1024" width="1326" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Iga-71-jcC"/>
+                                    <constraint firstAttribute="height" id="Iga-71-jcC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done"/>
@@ -534,7 +535,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TtV-5f-1ah" firstAttribute="bottom" secondItem="395-7x-Dj8" secondAttribute="bottom" constant="10" id="3Rp-Fv-yIS"/>
+                            <constraint firstItem="TtV-5f-1ah" firstAttribute="bottom" secondItem="395-7x-Dj8" secondAttribute="bottom" id="3Rp-Fv-yIS"/>
                             <constraint firstItem="395-7x-Dj8" firstAttribute="top" secondItem="O2p-Nk-cJl" secondAttribute="bottom" id="G1D-hU-7Yi"/>
                             <constraint firstItem="O2p-Nk-cJl" firstAttribute="top" secondItem="TtV-5f-1ah" secondAttribute="top" id="dZe-j0-VRx"/>
                             <constraint firstItem="TtV-5f-1ah" firstAttribute="trailing" secondItem="O2p-Nk-cJl" secondAttribute="trailing" id="deu-vq-YgP"/>
@@ -546,6 +547,7 @@
                     </view>
                     <connections>
                         <outlet property="controlsListView" destination="O2p-Nk-cJl" id="XIv-Cj-AtM"/>
+                        <outlet property="doneButtonHeightConstraint" destination="Iga-71-jcC" id="0jO-1d-fSA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZh-gI-Uus" userLabel="First Responder" sceneMemberID="firstResponder"/>

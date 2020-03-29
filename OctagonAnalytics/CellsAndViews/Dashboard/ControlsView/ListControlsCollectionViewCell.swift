@@ -19,7 +19,7 @@ class ListControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     
     override func updateCellContent() {
         super.updateCellContent()
-        guard let selectedList = (controlWidget as? ListControlsWidget)?.list, selectedList.count > 0 else {
+        guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList, selectedList.count > 0 else {
             titleLabel.text = "Select a list..."
             return }
         titleLabel.text = selectedList.compactMap({ $0.key }).joined(separator: ",")

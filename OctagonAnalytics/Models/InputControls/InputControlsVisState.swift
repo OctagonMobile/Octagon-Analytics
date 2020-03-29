@@ -40,7 +40,7 @@ class Control: Mappable {
     var label: String           =   ""
     var type: ControlType       =   .range
     var rangeOptions: RangeOptions?
-    var listOptions: RangeOptions?
+    var listOptions: ListOptions?
 
     required init?(map: Map) {}
     
