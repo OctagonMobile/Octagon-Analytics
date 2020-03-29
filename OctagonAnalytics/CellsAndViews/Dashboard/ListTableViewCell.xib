@@ -20,27 +20,28 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ar-F5-GOq">
                         <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="LGc-fH-anU">
-                                <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LGc-fH-anU">
+                                <rect key="frame" x="10" y="0.0" width="357" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="700" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYz-5m-A4f">
-                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="701" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvq-h8-lol">
-                                        <rect key="frame" x="183.5" y="0.0" width="183.5" height="44"/>
+                                        <rect key="frame" x="315" y="0.0" width="42" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LGc-fH-anU" firstAttribute="leading" secondItem="6ar-F5-GOq" secondAttribute="leading" id="GG5-ef-NjI"/>
+                            <constraint firstItem="LGc-fH-anU" firstAttribute="leading" secondItem="6ar-F5-GOq" secondAttribute="leading" constant="10" id="GG5-ef-NjI"/>
                             <constraint firstAttribute="bottom" secondItem="LGc-fH-anU" secondAttribute="bottom" id="GT3-sl-KU1"/>
                             <constraint firstItem="LGc-fH-anU" firstAttribute="top" secondItem="6ar-F5-GOq" secondAttribute="top" id="HRj-dM-1fn"/>
                             <constraint firstAttribute="trailing" secondItem="LGc-fH-anU" secondAttribute="trailing" id="OGa-Gl-ptk"/>
@@ -55,6 +56,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="baseStackView" destination="LGc-fH-anU" id="cPf-IT-Ilg"/>
+                <outlet property="valueLabel1" destination="EYz-5m-A4f" id="SaB-ZW-03D"/>
+                <outlet property="valueLabel2" destination="Jvq-h8-lol" id="Rr2-at-Fmw"/>
+            </connections>
             <point key="canvasLocation" x="10.5" y="54"/>
         </tableViewCell>
     </objects>

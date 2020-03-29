@@ -37,6 +37,8 @@ class ContentListViewController: PanelBaseViewController {
         return panel?.buckets ?? []
     }
 
+    var latestDataSource: [TableVizUIBucket] = []
+    
     private var currentSort: SortTable = SortTable(sort: .right, type: .asc)
     
     override func viewDidLoad() {
@@ -54,6 +56,9 @@ class ContentListViewController: PanelBaseViewController {
     }
     
     override func updatePanelContent() {
+        if let panel = panel {
+            latestDataSource = TableVizDataProvider.getTableVizUIData(chartContents: panel.chartContentList)
+        }
         super.updatePanelContent()
         sortContent()
     }
@@ -87,12 +92,12 @@ class ContentListViewController: PanelBaseViewController {
 
 extension ContentListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return latestDataSource.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.listTableViewCell, for: indexPath) as? ListTableViewCell
-        cell?.setupCell(dataSource[indexPath.row])
+        cell?.configureCell(latestDataSource[indexPath.row])
         return cell ?? UITableViewCell()
     }
     

@@ -47,17 +47,25 @@ class ListTableViewCell: UITableViewCell {
         var parent: TableVizUIData? = bucket
         var index = 0
         while parent != nil {
-            if let label = baseStackView.viewWithTag(ListTableViewCell.TableVizRowTag + index) as? UILabel {
-                label.text = parent?.value
-            } else {
-                let label = UILabel()
-                label.style(CurrentTheme.bodyTextStyle())
-                label.tag = ListTableViewCell.TableVizRowTag + index
-                baseStackView.insertArrangedSubview(label, at: index)
-                label.text = parent?.value
+            processLabel(index: index, value: bucket.key)
+            if parent?.childBucket == nil {
+                index = index + 1
+                processLabel(index: index, value: bucket.value)
             }
             parent = parent?.childBucket
             index = index + 1
+        }
+    }
+    
+    private func processLabel(index: Int, value: String) {
+        if let label = baseStackView.viewWithTag(ListTableViewCell.TableVizRowTag + index) as? UILabel {
+            label.text = value
+        } else {
+            let label = UILabel()
+            label.style(CurrentTheme.bodyTextStyle())
+            label.tag = ListTableViewCell.TableVizRowTag + index
+            baseStackView.insertArrangedSubview(label, at: index)
+            label.text = value
         }
     }
     

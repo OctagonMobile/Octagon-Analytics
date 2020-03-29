@@ -24,49 +24,57 @@ struct TableVizUIBucket: TableVizUIData {
 
 class TableVizDataProvider {
  
-    func getTableUIData(chartContent: ChartContent) -> [TableVizUIBucket] {
+    class func getTableVizUIData(chartContents: [ChartContent]) -> [TableVizUIBucket] {
         
         var tableDataList = [TableVizUIBucket]()
        
-        for bucket in chartContent.items {
-            tableDataList.append(contentsOf: split(bucket: bucket))
+        for chartContent in chartContents {
+            
+            for bucket in chartContent.items {
+                tableDataList.append(contentsOf: split(bucket: bucket))
+            }
         }
-      
+        
         return tableDataList
     }
     
-    func split(bucket: Bucket) -> [TableVizUIBucket] {
+    class func split(bucket: Bucket) -> [TableVizUIBucket] {
         var splitted = [TableVizUIBucket]()
         
-        if let immediateChildren = bucket.subAggsResult?.buckets,
-            let _ = immediateChildren.first?.subAggsResult?.buckets {
-            for childBucket in immediateChildren {
-             
-                let childSplitted = split(bucket: childBucket)
-                for child in childSplitted {
+        if let immediateChildren = bucket.subAggsResult?.buckets {
+            if let _ = immediateChildren.first?.subAggsResult?.buckets {
+                for childBucket in immediateChildren {
+                    let childSplitted = split(bucket: childBucket)
+                    for child in childSplitted {
+                        let parent = TableVizUIBucket(key: bucket.key,
+                                                      value: "\(bucket.displayValue)",
+                            childBucket: child,
+                            bucket: bucket)
+                        
+                        splitted.append(parent)
+                    }
+                    
+                }
+            } else {
+                for childBucket in immediateChildren {
+                    let child = TableVizUIBucket(key: childBucket.key,
+                                                 value: "\(childBucket.displayValue)",
+                        childBucket: nil,
+                        bucket: childBucket)
+                    
                     let parent = TableVizUIBucket(key: bucket.key,
-                    value: "\(bucket.displayValue)",
-                    childBucket: child,
-                    bucket: bucket)
-                   
+                                                  value: "\(bucket.displayValue)",
+                        childBucket: child,
+                        bucket: bucket)
                     splitted.append(parent)
                 }
-                
             }
         } else {
-            
-            for childBucket in bucket.subAggsResult!.buckets {
-                let child = TableVizUIBucket(key: childBucket.key,
-                value: "\(childBucket.displayValue)",
+            let parent = TableVizUIBucket(key: bucket.key,
+                                          value: "\(bucket.displayValue)",
                 childBucket: nil,
-                bucket: childBucket)
-                
-                let parent = TableVizUIBucket(key: bucket.key,
-                value: "\(bucket.displayValue)",
-                childBucket: child,
                 bucket: bucket)
-                splitted.append(parent)
-            }
+            splitted = [parent]
         }
         
         return splitted
