@@ -47,6 +47,11 @@ class ContentListViewController: PanelBaseViewController {
     }
     
     override func updatePanelContent() {
+        super.updatePanelContent()
+        updateDataSource()
+    }
+    
+    private func updateDataSource() {
         if let parentBuckets = panel?.chartContentList {
             var buckets = [Bucket]()
             for parent in parentBuckets {
@@ -54,36 +59,10 @@ class ContentListViewController: PanelBaseViewController {
             }
             dataSource = buckets
         }
-        super.updatePanelContent()
-        sortContent()
         dataTable.reload()
+
     }
     
-    fileprivate func sortContent() {
-
-//        currentSort.type = (currentSort.type == .asc) ? .desc : .asc
-//
-//        if currentSort.sort == .left {
-//            // Sort left
-//            if let rangeItems = dataSource as? [RangeChartItem] {
-//                panel?.buckets = rangeItems.sorted(by: { [weak self] (first, second) -> Bool in
-//                    return self?.currentSort.type == .asc ? (first.from > second.from) : (first.from < second.from)
-//                })
-//            } else {
-//                panel?.buckets = dataSource.sorted(by: { [weak self] (first, second) -> Bool in
-//                    return self?.currentSort.type == .asc ? (first.key.lowercased() > second.key.lowercased()) : (first.key.lowercased() < second.key.lowercased())
-//                })
-//            }
-//
-//        } else {
-//            // Sort Right
-//            panel?.buckets = dataSource.sorted(by: { [weak self] (first, second) -> Bool in
-//                return self?.currentSort.type == .asc ? (first.docCount > second.docCount) : (first.docCount < second.docCount)
-//            })
-//        }
-        
-//        contentListTableView.reloadData()
-    }
 }
 
 extension ContentListViewController {
