@@ -95,6 +95,7 @@ class Panel: Mappable {
 
     var chartContentList: [ChartContent] = []
     
+    var parsedAggResult: AggResult?
     /**
      Bucket Type of the panel.
      */
@@ -120,6 +121,9 @@ class Panel: Mappable {
     var tableHeaderLeft: String? = ""
     
     var tableHeaderRight: String? = ""
+    
+    //Sub Buckets Support, All Headers are put into an array
+    var tableHeaders: [String] = []
 
     /**
      Currently selected dates (From & To), which are shown on top of the dashboard.
@@ -411,6 +415,19 @@ class Panel: Mappable {
             tableHeaderLeft = idDictionary?["label"] as? String ?? ""
             let namdeDictionary = headersArray.filter(( {($0["id"] as? String) == "1"} )).first
             tableHeaderRight = namdeDictionary?["label"] as? String ?? ""
+            
+            //Sub Buckets Support
+            var headers = [String]()
+            for headerDict in headersArray {
+                if let header = headerDict["label"] as? String {
+                    headers.append(header)
+                }
+            }
+            if headers.count > 1 {
+                let metric = headers.remove(at: 0)
+                headers.append(metric)
+            }
+            tableHeaders = headers
         }
         
         return buckets
@@ -425,6 +442,7 @@ class Panel: Mappable {
         
         guard let contentDict = aggregationsDict[id] as? [String: Any] else { return }
         let parsedData = AggResult(contentDict, visState: visState, idx: 0, parentBucket: nil)
+        self.parsedAggResult = parsedData
         chartContentList = parsedDataForChart(parsedData)
     }
     
@@ -670,6 +688,10 @@ class Bucket {
         }
     }
     
+    var parent: Bucket? {
+        return parentBucket
+    }
+    
     private var parentBucket: Bucket?
     private var visState: VisState?
     
@@ -766,6 +788,9 @@ class RangeBucket: Bucket {
         
         from        =   dictionary["from"] as? Double ?? 0.0
         to          =   dictionary["to"] as? Double ?? 0.0
+    }
+    var stringValue: String {
+        return "\(from) to \(to)"
     }
     
     static func ==(lhs: RangeBucket, rhs: RangeBucket) -> Bool {

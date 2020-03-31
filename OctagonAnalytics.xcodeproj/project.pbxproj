@@ -18,10 +18,6 @@
 		511A64CB23F52F76007E90C8 /* TutorialSettingsCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511A64CA23F52F76007E90C8 /* TutorialSettingsCarouselView.xib */; };
 		511A64CD23F52F84007E90C8 /* TutorialSettingsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511A64CC23F52F84007E90C8 /* TutorialSettingsCarouselView.swift */; };
 		511D3A7D2046905200BB80AC /* HorizontalBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511D3A7C2046905200BB80AC /* HorizontalBarChartViewController.swift */; };
-		511DDC1C1FB05C15000A6394 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511DDC1A1FB05C15000A6394 /* ListTableViewCell.swift */; };
-		511DDC1D1FB05C15000A6394 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511DDC1B1FB05C15000A6394 /* ListTableViewCell.xib */; };
-		511DDC1F1FB05D72000A6394 /* ListTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511DDC1E1FB05D72000A6394 /* ListTableHeaderView.swift */; };
-		511DDC211FB05D84000A6394 /* ListTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511DDC201FB05D84000A6394 /* ListTableHeaderView.xib */; };
 		51210C292070B75300B038EC /* MapVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51210C282070B75300B038EC /* MapVisState.swift */; };
 		5127EB97222D3DB7000C4E79 /* DashboardListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127EB95222D3DB7000C4E79 /* DashboardListHeaderView.swift */; };
 		5127EB98222D3DB7000C4E79 /* DashboardListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5127EB96222D3DB7000C4E79 /* DashboardListHeaderView.xib */; };
@@ -194,8 +190,11 @@
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
 		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
+		F11658A324333D3E00F88B32 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116589F24333D3E00F88B32 /* ListTableViewCell.swift */; };
+		F11658A424333D3E00F88B32 /* ListTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */; };
+		F11658A524333D3E00F88B32 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11658A124333D3E00F88B32 /* ListTableViewCell.xib */; };
+		F11658A724333D9C00F88B32 /* ListTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
-		F175513024277A0C00A4BA63 /* TableVizDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
@@ -214,10 +213,6 @@
 		511A64CA23F52F76007E90C8 /* TutorialSettingsCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialSettingsCarouselView.xib; sourceTree = "<group>"; };
 		511A64CC23F52F84007E90C8 /* TutorialSettingsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSettingsCarouselView.swift; sourceTree = "<group>"; };
 		511D3A7C2046905200BB80AC /* HorizontalBarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarChartViewController.swift; sourceTree = "<group>"; };
-		511DDC1A1FB05C15000A6394 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
-		511DDC1B1FB05C15000A6394 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
-		511DDC1E1FB05D72000A6394 /* ListTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeaderView.swift; sourceTree = "<group>"; };
-		511DDC201FB05D84000A6394 /* ListTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableHeaderView.xib; sourceTree = "<group>"; };
 		51210C282070B75300B038EC /* MapVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVisState.swift; sourceTree = "<group>"; };
 		5127EB95222D3DB7000C4E79 /* DashboardListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardListHeaderView.swift; sourceTree = "<group>"; };
 		5127EB96222D3DB7000C4E79 /* DashboardListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardListHeaderView.xib; sourceTree = "<group>"; };
@@ -407,8 +402,11 @@
 		B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctagonAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.release.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
+		F116589F24333D3E00F88B32 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableHeaderView.swift; sourceTree = "<group>"; };
+		F11658A124333D3E00F88B32 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableHeaderView.xib; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
-		F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVizDataProvider.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
@@ -519,12 +517,12 @@
 				51CFC69A1FB9BB5F00B99018 /* SavedSearch */,
 				5130A10C1FA73334003D0525 /* DashboardCollectionViewCell.swift */,
 				5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */,
+				F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */,
+				F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */,
+				F116589F24333D3E00F88B32 /* ListTableViewCell.swift */,
+				F11658A124333D3E00F88B32 /* ListTableViewCell.xib */,
 				517585DA1FB03705002AFB73 /* MetricsCollectionViewCell.swift */,
 				517585DB1FB03705002AFB73 /* MetricsCollectionViewCell.xib */,
-				511DDC1A1FB05C15000A6394 /* ListTableViewCell.swift */,
-				511DDC1B1FB05C15000A6394 /* ListTableViewCell.xib */,
-				511DDC1E1FB05D72000A6394 /* ListTableHeaderView.swift */,
-				511DDC201FB05D84000A6394 /* ListTableHeaderView.xib */,
 				51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */,
 				51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */,
 				5168C3B61FC2FDD400AB77C6 /* FilterCollectionViewCell.swift */,
@@ -610,7 +608,6 @@
 		513467E41F9DD3FF00F9B67D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F175512E242779DB00A4BA63 /* UIDataProvider */,
 				512D8C3623AFA4F0005A6B92 /* TagCloud */,
 				51D385DE2370090D00C59220 /* Canvas */,
 				51E93DBE22F1BB28006F3C3D /* MarkDown */,
@@ -1177,14 +1174,6 @@
 			path = BarChart;
 			sourceTree = "<group>";
 		};
-		F175512E242779DB00A4BA63 /* UIDataProvider */ = {
-			isa = PBXGroup;
-			children = (
-				F175512F24277A0C00A4BA63 /* TableVizDataProvider.swift */,
-			);
-			path = UIDataProvider;
-			sourceTree = "<group>";
-		};
 		F17AA024240E7DD500BDB6B7 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1259,6 +1248,7 @@
 				51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
+				F11658A524333D3E00F88B32 /* ListTableViewCell.xib in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
 				5174FBBA219C4EAB003BEB1E /* GraphNodeView.xib in Resources */,
 				F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */,
@@ -1275,7 +1265,6 @@
 				513A9090229AA17400B7E844 /* Exo2-SemiBold.otf in Resources */,
 				513A9095229AA17400B7E844 /* Exo2-Medium.otf in Resources */,
 				5130A1141FA733A1003D0525 /* DashboardCollectionViewCell.xib in Resources */,
-				511DDC1D1FB05C15000A6394 /* ListTableViewCell.xib in Resources */,
 				51CFC69E1FB9BB8700B99018 /* SavedSearchCollectionViewCell.xib in Resources */,
 				51CB2D261FBDA1BD007BC0A0 /* Main.storyboard in Resources */,
 				51CB2D161FBD5644007BC0A0 /* SavedSearchHeaderView.xib in Resources */,
@@ -1286,8 +1275,8 @@
 				51CD9AA323F2A35B005ACD46 /* TutorialLoginCarouselView.xib in Resources */,
 				519D85B922C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml in Resources */,
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
+				F11658A724333D9C00F88B32 /* ListTableHeaderView.xib in Resources */,
 				517585DD1FB03705002AFB73 /* MetricsCollectionViewCell.xib in Resources */,
-				511DDC211FB05D84000A6394 /* ListTableHeaderView.xib in Resources */,
 				511A64CB23F52F76007E90C8 /* TutorialSettingsCarouselView.xib in Resources */,
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
@@ -1331,6 +1320,7 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDataTables/SwiftDataTables.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/TGPControls/TGPControls.framework",
@@ -1357,6 +1347,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDataTables.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TGPControls.framework",
@@ -1421,10 +1412,8 @@
 				51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */,
 				5174FBB1219C27B7003BEB1E /* GraphVisState.swift in Sources */,
 				513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */,
-				511DDC1F1FB05D72000A6394 /* ListTableHeaderView.swift in Sources */,
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
 				516292EA1FA06319008A547B /* StoryboardManager.swift in Sources */,
-				511DDC1C1FB05C15000A6394 /* ListTableViewCell.swift in Sources */,
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
@@ -1441,6 +1430,7 @@
 				5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */,
 				5174FBAC219C2335003BEB1E /* GraphPanel.swift in Sources */,
 				51D5777620DB83410080608D /* DatePickerMapper.swift in Sources */,
+				F11658A424333D3E00F88B32 /* ListTableHeaderView.swift in Sources */,
 				5174FBB8219C4EA1003BEB1E /* GraphNodeView.swift in Sources */,
 				51210C292070B75300B038EC /* MapVisState.swift in Sources */,
 				5174FBA3219C105E003BEB1E /* WeightedGraphPresenter.swift in Sources */,
@@ -1454,6 +1444,7 @@
 				51E5311D1FFBAABD0065680B /* MapDetails.swift in Sources */,
 				51477DE92068E6AE00955394 /* User.swift in Sources */,
 				51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */,
+				F11658A324333D3E00F88B32 /* ListTableViewCell.swift in Sources */,
 				51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */,
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
@@ -1501,7 +1492,6 @@
 				51D3E7061FF508AE00CC4F2B /* SavedSearchPanel.swift in Sources */,
 				5168C3B81FC2FDD400AB77C6 /* FilterCollectionViewCell.swift in Sources */,
 				514211DB21807E83006E64DD /* FaceTilePanel.swift in Sources */,
-				F175513024277A0C00A4BA63 /* TableVizDataProvider.swift in Sources */,
 				51D385DD2370084A00C59220 /* CanvasListViewController.swift in Sources */,
 				51D3E70A1FF5094200CC4F2B /* DashboardItemsLoader.swift in Sources */,
 				5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */,
