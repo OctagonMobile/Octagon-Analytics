@@ -289,3 +289,24 @@ extension PanelBaseViewController {
         return CurrentTheme.isDarkTheme ? "FlipIconSelected-Dark" : "FlipIconSelected"
     }
 }
+
+enum Sort: String {
+    case left       = "left"
+    case right      = "right"
+    case unknown    = "unknown"
+}
+
+enum SortType: String {
+    case asc        = "Asc"
+    case desc       = "Desc"
+    case unknown    = "unknown"
+}
+
+struct SortTable {
+    var sort: Sort = .unknown
+    var type: SortType = .unknown
+    
+    static var defaultSort: SortTable {
+        return SortTable(sort: .unknown, type: .unknown)
+    }
+}

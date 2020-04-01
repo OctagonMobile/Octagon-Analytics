@@ -9,27 +9,6 @@
 import UIKit
 import SwiftDataTables
 
-enum Sort: String {
-    case left       = "left"
-    case right      = "right"
-    case unknown    = "unknown"
-}
-
-enum SortType: String {
-    case asc        = "Asc"
-    case desc       = "Desc"
-    case unknown    = "unknown"
-}
-
-struct SortTable {
-    var sort: Sort = .unknown
-    var type: SortType = .unknown
-    
-    static var defaultSort: SortTable {
-        return SortTable(sort: .unknown, type: .unknown)
-    }
-}
-
 class ContentListViewController: PanelBaseViewController {
 
     @IBOutlet weak var baseContentView: UIView!
@@ -37,9 +16,7 @@ class ContentListViewController: PanelBaseViewController {
     lazy var dataTable = makeDataTable()
 
     var dataSource: [Bucket] = []
-    
-    private var currentSort: SortTable = SortTable(sort: .right, type: .asc)
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         baseContentView.addSubview(dataTable)
@@ -63,27 +40,6 @@ class ContentListViewController: PanelBaseViewController {
 
     }
     
-}
-
-extension ContentListViewController {
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let agg = panel?.bucketAggregation, let fieldValue = panel?.buckets[indexPath.row] {
-            
-            var dateComponant: DateComponents?
-            if let selectedDates =  panel?.currentSelectedDates,
-                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-                dateComponant = fromDate.getDateComponents(toDate)
-            }
-            let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)            
-            if !Session.shared.containsFilter(filter) {
-                filterAction?(self, filter)
-            }
-        }
-
-    }
 }
 
 //Data Table Integration
