@@ -143,6 +143,20 @@ extension ContentListViewController: SwiftDataTableDataSource {
 extension ContentListViewController: SwiftDataTableDelegate {
     func didSelectItem(_ dataTable: SwiftDataTable, indexPath: IndexPath) {
         debugPrint("did select item at indexPath: \(indexPath) dataValue: \(dataTable.data(for: indexPath))")
+        let data = dataTable.data(for: indexPath)
+       
+        if case DataTableValueType.string( _, let bucket) = data,
+            let bucketObj = bucket as? Bucket {
+            
+            var dateComponant: DateComponents?
+            if let selectedDates =  panel?.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            
+            let filters = bucketObj.getRelatedfilters(dateComponant)
+            multiFilterAction?(self, filters)
+        }
     }
 }
 
@@ -150,22 +164,26 @@ extension ContentListViewController {
     //Subbucket to Table data conversion
     func rowData(_ bucket: Bucket) -> [DataTableValueType] {
         var currentBucket: Bucket? = bucket
-        var rowData: [String] = []
+        var rowData: [DataTableValueType] = []
         while currentBucket != nil {
             var key = currentBucket?.key ?? ""
             if let rangeBucket = currentBucket as? RangeBucket {
                 key = rangeBucket.stringValue
+            } else if currentBucket?.bucketType == BucketType.dateHistogram {
+                let milliSeconds = Int(currentBucket?.key ?? "") ?? 0
+                let date = Date(milliseconds: milliSeconds)
+                key = date.toFormat("YYYY-MM-dd")
             }
             
             if rowData.isEmpty {
-                rowData.append(key)
-                rowData.append("\(currentBucket?.displayValue ?? 0)")
+                rowData.append(DataTableValueType.string(key, bucket))
+                rowData.append(DataTableValueType.string("\(currentBucket?.displayValue ?? 0)", bucket))
             } else {
-                rowData.insert(key, at: 0)
+                rowData.insert(DataTableValueType.string(key, bucket), at: 0)
             }
-            currentBucket = currentBucket?.parent
+            currentBucket = currentBucket?.parentBkt
         }
-        return rowData.map( DataTableValueType.string )
+        return rowData
     }
 }
 

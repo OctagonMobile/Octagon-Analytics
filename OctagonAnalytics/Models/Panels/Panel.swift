@@ -688,7 +688,7 @@ class Bucket {
         }
     }
     
-    var parent: Bucket? {
+    var parentBkt: Bucket? {
         return parentBucket
     }
     
@@ -797,6 +797,22 @@ class RangeBucket: Bucket {
         return lhs.key == rhs.key && lhs.to == rhs.to && lhs.from == rhs.from
     }
 
+}
+
+extension Bucket: BucketAggType {
+    var bucketKey: String {
+        return key
+    }
+    
+    var aggType: BucketType {
+        return bucketType
+    }
+    
+    var parent: BucketAggType? {
+        return parentBkt
+    }
+    
+    
 }
 
 class ChartContent {
