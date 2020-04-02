@@ -48,9 +48,9 @@ extension ContentListViewController {
     private func setupTableConstraints() {
         NSLayoutConstraint.activate([
             dataTable.topAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.topAnchor),
-            dataTable.leadingAnchor.constraint(equalTo: baseContentView.leadingAnchor),
+            dataTable.leadingAnchor.constraint(equalTo: baseContentView.leadingAnchor, constant: 5),
             dataTable.bottomAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.bottomAnchor),
-            dataTable.trailingAnchor.constraint(equalTo: baseContentView.trailingAnchor),
+            dataTable.trailingAnchor.constraint(equalTo: baseContentView.trailingAnchor, constant: -5),
         ])
     }
     
