@@ -190,9 +190,7 @@
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
 		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
-		F11658A324333D3E00F88B32 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116589F24333D3E00F88B32 /* ListTableViewCell.swift */; };
 		F11658A424333D3E00F88B32 /* ListTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */; };
-		F11658A524333D3E00F88B32 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11658A124333D3E00F88B32 /* ListTableViewCell.xib */; };
 		F11658A724333D9C00F88B32 /* ListTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
@@ -402,9 +400,7 @@
 		B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctagonAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.release.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
-		F116589F24333D3E00F88B32 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableHeaderView.swift; sourceTree = "<group>"; };
-		F11658A124333D3E00F88B32 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableHeaderView.xib; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -519,8 +515,6 @@
 				5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */,
 				F11658A024333D3E00F88B32 /* ListTableHeaderView.swift */,
 				F11658A624333D9C00F88B32 /* ListTableHeaderView.xib */,
-				F116589F24333D3E00F88B32 /* ListTableViewCell.swift */,
-				F11658A124333D3E00F88B32 /* ListTableViewCell.xib */,
 				517585DA1FB03705002AFB73 /* MetricsCollectionViewCell.swift */,
 				517585DB1FB03705002AFB73 /* MetricsCollectionViewCell.xib */,
 				51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */,
@@ -1248,7 +1242,6 @@
 				51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
-				F11658A524333D3E00F88B32 /* ListTableViewCell.xib in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
 				5174FBBA219C4EAB003BEB1E /* GraphNodeView.xib in Resources */,
 				F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */,
@@ -1444,7 +1437,6 @@
 				51E5311D1FFBAABD0065680B /* MapDetails.swift in Sources */,
 				51477DE92068E6AE00955394 /* User.swift in Sources */,
 				51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */,
-				F11658A324333D3E00F88B32 /* ListTableViewCell.swift in Sources */,
 				51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */,
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
