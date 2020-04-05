@@ -69,11 +69,14 @@ extension ContentListViewController {
         configuration.highlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
         configuration.unhighlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
         configuration.headerBackgroundColor = CurrentTheme.cellBackgroundColor
+        configuration.selectedHeaderBackgroundColor = CurrentTheme.standardColor
+        configuration.selectedHeaderTextColor = UIColor.white
         configuration.cellTextColor = CurrentTheme.bodyTextStyle().color
         configuration.headerTextColor = CurrentTheme.headLineTextStyle().color
         configuration.cellSeparatorColor = CurrentTheme.separatorColor
         configuration.cellFont = CurrentTheme.bodyTextStyle().font
         configuration.headerFont = CurrentTheme.headLineTextStyle().font
+        configuration.shouldContentWidthScaleToFillFrame = false
         return configuration
     }
 }
