@@ -76,7 +76,7 @@ extension ContentListViewController {
         configuration.cellSeparatorColor = CurrentTheme.separatorColor
         configuration.cellFont = CurrentTheme.bodyTextStyle().font
         configuration.headerFont = CurrentTheme.headLineTextStyle().font
-        configuration.shouldContentWidthScaleToFillFrame = false
+        configuration.shouldContentWidthScaleToFillFrame = true
         return configuration
     }
 }
