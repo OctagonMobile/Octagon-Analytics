@@ -4,7 +4,7 @@ use_frameworks!
 target 'OctagonAnalytics' do
   pod 'Alamofire'
   pod 'AlamofireImage'
-  pod 'AlamofireObjectMapper'
+  pod 'AlamofireObjectMapper', '5.2.1'
 
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'
@@ -21,6 +21,7 @@ target 'OctagonAnalytics' do
     pod 'SwiftKeychainWrapper'
     pod 'MarqueeLabel'
     pod 'MarkdownView'
+    pod 'SwiftDataTables', :git => 'https://github.com/OctagonMobile/SwiftDataTables.git'
     
 #Animation
     pod 'iCarousel'

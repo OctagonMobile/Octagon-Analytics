@@ -7,142 +7,143 @@
 //
 
 import UIKit
-
-enum Sort: String {
-    case left       = "left"
-    case right      = "right"
-    case unknown    = "unknown"
-}
-
-enum SortType: String {
-    case asc        = "Asc"
-    case desc       = "Desc"
-    case unknown    = "unknown"
-}
-
-struct SortTable {
-    var sort: Sort = .unknown
-    var type: SortType = .unknown
-    
-    static var defaultSort: SortTable {
-        return SortTable(sort: .unknown, type: .unknown)
-    }
-}
+import SwiftDataTables
 
 class ContentListViewController: PanelBaseViewController {
 
-    @IBOutlet weak var contentListTableView: UITableView!
+    @IBOutlet weak var baseContentView: UIView!
     
-    var dataSource: [ChartItem] {
-        return panel?.buckets ?? []
-    }
+    lazy var dataTable = makeDataTable()
 
-    private var currentSort: SortTable = SortTable(sort: .right, type: .asc)
-    
+    var dataSource: [Bucket] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        contentListTableView.register(UINib(nibName: NibName.listTableViewCell, bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.listTableViewCell)
-        contentListTableView.register(UINib(nibName: NibName.listTableHeaderView, bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: CellIdentifiers.listTableHeaderView)
-        
-        contentListTableView.tableFooterView = UIView()
-        contentListTableView.estimatedRowHeight = 40.0
-        contentListTableView.rowHeight = UITableView.automaticDimension
-        contentListTableView.separatorColor = CurrentTheme.separatorColor
-        contentListTableView.backgroundColor = CurrentTheme.cellBackgroundColor
+        baseContentView.addSubview(dataTable)
+        setupTableConstraints()
     }
     
     override func updatePanelContent() {
         super.updatePanelContent()
-        sortContent()
+        updateDataSource()
     }
     
-    fileprivate func sortContent() {
-
-        currentSort.type = (currentSort.type == .asc) ? .desc : .asc
-
-        if currentSort.sort == .left {
-            // Sort left
-            if let rangeItems = dataSource as? [RangeChartItem] {
-                panel?.buckets = rangeItems.sorted(by: { [weak self] (first, second) -> Bool in
-                    return self?.currentSort.type == .asc ? (first.from > second.from) : (first.from < second.from)
-                })
-            } else {
-                panel?.buckets = dataSource.sorted(by: { [weak self] (first, second) -> Bool in
-                    return self?.currentSort.type == .asc ? (first.key.lowercased() > second.key.lowercased()) : (first.key.lowercased() < second.key.lowercased())
-                })
+    private func updateDataSource() {
+        if let parentBuckets = panel?.chartContentList {
+            var buckets = [Bucket]()
+            for parent in parentBuckets {
+                buckets.append(contentsOf: parent.items)
             }
-            
-        } else {
-            // Sort Right
-            panel?.buckets = dataSource.sorted(by: { [weak self] (first, second) -> Bool in
-                return self?.currentSort.type == .asc ? (first.docCount > second.docCount) : (first.docCount < second.docCount)
-            })
+            dataSource = buckets
         }
-        
-        contentListTableView.reloadData()
+        dataTable.reload()
+
+    }
+    
+}
+
+//Data Table Integration
+extension ContentListViewController {
+    //Data Table Setup Methods
+    private func setupTableConstraints() {
+        NSLayoutConstraint.activate([
+            dataTable.topAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.topAnchor),
+            dataTable.leadingAnchor.constraint(equalTo: baseContentView.leadingAnchor, constant: 5),
+            dataTable.bottomAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.bottomAnchor),
+            dataTable.trailingAnchor.constraint(equalTo: baseContentView.trailingAnchor, constant: -5),
+        ])
+    }
+    
+    private func makeDataTable() -> SwiftDataTable {
+        let dataTable = SwiftDataTable(dataSource: self, options: dataTableConfiguration())
+        dataTable.translatesAutoresizingMaskIntoConstraints = false
+        dataTable.delegate = self
+        dataTable.backgroundColor = CurrentTheme.cellBackgroundColor
+        return dataTable
+    }
+    
+    private func dataTableConfiguration() -> DataTableConfiguration {
+        var configuration = DataTableConfiguration()
+        configuration.shouldShowFooter = false
+        configuration.shouldShowSearchSection = false
+        configuration.highlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
+        configuration.unhighlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
+        configuration.headerBackgroundColor = CurrentTheme.cellBackgroundColor
+        configuration.selectedHeaderBackgroundColor = CurrentTheme.standardColor
+        configuration.selectedHeaderTextColor = CurrentTheme.secondaryTitleColor
+        configuration.cellTextColor = CurrentTheme.bodyTextStyle().color
+        configuration.headerTextColor = CurrentTheme.headLineTextStyle().color
+        configuration.cellSeparatorColor = CurrentTheme.separatorColor
+        configuration.cellFont = CurrentTheme.bodyTextStyle().font
+        configuration.headerFont = CurrentTheme.headLineTextStyle().font
+        configuration.shouldContentWidthScaleToFillFrame = true
+        configuration.sortArrowTintColor = CurrentTheme.secondaryTitleColor
+        return configuration
     }
 }
 
-extension ContentListViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ContentListViewController: SwiftDataTableDataSource {
+    public func dataTable(_ dataTable: SwiftDataTable, headerTitleForColumnAt columnIndex: NSInteger) -> String {
+        return panel?.tableHeaders[columnIndex] ?? ""
+    }
+    
+    public func numberOfColumns(in: SwiftDataTable) -> Int {
+        return panel?.tableHeaders.count ?? 0
+    }
+    
+    func numberOfRows(in: SwiftDataTable) -> Int {
         return dataSource.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.listTableViewCell, for: indexPath) as? ListTableViewCell
-        cell?.setupCell(dataSource[indexPath.row])
-        return cell ?? UITableViewCell()
+    public func dataTable(_ dataTable: SwiftDataTable, dataForRowAt index: NSInteger) -> [DataTableValueType] {
+        return rowData(dataSource[index])
     }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.0
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellIdentifiers.listTableHeaderView) as? ListTableHeaderView
-        headerView?.setupHeader(panel?.tableHeaderLeft, panel?.tableHeaderRight, currentSort)
-        headerView?.leftAction = { [weak self] sender in
-            
-            self?.currentSort.sort = .left
-            self?.sortContent()
-        }
-        
-        headerView?.rightAction = { [weak self] sender in
-            
-            self?.currentSort.sort = .right
-            self?.sortContent()
-        }
+}
 
-        return headerView
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let agg = panel?.bucketAggregation, let fieldValue = panel?.buckets[indexPath.row] {
+extension ContentListViewController: SwiftDataTableDelegate {
+    func didSelectItem(_ dataTable: SwiftDataTable, indexPath: IndexPath) {
+        debugPrint("did select item at indexPath: \(indexPath) dataValue: \(dataTable.data(for: indexPath))")
+        let data = dataTable.data(for: indexPath)
+       
+        if case DataTableValueType.string( _, let bucket) = data,
+            let bucketObj = bucket as? Bucket {
             
             var dateComponant: DateComponents?
             if let selectedDates =  panel?.currentSelectedDates,
                 let fromDate = selectedDates.0, let toDate = selectedDates.1 {
                 dateComponant = fromDate.getDateComponents(toDate)
             }
-            let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)            
-            if !Session.shared.containsFilter(filter) {
-                filterAction?(self, filter)
-            }
+            
+            let filters = bucketObj.getRelatedfilters(dateComponant)
+            multiFilterAction?(self, filters)
         }
-
     }
 }
+
 extension ContentListViewController {
-    struct CellIdentifiers {
-        static let listTableViewCell = "ListTableViewCell"
+    //Subbucket to Table data conversion
+    func rowData(_ bucket: Bucket) -> [DataTableValueType] {
+        var currentBucket: Bucket? = bucket
+        var rowData: [DataTableValueType] = []
+        while currentBucket != nil {
+            var key = currentBucket?.key ?? ""
+            if let rangeBucket = currentBucket as? RangeBucket {
+                key = rangeBucket.stringValue
+            } else if currentBucket?.bucketType == BucketType.dateHistogram {
+                let milliSeconds = Int(currentBucket?.key ?? "") ?? 0
+                let date = Date(milliseconds: milliSeconds)
+                key = date.toFormat("YYYY-MM-dd")
+            }
+            
+            if rowData.isEmpty {
+                rowData.append(DataTableValueType.string(key, bucket))
+                rowData.append(DataTableValueType.string("\(currentBucket?.displayValue ?? 0)", bucket))
+            } else {
+                rowData.insert(DataTableValueType.string(key, bucket), at: 0)
+            }
+            currentBucket = currentBucket?.parentBkt
+        }
+        return rowData
     }
-    
-    struct NibName {
-        static let listTableViewCell = "ListTableViewCell"
-    }
-
 }
+

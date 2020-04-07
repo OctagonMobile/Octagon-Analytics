@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -421,11 +421,11 @@
                                                     <action selector="flipButtonAction:" destination="Wd6-4S-a9k" eventType="touchUpInside" id="8vg-FN-ZYf"/>
                                                 </connections>
                                             </button>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-Uo-eBD" userLabel="LegendHolder">
-                                                <rect key="frame" x="929" y="0.0" width="30" height="45"/>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ed-Uo-eBD" userLabel="LegendHolder">
+                                                <rect key="frame" x="959" y="0.0" width="0.0" height="45"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQH-d5-4Dr">
-                                                        <rect key="frame" x="30" y="0.0" width="0.0" height="45"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQH-d5-4Dr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -559,23 +559,6 @@
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3Q-9V-o4o">
                                         <rect key="frame" x="0.0" y="45" width="1014" height="713"/>
-                                        <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IAh-qD-LrB">
-                                                <rect key="frame" x="0.0" y="0.0" width="1014" height="713"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="usM-1P-1Ru" id="E9Y-hj-5FR"/>
-                                                    <outlet property="delegate" destination="usM-1P-1Ru" id="5OJ-bi-IvS"/>
-                                                </connections>
-                                            </tableView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="IAh-qD-LrB" secondAttribute="trailing" id="7H5-fg-Glq"/>
-                                            <constraint firstItem="IAh-qD-LrB" firstAttribute="leading" secondItem="s3Q-9V-o4o" secondAttribute="leading" id="fUJ-j3-G8n"/>
-                                            <constraint firstItem="IAh-qD-LrB" firstAttribute="top" secondItem="s3Q-9V-o4o" secondAttribute="top" id="k7d-pG-hO5"/>
-                                            <constraint firstAttribute="bottom" secondItem="IAh-qD-LrB" secondAttribute="bottom" id="tcc-1T-lpg"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -604,7 +587,7 @@
                         <viewLayoutGuide key="safeArea" id="A3c-BY-rr2"/>
                     </view>
                     <connections>
-                        <outlet property="contentListTableView" destination="IAh-qD-LrB" id="xkm-cU-r4l"/>
+                        <outlet property="baseContentView" destination="s3Q-9V-o4o" id="Cy6-Fn-FPB"/>
                         <outlet property="headerTitleLabel" destination="CaA-Eq-8jw" id="Bym-du-TD8"/>
                         <outlet property="headerview" destination="PNI-IR-7mL" id="6I6-UO-Xme"/>
                         <outlet property="mainContainerView" destination="R9s-K7-K9H" id="ke9-dR-cel"/>
