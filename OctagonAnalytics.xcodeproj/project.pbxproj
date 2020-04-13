@@ -116,6 +116,8 @@
 		518422BE1FB41E0A00D28CAD /* RangeChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */; };
 		5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */; };
 		518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C61A11FB4646100F83381 /* TermsChartItem.swift */; };
+		518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BB243F400F00522314 /* GaugeViewController.swift */; };
+		518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BE243F422100522314 /* GaugeVisState.swift */; };
 		51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923AB6207DE3750023FE27 /* MapBaseViewController.swift */; };
 		51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923AB9207DF6B40023FE27 /* HeatMapPanel.swift */; };
 		51923ABC207DF6B40023FE27 /* MapTrackingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923ABA207DF6B40023FE27 /* MapTrackingPanel.swift */; };
@@ -322,6 +324,8 @@
 		518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeChartItem.swift; sourceTree = "<group>"; };
 		5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		518C61A11FB4646100F83381 /* TermsChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsChartItem.swift; sourceTree = "<group>"; };
+		518DD0BB243F400F00522314 /* GaugeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewController.swift; sourceTree = "<group>"; };
+		518DD0BE243F422100522314 /* GaugeVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeVisState.swift; sourceTree = "<group>"; };
 		51923AB6207DE3750023FE27 /* MapBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
 		51923AB9207DF6B40023FE27 /* HeatMapPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapPanel.swift; sourceTree = "<group>"; };
 		51923ABA207DF6B40023FE27 /* MapTrackingPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTrackingPanel.swift; sourceTree = "<group>"; };
@@ -602,6 +606,7 @@
 		513467E41F9DD3FF00F9B67D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				518DD0BD243F420D00522314 /* Gauge */,
 				512D8C3623AFA4F0005A6B92 /* TagCloud */,
 				51D385DE2370090D00C59220 /* Canvas */,
 				51E93DBE22F1BB28006F3C3D /* MarkDown */,
@@ -646,6 +651,7 @@
 			children = (
 				5136038E2226713A002D12B6 /* WebContentViewController.swift */,
 				51E93DBC22F1B9F8006F3C3D /* MarkDownViewController.swift */,
+				518DD0BB243F400F00522314 /* GaugeViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -962,6 +968,14 @@
 				513A907B229AA16100B7E844 /* CustomFont */,
 			);
 			path = Style;
+			sourceTree = "<group>";
+		};
+		518DD0BD243F420D00522314 /* Gauge */ = {
+			isa = PBXGroup;
+			children = (
+				518DD0BE243F422100522314 /* GaugeVisState.swift */,
+			);
+			path = Gauge;
 			sourceTree = "<group>";
 		};
 		51923AB5207DE2FC0023FE27 /* Map */ = {
@@ -1392,6 +1406,7 @@
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
 				51743CBE22B1143200C92E73 /* SSCustomTemplateDataProvider.swift in Sources */,
+				518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */,
 				512BF7771FA0C05F00DCCE6A /* ChartItem.swift in Sources */,
 				51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */,
 				51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */,
@@ -1443,6 +1458,7 @@
 				51CFC6A11FB9BDC700B99018 /* SavedSearchTableViewCell.swift in Sources */,
 				51677F46206CC9CA00C7751A /* TermsAndConditionViewController.swift in Sources */,
 				512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */,
+				518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */,
 				51CB2D211FBDA141007BC0A0 /* PanelBaseViewController.swift in Sources */,
 				51E8BF4E20F38048004B5D20 /* QuickDatePickerView.swift in Sources */,
 				513D89792175F725001B12D6 /* WorldMapView.swift in Sources */,
