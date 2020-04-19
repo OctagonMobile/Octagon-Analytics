@@ -7,7 +7,41 @@
 //
 
 import UIKit
+import SmartGauge
 
 class GaugeViewController: PanelBaseViewController {
     
+    //MARK: Outlets
+    @IBOutlet weak var gaugeView: SmartGauge!
+
+    //MARK: Overriden Functions
+    override func setupPanel() {
+        super.setupPanel()
+        
+        guard let visState = panel?.visState as? GaugeVisState else { return }
+        
+        if visState.gaugeType == .gauge {
+            let colors = CurrentTheme.allChartColors
+            
+            var colorIndex = 0
+            let ranges: [SGRanges] = visState.gauge?.ranges.enumerated().compactMap { (index, element) in
+                let title = "\(element.from) - \(element.to)"
+                if index >= colors.count {
+                    colorIndex = 0
+                }
+                return SGRanges(title, fromValue: element.from, toValue: element.to, color: colors[colorIndex])
+            } ?? []
+            
+            gaugeView.rangesList = ranges
+            
+        } else {
+            // Handle for gaol
+        }
+    }
+    
+    override func updatePanelContent() {
+        super.updatePanelContent()
+        hideNoItemsAvailable()
+        gaugeView.gaugeValue = (panel as? GaugePanel)?.gaugeValue ?? 0.0
+    }
 }

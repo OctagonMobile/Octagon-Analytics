@@ -31,14 +31,14 @@ class GaugeVisState: VisState {
 
 class Gauge: Mappable {
     
-    var colorsRange: [GaugeRange] =   []
+    var ranges: [GaugeRange] =   []
     
     required init?(map: Map) {}
     
     func mapping(map: Map) {
         
         if let colorsRangeList = map.JSON["colorsRange"] as? [[String : Any]] {
-            colorsRange =   Mapper<GaugeRange>().mapArray(JSONArray: colorsRangeList)
+            ranges =   Mapper<GaugeRange>().mapArray(JSONArray: colorsRangeList)
         }
     }
 }

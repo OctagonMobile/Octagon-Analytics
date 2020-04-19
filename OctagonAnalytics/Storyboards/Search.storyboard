@@ -210,17 +210,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfc-XS-87K">
                                         <rect key="frame" x="0.0" y="45" width="1356" height="969"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7w-TV-3rp" customClass="MarkdownView" customModule="MarkdownView">
-                                                <rect key="frame" x="0.0" y="0.0" width="1356" height="969"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7w-TV-3rp" customClass="SmartGauge" customModule="SmartGauge">
+                                                <rect key="frame" x="193.5" y="0.0" width="969" height="969"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="F7w-TV-3rp" secondAttribute="height" multiplier="1:1" id="P3s-9V-3mv"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="F7w-TV-3rp" firstAttribute="top" secondItem="yfc-XS-87K" secondAttribute="top" id="Pse-Pg-ljD"/>
-                                            <constraint firstItem="F7w-TV-3rp" firstAttribute="leading" secondItem="yfc-XS-87K" secondAttribute="leading" id="TdW-O5-1NG"/>
-                                            <constraint firstAttribute="trailing" secondItem="F7w-TV-3rp" secondAttribute="trailing" id="ZVQ-wt-eSk"/>
-                                            <constraint firstAttribute="bottom" secondItem="F7w-TV-3rp" secondAttribute="bottom" id="lfP-ec-OHr"/>
+                                            <constraint firstItem="F7w-TV-3rp" firstAttribute="centerX" secondItem="yfc-XS-87K" secondAttribute="centerX" id="3tO-Ke-9b6"/>
+                                            <constraint firstAttribute="bottom" secondItem="F7w-TV-3rp" secondAttribute="bottom" id="DXh-4j-HqT"/>
+                                            <constraint firstItem="F7w-TV-3rp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yfc-XS-87K" secondAttribute="leading" id="Kux-N5-yyy"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F7w-TV-3rp" secondAttribute="trailing" id="RET-mh-dsq"/>
+                                            <constraint firstItem="F7w-TV-3rp" firstAttribute="top" secondItem="yfc-XS-87K" secondAttribute="top" id="xxt-1U-8BU"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -251,6 +255,7 @@
                     </view>
                     <connections>
                         <outlet property="displayContainerView" destination="yfc-XS-87K" id="XKn-Om-1tY"/>
+                        <outlet property="gaugeView" destination="F7w-TV-3rp" id="nP5-8L-NRQ"/>
                         <outlet property="headerTitleLabel" destination="ObX-Ru-nc2" id="cCy-V5-cKc"/>
                         <outlet property="headerview" destination="Ocq-1T-jX0" id="fri-m0-cid"/>
                         <outlet property="mainContainerView" destination="lwt-Va-VGl" id="Uk0-cZ-m8E"/>
