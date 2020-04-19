@@ -15,6 +15,16 @@ class GaugeViewController: PanelBaseViewController {
     @IBOutlet weak var gaugeView: SmartGauge!
 
     //MARK: Overriden Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initialGaugeSetup()
+    }
+    
+    private func initialGaugeSetup() {
+        gaugeView.valueTextColor = CurrentTheme.titleColor
+        gaugeView.coveredTickValueColor = CurrentTheme.titleColor
+    }
+    
     override func setupPanel() {
         super.setupPanel()
         
@@ -33,7 +43,10 @@ class GaugeViewController: PanelBaseViewController {
             } ?? []
             
             gaugeView.rangesList = ranges
-            
+            if let lastRange = ranges.last {
+                gaugeView.gaugeMaxValue = lastRange.toValue
+            }
+
         } else {
             // Handle for gaol
         }
@@ -42,6 +55,11 @@ class GaugeViewController: PanelBaseViewController {
     override func updatePanelContent() {
         super.updatePanelContent()
         hideNoItemsAvailable()
-        gaugeView.gaugeValue = (panel as? GaugePanel)?.gaugeValue ?? 0.0
+        let gaugeVal = (panel as? GaugePanel)?.gaugeValue ?? 0.0
+        gaugeView.gaugeValue = gaugeVal
+        
+        if gaugeVal > gaugeView.rangesList.last?.toValue ?? 0.0 {
+            gaugeView.gaugeMaxValue = gaugeVal
+        }
     }
 }
