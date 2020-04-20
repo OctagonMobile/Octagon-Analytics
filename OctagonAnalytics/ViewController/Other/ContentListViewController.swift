@@ -7,19 +7,21 @@
 //
 
 import UIKit
-import SwiftDataTables
 
 class ContentListViewController: PanelBaseViewController {
-
+    
     @IBOutlet weak var baseContentView: UIView!
     
-    lazy var dataTable = makeDataTable()
-
-    var dataSource: [Bucket] = []
-        
+    lazy var clDataTableAdapter: DataTableType = SwiftDataTableAdapter(getCLDataTableConfig(),
+                                                                       delegate: self)
+    
+    lazy var clDataTable = clDataTableAdapter.dataTable
+    
+    var clDataSource: [Bucket] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseContentView.addSubview(dataTable)
+        baseContentView.addSubview(clDataTable)
         setupTableConstraints()
     }
     
@@ -34,78 +36,23 @@ class ContentListViewController: PanelBaseViewController {
             for parent in parentBuckets {
                 buckets.append(contentsOf: parent.items)
             }
-            dataSource = buckets
+            clDataSource = buckets
         }
-        dataTable.reload()
-
+        clDataTableAdapter.reload()
     }
     
-}
-
-//Data Table Integration
-extension ContentListViewController {
-    //Data Table Setup Methods
-    private func setupTableConstraints() {
-        NSLayoutConstraint.activate([
-            dataTable.topAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.topAnchor),
-            dataTable.leadingAnchor.constraint(equalTo: baseContentView.leadingAnchor, constant: 5),
-            dataTable.bottomAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.bottomAnchor),
-            dataTable.trailingAnchor.constraint(equalTo: baseContentView.trailingAnchor, constant: -5),
-        ])
-    }
-    
-    private func makeDataTable() -> SwiftDataTable {
-        let dataTable = SwiftDataTable(dataSource: self, options: dataTableConfiguration())
-        dataTable.translatesAutoresizingMaskIntoConstraints = false
-        dataTable.delegate = self
-        dataTable.backgroundColor = CurrentTheme.cellBackgroundColor
-        return dataTable
-    }
-    
-    private func dataTableConfiguration() -> DataTableConfiguration {
-        var configuration = DataTableConfiguration()
-        configuration.shouldShowFooter = false
-        configuration.shouldShowSearchSection = false
-        configuration.highlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
-        configuration.unhighlightedAlternatingRowColors = [ CurrentTheme.cellBackgroundColor ]
-        configuration.headerBackgroundColor = CurrentTheme.cellBackgroundColor
-        configuration.selectedHeaderBackgroundColor = CurrentTheme.standardColor
-        configuration.selectedHeaderTextColor = CurrentTheme.secondaryTitleColor
-        configuration.cellTextColor = CurrentTheme.bodyTextStyle().color
-        configuration.headerTextColor = CurrentTheme.headLineTextStyle().color
-        configuration.cellSeparatorColor = CurrentTheme.separatorColor
-        configuration.cellFont = CurrentTheme.bodyTextStyle().font
-        configuration.headerFont = CurrentTheme.headLineTextStyle().font
-        configuration.shouldContentWidthScaleToFillFrame = true
-        configuration.sortArrowTintColor = CurrentTheme.secondaryTitleColor
-        return configuration
-    }
-}
-
-extension ContentListViewController: SwiftDataTableDataSource {
-    public func dataTable(_ dataTable: SwiftDataTable, headerTitleForColumnAt columnIndex: NSInteger) -> String {
-        return panel?.tableHeaders[columnIndex] ?? ""
-    }
-    
-    public func numberOfColumns(in: SwiftDataTable) -> Int {
+    override func numberOfColumnsInDataTable(dataTable: DataTableType) -> Int {
         return panel?.tableHeaders.count ?? 0
     }
     
-    func numberOfRows(in: SwiftDataTable) -> Int {
-        return dataSource.count
+    override func numberOfRowsInDataTable(dataTable: DataTableType) -> Int {
+        return clDataSource.count
     }
     
-    public func dataTable(_ dataTable: SwiftDataTable, dataForRowAt index: NSInteger) -> [DataTableValueType] {
-        return rowData(dataSource[index])
-    }
-}
-
-extension ContentListViewController: SwiftDataTableDelegate {
-    func didSelectItem(_ dataTable: SwiftDataTable, indexPath: IndexPath) {
-        debugPrint("did select item at indexPath: \(indexPath) dataValue: \(dataTable.data(for: indexPath))")
-        let data = dataTable.data(for: indexPath)
-       
-        if case DataTableValueType.string( _, let bucket) = data,
+    override func didSelectItemInDataTable(dataTable: DataTableType,  indexPath: IndexPath) {
+        let data = clDataTableAdapter.data(for: indexPath)
+        
+        if case DataTableValue.string( _, let bucket) = data,
             let bucketObj = bucket as? Bucket {
             
             var dateComponant: DateComponents?
@@ -118,13 +65,52 @@ extension ContentListViewController: SwiftDataTableDelegate {
             multiFilterAction?(self, filters)
         }
     }
+    
+    override func dataForRowInDataTable(dataTable: DataTableType, atIndex index: Int) -> [DataTableValue] {
+        return clRowData(clDataSource[index])
+    }
+    
+    override func headerTitleForColumnInDataTable(dataTable: DataTableType, atIndex index: Int) -> String {
+        return panel?.tableHeaders[index] ?? ""
+    }
+    
+}
+
+extension ContentListViewController {
+    
+    
+}
+
+extension ContentListViewController {
+    func getCLDataTableConfig() -> DataTableConfig {
+        return DataTableConfig(headerTextColor: CurrentTheme.headLineTextStyle().color,
+                               headerBackgroundColor: CurrentTheme.cellBackgroundColor,
+                               headerFont: CurrentTheme.headLineTextStyle().font,
+                               selectedHeaderBackgroundColor: CurrentTheme.standardColor,
+                               selectedHeaderTextColor: CurrentTheme.secondaryTitleColor,
+                               rowTextColor: CurrentTheme.bodyTextStyle().color,
+                               rowBackgroundColor: CurrentTheme.cellBackgroundColor,
+                               rowFont: CurrentTheme.bodyTextStyle().font,
+                               separatorColor: CurrentTheme.separatorColor,
+                               sortArrowColor: CurrentTheme.secondaryTitleColor,
+                               enableSorting: true)
+    }
+    
+    private func setupTableConstraints() {
+        NSLayoutConstraint.activate([
+            clDataTable.topAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.topAnchor),
+            clDataTable.leadingAnchor.constraint(equalTo: baseContentView.leadingAnchor, constant: 5),
+            clDataTable.bottomAnchor.constraint(equalTo: baseContentView.layoutMarginsGuide.bottomAnchor),
+            clDataTable.trailingAnchor.constraint(equalTo: baseContentView.trailingAnchor, constant: -5),
+        ])
+    }
 }
 
 extension ContentListViewController {
     //Subbucket to Table data conversion
-    func rowData(_ bucket: Bucket) -> [DataTableValueType] {
+    func clRowData(_ bucket: Bucket) -> [DataTableValue] {
         var currentBucket: Bucket? = bucket
-        var rowData: [DataTableValueType] = []
+        var rowData: [DataTableValue] = []
         while currentBucket != nil {
             var key = currentBucket?.key ?? ""
             if let rangeBucket = currentBucket as? RangeBucket {
@@ -136,10 +122,10 @@ extension ContentListViewController {
             }
             
             if rowData.isEmpty {
-                rowData.append(DataTableValueType.string(key, bucket))
-                rowData.append(DataTableValueType.string("\(currentBucket?.displayValue ?? 0)", bucket))
+                rowData.append(DataTableValue.string(key, bucket))
+                rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
             } else {
-                rowData.insert(DataTableValueType.string(key, bucket), at: 0)
+                rowData.insert(DataTableValue.string(key, bucket), at: 0)
             }
             currentBucket = currentBucket?.parentBkt
         }

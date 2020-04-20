@@ -53,42 +53,42 @@ class ListTableHeaderView: UITableViewHeaderFooterView {
 
     }
     
-    func setupHeader(_ leftText: String?, _ rightText: String?,_ selectedSort: SortTable = SortTable.defaultSort) {
-        leftButton.setTitle(leftText, for: .normal)
-        rightButton.setTitle(rightText, for: .normal)
-        
-
-        guard selectedSort.sort != .unknown else { return }
-        
-        let image = selectedSort.type == .asc ?  UIImage(named: arrowUpIcon) :  UIImage(named: arrowDownIcon)
-
-        if selectedSort.sort == .left {
-            leftArrowImageView.image    = image
-            rightArrowImageView.image   = nil
-            
-            leftArrowWidthConstraint.constant  =  25
-            rightArrowWidthConstraint.constant  =  0
-            
-            leftHolderView.backgroundColor = CurrentTheme.headerViewBackground
-            rightHolderView.backgroundColor = .clear
-            
-            leftButton.style(CurrentTheme.headLineTextStyle())
-            rightButton.style(CurrentTheme.calloutTextStyle(CurrentTheme.disabledStateBackgroundColor))
-
-        } else {
-            leftArrowImageView.image    = nil
-            rightArrowImageView.image   = image
-
-            leftArrowWidthConstraint.constant  =  0
-            rightArrowWidthConstraint.constant  =  25
-
-            leftHolderView.backgroundColor = .clear
-            rightHolderView.backgroundColor = CurrentTheme.headerViewBackground
-            
-            leftButton.style(CurrentTheme.calloutTextStyle(CurrentTheme.disabledStateBackgroundColor))
-            rightButton.style(CurrentTheme.headLineTextStyle())
-
-        }
+    func setupHeader(_ leftText: String?, _ rightText: String?) {
+//        leftButton.setTitle(leftText, for: .normal)
+//        rightButton.setTitle(rightText, for: .normal)
+//        
+//
+//        guard selectedSort.sort != .unknown else { return }
+//        
+//        let image = selectedSort.type == .asc ?  UIImage(named: arrowUpIcon) :  UIImage(named: arrowDownIcon)
+//
+//        if selectedSort.sort == .left {
+//            leftArrowImageView.image    = image
+//            rightArrowImageView.image   = nil
+//            
+//            leftArrowWidthConstraint.constant  =  25
+//            rightArrowWidthConstraint.constant  =  0
+//            
+//            leftHolderView.backgroundColor = CurrentTheme.headerViewBackground
+//            rightHolderView.backgroundColor = .clear
+//            
+//            leftButton.style(CurrentTheme.headLineTextStyle())
+//            rightButton.style(CurrentTheme.calloutTextStyle(CurrentTheme.disabledStateBackgroundColor))
+//
+//        } else {
+//            leftArrowImageView.image    = nil
+//            rightArrowImageView.image   = image
+//
+//            leftArrowWidthConstraint.constant  =  0
+//            rightArrowWidthConstraint.constant  =  25
+//
+//            leftHolderView.backgroundColor = .clear
+//            rightHolderView.backgroundColor = CurrentTheme.headerViewBackground
+//            
+//            leftButton.style(CurrentTheme.calloutTextStyle(CurrentTheme.disabledStateBackgroundColor))
+//            rightButton.style(CurrentTheme.headLineTextStyle())
+//
+//        }
         
 
     }

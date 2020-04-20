@@ -46,7 +46,7 @@ class BarChartViewController: ChartBaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        listTableView?.delegate = self
+//        listTableView?.delegate = self
         
         if CurrentTheme == .dark {
             // For dark theme use the different color for bars
@@ -105,7 +105,7 @@ class BarChartViewController: ChartBaseViewController {
         bucketsList = chartContentList.reduce([]) { (res, item) -> [Bucket] in
             return res + item.items
         }
-        listTableView?.reloadData()
+        //TODO: Update List table
         legendLabel.text = panel?.visState?.metricAggregationsArray.first?.metricType.rawValue.capitalized
 
         xAxis?.centerAxisLabelsEnabled = isGroupedBarChart
@@ -200,11 +200,11 @@ extension BarChartViewController: ChartViewDelegate {
 
 extension BarChartViewController {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bucketsList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.bucketListCellId) as? BucketListTableViewCell
         cell?.backgroundColor = .clear
 
@@ -235,7 +235,7 @@ extension BarChartViewController {
         return cell ?? UITableViewCell()
 
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let bucket = bucketsList[indexPath.row]
         

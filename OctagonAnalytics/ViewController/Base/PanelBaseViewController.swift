@@ -22,26 +22,31 @@ enum PanelMode: Int {
     case listing        = 1
 }
 
-class PanelBaseViewController: BaseViewController {
+class PanelBaseViewController: BaseViewController, DataTableDelegate {
     
     @IBOutlet weak var shadowView: UIView?
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var displayContainerView: UIView!
-    @IBOutlet weak var listTableView: UITableView?
     @IBOutlet weak var flipButton: UIButton?
     
     @IBOutlet weak var headerview: UIView?
     @IBOutlet weak var headerTitleLabel: MarqueeLabel?
     
+    var dataTableAdapter: DataTableType!
+    var dataTable: UIView!
+    
+    private var dataSource: [Bucket] = []
+    private var listTableHeaders: [String] = []
+    
     var panelMode: PanelMode = .normal
     
     var filterAction: FilterAppliedActionBlock?
     var multiFilterAction: MultiFilterAppliedActionBlock?
-
+    
     var selectFieldAction: SelectFieldActionBlock?
     var deselectFieldAction: DeselectFieldActionBlock?
-
-
+    
+    
     var showInfoFieldActionBlock: ShowInfoFieldActionBlock?
     var shouldLoadData: Bool = true
     
@@ -51,7 +56,7 @@ class PanelBaseViewController: BaseViewController {
             loadChartData()
         }
     }
-        
+    
     var defaultColors: [UIColor] = []
     
     var eachGridWidth: CGFloat    =   0
@@ -59,22 +64,19 @@ class PanelBaseViewController: BaseViewController {
     //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setupHeader()
         
-        listTableView?.backgroundColor = CurrentTheme.cellBackgroundColor
-        listTableView?.estimatedRowHeight = 40.0
-        listTableView?.rowHeight = UITableView.automaticDimension
-        listTableView?.dataSource = self
-        listTableView?.delegate = self
-        listTableView?.tableFooterView = UIView()
-        listTableView?.register(UINib(nibName: NibName.bucketListTableViewCell, bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.bucketListCellId)
-        listTableView?.separatorColor = CurrentTheme.separatorColor
-        listTableView?.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        if mainContainerView != nil {
+            dataTableAdapter = SwiftDataTableAdapter(getDataTableConfig() , delegate: self)
+            dataTable = dataTableAdapter.dataTable
+            mainContainerView.addSubview(dataTable)
+            setupTableConstraints()
+            dataTable.isHidden = true
+        }
+       
         
-        listTableView?.register(UINib(nibName: NibName.listTableHeaderView, bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: CellIdentifiers.listTableHeaderView)
-
         if isIPhone {
             NotificationCenter.default.addObserver(self, selector: #selector(PanelBaseViewController.deviceRotated), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
@@ -87,7 +89,7 @@ class PanelBaseViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         shadowView?.style(.shadow(offset: CGSize(width: 0, height: 2), opacity: 0.3, colorAlpha: 0.5))
-
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -101,7 +103,7 @@ class PanelBaseViewController: BaseViewController {
     internal func didDeviceRotationCompleted() {
         shadowView?.style(.shadow(offset: CGSize(width: 0, height: 2), opacity: 0.3, colorAlpha: 0.5))
     }
-
+    
     
     //MARK: Setup
     func setupPanel() {
@@ -128,10 +130,12 @@ class PanelBaseViewController: BaseViewController {
     
     func updatePanelContent() {
         // Override in subclass
-        listTableView?.reloadData()
+        if mainContainerView != nil {
+            updateDataSource()
+        }
         flipPanel(.normal)
     }
-
+    
     //MARK: Load data from server
     func loadChartData() {
         // Override in subclass
@@ -145,12 +149,12 @@ class PanelBaseViewController: BaseViewController {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.animationType = .zoomIn
         hud.contentColor = CurrentTheme.darkBackgroundColor
-
+        
         panel?.loadChartData({ [weak self] (result, error) in
             hud.hide(animated: true)
             // Check for Errors
             self?.flipButton?.isHidden = (error != nil)
-
+            
             guard error == nil else {
                 // Show the Error here
                 DLog(error?.localizedDescription)
@@ -193,13 +197,13 @@ class PanelBaseViewController: BaseViewController {
         panelMode = (panelMode == .normal) ? .listing : .normal
         
         if panelMode == .normal {
-            listTableView?.isHidden = true
+            dataTable.isHidden = true
             displayContainerView?.isHidden = false
             flipButton?.setImage(UIImage(named: flipIconNormal), for: .normal)
         } else {
-            listTableView?.isHidden = false
+            dataTable.isHidden = false
             displayContainerView?.isHidden = true
-            listTableView?.reloadData()
+            dataTableAdapter.reload()
             flipButton?.setImage(UIImage(named: flipIconSelected), for: .normal)
         }
         
@@ -214,58 +218,38 @@ class PanelBaseViewController: BaseViewController {
         let switchedMode: PanelMode =  (panelMode == .normal) ? .listing : .normal
         flipPanel(switchedMode)
     }
-}
-
-extension PanelBaseViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return panel?.buckets.count ?? 0
+    
+    func numberOfColumnsInDataTable(dataTable: DataTableType) -> Int {
+        return listTableHeaders.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.bucketListCellId) as? BucketListTableViewCell
-        cell?.bucketType = panel?.bucketType ?? .unKnown
-        cell?.metricType = panel?.metricAggregation?.metricType ?? .unKnown
-        cell?.backgroundColor = .clear
-        cell?.chartItem = panel?.buckets[indexPath.row]
-        return cell ?? UITableViewCell()
+    func numberOfRowsInDataTable(dataTable: DataTableType) -> Int {
+        return listTableHeaders.isEmpty ? 0 : dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.contentView.backgroundColor = CurrentTheme.cellBackgroundColor
-
-    }
-
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.contentView.backgroundColor = CurrentTheme.headerViewBackground
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func didSelectItemInDataTable(dataTable: DataTableType, indexPath: IndexPath) {
+        let data = dataTableAdapter.data(for: indexPath)
         
-        guard let fieldValue = panel?.buckets[indexPath.row], let agg = panel?.bucketAggregation else { return }
-        
-        var dateComponant: DateComponents?
-        if let selectedDates =  panel?.currentSelectedDates,
-            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-            dateComponant = fromDate.getDateComponents(toDate)
-        }
-        
-        let filter = FilterProvider.shared.createFilter(fieldValue, dateComponents: dateComponant, agg: agg)
-        if !Session.shared.containsFilter(filter) {
-            filterAction?(self, filter)
+        if case DataTableValue.string( _, let bucket) = data,
+            let bucketObj = bucket as? Bucket {
+            
+            var dateComponant: DateComponents?
+            if let selectedDates =  panel?.currentSelectedDates,
+                let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+                dateComponant = fromDate.getDateComponents(toDate)
+            }
+            
+            let filters = bucketObj.getRelatedfilters(dateComponant)
+            multiFilterAction?(self, filters)
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+    func dataForRowInDataTable(dataTable: DataTableType, atIndex index: Int) -> [DataTableValue] {
+        return rowData(dataSource[index])
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellIdentifiers.listTableHeaderView) as? ListTableHeaderView
-        headerView?.setupHeader(panel?.bucketAggregation?.field, panel?.metricAggregation?.metricType.rawValue.capitalized)
-        return headerView
+    func headerTitleForColumnInDataTable(dataTable: DataTableType, atIndex index: Int) -> String {
+        return listTableHeaders[index]
     }
 }
 
@@ -278,7 +262,7 @@ extension PanelBaseViewController {
     struct NibName {
         static let bucketListTableViewCell = "BucketListTableViewCell"
         static let listTableHeaderView = "ListTableHeaderView"
-
+        
     }
     
     var flipIconNormal: String {
@@ -290,23 +274,96 @@ extension PanelBaseViewController {
     }
 }
 
-enum Sort: String {
-    case left       = "left"
-    case right      = "right"
-    case unknown    = "unknown"
-}
-
-enum SortType: String {
-    case asc        = "Asc"
-    case desc       = "Desc"
-    case unknown    = "unknown"
-}
-
-struct SortTable {
-    var sort: Sort = .unknown
-    var type: SortType = .unknown
+extension PanelBaseViewController {
     
-    static var defaultSort: SortTable {
-        return SortTable(sort: .unknown, type: .unknown)
+    
+}
+
+extension PanelBaseViewController {
+    func getDataTableConfig() -> DataTableConfig {
+        return DataTableConfig(headerTextColor: CurrentTheme.headLineTextStyle().color,
+                               headerBackgroundColor: CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0) ?? CurrentTheme.cellBackgroundColor,
+                               headerFont: CurrentTheme.headLineTextStyle().font,
+                               selectedHeaderBackgroundColor: CurrentTheme.standardColor,
+                               selectedHeaderTextColor: CurrentTheme.secondaryTitleColor,
+                               rowTextColor: CurrentTheme.bodyTextStyle().color,
+                               rowBackgroundColor: CurrentTheme.cellBackgroundColor,
+                               rowFont: CurrentTheme.bodyTextStyle().font,
+                               separatorColor: CurrentTheme.separatorColor,
+                               sortArrowColor: CurrentTheme.secondaryTitleColor,
+                               enableSorting: false)
+    }
+    
+    private func setupTableConstraints() {
+        if let header = headerview {
+            NSLayoutConstraint.activate([
+                dataTable.topAnchor.constraint(equalTo: header.layoutMarginsGuide.bottomAnchor),
+                dataTable.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: 5),
+                dataTable.bottomAnchor.constraint(equalTo: mainContainerView.layoutMarginsGuide.bottomAnchor),
+                dataTable.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -5),
+            ])
+        }
+    }
+}
+
+extension PanelBaseViewController {
+    
+    private func updateDataSource() {
+        if let parentBuckets = panel?.chartContentList {
+            var buckets = [Bucket]()
+            for parent in parentBuckets {
+                buckets.append(contentsOf: parent.items)
+            }
+            dataSource = buckets
+        }
+        updateTableHeaders()
+        dataTableAdapter.reload()
+    }
+    
+    //Subbucket to Table data conversion
+    private func rowData(_ bucket: Bucket) -> [DataTableValue] {
+        var currentBucket: Bucket? = bucket
+        var rowData: [DataTableValue] = []
+        while currentBucket != nil {
+            var key = currentBucket?.key ?? ""
+            if let rangeBucket = currentBucket as? RangeBucket {
+                key = rangeBucket.stringValue
+            } else if currentBucket?.bucketType == BucketType.dateHistogram {
+                let milliSeconds = Int(currentBucket?.key ?? "") ?? 0
+                let date = Date(milliseconds: milliSeconds)
+                key = date.toFormat("YYYY-MM-dd")
+            }
+            
+            if rowData.isEmpty {
+                rowData.append(DataTableValue.string(key, bucket))
+                rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
+            } else {
+                rowData.insert(DataTableValue.string(key, bucket), at: 0)
+            }
+            currentBucket = currentBucket?.parentBkt
+        }
+        return rowData
+    }
+    
+    
+    private func updateTableHeaders() {
+        guard let aggs = panel?.visState?.aggregationsArray else {
+            listTableHeaders = []
+            return
+        }
+        // Only works for one Metric and one or more sub buckets
+        // Yet to figure out for more metrics
+        var headerTitles:[String] = []
+        var metricType: String = ""
+        for agg in aggs {
+            if agg.schema == "metric" {
+//                headerTitles.insert(agg.field, at: 0)
+                metricType = agg.metricType.rawValue.capitalized
+            } else {
+                headerTitles.append(agg.field)
+            }
+        }
+        headerTitles.append(metricType)
+        listTableHeaders = headerTitles
     }
 }

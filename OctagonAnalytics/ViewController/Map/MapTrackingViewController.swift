@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import DTMHeatmap
 
-class MapTrackingViewController: MapBaseViewController {
+class MapTrackingViewController: MapBaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     fileprivate var trackingPanel: MapTrackingPanel? {
         return (panel as? MapTrackingPanel)
@@ -320,11 +320,11 @@ extension MapTrackingViewController: MKMapViewDelegate {
     }
 
     // MARK: TableView Datasource, Delegate
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackingPanel?.pathTrackersArray.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.trackingPathListCell, for: indexPath) as? TrackingPathListCell else { return UITableViewCell() }
         cell.mapPath = trackingPanel?.pathTrackersArray[indexPath.row]
         return cell
@@ -334,7 +334,7 @@ extension MapTrackingViewController: MKMapViewDelegate {
         return legendRowHeight
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let selectedMapPath = trackingPanel?.pathTrackersArray[indexPath.row]
@@ -345,7 +345,7 @@ extension MapTrackingViewController: MKMapViewDelegate {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.0
     }
 }
