@@ -33,7 +33,7 @@ class GaugeViewController: PanelBaseViewController {
         
         gaugeView.valueTextColor = CurrentTheme.titleColor
         gaugeView.coveredTickValueColor = CurrentTheme.titleColor
-        gaugeView.gaugeViewPercentage = 0.8
+        gaugeView.gaugeViewPercentage = 0.7
         gaugeView.legendMargin = 10
         gaugeView.legendSpacing = 5
         gaugeView.legendSize = CGSize(width: 25, height: 20)
@@ -63,15 +63,8 @@ class GaugeViewController: PanelBaseViewController {
             var colorIndex = 0
             let ranges: [SGRanges] = visState.gauge?.ranges.enumerated().compactMap { (index, element) in
                 
-                var fromValue = "\(element.from)"
-                if floor(element.from) == element.from {
-                    fromValue = "\(Int(element.from))"
-                }
-                
-                var toValue = "\(element.to)"
-                if floor(element.to) == element.to {
-                    toValue = "\(Int(element.to))"
-                }
+                let fromValue = floor(element.from) == element.from ? "\(Int(element.from))" : "\(element.from)"
+                let toValue = floor(element.to) == element.to ? "\(Int(element.to))" : "\(element.to)"
 
                 let title = "\(fromValue) - \(toValue)"
                 if index >= colors.count {
