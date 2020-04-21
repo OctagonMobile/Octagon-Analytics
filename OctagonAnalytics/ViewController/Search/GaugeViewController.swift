@@ -98,6 +98,10 @@ class GaugeViewController: PanelBaseViewController {
         let gaugeVal = (panel as? GaugePanel)?.gaugeValue ?? 0.0
         gaugeView.gaugeValue = gaugeVal
         
+        if let color = gaugeView.rangesList.filter({ gaugeVal >= $0.fromValue && gaugeVal <= $0.toValue }).first?.color {
+            gaugeView.trackBackgroundColor = color.withAlphaComponent(0.1)
+        }
+            
         if gaugeVal > gaugeView.rangesList.last?.toValue ?? 0.0 {
             gaugeView.gaugeMaxValue = gaugeVal
         }
