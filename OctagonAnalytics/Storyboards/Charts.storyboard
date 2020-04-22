@@ -71,10 +71,6 @@
                                             <constraint firstItem="B5E-Ss-RvR" firstAttribute="top" secondItem="oEs-W3-kwL" secondAttribute="top" id="xlg-9r-eki"/>
                                         </constraints>
                                     </view>
-                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oxa-RO-0ez">
-                                        <rect key="frame" x="0.0" y="45" width="1014" height="713"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-Rv-7bR" userLabel="DisplayView">
                                         <rect key="frame" x="0.0" y="45" width="1014" height="713"/>
                                         <subviews>
@@ -100,11 +96,7 @@
                                     <constraint firstItem="yu0-Rv-7bR" firstAttribute="leading" secondItem="p5O-uX-8ap" secondAttribute="leading" id="Jkx-Ll-mdK"/>
                                     <constraint firstAttribute="bottom" secondItem="yu0-Rv-7bR" secondAttribute="bottom" id="ND9-LR-WRN"/>
                                     <constraint firstItem="oEs-W3-kwL" firstAttribute="leading" secondItem="p5O-uX-8ap" secondAttribute="leading" id="NwG-3v-TAC"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oxa-RO-0ez" secondAttribute="trailing" id="YPK-b8-nWQ"/>
-                                    <constraint firstItem="Oxa-RO-0ez" firstAttribute="leading" secondItem="p5O-uX-8ap" secondAttribute="leading" id="bnZ-Cw-ncU"/>
-                                    <constraint firstItem="Oxa-RO-0ez" firstAttribute="top" secondItem="oEs-W3-kwL" secondAttribute="bottom" id="cHQ-0Q-2e4"/>
                                     <constraint firstItem="oEs-W3-kwL" firstAttribute="top" secondItem="p5O-uX-8ap" secondAttribute="top" id="oKd-A7-3RX"/>
-                                    <constraint firstAttribute="bottom" secondItem="Oxa-RO-0ez" secondAttribute="bottom" id="uWB-Kx-WOl"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -129,7 +121,6 @@
                         <outlet property="headerTitleLabel" destination="ein-8l-LOb" id="g8U-Qf-qJe"/>
                         <outlet property="headerview" destination="oEs-W3-kwL" id="Gdm-Mp-vLB"/>
                         <outlet property="legendEnableButton" destination="8XI-0e-eAn" id="Hd0-jY-MGw"/>
-                        <outlet property="listTableView" destination="Oxa-RO-0ez" id="H0l-g0-Xg5"/>
                         <outlet property="mainContainerView" destination="p5O-uX-8ap" id="syB-Cc-COn"/>
                         <outlet property="shadowView" destination="sxZ-ij-T7Q" id="QgS-RU-zLS"/>
                     </connections>
@@ -888,10 +879,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="largeThumbnailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6Yf-HC-fbN">
-                                                <rect key="frame" x="977" y="11.5" width="27" height="22"/>
+                                                <rect key="frame" x="950" y="0.5" width="54" height="44"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1s-aK-VuE" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="772" y="2" width="200" height="41"/>
+                                                <rect key="frame" x="745" y="2" width="200" height="41"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="gMD-9W-ugD">
@@ -903,7 +894,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallThumbnailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nuh-ze-fLp">
-                                                <rect key="frame" x="740.5" y="11.5" width="26.5" height="22"/>
+                                                <rect key="frame" x="687" y="0.5" width="53" height="44"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

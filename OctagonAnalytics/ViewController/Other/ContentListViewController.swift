@@ -67,7 +67,7 @@ class ContentListViewController: PanelBaseViewController {
     }
     
     override func dataForRowInDataTable(dataTable: DataTableType, atIndex index: Int) -> [DataTableValue] {
-        return clRowData(clDataSource[index])
+        return rowData(clDataSource[index])
     }
     
     override func headerTitleForColumnInDataTable(dataTable: DataTableType, atIndex index: Int) -> String {
@@ -106,30 +106,5 @@ extension ContentListViewController {
     }
 }
 
-extension ContentListViewController {
-    //Subbucket to Table data conversion
-    func clRowData(_ bucket: Bucket) -> [DataTableValue] {
-        var currentBucket: Bucket? = bucket
-        var rowData: [DataTableValue] = []
-        while currentBucket != nil {
-            var key = currentBucket?.key ?? ""
-            if let rangeBucket = currentBucket as? RangeBucket {
-                key = rangeBucket.stringValue
-            } else if currentBucket?.bucketType == BucketType.dateHistogram {
-                let milliSeconds = Int(currentBucket?.key ?? "") ?? 0
-                let date = Date(milliseconds: milliSeconds)
-                key = date.toFormat("YYYY-MM-dd")
-            }
-            
-            if rowData.isEmpty {
-                rowData.append(DataTableValue.string(key, bucket))
-                rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
-            } else {
-                rowData.insert(DataTableValue.string(key, bucket), at: 0)
-            }
-            currentBucket = currentBucket?.parentBkt
-        }
-        return rowData
-    }
-}
+
 

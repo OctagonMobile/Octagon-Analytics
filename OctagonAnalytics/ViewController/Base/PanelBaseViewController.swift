@@ -321,7 +321,7 @@ extension PanelBaseViewController {
     }
     
     //Subbucket to Table data conversion
-    private func rowData(_ bucket: Bucket) -> [DataTableValue] {
+    public func rowData(_ bucket: Bucket) -> [DataTableValue] {
         var currentBucket: Bucket? = bucket
         var rowData: [DataTableValue] = []
         while currentBucket != nil {
@@ -336,7 +336,11 @@ extension PanelBaseViewController {
             
             if rowData.isEmpty {
                 rowData.append(DataTableValue.string(key, bucket))
-                rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
+                if currentBucket!.displayValue.isInteger {
+                    rowData.append(DataTableValue.string( String(Int(currentBucket!.displayValue)), bucket))
+                } else {
+                    rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
+                }
             } else {
                 rowData.insert(DataTableValue.string(key, bucket), at: 0)
             }
