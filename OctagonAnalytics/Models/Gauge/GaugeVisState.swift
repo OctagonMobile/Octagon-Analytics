@@ -14,6 +14,7 @@ class GaugeVisState: VisState {
         case gauge      =   "gauge"
         case goal       =   "goal"
     }
+    
     var gaugeType: GaugeType    =   .gauge
     var gauge: Gauge?
     
@@ -31,11 +32,21 @@ class GaugeVisState: VisState {
 
 class Gauge: Mappable {
     
+    enum GaugeSubType: String {
+        case arc    =   "Arc"
+        case circle =   "Circle"
+    }
+
     var ranges: [GaugeRange] =   []
     
+    var subType: GaugeSubType  =   .arc
+    
+    //MARK: Functions
     required init?(map: Map) {}
     
     func mapping(map: Map) {
+        
+        subType     <-  (map["gaugeType"],EnumTransform<GaugeSubType>())
         
         if let colorsRangeList = map.JSON["colorsRange"] as? [[String : Any]] {
             ranges =   Mapper<GaugeRange>().mapArray(JSONArray: colorsRangeList)
