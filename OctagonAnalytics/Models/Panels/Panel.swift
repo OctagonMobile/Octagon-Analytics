@@ -33,6 +33,8 @@ enum PanelType: String {
     case horizontalBar  =   "horizontal_bar"
     case markdown       =   "markdown"
     case area           =   "area"
+    case gauge          =   "gauge"
+    case goal           =   "goal"
 }
 
 // MARK: Panel
@@ -191,6 +193,9 @@ class Panel: Mappable {
 
             case .markdown:
                 visState = Mapper<MarkDownVisState>().map(JSONObject: visStateJson)
+            
+            case .gauge, .goal:
+                visState = Mapper<GaugeVisState>().map(JSONObject: visStateJson)
                 
             default:
                 visState <- map["visState"]
