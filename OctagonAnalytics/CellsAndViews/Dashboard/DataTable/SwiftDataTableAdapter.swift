@@ -98,12 +98,12 @@ extension Collection where Self == [DataTableValue] {
 extension DataTableValue {
     var toSwiftDataTableValueType: DataTableValueType {
         switch self {
-        case .double(let val):
-            return DataTableValueType.double(val)
-        case .float(let val):
-            return DataTableValueType.float(val)
-        case .int(let val):
-            return DataTableValueType.int(val)
+        case .double(let val, let obj):
+            return DataTableValueType.double(val, obj)
+        case .float(let val, let obj):
+            return DataTableValueType.float(val, obj)
+        case .int(let val, let obj):
+            return DataTableValueType.int(val, obj)
         case .string(let str, let obj):
             return DataTableValueType.string(str, obj)
         }
@@ -113,12 +113,12 @@ extension DataTableValue {
 extension DataTableValueType {
     var toOADataTableValueType: DataTableValue {
         switch self {
-        case .double(let val):
-            return DataTableValue.double(val)
-        case .float(let val):
-            return DataTableValue.float(val)
-        case .int(let val):
-            return DataTableValue.int(val)
+        case .double(let val, let obj):
+            return DataTableValue.double(val, obj)
+        case .float(let val, let obj):
+            return DataTableValue.float(val, obj)
+        case .int(let val, let obj):
+            return DataTableValue.int(val, obj)
         case .string(let str, let obj):
             return DataTableValue.string(str, obj)
         }
