@@ -842,3 +842,15 @@ extension NSNumber {
         return (str.split(separator: ".").count > 1)
     }
 }
+
+extension Double {
+    var isInteger: Bool {
+        return floor(self) == self
+    }
+}
+
+extension String {
+    var isBool: Bool {
+        return self == "false" || self == "true"
+    }
+}
