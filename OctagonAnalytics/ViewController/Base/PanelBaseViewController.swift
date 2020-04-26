@@ -275,11 +275,6 @@ extension PanelBaseViewController {
 }
 
 extension PanelBaseViewController {
-    
-    
-}
-
-extension PanelBaseViewController {
     func getDataTableConfig() -> DataTableConfig {
         return DataTableConfig(headerTextColor: CurrentTheme.headLineTextStyle().color,
                                headerBackgroundColor: CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0) ?? CurrentTheme.cellBackgroundColor,
