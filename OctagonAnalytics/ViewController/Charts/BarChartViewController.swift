@@ -105,7 +105,6 @@ class BarChartViewController: ChartBaseViewController {
         bucketsList = chartContentList.reduce([]) { (res, item) -> [Bucket] in
             return res + item.items
         }
-        //TODO: Update List table
         legendLabel.text = panel?.visState?.metricAggregationsArray.first?.metricType.rawValue.capitalized
 
         xAxis?.centerAxisLabelsEnabled = isGroupedBarChart
@@ -195,60 +194,6 @@ extension BarChartViewController: ChartViewDelegate {
         DLog("Chart Selection cleared")
         barChartView?.highlightValues(nil)
         deselectFieldAction?(self)
-    }
-}
-
-extension BarChartViewController {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bucketsList.count
-    }
-    
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.bucketListCellId) as? BucketListTableViewCell
-        cell?.backgroundColor = .clear
-
-        let bucket = bucketsList[indexPath.row]
-        var dateComponant: DateComponents?
-        if let selectedDates =  panel?.currentSelectedDates,
-            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-            dateComponant = fromDate.getDateComponents(toDate)
-        }
-        
-        let filters = bucket.getRelatedfilters(dateComponant).reversed()
-        
-        let result = filters.reduce("") { (res, filter) -> String in
-            var val = ""
-            if let fil = (filter as? SimpleFilter) {
-                val = fil.fieldValue
-            } else if let fil = (filter as? DateHistogramFilter) {
-                guard let value = Int(fil.fieldValue) else { return fil.fieldValue }
-                let date = Date(milliseconds: value)
-                val = date.toFormat("YYYY-MM-dd HH:mm:ss")
-            }
-            
-            return res.isEmpty ? val : (res + " - " + val)
-        }
-        let title = result
-        let value = bucket.displayValue.format(f: "0.2")
-        cell?.updateCellContentLatest(title, value: value)
-        return cell ?? UITableViewCell()
-
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let bucket = bucketsList[indexPath.row]
-        
-        var dateComponant: DateComponents?
-        if let selectedDates =  panel?.currentSelectedDates,
-            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-            dateComponant = fromDate.getDateComponents(toDate)
-        }
-        
-        let filterList = bucket.getRelatedfilters(dateComponant)
-        guard filterList.count > 0  else { return }
-        multiFilterAction?(self, filterList)
-
     }
 }
 

@@ -27,10 +27,10 @@ class ContentListViewController: PanelBaseViewController {
     
     override func updatePanelContent() {
         super.updatePanelContent()
-        updateDataSource()
+        updateClDataSource()
     }
     
-    private func updateDataSource() {
+    func updateClDataSource() {
         if let parentBuckets = panel?.chartContentList {
             var buckets = [Bucket]()
             for parent in parentBuckets {

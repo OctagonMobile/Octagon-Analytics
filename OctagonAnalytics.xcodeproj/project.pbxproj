@@ -192,8 +192,6 @@
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
-		F12A7C1E244C3B7D00FB5494 /* ListTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1C244C3B7D00FB5494 /* ListTableHeaderView.swift */; };
-		F12A7C1F244C3B7D00FB5494 /* ListTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12A7C1D244C3B7D00FB5494 /* ListTableHeaderView.xib */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
@@ -404,8 +402,6 @@
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
-		F12A7C1C244C3B7D00FB5494 /* ListTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableHeaderView.swift; sourceTree = "<group>"; };
-		F12A7C1D244C3B7D00FB5494 /* ListTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableHeaderView.xib; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -516,8 +512,6 @@
 				5113427F1FFE248700A7787E /* HeatMap */,
 				51840DF61FCEC2F6007B8D38 /* Tile */,
 				51CFC69A1FB9BB5F00B99018 /* SavedSearch */,
-				F12A7C1C244C3B7D00FB5494 /* ListTableHeaderView.swift */,
-				F12A7C1D244C3B7D00FB5494 /* ListTableHeaderView.xib */,
 				5130A10C1FA73334003D0525 /* DashboardCollectionViewCell.swift */,
 				5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */,
 				517585DA1FB03705002AFB73 /* MetricsCollectionViewCell.swift */,
@@ -1288,7 +1282,6 @@
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
 				513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */,
-				F12A7C1F244C3B7D00FB5494 /* ListTableHeaderView.xib in Resources */,
 				51E8BF4620F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib in Resources */,
 				51E9464F221BF08500F30D1F /* Settings.plist in Resources */,
 				511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */,
@@ -1507,7 +1500,6 @@
 				51477DEB2068EBED00955394 /* NavigationManager.swift in Sources */,
 				511A64CD23F52F84007E90C8 /* TutorialSettingsCarouselView.swift in Sources */,
 				F17AA02C240E7F3F00BDB6B7 /* FiltersInfoView.swift in Sources */,
-				F12A7C1E244C3B7D00FB5494 /* ListTableHeaderView.swift in Sources */,
 				F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */,
 				517585D61FB029FF002AFB73 /* LineChartViewController.swift in Sources */,
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,

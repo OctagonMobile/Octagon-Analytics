@@ -308,7 +308,7 @@ extension PanelBaseViewController {
 
 extension PanelBaseViewController {
     
-    private func updateDataSource() {
+    func updateDataSource() {
         if let parentBuckets = panel?.chartContentList {
             var buckets = [Bucket]()
             for parent in parentBuckets {
