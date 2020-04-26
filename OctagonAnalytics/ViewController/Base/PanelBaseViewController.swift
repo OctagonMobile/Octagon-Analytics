@@ -337,9 +337,9 @@ extension PanelBaseViewController {
             if rowData.isEmpty {
                 rowData.append(DataTableValue.string(key, bucket))
                 if currentBucket!.displayValue.isInteger {
-                    rowData.append(DataTableValue.string( String(Int(currentBucket!.displayValue)), bucket))
+                    rowData.append(DataTableValue.int( Int(currentBucket!.displayValue), bucket))
                 } else {
-                    rowData.append(DataTableValue.string("\(currentBucket?.displayValue ?? 0)", bucket))
+                    rowData.append(DataTableValue.double(currentBucket!.displayValue, bucket))
                 }
             } else {
                 rowData.insert(DataTableValue.string(key, bucket), at: 0)

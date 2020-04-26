@@ -11,9 +11,9 @@ import Foundation
 public enum DataTableValue {
     //MARK: - Properties
     case string(String, Any? = nil)
-    case int(Int)
-    case float(Float)
-    case double(Double)
+    case int(Int, Any? = nil)
+    case float(Float, Any? = nil)
+    case double(Double, Any? = nil)
 }
 
 struct DataTableConfig {
