@@ -104,6 +104,8 @@ class DashboardItem: NSObject, Mappable {
                 panel = FaceTilePanel(JSON: json)
             } else if panelType == PanelType.neo4jGraph.rawValue {
                 panel = GraphPanel(JSON: json)
+            } else if panelType == PanelType.gauge.rawValue {
+                panel = GaugePanel(JSON: json)
             } else if panelType == PanelType.inputControls.rawValue {
                 panel = ControlsPanel(JSON: json)
             }  else {

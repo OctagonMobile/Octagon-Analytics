@@ -267,6 +267,9 @@ class DashboardViewController: BaseViewController {
             case .markdown:
                 panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.markDownViewController) as? MarkDownViewController ?? MarkDownViewController()
 
+            case .gauge, .goal:
+                panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.gaugeViewController) as? GaugeViewController ?? GaugeViewController()
+
             case .inputControls:
                 panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsViewController) as? ControlsViewController ?? ControlsViewController()
 
@@ -678,6 +681,7 @@ extension DashboardViewController {
         static let webContentViewController         = "WebContentViewController"
         static let lineChartViewController          = "LineChartViewController"
         static let markDownViewController           = "MarkDownViewController"
+        static let gaugeViewController              = "GaugeViewController"
         static let controlsViewController           = "ControlsViewController"
     }
 }

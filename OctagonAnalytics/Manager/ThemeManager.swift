@@ -191,6 +191,10 @@ enum Theme: String {
         return firstSetChartColors + secondSetChartColors
     }
 
+    var gaugeRangeColors: [UIColor] {
+        return UIColor.GaugeRangeColorsSet.all + firstSetChartColors
+    }
+    
     var mapTrackingColors: [UIColor] {
         switch self {
         case .light, .dark: return UIColor.MapTrackingColors.all

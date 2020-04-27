@@ -375,6 +375,18 @@ extension UIColor {
         static var all: [UIColor] = [first, second, third, fourth, fifth]
     }
 
+    struct GaugeRangeColorsSet {
+        static var first: UIColor       { return UIColor.colorFromHexString("#1700FF") }
+        static var second: UIColor       { return UIColor.colorFromHexString("#3A7CCC") }
+        static var third: UIColor      { return UIColor.colorFromHexString("#3DAABF") }
+        static var fourth: UIColor       { return UIColor.colorFromHexString("#3BDBA6") }
+        static var fifth: UIColor       { return UIColor.colorFromHexString("#21A579") }
+        static var sixth: UIColor     { return UIColor.colorFromHexString("#02724D") }
+        static var seventh: UIColor     { return UIColor.colorFromHexString("#00442E") }
+
+        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh]
+    }
+
 }
 
 ////////////////////////////////////// Font Extension //////////////////////////////////////

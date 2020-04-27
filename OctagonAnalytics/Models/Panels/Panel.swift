@@ -33,6 +33,8 @@ enum PanelType: String {
     case horizontalBar  =   "horizontal_bar"
     case markdown       =   "markdown"
     case area           =   "area"
+    case gauge          =   "gauge"
+    case goal           =   "goal"
     case inputControls  =    "input_control_vis"
 }
 
@@ -96,6 +98,7 @@ class Panel: Mappable {
 
     var chartContentList: [ChartContent] = []
     
+    var parsedAggResult: AggResult?
     /**
      Bucket Type of the panel.
      */
@@ -121,6 +124,9 @@ class Panel: Mappable {
     var tableHeaderLeft: String? = ""
     
     var tableHeaderRight: String? = ""
+    
+    //Sub Buckets Support, All Headers are put into an array
+    var tableHeaders: [String] = []
 
     /**
      Currently selected dates (From & To), which are shown on top of the dashboard.
@@ -188,6 +194,9 @@ class Panel: Mappable {
 
             case .markdown:
                 visState = Mapper<MarkDownVisState>().map(JSONObject: visStateJson)
+            
+            case .gauge, .goal:
+                visState = Mapper<GaugeVisState>().map(JSONObject: visStateJson)
                 
             case .inputControls:
                 visState = Mapper<InputControlsVisState>().map(JSONObject: visStateJson)
@@ -394,6 +403,19 @@ class Panel: Mappable {
             tableHeaderLeft = idDictionary?["label"] as? String ?? ""
             let namdeDictionary = headersArray.filter(( {($0["id"] as? String) == "1"} )).first
             tableHeaderRight = namdeDictionary?["label"] as? String ?? ""
+            
+            //Sub Buckets Support
+            var headers = [String]()
+            for headerDict in headersArray {
+                if let header = headerDict["label"] as? String {
+                    headers.append(header)
+                }
+            }
+            if headers.count > 1 {
+                let metric = headers.remove(at: 0)
+                headers.append(metric)
+            }
+            tableHeaders = headers
         }
         
         return buckets
@@ -408,6 +430,7 @@ class Panel: Mappable {
         
         guard let contentDict = aggregationsDict[id] as? [String: Any] else { return }
         let parsedData = AggResult(contentDict, visState: visState, idx: 0, parentBucket: nil)
+        self.parsedAggResult = parsedData
         chartContentList = parsedDataForChart(parsedData)
     }
     
@@ -653,6 +676,10 @@ class Bucket {
         }
     }
     
+    var parentBkt: Bucket? {
+        return parentBucket
+    }
+    
     private var parentBucket: Bucket?
     private var visState: VisState?
     
@@ -750,11 +777,30 @@ class RangeBucket: Bucket {
         from        =   dictionary["from"] as? Double ?? 0.0
         to          =   dictionary["to"] as? Double ?? 0.0
     }
+    var stringValue: String {
+        return "\(from) to \(to)"
+    }
     
     static func ==(lhs: RangeBucket, rhs: RangeBucket) -> Bool {
         return lhs.key == rhs.key && lhs.to == rhs.to && lhs.from == rhs.from
     }
 
+}
+
+extension Bucket: BucketAggType {
+    var bucketKey: String {
+        return key
+    }
+    
+    var aggType: BucketType {
+        return bucketType
+    }
+    
+    var parent: BucketAggType? {
+        return parentBkt
+    }
+    
+    
 }
 
 class ChartContent {
@@ -777,5 +823,17 @@ extension NSNumber {
     var isNumberFractional: Bool {
         let str = self.stringValue
         return (str.split(separator: ".").count > 1)
+    }
+}
+
+extension Double {
+    var isInteger: Bool {
+        return floor(self) == self
+    }
+}
+
+extension String {
+    var isBool: Bool {
+        return self == "false" || self == "true"
     }
 }
