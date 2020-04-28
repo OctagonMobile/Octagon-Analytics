@@ -22,7 +22,7 @@ class VectorMapViewController: PanelBaseViewController {
         
         worldMapView.tapActionBlock = { [weak self] (selectedCountryCode, countryName) in
             
-            guard let strongSelf = self, let buckets = self?.panel?.buckets, let agg = self?.panel?.bucketAggregation else { return }
+            guard let strongSelf = self, let buckets = self?.panel?.chartContentList, let agg = self?.panel?.bucketAggregation else { return }
             let mappedCountryCode = self?.countryCodes.allKeysForValue(val: selectedCountryCode).first
             guard let selectedCountry = buckets.filter({ $0.key == mappedCountryCode }).first else { return }
             
@@ -57,7 +57,7 @@ class VectorMapViewController: PanelBaseViewController {
     override func updatePanelContent() {
         super.updatePanelContent()
         
-        guard let buckets = panel?.buckets else { return }
+        guard let buckets = panel?.chartContentList else { return }
         
         let countriesToBeHighlighted = buckets.compactMap( { $0.key })
         let mappedCountryCodes = countriesToBeHighlighted.compactMap( { countryCodes[$0] } )

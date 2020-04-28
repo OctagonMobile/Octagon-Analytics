@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5104B5CC244C8C5B006BFE34 /* GaugePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */; };
-		5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */; };
 		510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */; };
 		511342811FFE24AE00A7787E /* LocationPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511342801FFE24AE00A7787E /* LocationPopUpView.swift */; };
 		511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511342821FFE24C300A7787E /* LocationPopUpView.xib */; };
@@ -114,7 +113,6 @@
 		51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51840DFB1FCED792007B8D38 /* TilePanel.swift */; };
 		51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51840DFD1FCED7BE007B8D38 /* Tile.swift */; };
 		51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51841ECB2063D59800A9C856 /* SPUserResizableView.m */; };
-		518422BE1FB41E0A00D28CAD /* RangeChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */; };
 		5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */; };
 		518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C61A11FB4646100F83381 /* TermsChartItem.swift */; };
 		518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BB243F400F00522314 /* GaugeViewController.swift */; };
@@ -204,7 +202,6 @@
 
 /* Begin PBXFileReference section */
 		5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugePanel.swift; sourceTree = "<group>"; };
-		5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHistogramChartItem.swift; sourceTree = "<group>"; };
 		510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		511342801FFE24AE00A7787E /* LocationPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpView.swift; sourceTree = "<group>"; };
 		511342821FFE24C300A7787E /* LocationPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationPopUpView.xib; sourceTree = "<group>"; };
@@ -323,7 +320,6 @@
 		51840DFD1FCED7BE007B8D38 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		51841ECA2063D59800A9C856 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		51841ECB2063D59800A9C856 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
-		518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeChartItem.swift; sourceTree = "<group>"; };
 		5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		518C61A11FB4646100F83381 /* TermsChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsChartItem.swift; sourceTree = "<group>"; };
 		518DD0BB243F400F00522314 /* GaugeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewController.swift; sourceTree = "<group>"; };
@@ -630,9 +626,7 @@
 				517F97DA1FB1A8B900CA6E55 /* VisState.swift */,
 				5130A1191FA86C26003D0525 /* Aggregation.swift */,
 				512BF7761FA0C05F00DCCE6A /* ChartItem.swift */,
-				518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */,
 				518C61A11FB4646100F83381 /* TermsChartItem.swift */,
-				5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */,
 				51DC04F020555F6000E4F1E0 /* Filter.swift */,
 				F10D6D5523D8422C00190754 /* FilterConvertible.swift */,
 			);
@@ -1454,7 +1448,6 @@
 				5174FBB8219C4EA1003BEB1E /* GraphNodeView.swift in Sources */,
 				51210C292070B75300B038EC /* MapVisState.swift in Sources */,
 				5174FBA3219C105E003BEB1E /* WeightedGraphPresenter.swift in Sources */,
-				518422BE1FB41E0A00D28CAD /* RangeChartItem.swift in Sources */,
 				51F0E62822CDCB7B001B390A /* CustomTemplateLayout.swift in Sources */,
 				51E8BF4820F38048004B5D20 /* MultiDatePickerViewController.swift in Sources */,
 				51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */,
@@ -1491,7 +1484,6 @@
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
-				5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
 				5174FBA5219C105E003BEB1E /* GraphWeightView.swift in Sources */,
 				51E3941F204D664100AF22C8 /* CustomMapView.swift in Sources */,
