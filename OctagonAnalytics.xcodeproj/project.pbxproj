@@ -114,7 +114,6 @@
 		51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51840DFD1FCED7BE007B8D38 /* Tile.swift */; };
 		51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51841ECB2063D59800A9C856 /* SPUserResizableView.m */; };
 		5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */; };
-		518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C61A11FB4646100F83381 /* TermsChartItem.swift */; };
 		518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BB243F400F00522314 /* GaugeViewController.swift */; };
 		518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BE243F422100522314 /* GaugeVisState.swift */; };
 		51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923AB6207DE3750023FE27 /* MapBaseViewController.swift */; };
@@ -129,8 +128,6 @@
 		51A6B32A1FCD3FE700F6A3E8 /* MetricPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */; };
 		51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B32B1FCD404200F6A3E8 /* Metric.swift */; };
 		51ACB33021C790BD008E2D4D /* CoordinateMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */; };
-		51B0C9AC1FC174DF00BDF269 /* BucketListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */; };
-		51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */; };
 		51B0C9AF1FC17CD700BDF269 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AE1FC17CD700BDF269 /* Session.swift */; };
 		51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */; };
 		51B7C42E2059099400565D99 /* MetricVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B7C42D2059099400565D99 /* MetricVisState.swift */; };
@@ -321,7 +318,6 @@
 		51841ECA2063D59800A9C856 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		51841ECB2063D59800A9C856 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
-		518C61A11FB4646100F83381 /* TermsChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsChartItem.swift; sourceTree = "<group>"; };
 		518DD0BB243F400F00522314 /* GaugeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewController.swift; sourceTree = "<group>"; };
 		518DD0BE243F422100522314 /* GaugeVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeVisState.swift; sourceTree = "<group>"; };
 		51923AB6207DE3750023FE27 /* MapBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
@@ -337,8 +333,6 @@
 		51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPanel.swift; sourceTree = "<group>"; };
 		51A6B32B1FCD404200F6A3E8 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateMapViewController.swift; sourceTree = "<group>"; };
-		51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListTableViewCell.swift; sourceTree = "<group>"; };
-		51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BucketListTableViewCell.xib; sourceTree = "<group>"; };
 		51B0C9AE1FC17CD700BDF269 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		51B7C42D2059099400565D99 /* MetricVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricVisState.swift; sourceTree = "<group>"; };
 		51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchIdHelper.swift; sourceTree = "<group>"; };
@@ -518,8 +512,6 @@
 				5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */,
 				517585DA1FB03705002AFB73 /* MetricsCollectionViewCell.swift */,
 				517585DB1FB03705002AFB73 /* MetricsCollectionViewCell.xib */,
-				51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */,
-				51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */,
 				5168C3B61FC2FDD400AB77C6 /* FilterCollectionViewCell.swift */,
 				5168C3BA1FC3062700AB77C6 /* FilterCollectionViewCell.xib */,
 				519AD5E82014B8C800F41CB4 /* DashboardListCollectionViewCell.swift */,
@@ -626,7 +618,6 @@
 				517F97DA1FB1A8B900CA6E55 /* VisState.swift */,
 				5130A1191FA86C26003D0525 /* Aggregation.swift */,
 				512BF7761FA0C05F00DCCE6A /* ChartItem.swift */,
-				518C61A11FB4646100F83381 /* TermsChartItem.swift */,
 				51DC04F020555F6000E4F1E0 /* Filter.swift */,
 				F10D6D5523D8422C00190754 /* FilterConvertible.swift */,
 			);
@@ -1258,7 +1249,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				515DD7F91FC53DDB009EC716 /* Settings.bundle in Resources */,
-				51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
@@ -1419,7 +1409,6 @@
 				517F97DE1FB1AE6A00CA6E55 /* PieChartVisState.swift in Sources */,
 				5136039222267AB5002D12B6 /* WebContentVisState.swift in Sources */,
 				51E8BF4720F38048004B5D20 /* DatePickerCollectionReusableView.swift in Sources */,
-				51B0C9AC1FC174DF00BDF269 /* BucketListTableViewCell.swift in Sources */,
 				5174FBA2219C105E003BEB1E /* TouchVelocityTracker.swift in Sources */,
 				513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */,
 				51840DF31FCEA2F8007B8D38 /* TagCloudViewController.swift in Sources */,
@@ -1432,7 +1421,6 @@
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
 				51840DF11FCEA2F2007B8D38 /* ContentListViewController.swift in Sources */,
-				518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */,
 				51CB2D221FBDA149007BC0A0 /* BaseViewController.swift in Sources */,
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
