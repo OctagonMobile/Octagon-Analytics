@@ -22,7 +22,6 @@
 		5127EB97222D3DB7000C4E79 /* DashboardListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127EB95222D3DB7000C4E79 /* DashboardListHeaderView.swift */; };
 		5127EB98222D3DB7000C4E79 /* DashboardListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5127EB96222D3DB7000C4E79 /* DashboardListHeaderView.xib */; };
 		5128ABA92340A512009BA056 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5128ABAB2340A512009BA056 /* Localizable.strings */; };
-		512BF7771FA0C05F00DCCE6A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BF7761FA0C05F00DCCE6A /* ChartItem.swift */; };
 		512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */; };
 		513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513049BC21D20DC2003392A0 /* LayerSwitchHolderView.swift */; };
 		5130A1041FA70518003D0525 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */; };
@@ -216,7 +215,6 @@
 		5128ABAC2340A535009BA056 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5128ABAD2340A535009BA056 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5128ABAF2340C93C009BA056 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		512BF7761FA0C05F00DCCE6A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
 		512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCloudVisState.swift; sourceTree = "<group>"; };
 		513049BC21D20DC2003392A0 /* LayerSwitchHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerSwitchHolderView.swift; sourceTree = "<group>"; };
 		5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -617,7 +615,6 @@
 				51FABE9B2073602C0015C802 /* MapTrackPoint.swift */,
 				517F97DA1FB1A8B900CA6E55 /* VisState.swift */,
 				5130A1191FA86C26003D0525 /* Aggregation.swift */,
-				512BF7761FA0C05F00DCCE6A /* ChartItem.swift */,
 				51DC04F020555F6000E4F1E0 /* Filter.swift */,
 				F10D6D5523D8422C00190754 /* FilterConvertible.swift */,
 			);
@@ -1403,7 +1400,6 @@
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
 				51743CBE22B1143200C92E73 /* SSCustomTemplateDataProvider.swift in Sources */,
 				518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */,
-				512BF7771FA0C05F00DCCE6A /* ChartItem.swift in Sources */,
 				51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */,
 				51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */,
 				517F97DE1FB1AE6A00CA6E55 /* PieChartVisState.swift in Sources */,
