@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class MapTrackPoint: ChartItem {
+class MapTrackPoint: ChartContent, Mappable {
 
     /// Timestamp
     var timestamp: Date?
@@ -29,9 +29,18 @@ class MapTrackPoint: ChartItem {
         return timestamp.toFormat("YYYY-MM-dd HH:mm:ss")
     }
     
+    required init?(map: Map) {
+        
+    }
+    
     //MARK:
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    func mapping(map: Map) {
+        
+        if let keyValue = map.JSON["key"] {
+            key   = "\(keyValue)"
+        }
+        docCount            <- map["doc_count"]
+        bucketValue         <- map["bucketValue"]
         
         userField       <-  map["userID"]
         imageIconUrl    <-  map["faceUrl"]

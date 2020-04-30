@@ -260,7 +260,6 @@ extension PanelBaseViewController {
     }
     
     struct NibName {
-        static let bucketListTableViewCell = "BucketListTableViewCell"
         static let listTableHeaderView = "ListTableHeaderView"
         
     }

@@ -10,7 +10,11 @@ import UIKit
 import ObjectMapper
 import CoreLocation
 
-class MapDetails: ChartItem {
+class MapDetails: ChartContent, Mappable {
+   
+    required init?(map: Map) {
+        
+    }
 
     var location: CLLocation?
     
@@ -18,17 +22,22 @@ class MapDetails: ChartItem {
     
     //MARK: Functions
 
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-
-        type                    <- map["type"]
-
+    func mapping(map: Map) {
+        if let keyValue = map.JSON["key"] {
+            key   = "\(keyValue)"
+        }
+        docCount            <- map["doc_count"]
+        bucketValue         <- map["bucketValue"]
+        
+        type <- map["type"]
+        
         if let locationDict = map.JSON["location"] as? [String: Any] {
             let lat = locationDict["lat"] as? Double ?? 0.0
             let longitude = locationDict["lon"] as? Double ?? 0.0
             
             location = CLLocation(latitude: lat, longitude: longitude)
         }
+        
     }
 
 }

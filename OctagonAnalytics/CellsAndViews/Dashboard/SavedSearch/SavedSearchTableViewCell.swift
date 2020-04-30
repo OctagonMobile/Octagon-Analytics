@@ -56,13 +56,11 @@ class SavedSearchTableViewCell: UITableViewCell {
                 } else {
                     label.text = "\(value)"
                 }
-
-                if let fieldValue = ChartItem(JSON: ["key" : "\(value)"]) {
-                    ///TODO Metric type need to be updated
-                    let filter = SimpleFilter(fieldName: key, fieldValue: "\(value)", type: BucketType.terms)
-                    let longPressGesture = SearchLongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(_:)), filter: filter)
-                    label.addGestureRecognizer(longPressGesture)
-                }
+                
+                
+                let filter = SimpleFilter(fieldName: key, fieldValue: "\(value)", type: BucketType.terms)
+                let longPressGesture = SearchLongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(_:)), filter: filter)
+                label.addGestureRecognizer(longPressGesture)
             } else {
                 label.textAlignment = .center
                 label.text = "-"

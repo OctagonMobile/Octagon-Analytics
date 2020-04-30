@@ -9,11 +9,20 @@
 import UIKit
 import SwiftDate
 
+struct FilterConstants {
+    static let type  = "filterType"
+    static let field = "filterField"
+    static let value = "filterValue"
+    static let rangeFrom = "filterRangeFrom"
+    static let rangeTo = "filterRangeTo"
+}
+
 //MARK:
 protocol FilterProtocol {
     var fieldName: String           { get set }
     var isInverted: Bool            { get set }
     var combinedFilterValue: String { get }
+    var dataParams: [String: Any]   { get }
     
     func isEqual(_ object: Any) -> Bool
 }
@@ -37,57 +46,6 @@ extension FilterProtocol {
     }
 }
 
-struct Filter: FilterProtocol {
-    var isInverted: Bool
-    
-    var fieldName: String
-    
-    var fieldValue: ChartItem
-    var type: BucketType
-    var metricType: MetricType
-    var interval: Int?
-    
-    var combinedFilterValue: String {
-        
-        switch type {
-        case .terms, .dateHistogram:
-            let termsDate = (fieldValue as? TermsChartItem)?.termsDateString ?? ""
-            let value = termsDate.isEmpty ? fieldValue.key : termsDate
-            return "\(fieldName):\"\(value)\""
-        case .histogram:
-            let fVal = Int(fieldValue.key) ?? 0
-            return "\(fieldName):\"\(fieldValue.key) to \(fVal + (interval ?? 0))\""
-        default:
-            return "\(fieldName):\"\(fieldValue.key)\""
-        }
-    }
-    
-    init(fieldName: String, fieldValue: ChartItem, type: BucketType, metricType: MetricType, isInverted: Bool = false, interval: Int? = nil) {
-        self.fieldName  = fieldName
-        self.fieldValue = fieldValue
-        self.type       = type
-        self.metricType = metricType
-        self.isInverted = isInverted
-        self.interval   = interval
-    }
-    
-    func isEqual(_ object: Any) -> Bool {
-        guard let rhs = object as? Filter else { return false }
-        var isEqual = (self.fieldName == rhs.fieldName)
-        
-        if let lhsRangeChartItem = (self.fieldValue as? RangeChartItem), let rhsRangeChartItem = (rhs.fieldValue as? RangeChartItem) {
-            isEqual = isEqual && (lhsRangeChartItem == rhsRangeChartItem)
-        } else if let lhsTermsChartItem = (self.fieldValue as? TermsChartItem), let rhsTermsChartItem = (rhs.fieldValue as? TermsChartItem) {
-            isEqual = isEqual && (lhsTermsChartItem == rhsTermsChartItem)
-        } else {
-            isEqual = isEqual && (self.fieldValue == rhs.fieldValue)
-        }
-        
-        return isEqual
-    }
-
-}
-
 struct ImageFilter: FilterProtocol {
 
     /// ID is used just to identify that this is Image filter
@@ -98,6 +56,12 @@ struct ImageFilter: FilterProtocol {
 
     var combinedFilterValue: String {
         return "Image Search Filters"
+    }
+    
+    var dataParams: [String : Any] {
+        return [FilterConstants.type : "terms",
+        FilterConstants.field : fieldName,
+        FilterConstants.value : fieldValue]
     }
     
     init(fieldName: String, fieldValue: [String]) {
@@ -124,6 +88,12 @@ struct MapFilter: FilterProtocol {
     var fieldValue: String
     var combinedFilterValue: String {
         return "\(fieldName): \(fieldValue)"
+    }
+    
+    var dataParams: [String : Any] {
+        return [FilterConstants.type: "terms",
+                FilterConstants.field: fieldName,
+                FilterConstants.value: fieldValue]
     }
     
     init(fieldName: String, fieldValue: String) {
@@ -169,6 +139,16 @@ struct LocationFilter: FilterProtocol {
         return "\(fieldName): {lat: \(coordinateRectangle.topLeft.latitude), lon: \(coordinateRectangle.topLeft.longitude)} to {lat: \(coordinateRectangle.bottomRight.latitude), lon: \(coordinateRectangle.bottomRight.longitude)}"
     }
     
+    var dataParams: [String : Any] {
+        return [FilterConstants.type: type.rawValue,
+                  FilterConstants.field: fieldName,
+                  FilterConstants.value: ["top_left": ["lat": coordinateRectangle.topLeft.latitude, "lon": coordinateRectangle.topLeft.longitude],
+            "top_right": ["lat": coordinateRectangle.topRight.latitude, "lon": coordinateRectangle.topRight.longitude],
+            "bottom_left": ["lat": coordinateRectangle.bottomLeft.latitude, "lon": coordinateRectangle.bottomLeft.longitude],
+            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude]]
+        ]
+
+    }
     
     //MARK:
     init(fieldName: String, type: BucketType, rectangle: CoordinateRectangle) {
@@ -182,150 +162,6 @@ struct LocationFilter: FilterProtocol {
         guard let filter = object as? LocationFilter else { return false }
         return fieldName == filter.fieldName &&
         (coordinateRectangle == filter.coordinateRectangle)
-    }
-}
-
-// Used if the bucket type is DateHistogram (Currently only on bar chart)
-struct DateFilter: FilterProtocol {
-    //// Not applicable (Ignore thsese properties). need to be refactored
-    var isInverted: Bool    =   false
-    var combinedFilterValue: String {
-        return "Date Filter"
-    }
-    ////
-    
-    var fieldName: String
-    var fieldValue: ChartItem
-    var metricType: MetricType
-    var interval: AggregationParams.IntervalType
-    var customInterval: String
-    
-    var displayValue: String {
-        return fieldName
-    }
-    
-    var calculatedFromDate: Date? {
-        return (fieldValue as? DateHistogramChartItem)?.termsDate
-    }
-    
-    var calculatedToDate: Date? {
-        return self.dateForIntervalType(interval)
-    }
-
-    var selectedDateComponants: DateComponents?
-    
-    //MARK: Functions
-    init(fieldName: String, fieldValue: ChartItem, metricType: MetricType, interval: AggregationParams.IntervalType, dateComponant: DateComponents?, customInterval: String = "") {
-        self.fieldName = fieldName
-        self.fieldValue = fieldValue
-        self.metricType = metricType
-        self.interval = interval
-        self.selectedDateComponants = dateComponant
-        self.customInterval = customInterval
-    }
-    
-    private func dateForCustomInterval() -> Date? {
-        
-        guard let matchedType = AggregationParams.IntervalType.customTypes.filter( { customInterval.contains($0.rawValue) } ).first else { return calculatedFromDate }
-        let value = customInterval.replacingOccurrences(of: matchedType.rawValue, with: "")
-        
-        guard let intervalValue = Int(value) else { return calculatedFromDate }
-        return dateForIntervalType(matchedType, value: intervalValue)
-    }
-    
-    private func dateForIntervalType(_ interval: AggregationParams.IntervalType, value: Int = 1) -> Date? {
-        guard let fromDate = calculatedFromDate else { return nil }
-        
-        switch interval {
-        case .auto:
-            return toDateForAutoInterval()
-        case .millisecond:
-            return fromDate + value.seconds
-        case .second:
-            return fromDate + value.seconds
-        case .minute:
-            return fromDate + value.minutes
-        case .hourly:
-            return (fromDate + value.hours)
-        case .daily:
-            return fromDate + value.days
-        case .weekly:
-            return fromDate + value.weeks
-        case .monthly:
-            return fromDate + value.months
-        case .yearly:
-            return fromDate + value.years
-        case .custom:
-            return dateForCustomInterval()
-        default:
-            return nil
-        }
-
-    }
-
-    private func toDateForAutoInterval() -> Date? {
-        
-        guard let fromDate = calculatedFromDate else { return nil }
-        
-        // Rules for 'Auto' Date calculation
-        // if greater than 1 year : yearly
-        let year = selectedDateComponants?.year
-        let month = selectedDateComponants?.month
-        let week = selectedDateComponants?.weekOfMonth
-        let days = selectedDateComponants?.day
-        let hour = selectedDateComponants?.hour
-        let minutes = selectedDateComponants?.minute
-        let seconds = selectedDateComponants?.second
-
-        if let year = year, year > 1 {
-            return fromDate + 1.years
-        }
-        
-        // if less than 1 year & greater than 6 months: monthly
-        if let year = year, let month = month,
-            year == 1 || (year <= 1 && month > 6) {
-            return fromDate + 1.months
-        }
-        
-        // if less than or equal to 6 months & greater than or equals to 1 month: weekly
-        if let month = month,
-            month <= 6 && month >= 1 {
-            return fromDate + 1.weeks
-        }
-        
-        if let week = week,
-            week <= 5 && week >= 1  {
-            return fromDate + 1.days
-        }
-
-        if let days = days,
-            days <= 7 && days >= 1  {
-            return fromDate + 12.hours
-        }
-        
-        if let hour = hour,
-            hour <= 24 && hour > 1 {
-            return fromDate + 1.hours
-        }
-
-        
-        if let hour = hour, let minutes = minutes,
-            hour == 1 || (hour < 1 && minutes >= 10) {
-            return fromDate + 5.minutes
-        }
-        
-        if let minutes = minutes,
-            minutes <= 10 && minutes > 0 {
-            return fromDate + 10.seconds
-        }
-        
-        var millisecondsToAdd = 200
-        if let seconds = seconds, seconds <= 0 {
-            millisecondsToAdd   =   10
-        }
-        
-        let toDateMs = fromDate.millisecondsSince1970 + Int64(millisecondsToAdd)
-        return Date(milliseconds: Int(truncatingIfNeeded: toDateMs))
     }
 }
 
@@ -349,6 +185,29 @@ struct SimpleFilter: FilterProtocol {
     
     var displayValue: String {
         return fieldValue
+    }
+    
+    var dataParams: [String : Any] {
+        var params: [String: Any] = [:]
+        params[FilterConstants.type] = bucketType.rawValue
+        params[FilterConstants.field] = fieldName
+        switch bucketType {
+        case .range:
+            let ranges: [String] = fieldValue.components(separatedBy: "-")
+            params[FilterConstants.rangeFrom] = ranges.first ?? ""
+            params[FilterConstants.rangeTo] = ranges.last ?? ""
+        case .histogram:
+                //For Histogram use Range
+                let fVal = Int(fieldValue) ?? 0
+                let interval = self.interval ?? 0
+                params = [FilterConstants.type: "range",
+                          FilterConstants.field: fieldName,
+                          FilterConstants.rangeFrom: "\(fieldValue)",
+                          FilterConstants.rangeTo: "\(fVal + interval)"]
+        default:
+            params[FilterConstants.value] = fieldValue
+        }
+        return params
     }
     
     init(fieldName: String, fieldValue: String, type: BucketType, interval: Int? = nil) {
@@ -380,6 +239,10 @@ struct DateHistogramFilter: FilterProtocol {
         return (calculatedFromDate?.toFormat("YYYY-MM-dd HH:mm:ss") ?? "") +
             " to " +
             (calculatedToDate?.toFormat("YYYY-MM-dd HH:mm:ss") ?? "")
+    }
+    
+    var dataParams: [String : Any] {
+        return [:]
     }
     
     var fieldName: String
