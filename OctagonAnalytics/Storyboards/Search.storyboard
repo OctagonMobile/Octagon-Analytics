@@ -197,28 +197,12 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQb-8M-LQ8">
-                                                <rect key="frame" x="1315" y="4.5" width="36" height="36"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="36" id="COA-vx-vma"/>
-                                                    <constraint firstAttribute="width" constant="36" id="tej-w6-z2q"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" image="LegendOn">
-                                                    <color key="titleColor" red="0.45424410700000001" green="0.76790571210000003" blue="0.8157393932" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="legendButtonAction:" destination="aCD-Ci-IR6" eventType="touchUpInside" id="g1V-si-28i"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="eQb-8M-LQ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ObX-Ru-nc2" secondAttribute="trailing" constant="10" id="1Gr-CQ-qp5"/>
                                             <constraint firstItem="ObX-Ru-nc2" firstAttribute="top" secondItem="Ocq-1T-jX0" secondAttribute="top" id="4Hb-Fb-864"/>
-                                            <constraint firstItem="eQb-8M-LQ8" firstAttribute="centerY" secondItem="Ocq-1T-jX0" secondAttribute="centerY" id="7Vz-Gz-nRs"/>
                                             <constraint firstItem="ObX-Ru-nc2" firstAttribute="leading" secondItem="Ocq-1T-jX0" secondAttribute="leading" constant="16" id="HIZ-0N-FXt"/>
-                                            <constraint firstAttribute="trailing" secondItem="eQb-8M-LQ8" secondAttribute="trailing" constant="5" id="YXK-4i-qfZ"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ObX-Ru-nc2" secondAttribute="trailing" constant="10" id="bJK-Xs-GTo"/>
                                             <constraint firstAttribute="height" constant="45" id="cGL-o9-hsd"/>
                                             <constraint firstAttribute="bottom" secondItem="ObX-Ru-nc2" secondAttribute="bottom" id="uZc-KO-f4R"/>
                                         </constraints>
@@ -274,7 +258,6 @@
                         <outlet property="gaugeView" destination="F7w-TV-3rp" id="nP5-8L-NRQ"/>
                         <outlet property="headerTitleLabel" destination="ObX-Ru-nc2" id="cCy-V5-cKc"/>
                         <outlet property="headerview" destination="Ocq-1T-jX0" id="fri-m0-cid"/>
-                        <outlet property="legendEnableButton" destination="eQb-8M-LQ8" id="Jyd-Ie-JGG"/>
                         <outlet property="mainContainerView" destination="lwt-Va-VGl" id="Uk0-cZ-m8E"/>
                         <outlet property="shadowView" destination="UWx-ky-vlC" id="ocw-HR-8G0"/>
                     </connections>
@@ -284,7 +267,4 @@
             <point key="canvasLocation" x="1580" y="717"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LegendOn" width="36" height="36"/>
-    </resources>
 </document>

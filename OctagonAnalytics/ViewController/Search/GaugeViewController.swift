@@ -13,15 +13,6 @@ class GaugeViewController: PanelBaseViewController {
     
     //MARK: Outlets
     @IBOutlet weak var gaugeView: SmartGauge!
-    @IBOutlet weak var legendEnableButton: UIButton?
-
-    var legendOnIconName: String {
-        return CurrentTheme.isDarkTheme ? "LegendOn-Dark" : "LegendOn"
-    }
-    
-    var legendOffIconName: String {
-        return CurrentTheme.isDarkTheme ? "LegendOff-Dark" : "LegendOff"
-    }
 
     //MARK: Overriden Functions
     override func viewDidLoad() {
@@ -33,56 +24,46 @@ class GaugeViewController: PanelBaseViewController {
         
         gaugeView.valueTextColor = CurrentTheme.titleColor
         gaugeView.coveredTickValueColor = CurrentTheme.titleColor
-        gaugeView.gaugeViewPercentage = 0.7
-        gaugeView.legendMargin = 10
-        gaugeView.legendSpacing = 5
-        gaugeView.legendSize = CGSize(width: 25, height: 20)
-        if let font = CTFontCreateUIFontForLanguage(.system, 17.0, nil) {
-            gaugeView.legendFont = font
-        }
-    }
-    
-    override func setupHeader() {
-        super.setupHeader()
-        legendEnableButton?.isSelected = true
-        legendEnableButton?.setTitle("", for: .normal)
-        legendEnableButton?.setImage(UIImage(named: legendOffIconName), for: .normal)
-        legendEnableButton?.setImage(UIImage(named: legendOnIconName), for: .selected)
+        //Set size of the legend to zero for Goal Viz (Note: for Gauge viz legends are disabled)
+        gaugeView.legendSize = CGSize.zero
     }
     
     override func setupPanel() {
         super.setupPanel()
-        
-        gaugeView.enableLegends = legendEnableButton?.isSelected ?? false
-        
+                
         guard let visState = panel?.visState as? GaugeVisState else { return }
         
-        if visState.gaugeType == .gauge {
-            let colors = CurrentTheme.gaugeRangeColors
-            
-            var colorIndex = 0
-            let ranges: [SGRanges] = visState.gauge?.ranges.enumerated().compactMap { (index, element) in
-                
-                let fromValue = floor(element.from) == element.from ? "\(Int(element.from))" : "\(element.from)"
-                let toValue = floor(element.to) == element.to ? "\(Int(element.to))" : "\(element.to)"
-
-                let title = "\(fromValue) - \(toValue)"
-                if index >= colors.count {
-                    colorIndex = 0
-                }
-                let color = colors[colorIndex]
-                colorIndex += 1
-                return SGRanges(title, fromValue: element.from, toValue: element.to, color: color)
-            } ?? []
-            
-            gaugeView.rangesList = ranges
-            if let lastRange = ranges.last {
-                gaugeView.gaugeMaxValue = lastRange.toValue
-            }
-
-        } else {
-            // Handle for gaol
+        let isGaugeView = visState.gaugeType == .gauge
+        gaugeView.gaugeType = isGaugeView ? .gauge : .goal
+        gaugeView.enableLegends = !isGaugeView
+        
+        let colors = CurrentTheme.gaugeRangeColors
+        var colorIndex = 0
+        
+        var rangesList = visState.gauge?.ranges ?? []
+        if !isGaugeView && rangesList.count > 0 {
+            rangesList = Array(rangesList.prefix(1))
         }
+        
+        let ranges: [SGRanges] = rangesList.enumerated().compactMap { (index, element) in
+            
+            let fromValue = floor(element.from) == element.from ? "\(Int(element.from))" : "\(element.from)"
+            let toValue = floor(element.to) == element.to ? "\(Int(element.to))" : "\(element.to)"
+
+            let title = isGaugeView ? "\(fromValue) - \(toValue)" : "Goal: \(toValue)"
+            if index >= colors.count {
+                colorIndex = 0
+            }
+            let color = colors[colorIndex]
+            colorIndex += 1
+            return SGRanges(title, fromValue: element.from, toValue: element.to, color: color)
+        }
+        
+        gaugeView.rangesList = ranges
+        if let lastRange = ranges.last {
+            gaugeView.gaugeMaxValue = lastRange.toValue
+        }
+
     }
     
     override func updatePanelContent() {
@@ -98,12 +79,5 @@ class GaugeViewController: PanelBaseViewController {
         if gaugeVal > gaugeView.rangesList.last?.toValue ?? 0.0 {
             gaugeView.gaugeMaxValue = gaugeVal
         }
-    }
-    
-    //MARK: Button Actions
-    @IBAction func legendButtonAction(_ sender: UIButton) {
-        legendEnableButton?.isSelected = !(legendEnableButton?.isSelected ?? false)
-        gaugeView.enableLegends = (legendEnableButton?.isSelected ?? true)
-        updatePanelContent()
     }
 }
