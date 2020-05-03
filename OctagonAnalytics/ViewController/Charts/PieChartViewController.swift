@@ -50,7 +50,7 @@ class PieChartViewController: ChartBaseViewController {
         
         var legendsList: [ScrollableLegendEntry] = []
         var colorIndex = 0
-        let pieChartDataEntry: [ChartDataEntry] = panel.buckets.compactMap { (item) -> ChartDataEntry? in
+        let pieChartDataEntry: [ChartDataEntry] = panel.chartContentList.compactMap { (item) -> ChartDataEntry? in
             
             // Values
             let metricTypeValue = panel.metricAggregation?.metricType
@@ -97,7 +97,7 @@ extension PieChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         DLog("Chart Value Selected")
         
-        guard let chartItem = entry.data as? ChartItem,
+        guard let chartContent = entry.data as? ChartContent,
             let agg = panel?.bucketAggregation else { return }
       
         var dateComponant: DateComponents?
@@ -105,7 +105,7 @@ extension PieChartViewController: ChartViewDelegate {
             let fromDate = selectedDates.0, let toDate = selectedDates.1 {
             dateComponant = fromDate.getDateComponents(toDate)
         }
-        let filter = FilterProvider.shared.createFilter(chartItem, dateComponents: dateComponant, agg: agg)
+        let filter = FilterProvider.shared.createFilter(chartContent, dateComponents: dateComponant, agg: agg)
         
         showInfoFieldActionBlock?(self, [filter], nil)
     }

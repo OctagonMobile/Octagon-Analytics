@@ -273,7 +273,7 @@ extension DashboardListingViewController: UICollectionViewDataSource, UICollecti
             } else if panel is SavedSearchPanel {
                 (panel as? SavedSearchPanel)?.hits.removeAll()
             } else {
-                panel.buckets.removeAll()
+                panel.chartContentList.removeAll()
             }
         }
     }

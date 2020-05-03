@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5104B5CC244C8C5B006BFE34 /* GaugePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */; };
-		5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */; };
 		510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */; };
 		511342811FFE24AE00A7787E /* LocationPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511342801FFE24AE00A7787E /* LocationPopUpView.swift */; };
 		511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511342821FFE24C300A7787E /* LocationPopUpView.xib */; };
@@ -23,7 +22,6 @@
 		5127EB97222D3DB7000C4E79 /* DashboardListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5127EB95222D3DB7000C4E79 /* DashboardListHeaderView.swift */; };
 		5127EB98222D3DB7000C4E79 /* DashboardListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5127EB96222D3DB7000C4E79 /* DashboardListHeaderView.xib */; };
 		5128ABA92340A512009BA056 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5128ABAB2340A512009BA056 /* Localizable.strings */; };
-		512BF7771FA0C05F00DCCE6A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BF7761FA0C05F00DCCE6A /* ChartItem.swift */; };
 		512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */; };
 		513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513049BC21D20DC2003392A0 /* LayerSwitchHolderView.swift */; };
 		5130A1041FA70518003D0525 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */; };
@@ -114,9 +112,7 @@
 		51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51840DFB1FCED792007B8D38 /* TilePanel.swift */; };
 		51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51840DFD1FCED7BE007B8D38 /* Tile.swift */; };
 		51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51841ECB2063D59800A9C856 /* SPUserResizableView.m */; };
-		518422BE1FB41E0A00D28CAD /* RangeChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */; };
 		5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */; };
-		518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C61A11FB4646100F83381 /* TermsChartItem.swift */; };
 		518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BB243F400F00522314 /* GaugeViewController.swift */; };
 		518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518DD0BE243F422100522314 /* GaugeVisState.swift */; };
 		51923AB7207DE3750023FE27 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923AB6207DE3750023FE27 /* MapBaseViewController.swift */; };
@@ -131,8 +127,6 @@
 		51A6B32A1FCD3FE700F6A3E8 /* MetricPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */; };
 		51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B32B1FCD404200F6A3E8 /* Metric.swift */; };
 		51ACB33021C790BD008E2D4D /* CoordinateMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */; };
-		51B0C9AC1FC174DF00BDF269 /* BucketListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */; };
-		51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */; };
 		51B0C9AF1FC17CD700BDF269 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AE1FC17CD700BDF269 /* Session.swift */; };
 		51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */; };
 		51B7C42E2059099400565D99 /* MetricVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B7C42D2059099400565D99 /* MetricVisState.swift */; };
@@ -204,7 +198,6 @@
 
 /* Begin PBXFileReference section */
 		5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugePanel.swift; sourceTree = "<group>"; };
-		5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHistogramChartItem.swift; sourceTree = "<group>"; };
 		510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		511342801FFE24AE00A7787E /* LocationPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpView.swift; sourceTree = "<group>"; };
 		511342821FFE24C300A7787E /* LocationPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationPopUpView.xib; sourceTree = "<group>"; };
@@ -222,7 +215,6 @@
 		5128ABAC2340A535009BA056 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5128ABAD2340A535009BA056 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5128ABAF2340C93C009BA056 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		512BF7761FA0C05F00DCCE6A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
 		512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCloudVisState.swift; sourceTree = "<group>"; };
 		513049BC21D20DC2003392A0 /* LayerSwitchHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerSwitchHolderView.swift; sourceTree = "<group>"; };
 		5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -323,9 +315,7 @@
 		51840DFD1FCED7BE007B8D38 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		51841ECA2063D59800A9C856 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		51841ECB2063D59800A9C856 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
-		518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeChartItem.swift; sourceTree = "<group>"; };
 		5189D5BB2015B9AC00B61EEA /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
-		518C61A11FB4646100F83381 /* TermsChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsChartItem.swift; sourceTree = "<group>"; };
 		518DD0BB243F400F00522314 /* GaugeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewController.swift; sourceTree = "<group>"; };
 		518DD0BE243F422100522314 /* GaugeVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeVisState.swift; sourceTree = "<group>"; };
 		51923AB6207DE3750023FE27 /* MapBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
@@ -341,8 +331,6 @@
 		51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPanel.swift; sourceTree = "<group>"; };
 		51A6B32B1FCD404200F6A3E8 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateMapViewController.swift; sourceTree = "<group>"; };
-		51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListTableViewCell.swift; sourceTree = "<group>"; };
-		51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BucketListTableViewCell.xib; sourceTree = "<group>"; };
 		51B0C9AE1FC17CD700BDF269 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		51B7C42D2059099400565D99 /* MetricVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricVisState.swift; sourceTree = "<group>"; };
 		51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchIdHelper.swift; sourceTree = "<group>"; };
@@ -522,8 +510,6 @@
 				5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */,
 				517585DA1FB03705002AFB73 /* MetricsCollectionViewCell.swift */,
 				517585DB1FB03705002AFB73 /* MetricsCollectionViewCell.xib */,
-				51B0C9AA1FC174DF00BDF269 /* BucketListTableViewCell.swift */,
-				51B0C9AB1FC174DF00BDF269 /* BucketListTableViewCell.xib */,
 				5168C3B61FC2FDD400AB77C6 /* FilterCollectionViewCell.swift */,
 				5168C3BA1FC3062700AB77C6 /* FilterCollectionViewCell.xib */,
 				519AD5E82014B8C800F41CB4 /* DashboardListCollectionViewCell.swift */,
@@ -629,10 +615,6 @@
 				51FABE9B2073602C0015C802 /* MapTrackPoint.swift */,
 				517F97DA1FB1A8B900CA6E55 /* VisState.swift */,
 				5130A1191FA86C26003D0525 /* Aggregation.swift */,
-				512BF7761FA0C05F00DCCE6A /* ChartItem.swift */,
-				518422BD1FB41E0A00D28CAD /* RangeChartItem.swift */,
-				518C61A11FB4646100F83381 /* TermsChartItem.swift */,
-				5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */,
 				51DC04F020555F6000E4F1E0 /* Filter.swift */,
 				F10D6D5523D8422C00190754 /* FilterConvertible.swift */,
 			);
@@ -1264,7 +1246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				515DD7F91FC53DDB009EC716 /* Settings.bundle in Resources */,
-				51B0C9AD1FC174DF00BDF269 /* BucketListTableViewCell.xib in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
@@ -1419,13 +1400,11 @@
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
 				51743CBE22B1143200C92E73 /* SSCustomTemplateDataProvider.swift in Sources */,
 				518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */,
-				512BF7771FA0C05F00DCCE6A /* ChartItem.swift in Sources */,
 				51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */,
 				51840DFE1FCED7BE007B8D38 /* Tile.swift in Sources */,
 				517F97DE1FB1AE6A00CA6E55 /* PieChartVisState.swift in Sources */,
 				5136039222267AB5002D12B6 /* WebContentVisState.swift in Sources */,
 				51E8BF4720F38048004B5D20 /* DatePickerCollectionReusableView.swift in Sources */,
-				51B0C9AC1FC174DF00BDF269 /* BucketListTableViewCell.swift in Sources */,
 				5174FBA2219C105E003BEB1E /* TouchVelocityTracker.swift in Sources */,
 				513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */,
 				51840DF31FCEA2F8007B8D38 /* TagCloudViewController.swift in Sources */,
@@ -1438,7 +1417,6 @@
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
 				51840DF11FCEA2F2007B8D38 /* ContentListViewController.swift in Sources */,
-				518C61A21FB4646100F83381 /* TermsChartItem.swift in Sources */,
 				51CB2D221FBDA149007BC0A0 /* BaseViewController.swift in Sources */,
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
@@ -1454,7 +1432,6 @@
 				5174FBB8219C4EA1003BEB1E /* GraphNodeView.swift in Sources */,
 				51210C292070B75300B038EC /* MapVisState.swift in Sources */,
 				5174FBA3219C105E003BEB1E /* WeightedGraphPresenter.swift in Sources */,
-				518422BE1FB41E0A00D28CAD /* RangeChartItem.swift in Sources */,
 				51F0E62822CDCB7B001B390A /* CustomTemplateLayout.swift in Sources */,
 				51E8BF4820F38048004B5D20 /* MultiDatePickerViewController.swift in Sources */,
 				51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */,
@@ -1491,7 +1468,6 @@
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
-				5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
 				5174FBA5219C105E003BEB1E /* GraphWeightView.swift in Sources */,
 				51E3941F204D664100AF22C8 /* CustomMapView.swift in Sources */,
@@ -1710,7 +1686,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
@@ -1742,7 +1718,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
