@@ -16,6 +16,10 @@ class TileViewController: PanelBaseViewController {
     @IBOutlet var tileSlider: TGPDiscreteSlider!
     @IBOutlet weak var tilesCollectionView: UICollectionView!
     
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     let minCellSize: CGFloat = 180.0
 
     var dataSource: [Tile] {
@@ -138,9 +142,7 @@ extension TileViewController: UICollectionViewDataSource, UICollectionViewDelega
 
                 guard let tilePanel = (self?.panel as? TilePanel) else { return }
 
-                let hud = MBProgressHUD.showAdded(to: self?.view ?? UIView(), animated: true)
-                hud.animationType = .zoomIn
-                hud.contentColor = CurrentTheme.darkBackgroundColor
+                hud.show(animated: true)
 
                 tile?.loadImageHashesFor(tilePanel, { [weak self] (result, error) in
 

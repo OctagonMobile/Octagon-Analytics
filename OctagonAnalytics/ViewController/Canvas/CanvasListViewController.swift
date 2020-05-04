@@ -13,7 +13,9 @@ class CanvasListViewController: BaseViewController {
 
     var canvasLoader: CanvasLoader      =   CanvasLoader()
     
-    private var hud: MBProgressHUD?
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
     private var refreshControl: UIRefreshControl?
     private var searchText: String      =   ""
     private var dataSource: [Canvas]    =   []
@@ -63,12 +65,12 @@ class CanvasListViewController: BaseViewController {
     private func loadCanvasList(_ showLoader: Bool = true) {
         
         if showLoader {
-            hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.show(animated: true)
         }
         canvasLoader.loadCanvasList { [weak self] (res, error) in
             
             self?.refreshControl?.endRefreshing()
-            self?.hud?.hide(animated: true)
+            self?.hud.hide(animated: true)
             
             self?.filterCanvasList()
 

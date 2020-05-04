@@ -16,6 +16,10 @@ class KeycloakLoginViewController: BaseViewController {
     
     @IBOutlet var mainTitleLabel: UILabel!
 
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +35,9 @@ class KeycloakLoginViewController: BaseViewController {
         }
         
         MBProgressHUD.hide(for: view, animated: true)
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.animationType = .zoomIn
-        hud.contentColor = CurrentTheme.darkBackgroundColor
+        hud.show(animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            hud.hide(animated: true)
+            self.hud.hide(animated: true)
             self.showLogin()
         }
     }

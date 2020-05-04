@@ -35,6 +35,10 @@ class PanelBaseViewController: BaseViewController, DataTableDelegate {
     var dataTableAdapter: DataTableType!
     var dataTable: UIView!
     
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     private var dataSource: [Bucket] = []
     private var listTableHeaders: [String] = []
     
@@ -146,12 +150,10 @@ class PanelBaseViewController: BaseViewController, DataTableDelegate {
         }
         
         MBProgressHUD.hide(for: view, animated: true)
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.animationType = .zoomIn
-        hud.contentColor = CurrentTheme.darkBackgroundColor
+        hud.show(animated: true)
         
         panel?.loadChartData({ [weak self] (result, error) in
-            hud.hide(animated: true)
+            self?.hud.hide(animated: true)
             // Check for Errors
             self?.flipButton?.isHidden = (error != nil)
             

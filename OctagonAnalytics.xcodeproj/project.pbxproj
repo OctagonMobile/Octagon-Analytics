@@ -184,6 +184,7 @@
 		51F0E62822CDCB7B001B390A /* CustomTemplateLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E62722CDCB7B001B390A /* CustomTemplateLayout.swift */; };
 		51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E62922CDCC57001B390A /* CustomCardCell.swift */; };
 		51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */; };
+		51F359F024601E960009AC07 /* CustomHudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F359EF24601E960009AC07 /* CustomHudView.swift */; };
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
 		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
@@ -387,6 +388,7 @@
 		51F0E62722CDCB7B001B390A /* CustomTemplateLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTemplateLayout.swift; sourceTree = "<group>"; };
 		51F0E62922CDCC57001B390A /* CustomCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardCell.swift; sourceTree = "<group>"; };
 		51F0E66722D609EB001B390A /* KeycloakLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycloakLoginViewController.swift; sourceTree = "<group>"; };
+		51F359EF24601E960009AC07 /* CustomHudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHudView.swift; sourceTree = "<group>"; };
 		51FABE9B2073602C0015C802 /* MapTrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackPoint.swift; sourceTree = "<group>"; };
 		65831A6E3CC743BB9D7D4E5A /* Pods-KibanaGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.release.xcconfig"; sourceTree = "<group>"; };
 		69ADCA47115A3A8AAE35FACC /* Pods-KibanaGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KibanaGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KibanaGo/Pods-KibanaGo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 		5129C1FD1F9F513B003E6406 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				51F359EE24601A8D0009AC07 /* HudView */,
 				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51E8BF3C20F38048004B5D20 /* DatePicker */,
 				5174FB96219C105E003BEB1E /* ForceDirectedGraph */,
@@ -1158,6 +1161,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		51F359EE24601A8D0009AC07 /* HudView */ = {
+			isa = PBXGroup;
+			children = (
+				51F359EF24601E960009AC07 /* CustomHudView.swift */,
+			);
+			path = HudView;
+			sourceTree = "<group>";
+		};
 		F12A7C17244BFDE000FB5494 /* DataTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,6 +1427,7 @@
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
+				51F359F024601E960009AC07 /* CustomHudView.swift in Sources */,
 				51840DF11FCEA2F2007B8D38 /* ContentListViewController.swift in Sources */,
 				51CB2D221FBDA149007BC0A0 /* BaseViewController.swift in Sources */,
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,

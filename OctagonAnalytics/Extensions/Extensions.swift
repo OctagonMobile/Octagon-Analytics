@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -203,5 +204,45 @@ extension UIColor {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+}
+
+extension MBProgressHUD {
+    private class func createHud(addedTo view: UIView, rotate: Bool = true) -> MBProgressHUD {
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        
+        let customView = CustomHudView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        hud.customView = customView
+        hud.mode = .customView
+        hud.removeFromSuperViewOnHide = false
+        hud.margin = 5.0
+        // Equal width/height depending on whichever is larger
+        hud.isSquare = true
+        
+        // Partially see-through bezel
+        hud.bezelView.color = CurrentTheme.isDarkTheme ? UIColor.black : UIColor.white
+        hud.bezelView.style = CurrentTheme.isDarkTheme ? .solidColor : .blur
+        hud.bezelView.layer.cornerRadius = 30.0
+        
+        // Dim background
+        hud.backgroundView.color = .clear
+        hud.backgroundView.style = .solidColor
+        
+        if rotate {
+            let animation = CABasicAnimation(keyPath: "transform.rotation")
+            animation.fromValue = 0.0
+            animation.speed = 0.5
+            animation.toValue = 2.0 * Double.pi
+            animation.duration = 1
+            animation.repeatCount = HUGE
+            animation.isRemovedOnCompletion = false
+            hud.customView?.layer.add(animation, forKey: "rotationAnimation")
+        }
+        
+        return hud
+    }
+    
+    class func refreshing(addedTo view: UIView) -> MBProgressHUD {
+        return createHud(addedTo: view, rotate: true)
     }
 }
