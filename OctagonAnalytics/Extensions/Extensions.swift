@@ -17,6 +17,15 @@ extension Formatter {
         return formatter
     }()
     
+    static let withSeparator2DecimalPoint: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+
     static let withSeparatorIgnoringDecimal: NumberFormatter = {
         let formatter = Formatter.withSeparator
         formatter.maximumFractionDigits = 0
@@ -29,6 +38,10 @@ extension NSNumber {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
     
+    var formattedWithSeparator2Decimal: String {
+        return Formatter.withSeparator2DecimalPoint.string(for: self) ?? ""
+    }
+
     var formattedWithSeparatorIgnoringDecimal: String {
         return Formatter.withSeparatorIgnoringDecimal.string(for: self) ?? ""
     }
