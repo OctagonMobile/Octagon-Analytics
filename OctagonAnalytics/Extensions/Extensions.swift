@@ -211,7 +211,8 @@ extension MBProgressHUD {
     private class func createHud(addedTo view: UIView, rotate: Bool = true) -> MBProgressHUD {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         
-        let customView = CustomHudView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let width: CGFloat = isIPhone ? 60 : 100
+        let customView = CustomHudView(frame: CGRect(x: 0, y: 0, width: width, height: width))
         hud.customView = customView
         hud.mode = .customView
         hud.removeFromSuperViewOnHide = false
@@ -222,7 +223,7 @@ extension MBProgressHUD {
         // Partially see-through bezel
         hud.bezelView.color = CurrentTheme.isDarkTheme ? UIColor.black : UIColor.white
         hud.bezelView.style = CurrentTheme.isDarkTheme ? .solidColor : .blur
-        hud.bezelView.layer.cornerRadius = 30.0
+        hud.bezelView.layer.cornerRadius = isIPhone ? 15.0 : 30.0
         
         // Dim background
         hud.backgroundView.color = .clear
