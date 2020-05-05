@@ -94,7 +94,6 @@ class Panel: Mappable {
     /**
      List of chart items.
      */
-    var buckets: [ChartItem]            = []
 
     var chartContentList: [ChartContent] = []
     
@@ -241,7 +240,7 @@ class Panel: Mappable {
      Clear data here in case of error
      */
     internal func resetDataSource() {
-        buckets.removeAll()
+//        buckets.removeAll()
     }
     
     /**
@@ -256,67 +255,8 @@ class Panel: Mappable {
         var filtersArray:[[String: Any]?]  = []
         
         for appliedFilter in Session.shared.appliedFilters {
-            
-            var params: [String: Any]? = [:]
-            
-            if let filter = appliedFilter as? ImageFilter {
-                params = ["filterType": "terms",
-                          "filterField": filter.fieldName,
-                          "filterValue": filter.fieldValue]
-            }
-            
-            if let filter = appliedFilter as? LocationFilter {
-                params = ["filterType": filter.type.rawValue,
-                          "filterField": filter.fieldName,
-                          "filterValue": ["top_left": ["lat": filter.coordinateRectangle.topLeft.latitude, "lon": filter.coordinateRectangle.topLeft.longitude],
-                    "top_right": ["lat": filter.coordinateRectangle.topRight.latitude, "lon": filter.coordinateRectangle.topRight.longitude],
-                    "bottom_left": ["lat": filter.coordinateRectangle.bottomLeft.latitude, "lon": filter.coordinateRectangle.bottomLeft.longitude],
-                    "bottom_right": ["lat": filter.coordinateRectangle.bottomRight.latitude, "lon": filter.coordinateRectangle.bottomRight.longitude]]
-                ]
-            }
-            
-            if let filter = appliedFilter as? MapFilter {
-                params = ["filterType": "terms",
-                          "filterField": filter.fieldName,
-                          "filterValue": filter.fieldValue]
-            }
-            
-            if let filter = appliedFilter as? SimpleFilter {
-                params?["filterType"] = filter.bucketType.rawValue
-                params?["filterField"] = filter.fieldName
-                switch filter.bucketType {
-                case .range:
-                    let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
-                    params?["filterRangeFrom"] = ranges.first ?? ""
-                    params?["filterRangeTo"] = ranges.last ?? ""
-                case .histogram:
-                        //For Histogram use Range
-                        let fVal = Int(filter.fieldValue) ?? 0
-                        let interval = filter.interval ?? 0
-                        params = ["filterType": "range",
-                                  "filterField": filter.fieldName,
-                                  "filterRangeFrom": "\(filter.fieldValue)",
-                                  "filterRangeTo": "\(fVal + interval)"]
-                default:
-                    params?["filterValue"] = filter.fieldValue
-                }
-            }
-
-            if let filter = appliedFilter as? SimpleFilter {
-                params?["filterType"] = filter.bucketType.rawValue
-                params?["filterField"] = filter.fieldName
-                switch filter.bucketType {
-                case .range:
-                    let ranges: [String] = filter.fieldValue.components(separatedBy: "-")
-                    params?["filterRangeFrom"] = ranges.first ?? ""
-                    params?["filterRangeTo"] = ranges.last ?? ""
-                default:
-                    params?["filterValue"] = filter.fieldValue
-                }
-            }
-            
-            params?["isFilterInverted"] = appliedFilter.isInverted
-
+            var params: [String: Any] = appliedFilter.dataParams
+            params["isFilterInverted"] = appliedFilter.isInverted
             filtersArray.append(params)
         }
                 
@@ -349,53 +289,11 @@ class Panel: Mappable {
         // Parse here and update/create chart item
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any] else {
-                buckets.removeAll()
                 return []
         }
         
         parseBuckets(aggregationsDict)
-
-        guard let firstAgg = visState?.otherAggregationsArray.first,
-        let bucketsContent = aggregationsDict[firstAgg.id] as? [String: Any] else { return [] }
         
-        var bucketsArray: [[String: Any]] = []
-        if bucketType == .range {
-            bucketsArray.removeAll()
-            let content = bucketsContent["buckets"] as? [String: [String: Any]] ?? [:]
-            for (key, var item) in content {
-                item["key"] = key
-                bucketsArray.append(item)
-            }
-        } else {
-            bucketsArray = bucketsContent["buckets"] as? [[String: Any]] ?? []
-        }
-        
-        
-        // Parse the response based on the bucket type
-        switch bucketType {
-        case .histogram:
-            buckets = Mapper<ChartItem>().mapArray(JSONArray: bucketsArray)
-        case .range:
-            buckets = Mapper<RangeChartItem>().mapArray(JSONArray: bucketsArray)
-            buckets.sort(by: { ($0 as! RangeChartItem).from < ($1 as! RangeChartItem).from })
-        case .terms:
-            buckets = Mapper<TermsChartItem>().mapArray(JSONArray: bucketsArray)
-            if let termsBucket = buckets as? [TermsChartItem] {
-                buckets = termsBucket.map { bucket -> TermsChartItem in
-                    if !bucket.keyAsString.isEmpty {
-                        bucket.key = bucket.keyAsString
-                    }
-                    return bucket
-                }
-            }
-            
-        case .dateHistogram:
-            buckets = Mapper<DateHistogramChartItem>().mapArray(JSONArray: bucketsArray)
-        default:
-            break
-        }
-        
-        buckets = filterInvalidDataIfExist(buckets)
         
         // Parse table headers for Tables
         if visState?.type == .table , let headersArray = responseJson.first?["tableHeaders"] as? [[String: Any]] {
@@ -418,7 +316,7 @@ class Panel: Mappable {
             tableHeaders = headers
         }
         
-        return buckets
+        return [chartContentList]
     }
     
     
@@ -434,22 +332,6 @@ class Panel: Mappable {
         chartContentList = parsedDataForChart(parsedData)
     }
     
-    /**
-     Filter invalid chart data.
-     
-     - parameter chartItems: Array of Chart data to be filtered.
-     - returns : Array of filtered Chart data
-     */
-    private func filterInvalidDataIfExist(_ chartItems:[ChartItem]) -> [ChartItem] {
-        return chartItems.filter( {
-            if bucketType == .terms || bucketType == .dateHistogram  {
-                let termsDate = ($0 as? TermsChartItem)?.termsDateString ?? ""
-                return termsDate.isEmpty ? !$0.key.isEmpty : !termsDate.isEmpty
-            } else {
-                return !$0.key.isEmpty
-            }
-        } )
-    }
 }
 
 extension Panel {
@@ -555,6 +437,8 @@ extension Panel {
             let data = ChartContent()
             data.key = bucket1.key
             data.bucketType = segmentAggs?.bucketType ?? .unKnown
+            data.bucketValue = bucket1.bucketValue
+            data.docCount = bucket1.docCount
             
             var items: [Bucket] = []
             
@@ -806,6 +690,8 @@ extension Bucket: BucketAggType {
 class ChartContent {
     var key: String             =   ""
     var bucketType: BucketType  =   .unKnown
+    var docCount                =   0.0
+    var bucketValue             =   0.0
     var items: [Bucket]      =   []
     
     var displayValue: String {
@@ -816,6 +702,22 @@ class ChartContent {
         }
         return key
     }
+}
+
+extension ChartContent: BucketAggType {
+    var bucketKey: String {
+        return key
+    }
+    
+    var aggType: BucketType {
+        return bucketType
+    }
+    
+    var parent: BucketAggType? {
+        return nil
+    }
+    
+    
 }
 
 

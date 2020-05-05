@@ -36,7 +36,7 @@ class ControlsPanel: Panel {
         } else {
             if let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],
                 let bucketsList = termsAggs["buckets"] as? [[String: Any]] {
-                buckets = Mapper<ChartItem>().mapArray(JSONArray: bucketsList)
+//                buckets = Mapper<Bucket>().mapArray(JSONArray: bucketsList)
             }
 
         }

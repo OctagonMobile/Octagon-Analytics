@@ -18,6 +18,11 @@ class GraphViewController: PanelBaseViewController {
     fileprivate var graphPanel: GraphPanel? {
         return panel as? GraphPanel
     }
+    
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +37,10 @@ class GraphViewController: PanelBaseViewController {
     
     override func loadChartData() {
         
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.animationType = .zoomIn
-        hud.contentColor = CurrentTheme.darkBackgroundColor
+        hud.show(animated: true)
 
         graphPanel?.loadGraphData({ [weak self] (result, error) in
-            hud.hide(animated: true)
+            self?.hud.hide(animated: true)
             guard error == nil else {
                 self?.updatePanelContent()
                 if let errorDesc = error?.localizedDescription {

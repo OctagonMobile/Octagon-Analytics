@@ -66,7 +66,7 @@ class ControlsViewController: PanelBaseViewController {
             (controlsWidget as? RangeControlsWidget)?.minValue = Float((panel as? ControlsPanel)?.minAgg ?? 0)
             (controlsWidget as? RangeControlsWidget)?.maxValue = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
         } else {
-            (controlsWidget as? ListControlsWidget)?.list = (panel as? ControlsPanel)?.buckets ?? []
+//            (controlsWidget as? ListControlsWidget)?.list = (panel as? ControlsPanel)?.chartContentList ?? []
         }
         controlsCollectionView.reloadData()
     }
@@ -193,9 +193,9 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         
         guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return }
 
-        let list = panel?.buckets.compactMap({ (item) -> ControlsListOption? in
+        let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
             let option = ControlsListOption()
-            option.data = item
+//            option.data = item
             option.isSelected = selectedList.contains(where: { $0.key == item.key })
             return option
         })

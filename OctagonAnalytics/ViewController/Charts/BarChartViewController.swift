@@ -143,7 +143,7 @@ class BarChartViewController: ChartBaseViewController {
     override func flipPanel(_ mode: PanelMode) {
         super.flipPanel(mode)
         
-        let shouldHide = (panel?.buckets.count ?? 0) <= 0
+        let shouldHide = (panel?.chartContentList.count ?? 0) <= 0
         legendHolder.isHidden = shouldHide || (mode == .listing)
     }
 

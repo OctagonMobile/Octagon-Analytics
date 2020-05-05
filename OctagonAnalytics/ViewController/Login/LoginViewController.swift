@@ -38,6 +38,10 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var languageButton: UIButton?
     @IBOutlet weak var tutorialButton: UIButton!
     
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,13 +200,10 @@ class LoginViewController: BaseViewController {
             return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view ?? UIView(), animated: true)
-        hud.animationType = .zoomIn
-        hud.contentColor = CurrentTheme.darkBackgroundColor
-
+        hud.show(animated: true)
         Session.shared.login { [weak self] (result, error) in
             
-            hud.hide(animated: true)
+            self?.hud.hide(animated: true)
             guard error == nil else {
                 DLog(error?.localizedDescription)
                 self?.showOkCancelAlert(AppName, error?.localizedDescription, okTitle: OK, okActionBlock: nil)

@@ -418,14 +418,6 @@ class DashboardViewController: BaseViewController {
 
     
     private func applyFilters(_ itemSelected: FilterProtocol) {
-        
-        // Reload all the panels in dashboard
-        if let dateFilter = itemSelected as? DateFilter {
-            let fromDateString = dateFilter.calculatedFromDate?.toFormat("MMM dd yyyy HH:mm:ss") ?? ""
-            let toDateString = dateFilter.calculatedToDate?.toFormat("MMM dd yyyy HH:mm:ss") ?? ""
-            let selectedDateString = fromDateString + " - " + toDateString
-            didSelectDate(dateFilter.calculatedFromDate, toDate: dateFilter.calculatedToDate, selectedDateString: selectedDateString)
-        } else {
             // Reset Should reload the collectionview
             Session.shared.addFilters(itemSelected)
             let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
@@ -434,14 +426,13 @@ class DashboardViewController: BaseViewController {
                 filterCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
             }
             refreshDashboard()
-        }
     }
     
     private func applyImageFilter(_ itemSelected: FilterProtocol) {
         
         // Only one Image filter can be applied at a time
         if Session.shared.containsFilter(itemSelected) {
-            guard let indexOfImageFilter = Session.shared.appliedFilters.index(where: { ($0 as? ImageFilter)?.id == ImageFilter.Constant.imageFilterId}) else { return }
+            guard let indexOfImageFilter = Session.shared.appliedFilters.firstIndex(where: { ($0 as? ImageFilter)?.id == ImageFilter.Constant.imageFilterId}) else { return }
             Session.shared.appliedFilters[indexOfImageFilter] = itemSelected
         } else {
             Session.shared.addFilters(itemSelected)
@@ -519,7 +510,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.viewController = widgetViewController
         cell.selectFieldAction = { [weak self] (sender, selectedItem, widgetRect) in
             
-            if selectedItem is DateFilter || selectedItem is SimpleFilter {
+            if selectedItem is SimpleFilter {
                 guard let rect = widgetRect else { return }
                 self?.configureMultiFiltersInfoView([selectedItem], widgetRect: rect)
             } else if selectedItem is ImageFilter {

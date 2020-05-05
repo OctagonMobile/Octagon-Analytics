@@ -43,20 +43,20 @@ class TagCloudViewController: PanelBaseViewController {
         tagCloudView.tagClickBlock =  { [weak self] (title: String?, index: Int) in
             DLog("Clicked \(String(describing: title))")
             // Show Details
-            guard let strongSelf = self, let agg = panel.bucketAggregation, index < panel.buckets.count else { return }
+            guard let strongSelf = self, let agg = panel.bucketAggregation, index < panel.chartContentList.count else { return }
                     
             var dateComponant: DateComponents?
             if let selectedDates =  panel.currentSelectedDates,
                 let fromDate = selectedDates.0, let toDate = selectedDates.1 {
                 dateComponant = fromDate.getDateComponents(toDate)
             }
-            let filter = FilterProvider.shared.createFilter(panel.buckets[index], dateComponents: dateComponant, agg: agg)
+            let filter = FilterProvider.shared.createFilter(panel.chartContentList[index], dateComponents: dateComponant, agg: agg)
             if !Session.shared.containsFilter(filter) {
                 strongSelf.selectFieldAction?(strongSelf, filter, nil)
             }
         }        
         
-        let titles = panel.buckets.map({$0.key})
+        let titles = panel.chartContentList.map({$0.key})
         tagCloudView.titls = titles
         tagCloudView.generate()
     }
