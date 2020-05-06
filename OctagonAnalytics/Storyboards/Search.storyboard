@@ -323,29 +323,44 @@
                                                         </connections>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListControlsCollectionViewCell" id="6zU-WF-oZu" customClass="ListControlsCollectionViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
-                                                        <rect key="frame" x="526" y="267" width="304" height="201"/>
+                                                        <rect key="frame" x="214.5" y="267" width="927" height="184"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t03-Wj-u0G">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="201"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="927" height="184"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRj-7N-GUe">
-                                                                    <rect key="frame" x="20" y="100.5" width="264" height="0.0"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQE-aU-2gz" userLabel="Holder">
+                                                                    <rect key="frame" x="20" y="92" width="887" height="0.0"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRj-7N-GUe">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="887" height="0.0"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="BRj-7N-GUe" firstAttribute="top" secondItem="XQE-aU-2gz" secondAttribute="top" constant="10" id="AxJ-j9-wBl"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="BRj-7N-GUe" secondAttribute="bottom" constant="10" id="Rp1-h2-ITA"/>
+                                                                        <constraint firstItem="BRj-7N-GUe" firstAttribute="leading" secondItem="XQE-aU-2gz" secondAttribute="leading" constant="10" id="laZ-0W-dT7"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="BRj-7N-GUe" secondAttribute="trailing" constant="10" id="tdc-im-L8b"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="BRj-7N-GUe" secondAttribute="trailing" constant="20" id="Hie-tc-sch"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BRj-7N-GUe" secondAttribute="bottom" constant="20" id="I4Z-zm-D9G"/>
-                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="centerY" secondItem="t03-Wj-u0G" secondAttribute="centerY" id="RKb-af-ula"/>
-                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t03-Wj-u0G" secondAttribute="top" constant="20" id="mYy-8P-9ta"/>
-                                                                <constraint firstItem="BRj-7N-GUe" firstAttribute="leading" secondItem="t03-Wj-u0G" secondAttribute="leading" constant="20" id="sXl-gN-wO8"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XQE-aU-2gz" secondAttribute="bottom" constant="20" id="RIW-Eo-xEX"/>
+                                                                <constraint firstItem="XQE-aU-2gz" firstAttribute="centerX" secondItem="t03-Wj-u0G" secondAttribute="centerX" id="SsH-gm-f4H"/>
+                                                                <constraint firstItem="XQE-aU-2gz" firstAttribute="leading" secondItem="t03-Wj-u0G" secondAttribute="leading" constant="20" id="iHW-FD-gjQ"/>
+                                                                <constraint firstItem="XQE-aU-2gz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t03-Wj-u0G" secondAttribute="top" constant="20" id="jdy-4v-cKj"/>
+                                                                <constraint firstItem="XQE-aU-2gz" firstAttribute="centerY" secondItem="t03-Wj-u0G" secondAttribute="centerY" id="o7x-kX-3sZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="XQE-aU-2gz" secondAttribute="trailing" constant="20" id="wpw-QH-fPf"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
+                                                        <size key="customSize" width="927" height="184"/>
                                                         <connections>
+                                                            <outlet property="holderView" destination="XQE-aU-2gz" id="WBV-Iw-M00"/>
                                                             <outlet property="titleLabel" destination="BRj-7N-GUe" id="XO8-sF-3vT"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -465,7 +480,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIF-Ei-Dd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="2052"/>
+            <point key="canvasLocation" x="848.60907759882866" y="2051.953125"/>
         </scene>
         <!--Controls List Pop Over View Controller-->
         <scene sceneID="Wx2-KV-2mK">
@@ -480,14 +495,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ControlsListTableViewCell" id="NUR-Dc-ntM" customClass="ControlsListTableViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1366" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="1366" height="60.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NUR-Dc-ntM" id="XYI-sr-PaG">
-                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="42.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iK-om-5pT">
-                                                    <rect key="frame" x="10" y="10.5" width="20" height="22"/>
+                                                    <rect key="frame" x="10" y="10.5" width="20" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Ane-w6-cUg"/>
                                                     </constraints>
@@ -495,7 +510,7 @@
                                                     <state key="selected" image="Checkbox-Selected"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsE-WX-uqq">
-                                                    <rect key="frame" x="35" y="11" width="1321" height="20.5"/>
+                                                    <rect key="frame" x="35" y="20" width="1321" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -648,4 +663,8 @@
             <point key="canvasLocation" x="1580" y="717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Checkbox-Normal" width="20" height="20"/>
+        <image name="Checkbox-Selected" width="20" height="20"/>
+    </resources>
 </document>

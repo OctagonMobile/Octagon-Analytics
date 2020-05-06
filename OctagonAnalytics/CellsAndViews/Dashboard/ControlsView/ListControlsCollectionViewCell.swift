@@ -10,11 +10,13 @@ import UIKit
 
 class ListControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     
+    @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.textColor = CurrentTheme.enabledStateBackgroundColor
+        holderView.style(.roundCorner(5.0, 1.0, CurrentTheme.cellBackgroundColor))
     }
     
     override func updateCellContent() {

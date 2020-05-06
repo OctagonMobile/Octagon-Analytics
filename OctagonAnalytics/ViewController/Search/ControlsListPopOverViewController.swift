@@ -119,5 +119,5 @@ class ControlsListTableViewCell: UITableViewCell {
 
 class ControlsListOption {
     var isSelected: Bool    = false
-    var data: Bucket?
+    var data: ChartContent?
 }

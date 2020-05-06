@@ -33,15 +33,18 @@ class ControlsPanel: Panel {
             self.maxAgg = maxAggDict?["value"] as? Int
             let minAggDict = aggregationsDict["minAgg"] as? [String: Any]
             self.minAgg = minAggDict?["value"] as? Int
+            return [["min": self.minAgg, "max":self.maxAgg]]
         } else {
-            if let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],
-                let bucketsList = termsAggs["buckets"] as? [[String: Any]] {
-//                buckets = Mapper<Bucket>().mapArray(JSONArray: bucketsList)
+            guard let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],
+                let bucketsList = termsAggs["buckets"] as? [[String: Any]] else { return [] }
+            
+            chartContentList = bucketsList.compactMap { (dict) -> ChartContent? in
+                let content = ChartContent()
+                content.key         = dict["key"] as? String ?? ""
+                content.docCount    = dict["doc_count"] as? Double ?? 0.0
+                return content
             }
-
+            return chartContentList
         }
-        
-        return [["min": self.minAgg, "max":self.maxAgg]]
     }
-
 }
