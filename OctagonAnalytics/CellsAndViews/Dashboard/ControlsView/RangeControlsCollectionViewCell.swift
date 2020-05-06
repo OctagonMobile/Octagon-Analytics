@@ -72,8 +72,8 @@ class RangeControlsCollectionViewCell: ControlsBaseCollectionViewCell {
             maxValueTextField.text = rangeCtr.selectedMaxValue == nil ? "" : "\(Int(rangeCtr.selectedMaxValue ?? 0.0))"
         }
         
-        rangeSlider?.selectedMinimum = rangeControl?.selectedMinValue ?? 0.0
-        rangeSlider?.selectedMaximum = rangeControl?.selectedMaxValue ?? 0.0
+        rangeSlider?.selectedMinimum = rangeControl?.selectedMinValue ?? rangeSlider.minValue
+        rangeSlider?.selectedMaximum = rangeControl?.selectedMaxValue ?? rangeSlider.minValue
     }
     
     private func updateSliderValue() {

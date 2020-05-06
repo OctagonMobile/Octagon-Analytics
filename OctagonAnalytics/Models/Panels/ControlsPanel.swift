@@ -32,7 +32,7 @@ class ControlsPanel: Panel {
             let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any]
             self.maxAgg = maxAggDict?["value"] as? Int
             let minAggDict = aggregationsDict["minAgg"] as? [String: Any]
-            self.maxAgg = minAggDict?["value"] as? Int
+            self.minAgg = minAggDict?["value"] as? Int
         } else {
             if let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],
                 let bucketsList = termsAggs["buckets"] as? [[String: Any]] {
