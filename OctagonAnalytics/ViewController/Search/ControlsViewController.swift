@@ -179,23 +179,33 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let controlWidget = dataSource[indexPath.row]
+        guard controlWidget.control.type == .list else { return }
+        showDropDownListFor(indexPath)
+    }
+    
+    private func showDropDownListFor(_ indexPath: IndexPath) {
+        let controlWidget = dataSource[indexPath.row]
         guard controlWidget.control.type == .list, (controlWidget as? ListControlsWidget)?.list.count ?? 0 > 0,
-            let cell = collectionView.cellForItem(at: indexPath) else { return }
+            let cell = controlsCollectionView.cellForItem(at: indexPath) else { return }
         
         guard let window = UIApplication.shared.keyWindow else { return }
         guard let rootViewController = window.rootViewController else { return }
-
+        
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
         
-        guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return }
-
-        let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
-            let option = ControlsListOption()
-            option.data = item
-            option.isSelected = selectedList.contains(where: { $0.key == item.key })
-            return option
-        })
-        popOverContent.list = list ?? []
+        
+        func generateListOptions() -> [ControlsListOption] {
+            guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return []}
+            let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
+                let option = ControlsListOption()
+                option.data = item
+                option.isSelected = selectedList.contains(where: { $0.key == item.key })
+                return option
+            }) ?? []
+            return list
+        }
+        
+        popOverContent.list = generateListOptions()
         popOverContent.multiSelectionEnabled = (controlWidget as? ListControlsWidget)?.control.listOptions?.multiselect ?? false
         popOverContent.selectionBlock = {[weak self] (sender, selectedList) in
             //Update UI
@@ -208,15 +218,24 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         popover?.backgroundColor = CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0)
         
         if !isIPhone {
-            popOverContent.preferredContentSize = CGSize(width: 200, height: 300)
+            guard let holderView = (cell as? ListControlsCollectionViewCell)?.holderView else { return }
+            popOverContent.preferredContentSize = CGSize(width: holderView.bounds.width, height: 300)
             popover?.delegate = self
-            popover?.permittedArrowDirections = .any
-            popover?.sourceRect = cell.frame
-            popover?.sourceView = cell
+            
+            var showRect    = cell.convert(holderView.frame, to: controlsCollectionView)
+            showRect        = controlsCollectionView.convert(showRect, to: view)
+            
+            popover?.sourceRect = showRect
+            popover?.sourceView = view
         }
         
         rootViewController.present(popOverContent, animated: true, completion: nil)
     }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        
+    }
+
 }
 
 extension ControlsViewController: UICollectionViewDelegateFlowLayout {

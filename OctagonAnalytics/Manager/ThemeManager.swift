@@ -282,6 +282,13 @@ enum Theme: String {
         }
     }
 
+    var popOverListSelectionColor: UIColor {
+        switch self {
+        case .light: return UIColor.Primary.antiFlash
+        case .dark: return UIColor.DarkThemeColors.darkBackgroundColor
+        }
+    }
+
     //MARK: Styles
     /// Styles
     func title1TextStyle(_ color: UIColor? = nil) -> TextStyle {

@@ -21,7 +21,6 @@ class ControlsListPopOverViewController: BaseViewController {
         }
     }
     
-    @IBOutlet weak var doneButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var controlsListView: UITableView?
 
     //MARK: Life Cycles
@@ -29,21 +28,19 @@ class ControlsListPopOverViewController: BaseViewController {
         super.viewDidLoad()
         controlsListView?.dataSource = self
         controlsListView?.delegate = self
-        
-        doneButtonHeightConstraint.constant = multiSelectionEnabled ? 50 : 0
+        controlsListView?.backgroundColor = .clear
+        view.backgroundColor = CurrentTheme.cellBackgroundColor
     }
     
-    func selectControlOptionAndDismiss(_ selectedDataList: [ControlsListOption]) {
-        dismiss(animated: true) { [weak self] in
-            guard let strongSelf = self else { return }
-            self?.selectionBlock?(strongSelf, selectedDataList)
+    func selectControlOptions(_ selectedDataList: [ControlsListOption], shouldDismiss: Bool = true) {
+        if shouldDismiss {
+            dismiss(animated: true) { [weak self] in
+                guard let strongSelf = self else { return }
+                self?.selectionBlock?(strongSelf, selectedDataList)
+            }
+        } else {
+            selectionBlock?(self, selectedDataList)
         }
-    }
-    
-    //MARK: Button Action
-    @IBAction func doneButtonAction(_ sender: UIButton) {
-        let selectedDataList = list.filter({ $0.isSelected == true })
-        selectControlOptionAndDismiss(selectedDataList)
     }
 }
 
@@ -62,13 +59,16 @@ extension ControlsListPopOverViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         guard multiSelectionEnabled else {
-            selectControlOptionAndDismiss([list[indexPath.row]])
+            selectControlOptions([list[indexPath.row]])
             return
         }
         
         list[indexPath.row].isSelected = !list[indexPath.row].isSelected
+        
+        let selectedList = list.filter({ $0.isSelected })
+        selectControlOptions(selectedList, shouldDismiss: false)
         tableView.reloadData()
     }
 }
@@ -90,7 +90,6 @@ class ControlsListTableViewCell: UITableViewCell {
     
     var controlOption: ControlsListOption? {
         didSet {
-            titleLabel.text = controlOption?.data?.key
             updateCell()
         }
     }
@@ -110,9 +109,15 @@ class ControlsListTableViewCell: UITableViewCell {
         let normalImageName = CurrentTheme.isDarkTheme ? "Checkbox-Normal-Dark" : "Checkbox-Normal"
         let image = UIImage(named: normalImageName)
         checkBoxButton.setImage(image, for: .normal)
+        
+        titleLabel.textColor = CurrentTheme.titleColor
     }
     
     func updateCell() {
+        titleLabel.text = controlOption?.data?.key
+        backgroundColor = controlOption?.isSelected == true ? CurrentTheme.popOverListSelectionColor : .clear
+        backgroundView?.backgroundColor = controlOption?.isSelected == true ? CurrentTheme.popOverListSelectionColor : .clear
+
         checkBoxButton.isSelected = controlOption?.isSelected ?? false
     }
 }

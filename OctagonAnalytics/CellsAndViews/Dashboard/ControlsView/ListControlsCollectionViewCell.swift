@@ -16,7 +16,7 @@ class ListControlsCollectionViewCell: ControlsBaseCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.textColor = CurrentTheme.enabledStateBackgroundColor
-        holderView.style(.roundCorner(5.0, 1.0, CurrentTheme.cellBackgroundColor))
+        holderView.style(.roundCorner(5.0, 1.0, CurrentTheme.standardColor))
     }
     
     override func updateCellContent() {
