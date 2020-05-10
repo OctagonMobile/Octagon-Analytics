@@ -329,11 +329,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="927" height="184"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmP-zJ-ZZG">
+                                                                    <rect key="frame" x="-144.5" y="42" width="1216" height="0.0"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQE-aU-2gz" userLabel="Holder">
-                                                                    <rect key="frame" x="20" y="92" width="887" height="0.0"/>
+                                                                    <rect key="frame" x="20" y="77" width="887" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRj-7N-GUe">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="887" height="0.0"/>
+                                                                            <rect key="frame" x="15" y="15" width="857" height="0.0"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -350,6 +356,9 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstItem="XQE-aU-2gz" firstAttribute="top" secondItem="vmP-zJ-ZZG" secondAttribute="bottom" constant="15" id="ENF-Ij-PPu"/>
+                                                                <constraint firstItem="vmP-zJ-ZZG" firstAttribute="leading" secondItem="XQE-aU-2gz" secondAttribute="leading" id="Idx-dV-1lo"/>
+                                                                <constraint firstItem="vmP-zJ-ZZG" firstAttribute="trailing" secondItem="XQE-aU-2gz" secondAttribute="trailing" id="LEV-mr-Fza"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XQE-aU-2gz" secondAttribute="bottom" constant="20" id="RIW-Eo-xEX"/>
                                                                 <constraint firstItem="XQE-aU-2gz" firstAttribute="centerX" secondItem="t03-Wj-u0G" secondAttribute="centerX" id="SsH-gm-f4H"/>
                                                                 <constraint firstItem="XQE-aU-2gz" firstAttribute="leading" secondItem="t03-Wj-u0G" secondAttribute="leading" constant="20" id="iHW-FD-gjQ"/>
@@ -360,6 +369,7 @@
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="927" height="184"/>
                                                         <connections>
+                                                            <outlet property="headerLabel" destination="vmP-zJ-ZZG" id="EEk-U1-k2F"/>
                                                             <outlet property="holderView" destination="XQE-aU-2gz" id="WBV-Iw-M00"/>
                                                             <outlet property="titleLabel" destination="BRj-7N-GUe" id="XO8-sF-3vT"/>
                                                         </connections>

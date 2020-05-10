@@ -63,6 +63,18 @@ class ControlsViewController: PanelBaseViewController {
             (controlsWidget as? RangeControlsWidget)?.maxValue = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
         } else {
             (controlsWidget as? ListControlsWidget)?.list = (panel as? ControlsPanel)?.chartContentList ?? []
+            
+            let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlsList.first?.fieldName}).first
+            var preSelectedList: [ChartContent] = []
+            if let filtersList = (appliedFilter as? SimpleFilter)?.fieldValue.components(separatedBy: ","),
+                filtersList.count > 0 {
+                for key in filtersList {
+                    if let matchedList = panel?.chartContentList.filter({ $0.key == key}) {
+                        preSelectedList.append(contentsOf: matchedList)
+                    }
+                }
+            }
+            (controlsWidget as? ListControlsWidget)?.selectedList = preSelectedList
         }
         controlsCollectionView.reloadData()
     }
@@ -86,9 +98,13 @@ class ControlsViewController: PanelBaseViewController {
         } else {
             let listControl = ListControlsWidget(controlObj, list: [])
             dataSource.append(listControl)
+            
+            applyChangesButton.isEnabled = false
+            cancelChangesButton.isEnabled = false
+            clearFormButton.isEnabled = false
         }
     }
-    
+        
     private func applyFilters() {
         
         for controlsObj in dataSource {
@@ -127,6 +143,8 @@ class ControlsViewController: PanelBaseViewController {
             if controlObj.control.type == .range {
                 (controlObj as? RangeControlsWidget)?.selectedMinValue = nil
                 (controlObj as? RangeControlsWidget)?.selectedMaxValue = nil
+            } else {
+                (controlObj as? ListControlsWidget)?.selectedList.removeAll()
             }
         }
         controlsCollectionView?.reloadData()
@@ -166,7 +184,6 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
                 self?.clearFormButton.isEnabled = true
                 self?.applyChangesButton.isEnabled = true
                 self?.cancelChangesButton.isEnabled = true
-
             }
         }
         
@@ -193,7 +210,7 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
         
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
         
-        
+        // Generate the List options object using data source
         func generateListOptions() -> [ControlsListOption] {
             guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return []}
             let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
@@ -212,6 +229,8 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
             guard let controlsWidget = self?.dataSource.first else { return }
             (controlsWidget as? ListControlsWidget)?.selectedList = selectedList.compactMap({ $0.data })
             self?.controlsCollectionView?.reloadData()
+            
+            self?.applyChangesButton.isEnabled = true
         }
         popOverContent.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover = popOverContent.popoverPresentationController
@@ -240,7 +259,7 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
 
 extension ControlsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 200)
+        return collectionView.bounds.size
     }
 }
 
