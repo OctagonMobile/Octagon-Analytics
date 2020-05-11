@@ -251,9 +251,7 @@ class Panel: Mappable {
         var filtersArray:[[String: Any]?]  = []
         
         for appliedFilter in Session.shared.appliedFilters {
-            var params: [String: Any] = appliedFilter.dataParams
-            params["isFilterInverted"] = appliedFilter.isInverted
-            filtersArray.append(params)
+            filtersArray.append(appliedFilter.dataParams)
         }
                 
         if filtersArray.count > 0 {
