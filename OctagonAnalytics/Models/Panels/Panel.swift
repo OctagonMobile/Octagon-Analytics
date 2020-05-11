@@ -547,9 +547,9 @@ class Bucket {
     var displayValue: Double {
         let aggregationsCount = (visState?.otherAggregationsArray.count ?? 0)
         let metricType = visState?.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
-        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average)
+        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median)
 
-        if aggregationsCount == 1 {
+        if aggregationsCount == 1 || metricType == .median {
             return shouldShowBucketValue ? bucketValue : docCount
         } else {
             return metricType == .count ? docCount : metricValue
@@ -567,7 +567,20 @@ class Bucket {
     init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType) {
         
         docCount            =   dictionary["doc_count"] as? Double ?? 0.0
-        bucketValue         =   dictionary["bucketValue"] as? Double ?? 0.0
+        let metricType = visState.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
+
+        if metricType == .median {
+            if let firstMetricId = visState.metricAggregationsArray.first?.id,
+                let dict = dictionary[firstMetricId] as? [String: Any],
+                
+                let values = dict ["values"] as? [[String: Any]],
+                let valueDict = values.first  {
+                bucketValue         =   valueDict["value"] as? Double ?? 0.0
+            }
+        } else {
+            bucketValue         =   dictionary["bucketValue"] as? Double ?? 0.0
+        }
+        
         self.bucketType = bucketType
         self.visState = visState
         self.parentBucket = parentBucket

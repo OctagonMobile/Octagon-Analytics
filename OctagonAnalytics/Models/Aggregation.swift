@@ -17,6 +17,7 @@ enum MetricType: String {
     case topHit         =   "top_hit"
     case max            =   "max"
     case average        =   "avg"
+    case median         =   "median"
 }
 
 enum BucketType: String {
