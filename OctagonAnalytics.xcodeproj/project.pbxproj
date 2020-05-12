@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5104B5CC244C8C5B006BFE34 /* GaugePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */; };
-		5104EF7F2402897800A4B053 /* RangeControlsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */; };
-		5104EF812402899900A4B053 /* ListControlsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */; };
-		5109FC6A1FD7D5C900C2CC64 /* DateHistogramChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */; };
 		510B50BD230EB63300358ED0 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */; };
 		511342811FFE24AE00A7787E /* LocationPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511342801FFE24AE00A7787E /* LocationPopUpView.swift */; };
 		511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 511342821FFE24C300A7787E /* LocationPopUpView.xib */; };
@@ -31,6 +28,8 @@
 		5130A10E1FA7336A003D0525 /* DashboardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5130A10C1FA73334003D0525 /* DashboardCollectionViewCell.swift */; };
 		5130A1141FA733A1003D0525 /* DashboardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */; };
 		5130A11A1FA86C26003D0525 /* Aggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5130A1191FA86C26003D0525 /* Aggregation.swift */; };
+		5133778F24680B74001AB9AF /* RangeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5133778E24680B74001AB9AF /* RangeControlsView.swift */; };
+		5133779124680B7E001AB9AF /* RangeControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5133779024680B7E001AB9AF /* RangeControlsView.xib */; };
 		513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513467D01F9DD1B900F9B67D /* AppDelegate.swift */; };
 		513467D81F9DD1B900F9B67D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 513467D71F9DD1B900F9B67D /* Assets.xcassets */; };
 		513467DB1F9DD1B900F9B67D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 513467D91F9DD1B900F9B67D /* LaunchScreen.storyboard */; };
@@ -59,7 +58,6 @@
 		514211DB21807E83006E64DD /* FaceTilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DA21807E83006E64DD /* FaceTilePanel.swift */; };
 		514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DC21807F44006E64DD /* FaceTileViewController.swift */; };
 		514211DF21808012006E64DD /* FaceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514211DE21808012006E64DD /* FaceTile.swift */; };
-		514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */; };
 		5146762022E45CA900D9FE8C /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146761F22E45CA900D9FE8C /* CanvasViewController.swift */; };
 		5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146FE7A2407BB3F0014A67D /* Controls.swift */; };
 		5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146FE7C240BD2F50014A67D /* ControlsPanel.swift */; };
@@ -151,6 +149,8 @@
 		51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CD9A9F23F29E6A005ACD46 /* TutorialConfigCarouselView.xib */; };
 		51CD9AA323F2A35B005ACD46 /* TutorialLoginCarouselView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CD9AA223F2A35B005ACD46 /* TutorialLoginCarouselView.xib */; };
 		51CD9AA523F2A366005ACD46 /* TutorialLoginCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD9AA423F2A366005ACD46 /* TutorialLoginCarouselView.swift */; };
+		51CDDEDC246811FB00A68861 /* ListOptionControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CDDEDB246811FB00A68861 /* ListOptionControlsView.swift */; };
+		51CDDEDE2468120400A68861 /* ListOptionControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CDDEDD2468120400A68861 /* ListOptionControlsView.xib */; };
 		51CFC69D1FB9BB8700B99018 /* SavedSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFC69B1FB9BB8700B99018 /* SavedSearchCollectionViewCell.swift */; };
 		51CFC69E1FB9BB8700B99018 /* SavedSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CFC69C1FB9BB8700B99018 /* SavedSearchCollectionViewCell.xib */; };
 		51CFC6A11FB9BDC700B99018 /* SavedSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFC69F1FB9BDC700B99018 /* SavedSearchTableViewCell.swift */; };
@@ -208,9 +208,6 @@
 
 /* Begin PBXFileReference section */
 		5104B5CB244C8C5B006BFE34 /* GaugePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugePanel.swift; sourceTree = "<group>"; };
-		5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeControlsCollectionViewCell.swift; sourceTree = "<group>"; };
-		5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListControlsCollectionViewCell.swift; sourceTree = "<group>"; };
-		5109FC691FD7D5C900C2CC64 /* DateHistogramChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHistogramChartItem.swift; sourceTree = "<group>"; };
 		510B50BC230EB63300358ED0 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		511342801FFE24AE00A7787E /* LocationPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopUpView.swift; sourceTree = "<group>"; };
 		511342821FFE24C300A7787E /* LocationPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationPopUpView.xib; sourceTree = "<group>"; };
@@ -234,6 +231,8 @@
 		5130A10C1FA73334003D0525 /* DashboardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewCell.swift; sourceTree = "<group>"; };
 		5130A1121FA733A1003D0525 /* DashboardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardCollectionViewCell.xib; sourceTree = "<group>"; };
 		5130A1191FA86C26003D0525 /* Aggregation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aggregation.swift; sourceTree = "<group>"; };
+		5133778E24680B74001AB9AF /* RangeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeControlsView.swift; sourceTree = "<group>"; };
+		5133779024680B7E001AB9AF /* RangeControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeControlsView.xib; sourceTree = "<group>"; };
 		513467CD1F9DD1B900F9B67D /* Octagon Analytics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Octagon Analytics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		513467D01F9DD1B900F9B67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		513467D71F9DD1B900F9B67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -266,7 +265,6 @@
 		514211DA21807E83006E64DD /* FaceTilePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTilePanel.swift; sourceTree = "<group>"; };
 		514211DC21807F44006E64DD /* FaceTileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTileViewController.swift; sourceTree = "<group>"; };
 		514211DE21808012006E64DD /* FaceTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTile.swift; sourceTree = "<group>"; };
-		514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5146761F22E45CA900D9FE8C /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		5146FE7A2407BB3F0014A67D /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		5146FE7C240BD2F50014A67D /* ControlsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsPanel.swift; sourceTree = "<group>"; };
@@ -364,6 +362,8 @@
 		51CD9A9F23F29E6A005ACD46 /* TutorialConfigCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialConfigCarouselView.xib; sourceTree = "<group>"; };
 		51CD9AA223F2A35B005ACD46 /* TutorialLoginCarouselView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialLoginCarouselView.xib; sourceTree = "<group>"; };
 		51CD9AA423F2A366005ACD46 /* TutorialLoginCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialLoginCarouselView.swift; sourceTree = "<group>"; };
+		51CDDEDB246811FB00A68861 /* ListOptionControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionControlsView.swift; sourceTree = "<group>"; };
+		51CDDEDD2468120400A68861 /* ListOptionControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOptionControlsView.xib; sourceTree = "<group>"; };
 		51CFC69B1FB9BB8700B99018 /* SavedSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		51CFC69C1FB9BB8700B99018 /* SavedSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		51CFC69F1FB9BDC700B99018 /* SavedSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -457,9 +457,10 @@
 		5104EF7D2402895100A4B053 /* ControlsView */ = {
 			isa = PBXGroup;
 			children = (
-				514568C524028B74002A1493 /* ControlsBaseCollectionViewCell.swift */,
-				5104EF7E2402897800A4B053 /* RangeControlsCollectionViewCell.swift */,
-				5104EF802402899900A4B053 /* ListControlsCollectionViewCell.swift */,
+				5133778E24680B74001AB9AF /* RangeControlsView.swift */,
+				5133779024680B7E001AB9AF /* RangeControlsView.xib */,
+				51CDDEDB246811FB00A68861 /* ListOptionControlsView.swift */,
+				51CDDEDD2468120400A68861 /* ListOptionControlsView.xib */,
 			);
 			path = ControlsView;
 			sourceTree = "<group>";
@@ -1246,7 +1247,7 @@
 				513467C91F9DD1B900F9B67D /* Sources */,
 				513467CA1F9DD1B900F9B67D /* Frameworks */,
 				513467CB1F9DD1B900F9B67D /* Resources */,
-				C1C541A1F4350FB5C749C520 /* [CP] Embed Pods Frameworks */,
+				5E20CC68F7F1270ED7695F33 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1301,6 +1302,7 @@
 				515DD7F91FC53DDB009EC716 /* Settings.bundle in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
+				51CDDEDE2468120400A68861 /* ListOptionControlsView.xib in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
 				5174FBBA219C4EAB003BEB1E /* GraphNodeView.xib in Resources */,
 				F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */,
@@ -1324,6 +1326,7 @@
 				5168C3BB1FC3062700AB77C6 /* FilterCollectionViewCell.xib in Resources */,
 				51840DFA1FCEC314007B8D38 /* TileImageCollectionViewCell.xib in Resources */,
 				51F0E62622CA14A9001B390A /* CustomTemplate.json in Resources */,
+				5133779124680B7E001AB9AF /* RangeControlsView.xib in Resources */,
 				51CD9AA323F2A35B005ACD46 /* TutorialLoginCarouselView.xib in Resources */,
 				519D85B922C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml in Resources */,
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
@@ -1346,7 +1349,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C1C541A1F4350FB5C749C520 /* [CP] Embed Pods Frameworks */ = {
+		5E20CC68F7F1270ED7695F33 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1450,6 +1453,7 @@
 				51477DE62068DF2500955394 /* LoginViewController.swift in Sources */,
 				51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */,
 				51D8ECA024025A4A009158C5 /* InputControlsVisState.swift in Sources */,
+				51CDDEDC246811FB00A68861 /* ListOptionControlsView.swift in Sources */,
 				51E8BF4D20F38048004B5D20 /* QuickDatePickerCollectionViewCell.swift in Sources */,
 				51923ABF207E13490023FE27 /* MapTrackingViewController.swift in Sources */,
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
@@ -1463,15 +1467,12 @@
 				51E8BF4720F38048004B5D20 /* DatePickerCollectionReusableView.swift in Sources */,
 				5174FBA2219C105E003BEB1E /* TouchVelocityTracker.swift in Sources */,
 				513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */,
-				5104EF7F2402897800A4B053 /* RangeControlsCollectionViewCell.swift in Sources */,
 				51840DF31FCEA2F8007B8D38 /* TagCloudViewController.swift in Sources */,
 				51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */,
 				5174FBB1219C27B7003BEB1E /* GraphVisState.swift in Sources */,
 				513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */,
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
 				516292EA1FA06319008A547B /* StoryboardManager.swift in Sources */,
-				511DDC1C1FB05C15000A6394 /* ListTableViewCell.swift in Sources */,
-				5104EF812402899900A4B053 /* ListControlsCollectionViewCell.swift in Sources */,
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
@@ -1489,7 +1490,6 @@
 				5164A92F1F9F0BC800BE2358 /* ThemeManager.swift in Sources */,
 				5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */,
 				5189D5BC2015B9AC00B61EEA /* StyleGuide.swift in Sources */,
-				514568C624028B74002A1493 /* ControlsBaseCollectionViewCell.swift in Sources */,
 				5174FBAC219C2335003BEB1E /* GraphPanel.swift in Sources */,
 				51D5777620DB83410080608D /* DatePickerMapper.swift in Sources */,
 				5174FBB8219C4EA1003BEB1E /* GraphNodeView.swift in Sources */,
@@ -1506,6 +1506,7 @@
 				51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */,
 				51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */,
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
+				5133778F24680B74001AB9AF /* RangeControlsView.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
 				51CFC6A11FB9BDC700B99018 /* SavedSearchTableViewCell.swift in Sources */,
 				51677F46206CC9CA00C7751A /* TermsAndConditionViewController.swift in Sources */,
@@ -1751,7 +1752,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
@@ -1783,7 +1784,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";

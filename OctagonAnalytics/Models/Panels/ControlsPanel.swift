@@ -10,9 +10,9 @@ import ObjectMapper
 
 class ControlsPanel: Panel {
     
-    var maxAgg: Int?
+    var maxAgg: CGFloat?
     
-    var minAgg: Int?
+    var minAgg: CGFloat?
 
     /**
      Parse the data into Metrics List.
@@ -30,9 +30,9 @@ class ControlsPanel: Panel {
         
         if type == Control.ControlType.range {
             let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any]
-            self.maxAgg = maxAggDict?["value"] as? Int
+            self.maxAgg = maxAggDict?["value"] as? CGFloat
             let minAggDict = aggregationsDict["minAgg"] as? [String: Any]
-            self.minAgg = minAggDict?["value"] as? Int
+            self.minAgg = minAggDict?["value"] as? CGFloat
             return [["min": self.minAgg, "max":self.maxAgg]]
         } else {
             guard let termsAggs = aggregationsDict["termsAgg"] as? [String: Any],

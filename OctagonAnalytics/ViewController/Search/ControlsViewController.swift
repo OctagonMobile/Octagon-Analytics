@@ -9,210 +9,114 @@
 import UIKit
 
 class ControlsViewController: PanelBaseViewController {
-
-    private var controlsFiltersList: [FilterProtocol]   =   []
-    private var controlsList: [Control] {
-        return (panel?.visState as? InputControlsVisState)?.controls ?? []
-    }
-    
-    private var dataSource: [ControlsWidgetBase]    =   []
     
     //MARK: Outlets
-    @IBOutlet weak var controlsCollectionView: UICollectionView!
-    @IBOutlet weak var clearFormButton: UIButton!
+    @IBOutlet weak var holderView: UIView!
+    @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var cancelChangesButton: UIButton!
     @IBOutlet weak var applyChangesButton: UIButton!
     
-    //MARK: Overridden Functions
-    override func setupPanel() {
-        super.setupPanel()
-              
-        initialSetup()
-        controlsCollectionView.dataSource = self
-        controlsCollectionView.delegate = self
-                
-        clearFormButton.layer.cornerRadius = 5.0
-        cancelChangesButton.layer.cornerRadius = 5.0
+    //MARK: Private
+    private var control: Control? {
+        return (panel?.visState as? InputControlsVisState)?.controls.first
+    }
+
+    private var rangeControlsView: RangeControlsView?
+    private var listControlsView: ListOptionControlsView?
+    
+    //MARK: Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        applyChangesButton.isEnabled = false
         applyChangesButton.layer.cornerRadius = 5.0
-        
         applyChangesButton.backgroundColor = CurrentTheme.controlsApplyButtonBackgroundColor
         applyChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonTitleColor, for: .normal)
         applyChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonTitleColor.withAlphaComponent(0.3), for: .disabled)
 
-        clearFormButton.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
-        clearFormButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
-        clearFormButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor.withAlphaComponent(0.3), for: .disabled)
-        clearFormButton.layer.borderColor = CurrentTheme.controlsApplyButtonBackgroundColor.cgColor
-        clearFormButton.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
-
-        cancelChangesButton.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
-        cancelChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
-        cancelChangesButton.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor.withAlphaComponent(0.3), for: .disabled)
-        cancelChangesButton.layer.borderColor = CurrentTheme.controlsApplyButtonBackgroundColor.cgColor
-        cancelChangesButton.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
+        func configureButton(_ button: UIButton) {
+            button.layer.cornerRadius = 5.0
+            button.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
+            button.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
+            button.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor.withAlphaComponent(0.3), for: .disabled)
+            button.layer.borderColor = CurrentTheme.controlsApplyButtonBackgroundColor.cgColor
+            button.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 1.0
+            button.isEnabled = false
+        }
+        configureButton(resetButton)
+        configureButton(cancelChangesButton)
     }
+    
+    override func setupPanel() {
+        super.setupPanel()
+        holderView.subviews.forEach({ $0.removeFromSuperview() })
         
+        //Setup Panel
+        if control?.type == .range {
+            configureRangeControls()
+        } else {
+            configureListControls()
+        }
+    }
+    
+    private func configureRangeControls() {
+        guard let rangeControlsView = Bundle.main.loadNibNamed(NibNames.rangeControlsView, owner: self, options: nil)?.first as? RangeControlsView else { return }
+        self.rangeControlsView = rangeControlsView
+        rangeControlsView.translatesAutoresizingMaskIntoConstraints = false
+        holderView.addSubview(rangeControlsView)
+        setupConstraintsForControlsView(rangeControlsView)
+        
+        rangeControlsView.rangeSelectionUpdateBlock = { [weak self] (sender, max, min) in
+            self?.enableAllButtons()
+        }
+    }
+    
+    private func configureListControls() {
+        guard let listControlsView = Bundle.main.loadNibNamed(NibNames.listOptionControlsView, owner: self, options: nil)?.first as? ListOptionControlsView else { return }
+        self.listControlsView = listControlsView
+        listControlsView.translatesAutoresizingMaskIntoConstraints = false
+        holderView.addSubview(listControlsView)
+        setupConstraintsForControlsView(listControlsView)
+    }
+    
+    private func setupConstraintsForControlsView(_ controlsView: UIView) {
+        var constraints = [NSLayoutConstraint]()
+        let views: [String: UIView] = ["holderView": holderView, "controlsView": controlsView]
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[controlsView]-0-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[controlsView]-0-|", options: [], metrics: nil, views: views)
+        holderView?.addConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
+    }
+    
     override func updatePanelContent() {
         super.updatePanelContent()
         
-        // Supporting only one Type
-        guard let controlsWidget = dataSource.first else { return }
-        
-        if controlsWidget.control.type == .range {
-            (controlsWidget as? RangeControlsWidget)?.minValue = Float((panel as? ControlsPanel)?.minAgg ?? 0)
-            (controlsWidget as? RangeControlsWidget)?.maxValue = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
+        guard let control = control else { return }
+
+        if control.type == .range {
+            let minimum = Float((panel as? ControlsPanel)?.minAgg ?? 0)
+            let max = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
+            rangeControlsView?.rangeControlWidget = RangeControlsWidget(control, min: minimum, max: max)
         } else {
-            (controlsWidget as? ListControlsWidget)?.list = (panel as? ControlsPanel)?.chartContentList ?? []
-            
-            let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlsList.first?.fieldName}).first
-            var preSelectedList: [ChartContent] = []
-            if let filtersList = (appliedFilter as? SimpleFilter)?.fieldValue.components(separatedBy: ","),
-                filtersList.count > 0 {
-                for key in filtersList {
-                    if let matchedList = panel?.chartContentList.filter({ $0.key == key}) {
-                        preSelectedList.append(contentsOf: matchedList)
-                    }
-                }
-            }
-            (controlsWidget as? ListControlsWidget)?.selectedList = preSelectedList
-        }
-        controlsCollectionView.reloadData()
-    }
-    
-    private func initialSetup() {
-        dataSource.removeAll()
-        
-        guard let controlObj = controlsList.first else { return }
-        
-        let appliedFilter = Session.shared.appliedFilters.filter({ $0.fieldName == controlObj.fieldName}).first
-
-        if controlObj.type == .range {
-            let rangeControl = RangeControlsWidget(controlObj)
-            //Update the Range selected based on applied filter
-            if let ranges: [String] = (appliedFilter as? SimpleFilter)?.fieldValue.components(separatedBy: "-"),
-                ranges.count > 1 {
-                rangeControl.selectedMinValue = Float(ranges.first!)
-                rangeControl.selectedMaxValue = Float(ranges.last!)
-            }
-            dataSource.append(rangeControl)
-        } else {
-            let listControl = ListControlsWidget(controlObj, list: [])
-            dataSource.append(listControl)
-            
-            applyChangesButton.isEnabled = false
-            cancelChangesButton.isEnabled = false
-            clearFormButton.isEnabled = false
-        }
-    }
-        
-    private func applyFilters() {
-        
-        for controlsObj in dataSource {
-            let control = controlsObj.control
-            if control.type == .range {
-                let rangeControls = controlsObj as? RangeControlsWidget
-                guard let min = rangeControls?.selectedMinValue, let max = rangeControls?.selectedMaxValue else { continue }
-                
-                let matchedFilter = controlsFiltersList.filter({ $0.fieldName == control.fieldName}).first
-                
-                if matchedFilter != nil {
-                    controlsFiltersList.removeAll(where: { $0.fieldName == matchedFilter?.fieldName })
-                }
-
-                let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
-                controlsFiltersList.append(filter)
-
-            } else {
-                let listControls = controlsObj as? ListControlsWidget
-                guard let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
-                let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: BucketType.terms)
-                controlsFiltersList.append(filter)
+            let list = (panel as? ControlsPanel)?.chartContentList ?? []
+            listControlsView?.listControlWidget = ListControlsWidget(control, list: list)
+            listControlsView?.dropDownActionBlock = { [weak self] sender in
+                self?.showDropDownList()
             }
         }
-                
-        multiFilterAction?(self, controlsFiltersList)
+    }
+    
+    private func showDropDownList() {
+        
+        guard let listControlsView = listControlsView,
+            let window = UIApplication.shared.keyWindow,
+            let rootViewController = window.rootViewController else { return }
 
-        controlsCollectionView.reloadData()
-    }
-    
-    //MARK: Button Actions
-    @IBAction func clearFormButtonAction(_ sender: Any) {
-        // Reset to 0
-        controlsFiltersList.removeAll()
-        for controlObj in dataSource {
-            if controlObj.control.type == .range {
-                (controlObj as? RangeControlsWidget)?.selectedMinValue = nil
-                (controlObj as? RangeControlsWidget)?.selectedMaxValue = nil
-            } else {
-                (controlObj as? ListControlsWidget)?.selectedList.removeAll()
-            }
-        }
-        controlsCollectionView?.reloadData()
-        clearFormButton.isEnabled = false
-        applyChangesButton.isEnabled = false
-        cancelChangesButton.isEnabled = true
-    }
-    
-    @IBAction func cancelChangesAction(_ sender: Any) {
-        initialSetup()
-        updatePanelContent()
-        cancelChangesButton.isEnabled = false
-    }
-    
-    @IBAction func applyChangesAction(_ sender: Any) {
-        applyFilters()
-        cancelChangesButton.isEnabled = false
-    }
-}
-
-extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let controlWidget = dataSource[indexPath.row]
-        let controlType = controlWidget.control.type
-        let cellId = controlType == .range ? CellIdentifiers.rangeControlsCell : CellIdentifiers.listControlsCell
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ControlsBaseCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        
-        if controlType == .range {
-            (cell as? RangeControlsCollectionViewCell)?.rangeSelectionUpdateBlock = { [weak self] (sender, max, min) in
-                self?.clearFormButton.isEnabled = true
-                self?.applyChangesButton.isEnabled = true
-                self?.cancelChangesButton.isEnabled = true
-            }
-        }
-        
-        cell.controlWidget = controlWidget
-                
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-        let controlWidget = dataSource[indexPath.row]
-        guard controlWidget.control.type == .list else { return }
-        showDropDownListFor(indexPath)
-    }
-    
-    private func showDropDownListFor(_ indexPath: IndexPath) {
-        let controlWidget = dataSource[indexPath.row]
-        guard controlWidget.control.type == .list, (controlWidget as? ListControlsWidget)?.list.count ?? 0 > 0,
-            let cell = controlsCollectionView.cellForItem(at: indexPath) else { return }
-        
-        guard let window = UIApplication.shared.keyWindow else { return }
-        guard let rootViewController = window.rootViewController else { return }
-        
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()
-        
+
         // Generate the List options object using data source
         func generateListOptions() -> [ControlsListOption] {
-            guard let selectedList = (controlWidget as? ListControlsWidget)?.selectedList else { return []}
+            guard let selectedList = listControlsView.listControlWidget?.selectedList else { return []}
             let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
                 let option = ControlsListOption()
                 option.data = item
@@ -221,55 +125,141 @@ extension ControlsViewController: UICollectionViewDataSource, UICollectionViewDe
             }) ?? []
             return list
         }
-        
+
         popOverContent.list = generateListOptions()
-        popOverContent.multiSelectionEnabled = (controlWidget as? ListControlsWidget)?.control.listOptions?.multiselect ?? false
-        popOverContent.selectionBlock = {[weak self] (sender, selectedList) in
+        popOverContent.multiSelectionEnabled = listControlsView.listControlWidget?.control.listOptions?.multiselect ?? false
+        popOverContent.selectionBlock = { [weak self] (sender, selectedList) in
             //Update UI
-            guard let controlsWidget = self?.dataSource.first else { return }
-            (controlsWidget as? ListControlsWidget)?.selectedList = selectedList.compactMap({ $0.data })
-            self?.controlsCollectionView?.reloadData()
-            
-            self?.applyChangesButton.isEnabled = true
+            listControlsView.listControlWidget?.selectedList = selectedList.compactMap({ $0.data })
+            listControlsView.updateContent()
+            let shouldEnableButtons = selectedList.count > 0
+            self?.enableAllButtons(shouldEnableButtons)
         }
         popOverContent.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover = popOverContent.popoverPresentationController
         popover?.backgroundColor = CurrentTheme.cellBackgroundColorPair.last?.withAlphaComponent(1.0)
-        
+
         if !isIPhone {
-            guard let holderView = (cell as? ListControlsCollectionViewCell)?.holderView else { return }
+            guard let holderView = listControlsView.holderView else { return }
             popOverContent.preferredContentSize = CGSize(width: holderView.bounds.width, height: 300)
             popover?.delegate = self
-            
-            var showRect    = cell.convert(holderView.frame, to: controlsCollectionView)
-            showRect        = controlsCollectionView.convert(showRect, to: view)
-            
+
+            let showRect    = listControlsView.convert(holderView.frame, to: view)
             popover?.sourceRect = showRect
             popover?.sourceView = view
         }
-        
         rootViewController.present(popOverContent, animated: true, completion: nil)
     }
     
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+    private func enableAllButtons(_ enable: Bool = true) {
+        resetButton.isEnabled = enable
+        cancelChangesButton.isEnabled = enable
+        applyChangesButton.isEnabled = enable
+    }
+    
+    private func applyFilters() {
+        
+        guard let control = control else { return }
+
+        var filtersList: [FilterProtocol] = []
+        if control.type == .range {
+            let rangeControls = rangeControlsView?.rangeControlWidget
+            guard let min = rangeControls?.selectedMinValue, let max = rangeControls?.selectedMaxValue else { return }
+            let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
+            filtersList.append(filter)
+        } else {
+            let listControls = listControlsView?.listControlWidget
+            guard let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
+            let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: BucketType.terms)
+            filtersList.append(filter)
+        }
+        
+        multiFilterAction?(self, filtersList)
+    }
+
+    //MARK: Button Actions
+    @IBAction func resetButtonAction(_ sender: UIButton) {
+        if control?.type == .range {
+            rangeControlsView?.rangeControlWidget?.selectedMinValue = nil
+            rangeControlsView?.rangeControlWidget?.selectedMaxValue = nil
+            rangeControlsView?.updateContent()
+            
+            if rangeControlsView?.rangeControlWidget?.prevSelectedMinValue != nil {
+                resetButton.isEnabled = false
+                cancelChangesButton.isEnabled = true
+                applyChangesButton.isEnabled = true
+            } else {
+                enableAllButtons(false)
+            }
+        } else {
+            listControlsView?.listControlWidget?.selectedList = []
+            listControlsView?.updateContent()
+            
+            if listControlsView?.listControlWidget?.prevSelectedList != nil {
+                resetButton.isEnabled = false
+                cancelChangesButton.isEnabled = true
+                applyChangesButton.isEnabled = true
+            } else {
+                enableAllButtons(false)
+            }
+        }
         
     }
-
-}
-
-extension ControlsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+    
+    @IBAction func cancelChangesButtonAction(_ sender: UIButton) {
+        if control?.type == .range,
+            let rangeWidget = rangeControlsView?.rangeControlWidget {
+            rangeWidget.selectedMinValue = rangeWidget.prevSelectedMinValue
+            rangeWidget.selectedMaxValue = rangeWidget.prevSelectedMaxValue
+            rangeControlsView?.updateContent()
+            
+            if rangeControlsView?.rangeControlWidget?.prevSelectedMinValue != nil {
+                resetButton.isEnabled = true
+                cancelChangesButton.isEnabled = false
+                applyChangesButton.isEnabled = false
+            } else {
+                enableAllButtons(false)
+            }
+        } else if control?.type == .list, let listWidget = listControlsView?.listControlWidget {
+            listWidget.selectedList = listWidget.prevSelectedList ?? []
+            listControlsView?.updateContent()
+            
+            if listControlsView?.listControlWidget?.prevSelectedList != nil  {
+                resetButton.isEnabled = true
+                cancelChangesButton.isEnabled = false
+                applyChangesButton.isEnabled = false
+            } else {
+                enableAllButtons(false)
+            }
+        }
     }
+    
+    @IBAction func applychangesButtonAction(_ sender: UIButton) {
+        
+        if control?.type == .range, let rangeWidget = rangeControlsView?.rangeControlWidget {
+            rangeWidget.prevSelectedMinValue = rangeWidget.selectedMinValue
+            rangeWidget.prevSelectedMaxValue = rangeWidget.selectedMaxValue
+            applyChangesButton.isEnabled = false
+            cancelChangesButton.isEnabled = false
+        } else if control?.type == .list, let listWidget = listControlsView?.listControlWidget {
+            listWidget.prevSelectedList = listWidget.selectedList
+            applyChangesButton.isEnabled = false
+            cancelChangesButton.isEnabled = false
+        }
+        
+        //Apply filters
+        applyFilters()
+    }
+    
 }
 
 extension ControlsViewController {
-    struct CellIdentifiers {
-        static let rangeControlsCell    =   "RangeControlsCollectionViewCell"
-        static let listControlsCell     =   "ListControlsCollectionViewCell"
+    struct NibNames {
+        static let rangeControlsView        =   "RangeControlsView"
+        static let listOptionControlsView   =   "ListOptionControlsView"
     }
     
     struct ViewControllerIdentifiers {
-        static let controlsListPopOverViewController     =   "ControlsListPopOverViewController"
+        static let controlsListPopOverViewController    =   "ControlsListPopOverViewController"
     }
 }
