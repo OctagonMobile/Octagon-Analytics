@@ -413,4 +413,9 @@ struct ControlsFilter: FilterProtocol {
         self.isInverted = false
         self.bucketType = type
     }
+    
+    func isEqual(_ object: Any) -> Bool {
+        guard let obj = (object as? ControlsFilter) else { return false }
+        return fieldName == obj.fieldName && fieldValue == obj.fieldValue
+    }
 }
