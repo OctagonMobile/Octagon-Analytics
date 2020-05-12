@@ -22,9 +22,6 @@ class RangeControlsWidget: ControlsWidgetBase {
     var selectedMinValue: Float?
     var selectedMaxValue: Float?
     
-    var prevSelectedMinValue: Float?
-    var prevSelectedMaxValue: Float?
-
     init(_ control: Control, min: Float? = nil, max: Float? = nil) {
         super.init(control)
         self.minValue = min
@@ -38,8 +35,6 @@ class ListControlsWidget: ControlsWidgetBase {
     
     var selectedList: [ChartContent]   =   []
     
-    var prevSelectedList: [ChartContent]?
-
     init(_ control: Control, list: [ChartContent]) {
         super.init(control)
         self.list = list

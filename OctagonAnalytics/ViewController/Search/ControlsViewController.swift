@@ -24,6 +24,11 @@ class ControlsViewController: PanelBaseViewController {
     private var rangeControlsView: RangeControlsView?
     private var listControlsView: ListOptionControlsView?
     
+    private var previousSelectedMinValue: Float?
+    private var previousSelectedMaxValue: Float?
+
+    private var previousSelectedList: [ChartContent]?
+    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,10 +101,15 @@ class ControlsViewController: PanelBaseViewController {
         if control.type == .range {
             let minimum = Float((panel as? ControlsPanel)?.minAgg ?? 0)
             let max = Float((panel as? ControlsPanel)?.maxAgg ?? 0)
-            rangeControlsView?.rangeControlWidget = RangeControlsWidget(control, min: minimum, max: max)
+            let rangeWidget = RangeControlsWidget(control, min: minimum, max: max)
+            rangeWidget.selectedMinValue = previousSelectedMinValue
+            rangeWidget.selectedMaxValue = previousSelectedMaxValue
+            rangeControlsView?.rangeControlWidget = rangeWidget
         } else {
             let list = (panel as? ControlsPanel)?.chartContentList ?? []
-            listControlsView?.listControlWidget = ListControlsWidget(control, list: list)
+            let listWidget = ListControlsWidget(control, list: list)
+            listWidget.selectedList = previousSelectedList ?? []
+            listControlsView?.listControlWidget = listWidget
             listControlsView?.dropDownActionBlock = { [weak self] sender in
                 self?.showDropDownList()
             }
@@ -169,7 +179,8 @@ class ControlsViewController: PanelBaseViewController {
             filtersList.append(filter)
         } else {
             let listControls = listControlsView?.listControlWidget
-            guard let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
+            guard (listControls?.selectedList.count ?? 0) > 0,
+                let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
             let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: BucketType.terms)
             filtersList.append(filter)
         }
@@ -184,7 +195,7 @@ class ControlsViewController: PanelBaseViewController {
             rangeControlsView?.rangeControlWidget?.selectedMaxValue = nil
             rangeControlsView?.updateContent()
             
-            if rangeControlsView?.rangeControlWidget?.prevSelectedMinValue != nil {
+            if previousSelectedMinValue != nil {
                 resetButton.isEnabled = false
                 cancelChangesButton.isEnabled = true
                 applyChangesButton.isEnabled = true
@@ -195,7 +206,7 @@ class ControlsViewController: PanelBaseViewController {
             listControlsView?.listControlWidget?.selectedList = []
             listControlsView?.updateContent()
             
-            if listControlsView?.listControlWidget?.prevSelectedList != nil {
+            if previousSelectedList != nil {
                 resetButton.isEnabled = false
                 cancelChangesButton.isEnabled = true
                 applyChangesButton.isEnabled = true
@@ -209,11 +220,11 @@ class ControlsViewController: PanelBaseViewController {
     @IBAction func cancelChangesButtonAction(_ sender: UIButton) {
         if control?.type == .range,
             let rangeWidget = rangeControlsView?.rangeControlWidget {
-            rangeWidget.selectedMinValue = rangeWidget.prevSelectedMinValue
-            rangeWidget.selectedMaxValue = rangeWidget.prevSelectedMaxValue
+            rangeWidget.selectedMinValue = previousSelectedMinValue
+            rangeWidget.selectedMaxValue = previousSelectedMaxValue
             rangeControlsView?.updateContent()
             
-            if rangeControlsView?.rangeControlWidget?.prevSelectedMinValue != nil {
+            if previousSelectedMinValue != nil {
                 resetButton.isEnabled = true
                 cancelChangesButton.isEnabled = false
                 applyChangesButton.isEnabled = false
@@ -221,10 +232,10 @@ class ControlsViewController: PanelBaseViewController {
                 enableAllButtons(false)
             }
         } else if control?.type == .list, let listWidget = listControlsView?.listControlWidget {
-            listWidget.selectedList = listWidget.prevSelectedList ?? []
+            listWidget.selectedList = previousSelectedList ?? []
             listControlsView?.updateContent()
             
-            if listControlsView?.listControlWidget?.prevSelectedList != nil  {
+            if previousSelectedList != nil  {
                 resetButton.isEnabled = true
                 cancelChangesButton.isEnabled = false
                 applyChangesButton.isEnabled = false
@@ -237,12 +248,12 @@ class ControlsViewController: PanelBaseViewController {
     @IBAction func applychangesButtonAction(_ sender: UIButton) {
         
         if control?.type == .range, let rangeWidget = rangeControlsView?.rangeControlWidget {
-            rangeWidget.prevSelectedMinValue = rangeWidget.selectedMinValue
-            rangeWidget.prevSelectedMaxValue = rangeWidget.selectedMaxValue
+            previousSelectedMinValue = rangeWidget.selectedMinValue
+            previousSelectedMaxValue = rangeWidget.selectedMaxValue
             applyChangesButton.isEnabled = false
             cancelChangesButton.isEnabled = false
         } else if control?.type == .list, let listWidget = listControlsView?.listControlWidget {
-            listWidget.prevSelectedList = listWidget.selectedList
+            previousSelectedList = listWidget.selectedList
             applyChangesButton.isEnabled = false
             cancelChangesButton.isEnabled = false
         }
