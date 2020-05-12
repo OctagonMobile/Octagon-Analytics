@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8da-19-6Lc">
-                    <rect key="frame" x="0.0" y="30.5" width="383" height="149"/>
+                    <rect key="frame" x="0.0" y="27.5" width="383" height="155"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuJ-SP-gsO" userLabel="Title">
                             <rect key="frame" x="10" y="10" width="363" height="0.0"/>
@@ -24,7 +24,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-8p-Xif" customClass="TTRangeSlider">
-                            <rect key="frame" x="10" y="20" width="363" height="65"/>
+                            <rect key="frame" x="8" y="20" width="367" height="65"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="selectedMinimum">
@@ -37,18 +37,21 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJ8-JF-bmo">
-                            <rect key="frame" x="10" y="100" width="96" height="34"/>
+                            <rect key="frame" x="10" y="100" width="96" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-fZ-c4f" userLabel="Seperator">
-                            <rect key="frame" x="111" y="100" width="161.5" height="34"/>
+                            <rect key="frame" x="111" y="100" width="161.5" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="RmR-mD-VmO"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hUQ-dd-djP">
-                            <rect key="frame" x="277.5" y="100" width="95.5" height="34"/>
+                            <rect key="frame" x="277.5" y="100" width="95.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -62,16 +65,17 @@
                         <constraint firstItem="DJ8-JF-bmo" firstAttribute="leading" secondItem="8da-19-6Lc" secondAttribute="leading" constant="10" id="DV5-cZ-7kH"/>
                         <constraint firstItem="ONQ-8p-Xif" firstAttribute="top" secondItem="TuJ-SP-gsO" secondAttribute="bottom" constant="10" id="GtT-Jn-05d"/>
                         <constraint firstItem="hUQ-dd-djP" firstAttribute="leading" secondItem="AQj-fZ-c4f" secondAttribute="trailing" constant="5" id="Szk-Ej-51b"/>
-                        <constraint firstAttribute="trailing" secondItem="ONQ-8p-Xif" secondAttribute="trailing" constant="10" id="Tuj-59-JGn"/>
+                        <constraint firstAttribute="trailing" secondItem="ONQ-8p-Xif" secondAttribute="trailing" constant="8" id="Tuj-59-JGn"/>
                         <constraint firstItem="DJ8-JF-bmo" firstAttribute="width" secondItem="8da-19-6Lc" secondAttribute="width" multiplier="0.25" id="Y4k-dM-uUh"/>
-                        <constraint firstItem="AQj-fZ-c4f" firstAttribute="height" secondItem="DJ8-JF-bmo" secondAttribute="height" id="ap5-nB-tEc"/>
                         <constraint firstItem="AQj-fZ-c4f" firstAttribute="top" secondItem="ONQ-8p-Xif" secondAttribute="bottom" constant="15" id="azh-7h-BL3"/>
                         <constraint firstItem="hUQ-dd-djP" firstAttribute="width" secondItem="DJ8-JF-bmo" secondAttribute="width" id="fhO-wK-Evb"/>
-                        <constraint firstItem="ONQ-8p-Xif" firstAttribute="leading" secondItem="8da-19-6Lc" secondAttribute="leading" constant="10" id="hT2-7M-U0A"/>
+                        <constraint firstItem="ONQ-8p-Xif" firstAttribute="leading" secondItem="8da-19-6Lc" secondAttribute="leading" constant="8" id="hT2-7M-U0A"/>
                         <constraint firstAttribute="trailing" secondItem="hUQ-dd-djP" secondAttribute="trailing" constant="10" id="kff-V0-VAw"/>
+                        <constraint firstItem="DJ8-JF-bmo" firstAttribute="height" secondItem="AQj-fZ-c4f" secondAttribute="height" id="p4G-SR-KY4"/>
                         <constraint firstItem="AQj-fZ-c4f" firstAttribute="leading" secondItem="DJ8-JF-bmo" secondAttribute="trailing" constant="5" id="q5Y-5n-2Tw"/>
                         <constraint firstItem="DJ8-JF-bmo" firstAttribute="top" secondItem="AQj-fZ-c4f" secondAttribute="top" id="qfa-DA-KYu"/>
                         <constraint firstItem="TuJ-SP-gsO" firstAttribute="leading" secondItem="8da-19-6Lc" secondAttribute="leading" constant="10" id="wDk-uk-FeY"/>
+                        <constraint firstItem="hUQ-dd-djP" firstAttribute="height" secondItem="AQj-fZ-c4f" secondAttribute="height" id="xQE-Om-EOO"/>
                     </constraints>
                 </view>
             </subviews>
@@ -89,6 +93,7 @@
                 <outlet property="maxValueTextField" destination="hUQ-dd-djP" id="Khn-hS-d09"/>
                 <outlet property="minValueTextField" destination="DJ8-JF-bmo" id="gEi-OV-AgV"/>
                 <outlet property="rangeSlider" destination="ONQ-8p-Xif" id="LYO-0P-uIA"/>
+                <outlet property="separatorView" destination="AQj-fZ-c4f" id="PsN-TI-8dA"/>
                 <outlet property="titleLabel" destination="TuJ-SP-gsO" id="Ihu-Ko-csw"/>
             </connections>
             <point key="canvasLocation" x="115.21739130434783" y="425.89285714285711"/>

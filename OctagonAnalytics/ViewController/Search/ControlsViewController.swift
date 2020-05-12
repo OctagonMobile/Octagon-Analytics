@@ -178,10 +178,10 @@ class ControlsViewController: PanelBaseViewController {
             let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(min)-\(max)", type: BucketType.range)
             filtersList.append(filter)
         } else {
-            let listControls = listControlsView?.listControlWidget
-            guard (listControls?.selectedList.count ?? 0) > 0,
-                let fieldValue = listControls?.selectedList.compactMap({ $0.key }).joined(separator: ",") else { return }
-            let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: BucketType.terms)
+            guard let listControls = listControlsView?.listControlWidget,
+                listControls.selectedList.count > 0 else { return }
+            let fieldValue = listControls.selectedList.compactMap({ $0.key})
+            let filter = ControlsFilter(fieldName: control.fieldName, fieldValue: fieldValue, type: .terms)
             filtersList.append(filter)
         }
         

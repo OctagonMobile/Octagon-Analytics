@@ -24,12 +24,14 @@ class RangeControlsView: UIView {
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var maxValueTextField: UITextField!
     @IBOutlet weak var minValueTextField: UITextField!
+    @IBOutlet weak var separatorView: UILabel!
     
     //MARK: Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         
         titleLabel.textColor = CurrentTheme.titleColor
+        separatorView.textColor = CurrentTheme.titleColor
         
         //Setup Range Slider
         rangeSlider.delegate = self

@@ -383,3 +383,34 @@ struct DateHistogramFilter: FilterProtocol {
 
 
 }
+
+struct ControlsFilter: FilterProtocol {
+    
+    var fieldName: String
+            
+    var fieldValue: [String]
+
+    var bucketType: BucketType
+
+    var isInverted: Bool
+
+    var combinedFilterValue: String {
+        let val = fieldValue.joined(separator: ",")
+        return "\(fieldName): \(val)"
+    }
+    
+    var dataParams: [String : Any] {
+        var params: [String: Any] = [:]
+        params[FilterConstants.type] = bucketType.rawValue
+        params[FilterConstants.field] = fieldName
+        params[FilterConstants.value] = fieldValue
+        return params
+    }
+
+    init(fieldName: String, fieldValue: [String], type: BucketType) {
+        self.fieldName  = fieldName
+        self.fieldValue = fieldValue
+        self.isInverted = false
+        self.bucketType = type
+    }
+}
