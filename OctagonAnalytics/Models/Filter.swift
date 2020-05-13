@@ -405,10 +405,11 @@ struct ControlsFilter: FilterProtocol {
     }
     
     var dataParams: [String : Any] {
-        var params: [String: Any] = [:]
-        params[FilterConstants.type] = bucketType.rawValue
-        params[FilterConstants.field] = fieldName
-        params[FilterConstants.value] = fieldValue
+        let params: [String: Any] =
+            [FilterConstants.type : bucketType.rawValue,
+             FilterConstants.field : fieldName,
+             FilterConstants.value : fieldValue,
+             FilterConstants.inverted: isInverted]
         return params
     }
 
