@@ -15,6 +15,7 @@ struct FilterConstants {
     static let value = "filterValue"
     static let rangeFrom = "filterRangeFrom"
     static let rangeTo = "filterRangeTo"
+    static let inverted = "isFilterInverted"
 }
 
 //MARK:
@@ -67,7 +68,8 @@ struct ImageFilter: FilterProtocol {
     var dataParams: [String : Any] {
         return [FilterConstants.type : "terms",
         FilterConstants.field : fieldName,
-        FilterConstants.value : fieldValue]
+        FilterConstants.value : fieldValue,
+        FilterConstants.inverted: isInverted]
     }
     
     init(fieldName: String, fieldValue: [String]) {
@@ -99,7 +101,8 @@ struct MapFilter: FilterProtocol {
     var dataParams: [String : Any] {
         return [FilterConstants.type: "terms",
                 FilterConstants.field: fieldName,
-                FilterConstants.value: fieldValue]
+                FilterConstants.value: fieldValue,
+                FilterConstants.inverted: isInverted]
     }
     
     init(fieldName: String, fieldValue: String) {
@@ -151,7 +154,8 @@ struct LocationFilter: FilterProtocol {
                   FilterConstants.value: ["top_left": ["lat": coordinateRectangle.topLeft.latitude, "lon": coordinateRectangle.topLeft.longitude],
             "top_right": ["lat": coordinateRectangle.topRight.latitude, "lon": coordinateRectangle.topRight.longitude],
             "bottom_left": ["lat": coordinateRectangle.bottomLeft.latitude, "lon": coordinateRectangle.bottomLeft.longitude],
-            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude]]
+            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude],
+            FilterConstants.inverted: isInverted]
         ]
 
     }
@@ -197,6 +201,7 @@ struct SimpleFilter: FilterProtocol {
         var params: [String: Any] = [:]
         params[FilterConstants.type] = bucketType.rawValue
         params[FilterConstants.field] = fieldName
+        params[FilterConstants.inverted] = isInverted
         switch bucketType {
         case .range:
             let ranges: [String] = fieldValue.components(separatedBy: "-")
