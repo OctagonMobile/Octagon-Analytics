@@ -21,6 +21,8 @@ class ControlsListPopOverViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var doneButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var doneButton: UIButton?
     @IBOutlet weak var controlsListView: UITableView?
 
     //MARK: Life Cycles
@@ -30,6 +32,10 @@ class ControlsListPopOverViewController: BaseViewController {
         controlsListView?.delegate = self
         controlsListView?.backgroundColor = .clear
         view.backgroundColor = CurrentTheme.cellBackgroundColor
+        
+        doneButton?.setTitleColor(CurrentTheme.controlsApplyButtonBackgroundColor, for: .normal)
+        doneButton?.style(.roundCorner(5.0, 1.0, CurrentTheme.controlsApplyButtonBackgroundColor))
+        doneButtonHeightConstraint?.constant = (isIPhone && multiSelectionEnabled) ? 45 : 0
     }
     
     func selectControlOptions(_ selectedDataList: [ControlsListOption], shouldDismiss: Bool = true) {
@@ -41,6 +47,12 @@ class ControlsListPopOverViewController: BaseViewController {
         } else {
             selectionBlock?(self, selectedDataList)
         }
+    }
+    
+    //MARK: Button Action
+    @IBAction func doneButtonAction(_ sender: Any) {
+        let selectedList = list.filter({ $0.isSelected })
+        selectControlOptions(selectedList, shouldDismiss: true)
     }
 }
 
