@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-               BuildableName = "Octagon Analytics.app"
+               BuildableName = "OctagonAnalytics.app"
                BlueprintName = "OctagonAnalytics"
                ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "Octagon Analytics.app"
+            BuildableName = "OctagonAnalytics.app"
             BlueprintName = "OctagonAnalytics"
             ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "Octagon Analytics.app"
+            BuildableName = "OctagonAnalytics.app"
             BlueprintName = "OctagonAnalytics"
             ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "513467CC1F9DD1B900F9B67D"
-            BuildableName = "Octagon Analytics.app"
+            BuildableName = "OctagonAnalytics.app"
             BlueprintName = "OctagonAnalytics"
             ReferencedContainer = "container:OctagonAnalytics.xcodeproj">
          </BuildableReference>

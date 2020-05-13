@@ -255,6 +255,39 @@ enum Theme: String {
         }
     }
 
+    var textFieldBorderColor: UIColor {
+        switch self {
+        case .light, .dark: return UIColor.colorFromHexString("EAEAEA")
+        }
+    }
+
+    var sliderLineColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("EAEAEA")
+        case .dark: return UIColor.DarkThemeColors.lightBackgroundColor
+        }
+    }
+    
+    var controlsApplyButtonBackgroundColor: UIColor {
+        switch self {
+        case .light: return UIColor.Primary.viking
+        case .dark: return UIColor.white
+        }
+    }
+
+    var controlsApplyButtonTitleColor: UIColor {
+        switch self {
+        case .light: return UIColor.white
+        case .dark: return UIColor.DarkThemeColors.buttonColor
+        }
+    }
+
+    var popOverListSelectionColor: UIColor {
+        switch self {
+        case .light: return UIColor.Primary.antiFlash
+        case .dark: return UIColor.DarkThemeColors.darkBackgroundColor
+        }
+    }
 
     //MARK: Styles
     /// Styles

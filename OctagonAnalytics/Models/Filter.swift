@@ -15,6 +15,7 @@ struct FilterConstants {
     static let value = "filterValue"
     static let rangeFrom = "filterRangeFrom"
     static let rangeTo = "filterRangeTo"
+    static let inverted = "isFilterInverted"
 }
 
 //MARK:
@@ -25,6 +26,7 @@ protocol FilterProtocol {
     var dataParams: [String: Any]   { get }
     
     func isEqual(_ object: Any) -> Bool
+    func hasSameFieldName(_ object: Any) -> Bool
 }
 
 extension FilterProtocol {
@@ -44,6 +46,11 @@ extension FilterProtocol {
     func isEqual(_ object: Any) -> Bool {
         return false
     }
+    
+    func hasSameFieldName(_ object: Any) -> Bool {
+        guard let obj = (object as? FilterProtocol) else { return false }
+        return fieldName == obj.fieldName
+    }
 }
 
 struct ImageFilter: FilterProtocol {
@@ -61,7 +68,8 @@ struct ImageFilter: FilterProtocol {
     var dataParams: [String : Any] {
         return [FilterConstants.type : "terms",
         FilterConstants.field : fieldName,
-        FilterConstants.value : fieldValue]
+        FilterConstants.value : fieldValue,
+        FilterConstants.inverted: isInverted]
     }
     
     init(fieldName: String, fieldValue: [String]) {
@@ -93,7 +101,8 @@ struct MapFilter: FilterProtocol {
     var dataParams: [String : Any] {
         return [FilterConstants.type: "terms",
                 FilterConstants.field: fieldName,
-                FilterConstants.value: fieldValue]
+                FilterConstants.value: fieldValue,
+                FilterConstants.inverted: isInverted]
     }
     
     init(fieldName: String, fieldValue: String) {
@@ -145,7 +154,8 @@ struct LocationFilter: FilterProtocol {
                   FilterConstants.value: ["top_left": ["lat": coordinateRectangle.topLeft.latitude, "lon": coordinateRectangle.topLeft.longitude],
             "top_right": ["lat": coordinateRectangle.topRight.latitude, "lon": coordinateRectangle.topRight.longitude],
             "bottom_left": ["lat": coordinateRectangle.bottomLeft.latitude, "lon": coordinateRectangle.bottomLeft.longitude],
-            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude]]
+            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude],
+            FilterConstants.inverted: isInverted]
         ]
 
     }
@@ -191,6 +201,7 @@ struct SimpleFilter: FilterProtocol {
         var params: [String: Any] = [:]
         params[FilterConstants.type] = bucketType.rawValue
         params[FilterConstants.field] = fieldName
+        params[FilterConstants.inverted] = isInverted
         switch bucketType {
         case .range:
             let ranges: [String] = fieldValue.components(separatedBy: "-")
@@ -376,4 +387,41 @@ struct DateHistogramFilter: FilterProtocol {
     }
 
 
+}
+
+struct ControlsFilter: FilterProtocol {
+    
+    var fieldName: String
+            
+    var fieldValue: [String]
+
+    var bucketType: BucketType
+
+    var isInverted: Bool
+
+    var combinedFilterValue: String {
+        let val = fieldValue.joined(separator: ",")
+        return "\(fieldName): \(val)"
+    }
+    
+    var dataParams: [String : Any] {
+        let params: [String: Any] =
+            [FilterConstants.type : bucketType.rawValue,
+             FilterConstants.field : fieldName,
+             FilterConstants.value : fieldValue,
+             FilterConstants.inverted: isInverted]
+        return params
+    }
+
+    init(fieldName: String, fieldValue: [String], type: BucketType) {
+        self.fieldName  = fieldName
+        self.fieldValue = fieldValue
+        self.isInverted = false
+        self.bucketType = type
+    }
+    
+    func isEqual(_ object: Any) -> Bool {
+        guard let obj = (object as? ControlsFilter) else { return false }
+        return fieldName == obj.fieldName && fieldValue == obj.fieldValue
+    }
 }

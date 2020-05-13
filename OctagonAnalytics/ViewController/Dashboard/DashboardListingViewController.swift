@@ -25,7 +25,9 @@ class DashboardListingViewController: BaseViewController {
     var refreshControl: UIRefreshControl?
     
     /// Hud
-    var hud: MBProgressHUD?
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
 
     /// Dashboard Listing collection view
     @IBOutlet weak var dashboardListCollectionView: UICollectionView!
@@ -85,10 +87,6 @@ class DashboardListingViewController: BaseViewController {
         dashboardListCollectionView.dataSource = self
         dashboardListCollectionView.alwaysBounceVertical = true
 
-        hud = MBProgressHUD(view: view)
-        hud?.animationType = .zoomIn
-        hud?.contentColor = CurrentTheme.darkBackgroundColor
-
         // Setup PopTip
         popTip.bubbleColor = CurrentTheme.darkBackgroundColor.withAlphaComponent(0.8)
         popTip.textColor = CurrentTheme.secondaryTitleColor
@@ -119,12 +117,12 @@ class DashboardListingViewController: BaseViewController {
         
         // Load Data
         if shouldShowHud {
-            hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.show(animated: true)
         }
         dashboardLoder.loadDashBoardItems { [weak self] (result, error) in
 
             self?.refreshControl?.endRefreshing()
-            self?.hud?.hide(animated: true)
+            self?.hud.hide(animated: true)
             // Handle the response
             self?.filterDashboardItems()
 

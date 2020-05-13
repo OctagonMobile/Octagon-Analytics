@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -16,6 +17,15 @@ extension Formatter {
         return formatter
     }()
     
+    static let withSeparator2DecimalPoint: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+
     static let withSeparatorIgnoringDecimal: NumberFormatter = {
         let formatter = Formatter.withSeparator
         formatter.maximumFractionDigits = 0
@@ -28,6 +38,10 @@ extension NSNumber {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
     
+    var formattedWithSeparator2Decimal: String {
+        return Formatter.withSeparator2DecimalPoint.string(for: self) ?? ""
+    }
+
     var formattedWithSeparatorIgnoringDecimal: String {
         return Formatter.withSeparatorIgnoringDecimal.string(for: self) ?? ""
     }
@@ -203,5 +217,46 @@ extension UIColor {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+}
+
+extension MBProgressHUD {
+    private class func createHud(addedTo view: UIView, rotate: Bool = true) -> MBProgressHUD {
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        
+        let width: CGFloat = isIPhone ? 60 : 100
+        let customView = CustomHudView(frame: CGRect(x: 0, y: 0, width: width, height: width))
+        hud.customView = customView
+        hud.mode = .customView
+        hud.removeFromSuperViewOnHide = false
+        hud.margin = 5.0
+        // Equal width/height depending on whichever is larger
+        hud.isSquare = true
+        
+        // Partially see-through bezel
+        hud.bezelView.color = CurrentTheme.isDarkTheme ? UIColor.black : UIColor.white
+        hud.bezelView.style = CurrentTheme.isDarkTheme ? .solidColor : .blur
+        hud.bezelView.layer.cornerRadius = isIPhone ? 15.0 : 30.0
+        
+        // Dim background
+        hud.backgroundView.color = .clear
+        hud.backgroundView.style = .solidColor
+        
+        if rotate {
+            let animation = CABasicAnimation(keyPath: "transform.rotation")
+            animation.fromValue = 0.0
+            animation.speed = 0.5
+            animation.toValue = 2.0 * Double.pi
+            animation.duration = 1
+            animation.repeatCount = HUGE
+            animation.isRemovedOnCompletion = false
+            hud.customView?.layer.add(animation, forKey: "rotationAnimation")
+        }
+        
+        return hud
+    }
+    
+    class func refreshing(addedTo view: UIView) -> MBProgressHUD {
+        return createHud(addedTo: view, rotate: true)
     }
 }

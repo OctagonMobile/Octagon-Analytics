@@ -107,6 +107,8 @@ class DashboardItem: NSObject, Mappable {
             } else if panelType == PanelType.gauge.rawValue ||
                 panelType == PanelType.goal.rawValue {
                 panel = GaugePanel(JSON: json)
+            } else if panelType == PanelType.inputControls.rawValue {
+                panel = ControlsPanel(JSON: json)
             }  else {
                 panel = Panel(JSON: json)
             }

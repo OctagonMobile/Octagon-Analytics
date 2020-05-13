@@ -270,6 +270,9 @@ class DashboardViewController: BaseViewController {
             case .gauge, .goal:
                 panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.gaugeViewController) as? GaugeViewController ?? GaugeViewController()
 
+            case .inputControls:
+                panelViewController = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsViewController) as? ControlsViewController ?? ControlsViewController()
+
             default :
                 DLog("Something wrong with Visualization Type: \(type.rawValue)")
                 break
@@ -389,10 +392,9 @@ class DashboardViewController: BaseViewController {
 
         var indexPathList: [IndexPath] = []
         for item in otherFilters {
-            let success = Session.shared.addFilters(item)
-            guard success else { continue }
-                let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
-                indexPathList.append(indexPath)
+            Session.shared.addFilters(item)
+            let indexPath = IndexPath(item: Session.shared.appliedFilters.count - 1, section: 0)
+            indexPathList.append(indexPath)
         }
 
         filterCollectionView.insertItems(at: indexPathList)
@@ -671,6 +673,7 @@ extension DashboardViewController {
         static let lineChartViewController          = "LineChartViewController"
         static let markDownViewController           = "MarkDownViewController"
         static let gaugeViewController              = "GaugeViewController"
+        static let controlsViewController           = "ControlsViewController"
     }
 }
 

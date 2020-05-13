@@ -54,7 +54,7 @@ class PieChartViewController: ChartBaseViewController {
             
             // Values
             let metricTypeValue = panel.metricAggregation?.metricType
-            let shouldShowBucketValue = (metricTypeValue == .sum || metricTypeValue == .max || metricTypeValue == .average)
+            let shouldShowBucketValue = (metricTypeValue == .sum || metricTypeValue == .max || metricTypeValue == .average || metricTypeValue == .median)
             let value = shouldShowBucketValue ? Double(item.bucketValue.magnitude)  : Double(item.docCount.magnitude)
 
             let dataEntry = PieChartDataEntry(value: value, label: item.key)

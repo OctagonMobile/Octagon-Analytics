@@ -26,6 +26,12 @@ class GaugeViewController: PanelBaseViewController {
         gaugeView.coveredTickValueColor = CurrentTheme.titleColor
         //Set size of the legend to zero for Goal Viz (Note: for Gauge viz legends are disabled)
         gaugeView.legendSize = CGSize.zero
+        gaugeView.gaugeViewPercentage = 0.7
+        gaugeView.gaugeTrackWidth = isIPhone ? 12.0 : 20.0
+        gaugeView.gaugeValueTrackWidth = isIPhone ? 12.0 : 20.0
+        if let font = CTFontCreateUIFontForLanguage(.system, 17.0, nil) {
+            gaugeView.legendFont = font
+        }
     }
     
     override func setupPanel() {
@@ -36,6 +42,11 @@ class GaugeViewController: PanelBaseViewController {
         let isGaugeView = visState.gaugeType == .gauge
         gaugeView.gaugeType = isGaugeView ? .gauge : .goal
         gaugeView.enableLegends = !isGaugeView
+        
+        if !isGaugeView {
+            gaugeView.titleFontSize = 15.0
+            gaugeView.titleText = visState.metricAggregationsArray.first?.field ?? ""
+        }
         
         let colors = CurrentTheme.gaugeRangeColors
         var colorIndex = 0

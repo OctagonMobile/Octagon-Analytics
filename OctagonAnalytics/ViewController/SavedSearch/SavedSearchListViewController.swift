@@ -40,6 +40,10 @@ class SavedSearchListViewController: PanelBaseViewController {
         return (panel as? SavedSearchPanel)?.hits ?? []
     }
     
+    fileprivate lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
+
     /// Datasource for the collectionview
     var didScrollToBoundary: DidScrollToBoundary?
     
@@ -190,13 +194,9 @@ class SavedSearchListViewController: PanelBaseViewController {
             return
         }
         
-        
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.animationType = .zoomIn
-        hud.contentColor = CurrentTheme.darkBackgroundColor
-        
+        hud.show(animated: true)
         savedSearchPanel.loadSavedSearch(pageNumber, { [weak self] (result, error) in
-            hud.hide(animated: true)
+            self?.hud.hide(animated: true)
             
             // Check for Errors
             // Handle the response

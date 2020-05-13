@@ -45,7 +45,7 @@ class LocationPopUpView: UIView {
         
         self.mapDetail = mapDetail
         countLabel.text = mapDetail.type.capitalized
-        countValueLabel.text = "\(NSNumber(value: mapDetail.docCount).formattedWithSeparatorIgnoringDecimal)"
+        countValueLabel.text = "\(NSNumber(value: mapDetail.docCount).formattedWithSeparator2Decimal)"
         
         if let location = mapDetail.location {
             latitudeValueLabel.text = String(format: "%0.8f", location.coordinate.latitude)

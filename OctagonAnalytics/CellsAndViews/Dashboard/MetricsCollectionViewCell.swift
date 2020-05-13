@@ -36,7 +36,7 @@ class MetricsCollectionViewCell: UICollectionViewCell {
     
     func updateCellContent() {
         titleLabel.text = metric?.label
-        valueLabel.text = metric?.value.formattedWithSeparatorIgnoringDecimal
+        valueLabel.text = metric?.value.formattedWithSeparator2Decimal
     }
 
 }
