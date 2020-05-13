@@ -33,7 +33,8 @@ class ListOptionControlsView: UIView {
     }
     
     func updateContent() {
-        titleLabel?.text = listControlWidget?.control.fieldName
+        let control = listControlWidget?.control
+        titleLabel?.text = control?.label.isEmpty == false ? control?.label : control?.fieldName
 
         guard let selectedList = listControlWidget?.selectedList, selectedList.count > 0 else {
             selectButton.setTitle("Select a list...", for: .normal); return

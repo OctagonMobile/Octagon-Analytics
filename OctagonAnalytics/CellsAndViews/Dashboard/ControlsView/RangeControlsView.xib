@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8da-19-6Lc">
-                    <rect key="frame" x="0.0" y="27.5" width="383" height="155"/>
+                    <rect key="frame" x="0.0" y="0.0" width="383" height="210"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuJ-SP-gsO" userLabel="Title">
                             <rect key="frame" x="10" y="10" width="363" height="0.0"/>
@@ -23,8 +23,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-8p-Xif" customClass="TTRangeSlider">
-                            <rect key="frame" x="8" y="20" width="367" height="65"/>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="367" placeholderIntrinsicHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-8p-Xif" customClass="TTRangeSlider">
+                            <rect key="frame" x="8" y="20" width="367" height="120"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="selectedMinimum">
@@ -36,13 +36,13 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJ8-JF-bmo">
-                            <rect key="frame" x="10" y="100" width="96" height="40"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJ8-JF-bmo">
+                            <rect key="frame" x="10" y="155" width="96" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-fZ-c4f" userLabel="Seperator">
-                            <rect key="frame" x="111" y="100" width="161.5" height="40"/>
+                            <rect key="frame" x="111" y="155" width="161.5" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="RmR-mD-VmO"/>
                             </constraints>
@@ -50,8 +50,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hUQ-dd-djP">
-                            <rect key="frame" x="277.5" y="100" width="95.5" height="40"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hUQ-dd-djP">
+                            <rect key="frame" x="277.5" y="155" width="95.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -81,11 +81,11 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8da-19-6Lc" secondAttribute="bottom" id="DUH-e5-DQr"/>
                 <constraint firstItem="8da-19-6Lc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="L3K-wC-Yl8"/>
                 <constraint firstItem="8da-19-6Lc" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SBd-4r-xe2"/>
                 <constraint firstItem="8da-19-6Lc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="frt-no-3VU"/>
                 <constraint firstItem="8da-19-6Lc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jXB-ea-YkE"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8da-19-6Lc" secondAttribute="bottom" id="lLw-jw-MEF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

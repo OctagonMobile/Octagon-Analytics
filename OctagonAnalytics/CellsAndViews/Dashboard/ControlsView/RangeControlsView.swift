@@ -55,8 +55,10 @@ class RangeControlsView: UIView {
             textField.layer.borderWidth = CurrentTheme.isDarkTheme ? 0.0 : 2.0
             textField.layer.cornerRadius = 5.0
             textField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
-            textField.layer.borderColor = CurrentTheme.textFieldBorderColor.cgColor
+            textField.backgroundColor = CurrentTheme.headerViewBackgroundColorSecondary
             textField.tintColor = CurrentTheme.titleColor
+            textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
+            textField.leftViewMode = .always
         }
         
         configureTextField(minValueTextField)
@@ -64,7 +66,8 @@ class RangeControlsView: UIView {
     }
     
     func updateContent() {
-        titleLabel?.text = rangeControlWidget?.control.fieldName
+        let control = rangeControlWidget?.control
+        titleLabel?.text = control?.label.isEmpty == false ? control?.label : control?.fieldName
 
         rangeSlider.minValue = rangeControlWidget?.minValue ?? 0
         rangeSlider.maxValue = rangeControlWidget?.maxValue ?? 0
