@@ -15,10 +15,18 @@ class GaugePanel: Panel {
     override func parseBuckets(_ aggregationsDict: [String : Any]) {
         guard let visState = visState,
             let id = visState.metricAggregationsArray.first?.id else { return }
-        
-        
+                
         guard let contentDict = aggregationsDict[id] as? [String: Any] else { return }
 
-        gaugeValue = contentDict["value"] as? CGFloat ?? 0.0        
+        let metricType = visState.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
+
+        if metricType == .median {
+            if let values = contentDict ["values"] as? [[String: Any]],
+                let valueDict = values.first  {
+                gaugeValue         =   valueDict["value"] as? CGFloat ?? 0.0
+            }
+        } else {
+            gaugeValue         =   contentDict["value"] as? CGFloat ?? 0.0
+        }
     }
 }
