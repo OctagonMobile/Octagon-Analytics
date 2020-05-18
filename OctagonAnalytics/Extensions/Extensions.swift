@@ -260,3 +260,27 @@ extension MBProgressHUD {
         return createHud(addedTo: view, rotate: true)
     }
 }
+
+extension NSNumber {
+    var isNumberFractional: Bool {
+        let str = self.stringValue
+        return (str.split(separator: ".").count > 1)
+    }
+}
+
+extension Double {
+    var isInteger: Bool {
+        return floor(self) == self
+    }
+}
+
+extension String {
+    var isBool: Bool {
+        return self == "false" || self == "true"
+    }
+}
+
+struct BoolAsString {
+   static let true_ = "true"
+   static let false_ = "false"
+}

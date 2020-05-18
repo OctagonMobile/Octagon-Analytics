@@ -9,15 +9,6 @@
 import UIKit
 import SwiftDate
 
-struct FilterConstants {
-    static let type  = "filterType"
-    static let field = "filterField"
-    static let value = "filterValue"
-    static let rangeFrom = "filterRangeFrom"
-    static let rangeTo = "filterRangeTo"
-    static let inverted = "isFilterInverted"
-}
-
 //MARK:
 protocol FilterProtocol {
     var fieldName: String           { get set }

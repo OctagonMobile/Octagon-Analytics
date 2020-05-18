@@ -97,7 +97,6 @@ class Panel: Mappable {
 
     var chartContentList: [ChartContent] = []
     
-    var parsedAggResult: AggResult?
     /**
      Bucket Type of the panel.
      */
@@ -118,11 +117,6 @@ class Panel: Mappable {
     var metricAggregation: Aggregation? {
         return visState?.aggregationsArray.filter( {$0.id == AggregationId.metric.rawValue }).first
     }
-
-    // The followig headers used only for Tables (Need better appraoch to handle it)
-    var tableHeaderLeft: String? = ""
-    
-    var tableHeaderRight: String? = ""
     
     //Sub Buckets Support, All Headers are put into an array
     var tableHeaders: [String] = []
@@ -151,21 +145,21 @@ class Panel: Mappable {
     }
     
     func mapping(map: Map) {
-        id          <- map["id"]
-        panelIndex  <- map["panelIndex"]
-        row         <- map["row"]
-        column      <- map["col"]
-        width       <- map["size_x"]
-        height      <- map["size_y"]
-        index       <- map["searchSourceJSON.index"]
-        searchQuery <- map["searchQueryPanel"]
+        id          <- map[PanelConstant.id]
+        panelIndex  <- map[PanelConstant.index]
+        row         <- map[PanelConstant.row]
+        column      <- map[PanelConstant.column]
+        width       <- map[PanelConstant.width]
+        height      <- map[PanelConstant.height]
+        index       <- map[PanelConstant.searchIndex]
+        searchQuery <- map[PanelConstant.searchQuery]
 
         // Manual mapping based on visualization type
-        if let visStateJson = (map.JSON["visState"] as? [String: Any]) {
+        if let visStateJson = (map.JSON[PanelConstant.visState] as? [String: Any]) {
             
-            guard let type = visStateJson["type"] as? String,
+            guard let type = visStateJson[PanelConstant.type] as? String,
                 let panelType = PanelType(rawValue: type) else {
-                visState <- map["visState"]
+                    visState <- map[PanelConstant.visState]
                 return
             }
             
@@ -201,7 +195,7 @@ class Panel: Mappable {
                 visState = Mapper<InputControlsVisState>().map(JSONObject: visStateJson)
 
             default:
-                visState <- map["visState"]
+                visState <- map[PanelConstant.visState]
             }
         }
     }
@@ -227,7 +221,7 @@ class Panel: Mappable {
                 return
             }
             
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res["result"], let parsedData = self?.parseData(finalResult) else {
+            guard let res = result as? [AnyHashable: Any?], let finalResult = res[PanelConstant.result], let parsedData = self?.parseData(finalResult) else {
                 self?.resetDataSource()
                 completion?(nil, error)
                 return
@@ -250,7 +244,7 @@ class Panel: Mappable {
      */
     internal func dataParams() -> [String: Any]? {
         var filtersDict: [String: Any] = [:]
-        filtersDict["id"] = id
+        filtersDict[FilterConstants.id] = id
         
         var filtersArray:[[String: Any]?]  = []
         
@@ -259,18 +253,18 @@ class Panel: Mappable {
         }
                 
         if filtersArray.count > 0 {
-            filtersDict["filters"] = filtersArray
+            filtersDict[FilterConstants.filters] = filtersArray
         }
 
-        filtersDict["timeFrom"] = dashboardItem?.fromTime
-        filtersDict["timeTo"] = dashboardItem?.toTime
+        filtersDict[FilterConstants.timeFrom] = dashboardItem?.fromTime
+        filtersDict[FilterConstants.timeTo] = dashboardItem?.toTime
 
-        filtersDict["searchQueryPanel"] = searchQuery
-        filtersDict["searchQueryDashboard"] = dashboardItem?.searchQuery
+        filtersDict[PanelConstant.searchQuery] = searchQuery
+        filtersDict[PanelConstant.searchQueryDashboard] = dashboardItem?.searchQuery
         
         // In case of date histogram send the interval
         if bucketType == .dateHistogram, let interval = mappedIntervalValue {
-            filtersDict["interval"] = "\(interval)"
+            filtersDict[FilterConstants.interval] = "\(interval)"
         }
 
         return filtersDict
@@ -286,7 +280,7 @@ class Panel: Mappable {
     internal func parseData(_ result: Any?) -> [Any] {
         // Parse here and update/create chart item
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any] else {
+            let aggregationsDict = responseJson.first?[PanelConstant.aggregations] as? [String: Any] else {
                 return []
         }
         
@@ -294,16 +288,11 @@ class Panel: Mappable {
         
         
         // Parse table headers for Tables
-        if visState?.type == .table , let headersArray = responseJson.first?["tableHeaders"] as? [[String: Any]] {
-            let idDictionary = headersArray.filter(( {($0["id"] as? String) == "2"} )).first
-            tableHeaderLeft = idDictionary?["label"] as? String ?? ""
-            let namdeDictionary = headersArray.filter(( {($0["id"] as? String) == "1"} )).first
-            tableHeaderRight = namdeDictionary?["label"] as? String ?? ""
-            
+        if visState?.type == .table , let headersArray = responseJson.first?[PanelConstant.tableHeaders] as? [[String: Any]] {
             //Sub Buckets Support
             var headers = [String]()
             for headerDict in headersArray {
-                if let header = headerDict["label"] as? String {
+                if let header = headerDict[PanelConstant.label] as? String {
                     headers.append(header)
                 }
             }
@@ -326,7 +315,6 @@ class Panel: Mappable {
         
         guard let contentDict = aggregationsDict[id] as? [String: Any] else { return }
         let parsedData = AggResult(contentDict, visState: visState, idx: 0, parentBucket: nil)
-        self.parsedAggResult = parsedData
         chartContentList = parsedDataForChart(parsedData)
     }
     
@@ -490,263 +478,4 @@ extension Panel {
         return finalResult
     }
 
-}
-
-class AggResult {
-    
-    var buckets: [Bucket]           =   []
-    
-//    private var internalIndex: Int  =   0
-    //MARK: Functions
-    init(_ dictionary: [String: Any], visState: VisState, idx: Int, parentBucket: Bucket?) {
-        
-        var bucketList: [[String: Any]] = []
-
-        let currentAggs = visState.otherAggregationsArray[idx]
-        if currentAggs.bucketType == .range {
-            guard let bucketDictionary = dictionary["buckets"] as? [String: [String: Any]] else { return }
-            for (key, var dict) in bucketDictionary {
-                dict["key"] = key
-                bucketList.append(dict)
-            }
-        } else {
-            bucketList = dictionary["buckets"] as? [[String: Any]] ?? []
-        }
-        
-        let index = idx + 1
-        for bucketData in bucketList {
-            var bucket: Bucket
-            switch currentAggs.bucketType {
-            case .range:
-                bucket = RangeBucket(bucketData, visState: visState, index: index, parentBucket: parentBucket)
-                bucket.bucketType = currentAggs.bucketType
-            default:
-                bucket = Bucket(bucketData, visState: visState, index: index, parentBucket: parentBucket, bucketType: currentAggs.bucketType)
-            }
-            buckets.append(bucket)
-        }
-        
-        if currentAggs.bucketType == .range {
-            buckets.sort(by: { ($0 as! RangeBucket).from < ($1 as! RangeBucket).from })
-        }
-
-    }
-}
-
-class Bucket {
-    
-    var key                     =   ""
-    
-    var docCount                =   0.0
-    
-    var bucketValue             =   0.0
-    
-    var metricValue             =   0.0
-
-    var bucketType: BucketType  =   .unKnown
-    var subAggsResult: AggResult?
-        
-    var displayValue: Double {
-        let aggregationsCount = (visState?.otherAggregationsArray.count ?? 0)
-        let metricType = visState?.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
-        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median)
-
-        if aggregationsCount == 1 || metricType == .median {
-            return shouldShowBucketValue ? bucketValue : docCount
-        } else {
-            return metricType == .count ? docCount : metricValue
-        }
-    }
-    
-    var parentBkt: Bucket? {
-        return parentBucket
-    }
-    
-    private var parentBucket: Bucket?
-    private var visState: VisState?
-    
-    //MARK: Functions
-    init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType) {
-        
-        docCount            =   dictionary["doc_count"] as? Double ?? 0.0
-        let metricType = visState.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
-
-        if metricType == .median {
-            if let firstMetricId = visState.metricAggregationsArray.first?.id,
-                let dict = dictionary[firstMetricId] as? [String: Any],
-                
-                let values = dict ["values"] as? [[String: Any]],
-                let valueDict = values.first  {
-                bucketValue         =   valueDict["value"] as? Double ?? 0.0
-            }
-        } else {
-            bucketValue         =   dictionary["bucketValue"] as? Double ?? 0.0
-        }
-        
-        self.bucketType = bucketType
-        self.visState = visState
-        self.parentBucket = parentBucket
-        
-        switch bucketType {
-            case .dateHistogram:
-                if let dateKey = dictionary["key"] {
-                    key = "\(dateKey)"
-                }
-            default:
-                key = bucketValueAsString(dictionary)
-        }
-        
-        
-        if let firstMetricId = visState.metricAggregationsArray.first?.id,
-            let dict = dictionary[firstMetricId] as? [String: Any] {
-            metricValue         =   dict["value"] as? Double ?? 0.0
-        }
-
-        guard index < visState.otherAggregationsArray.count else {
-            return
-        }
-        
-        let id = visState.otherAggregationsArray[index].id
-        guard let dict = dictionary[id] as? [String: Any] else { return }
-        subAggsResult          =   AggResult(dict, visState: visState, idx: index, parentBucket: self)
-    }
-    
-    func getRelatedfilters(_ selectedDateComponant: DateComponents?) -> [FilterProtocol] {
-
-        var filtersList: [FilterProtocol] = []
-        var outerBucket: Bucket? = self
-        let othersAggs = visState?.otherAggregationsArray ?? []
-        for otherAggs in othersAggs.reversed() {
-            let val = outerBucket?.key ?? ""
-            guard let bucket = outerBucket else { continue }
-            var filter: FilterProtocol
-            switch bucket.bucketType {
-            case .dateHistogram:
-                let interval = otherAggs.params?.interval ?? AggregationParams.IntervalType.unKnown
-                let customInterval = otherAggs.params?.customInterval ?? ""
-                filter = DateHistogramFilter(fieldName: otherAggs.field, fieldValue: val, type: otherAggs.bucketType, interval: interval, customInterval: customInterval, selectedComponants: selectedDateComponant)
-            default:
-                filter = SimpleFilter(fieldName: otherAggs.field, fieldValue: val, type: otherAggs.bucketType)
-            }
-
-            filtersList.append(filter)
-
-            outerBucket = outerBucket?.parentBucket
-        }
-        return filtersList
-    }
-    
-    func bucketValueAsString(_ dict: [String: Any]) -> String {
-        
-        guard let val = dict["key"] else {
-            return ""
-        }
-        let keyAsString = dict["key_as_string"] as? String
-        
-        if let number = val as? NSNumber {
-            if number.isNumberFractional {
-                return String(format: "%0.2f", number.floatValue)
-            } else if keyAsString == "false" || keyAsString == "true" {
-                return keyAsString!
-            } else {
-                return number.stringValue
-            }
-        } else {
-            return val as? String ?? ""
-        }
-    }
-    
-    static func ==(lhs: Bucket, rhs: Bucket) -> Bool {
-        return lhs.key == rhs.key && lhs.docCount == rhs.docCount && lhs.bucketValue == rhs.bucketValue
-    }
-
-}
-
-class RangeBucket: Bucket {
-    var from: Double    =   0.0
-    var to: Double      =   0.0
-    
-    override init(_ dictionary: [String : Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType = .unKnown) {
-        super.init(dictionary, visState: visState, index: index, parentBucket: parentBucket, bucketType: bucketType)
-        
-        from        =   dictionary["from"] as? Double ?? 0.0
-        to          =   dictionary["to"] as? Double ?? 0.0
-    }
-    var stringValue: String {
-        return "\(from) to \(to)"
-    }
-    
-    static func ==(lhs: RangeBucket, rhs: RangeBucket) -> Bool {
-        return lhs.key == rhs.key && lhs.to == rhs.to && lhs.from == rhs.from
-    }
-
-}
-
-extension Bucket: BucketAggType {
-    var bucketKey: String {
-        return key
-    }
-    
-    var aggType: BucketType {
-        return bucketType
-    }
-    
-    var parent: BucketAggType? {
-        return parentBkt
-    }
-    
-    
-}
-
-class ChartContent {
-    var key: String             =   ""
-    var bucketType: BucketType  =   .unKnown
-    var docCount                =   0.0
-    var bucketValue             =   0.0
-    var items: [Bucket]      =   []
-    
-    var displayValue: String {
-        if bucketType == .dateHistogram {
-            guard let keyValue = Int(key) else { return key }
-            let date = Date(milliseconds: keyValue)
-            return date.toFormat("YYYY-MM-dd HH:mm:ss")
-        }
-        return key
-    }
-}
-
-extension ChartContent: BucketAggType {
-    var bucketKey: String {
-        return key
-    }
-    
-    var aggType: BucketType {
-        return bucketType
-    }
-    
-    var parent: BucketAggType? {
-        return nil
-    }
-    
-    
-}
-
-
-extension NSNumber {
-    var isNumberFractional: Bool {
-        let str = self.stringValue
-        return (str.split(separator: ".").count > 1)
-    }
-}
-
-extension Double {
-    var isInteger: Bool {
-        return floor(self) == self
-    }
-}
-
-extension String {
-    var isBool: Bool {
-        return self == "false" || self == "true"
-    }
 }
