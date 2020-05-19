@@ -23,7 +23,7 @@ class FaceTile: Mappable {
     }
     
     func mapping(map: Map) {
-        fileName                <- map["fileName"]
-        faceUrl                 <- map["faceUrl"]
+        fileName                <- map[FaceTileConstant.fileName]
+        faceUrl                 <- map[FaceTileConstant.faceUrl]
     }
 }
