@@ -175,7 +175,11 @@ class ControlsViewController: PanelBaseViewController {
         if control.type == .range {
             let rangeControls = rangeControlsView?.rangeControlWidget
             guard let min = rangeControls?.selectedMinValue, let max = rangeControls?.selectedMaxValue else { return }
-            let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(Int(min))-\(Int(max))", type: BucketType.range)
+            let noOfDecimalsAllowed = rangeControls?.control.rangeOptions?.decimalPlaces ?? 0
+            let minimum = min.round(to: noOfDecimalsAllowed)
+            let maximum = max.round(to: noOfDecimalsAllowed)
+
+            let filter = SimpleFilter(fieldName: control.fieldName, fieldValue: "\(minimum)-\(maximum)", type: BucketType.range)
             filtersList.append(filter)
         } else {
             guard let listControls = listControlsView?.listControlWidget,

@@ -260,3 +260,9 @@ extension MBProgressHUD {
         return createHud(addedTo: view, rotate: true)
     }
 }
+
+extension Float {
+    func round(to places: Int) -> String {
+        return String(format: "%0.\(places)f", self)
+    }
+}
