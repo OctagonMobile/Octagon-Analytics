@@ -303,7 +303,7 @@ class Panel: Mappable {
             tableHeaders = headers
         }
         
-        return [chartContentList]
+        return chartContentList
     }
     
     
