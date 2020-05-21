@@ -38,7 +38,9 @@ class AggResult {
             default:
                 bucket = Bucket(bucketData, visState: visState, index: index, parentBucket: parentBucket, bucketType: currentAggs.bucketType)
             }
-            buckets.append(bucket)
+//            if bucket.isValid {
+                buckets.append(bucket)
+//            }
         }
         
         if currentAggs.bucketType == .range {
