@@ -21,9 +21,9 @@ class Metric: Mappable {
     }
     
     func mapping(map: Map) {
-        type            <- map["type"]
-        label           <- map["label"]
-        value           <- map["value"]
+        type            <- map[MetricConstant.type]
+        label           <- map[MetricConstant.label]
+        value           <- map[MetricConstant.value]
     }
 
 }

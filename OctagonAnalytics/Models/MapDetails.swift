@@ -23,17 +23,17 @@ class MapDetails: ChartContent, Mappable {
     //MARK: Functions
 
     func mapping(map: Map) {
-        if let keyValue = map.JSON["key"] {
+        if let keyValue = map.JSON[BucketConstant.key] {
             key   = "\(keyValue)"
         }
-        docCount            <- map["doc_count"]
-        bucketValue         <- map["bucketValue"]
+        docCount            <- map[BucketConstant.docCount]
+        bucketValue         <- map[BucketConstant.bucketValue]
         
-        type <- map["type"]
+        type <- map[BucketConstant.type]
         
-        if let locationDict = map.JSON["location"] as? [String: Any] {
-            let lat = locationDict["lat"] as? Double ?? 0.0
-            let longitude = locationDict["lon"] as? Double ?? 0.0
+        if let locationDict = map.JSON[MapDetailsConstant.location] as? [String: Any] {
+            let lat = locationDict[MapDetailsConstant.lat] as? Double ?? 0.0
+            let longitude = locationDict[MapDetailsConstant.long] as? Double ?? 0.0
             
             location = CLLocation(latitude: lat, longitude: longitude)
         }
