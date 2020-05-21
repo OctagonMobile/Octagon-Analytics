@@ -51,20 +51,20 @@ class Tile: Mappable {
     
     func mapping(map: Map) {
         
-        type          <- (map["type"],EnumTransform<TileType>())
+        type          <- (map[TileConstant.type],EnumTransform<TileType>())
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        if let dateString = map["timestamp"].currentValue as? String, let _date = dateFormatter.date(from: dateString) {
+        if let dateString = map[TileConstant.timestamp].currentValue as? String, let _date = dateFormatter.date(from: dateString) {
             timestamp = _date
         }
 
-        thumbnailUrl            <- map["thumbnailUrl"]
-        imageUrl                <- map["imageUrl"]
-        videoUrl                <- map["videoUrl"]
-        audioUrl                <- map["audioUrl"]
-        imageHash               <- map["imageHash"]
+        thumbnailUrl            <- map[TileConstant.thumbnailUrl]
+        imageUrl                <- map[TileConstant.imageUrl]
+        videoUrl                <- map[TileConstant.videoUrl]
+        audioUrl                <- map[TileConstant.audioUrl]
+        imageHash               <- map[TileConstant.imageHash]
     }
     
     func loadImageHashesFor(_ panel: TilePanel, _ completion: @escaping CompletionBlock) {
@@ -93,7 +93,7 @@ class Tile: Mappable {
                 return
             }
             
-            guard let res = result as? [AnyHashable: Any?], let parsedDict = res["result"] as? [String: Any], let hashesArray = parsedDict["hashes"] as? [String] else {
+            guard let res = result as? [AnyHashable: Any?], let parsedDict = res[TileConstant.result] as? [String: Any], let hashesArray = parsedDict[TileConstant.hashes] as? [String] else {
                 completion(nil, error)
                 return
             }

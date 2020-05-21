@@ -204,6 +204,10 @@
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
 		F17AA02C240E7F3F00BDB6B7 /* FiltersInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA028240E7F3F00BDB6B7 /* FiltersInfoView.swift */; };
+		F1A84BDE2472805000455B76 /* ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BDD2472805000455B76 /* ChartContent.swift */; };
+		F1A84BE02472807300455B76 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BDF2472807300455B76 /* Bucket.swift */; };
+		F1A84BE22472808300455B76 /* AggResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BE12472808300455B76 /* AggResult.swift */; };
+		F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BE42472828200455B76 /* ApiConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -421,6 +425,10 @@
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
 		F17AA028240E7F3F00BDB6B7 /* FiltersInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersInfoView.swift; sourceTree = "<group>"; };
+		F1A84BDD2472805000455B76 /* ChartContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContent.swift; sourceTree = "<group>"; };
+		F1A84BDF2472807300455B76 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
+		F1A84BE12472808300455B76 /* AggResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggResult.swift; sourceTree = "<group>"; };
+		F1A84BE42472828200455B76 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -505,6 +513,7 @@
 		5129C1FD1F9F513B003E6406 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F1A84BE32472827000455B76 /* Constants */,
 				51F359EE24601A8D0009AC07 /* HudView */,
 				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51E8BF3C20F38048004B5D20 /* DatePicker */,
@@ -1029,6 +1038,9 @@
 				514211DA21807E83006E64DD /* FaceTilePanel.swift */,
 				5174FBAB219C2335003BEB1E /* GraphPanel.swift */,
 				5146FE7C240BD2F50014A67D /* ControlsPanel.swift */,
+				F1A84BDD2472805000455B76 /* ChartContent.swift */,
+				F1A84BDF2472807300455B76 /* Bucket.swift */,
+				F1A84BE12472808300455B76 /* AggResult.swift */,
 				51923AB8207DF6980023FE27 /* Map */,
 			);
 			path = Panels;
@@ -1234,6 +1246,14 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F1A84BE32472827000455B76 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				F1A84BE42472828200455B76 /* ApiConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1477,6 +1497,7 @@
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
 				517F97DB1FB1A8B900CA6E55 /* VisState.swift in Sources */,
 				51F359F024601E960009AC07 /* CustomHudView.swift in Sources */,
+				F1A84BE22472808300455B76 /* AggResult.swift in Sources */,
 				51840DF11FCEA2F2007B8D38 /* ContentListViewController.swift in Sources */,
 				51CB2D221FBDA149007BC0A0 /* BaseViewController.swift in Sources */,
 				51D8ECA224026493009158C5 /* ControlsViewController.swift in Sources */,
@@ -1533,6 +1554,7 @@
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
 				5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
+				F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
 				5174FBA5219C105E003BEB1E /* GraphWeightView.swift in Sources */,
 				51E3941F204D664100AF22C8 /* CustomMapView.swift in Sources */,
@@ -1571,6 +1593,7 @@
 				51CB2D231FBDA14C007BC0A0 /* DashboardListingViewController.swift in Sources */,
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
+				F1A84BDE2472805000455B76 /* ChartContent.swift in Sources */,
 				511D3A7D2046905200BB80AC /* HorizontalBarChartViewController.swift in Sources */,
 				F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */,
 				51CD9A9E23F29E60005ACD46 /* TutorialConfigCarouselView.swift in Sources */,
@@ -1586,6 +1609,7 @@
 				51D385E22370094700C59220 /* Canvas.swift in Sources */,
 				51CFC69D1FB9BB8700B99018 /* SavedSearchCollectionViewCell.swift in Sources */,
 				51F0E66822D609EC001B390A /* KeycloakLoginViewController.swift in Sources */,
+				F1A84BE02472807300455B76 /* Bucket.swift in Sources */,
 				513F3F80206A3E9C00221F27 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				51A0E2A021EF504800BCA651 /* TileInfoViewController.swift in Sources */,
 				514F420E20453A2900117227 /* ThumbnailView.swift in Sources */,
