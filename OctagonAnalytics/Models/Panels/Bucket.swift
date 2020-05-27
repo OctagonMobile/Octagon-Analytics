@@ -172,3 +172,9 @@ extension Bucket: BucketAggType {
     }
     
 }
+
+extension Bucket {
+    var isValid: Bool {
+        return docCount > 0 || bucketValue > 0 || metricValue > 0 || (subAggsResult?.buckets.count ?? 0) > 0
+    }
+}
