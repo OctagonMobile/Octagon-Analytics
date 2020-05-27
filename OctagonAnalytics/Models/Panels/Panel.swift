@@ -303,7 +303,7 @@ class Panel: Mappable {
             tableHeaders = headers
         }
         
-        return [chartContentList]
+        return chartContentList
     }
     
     
@@ -425,6 +425,8 @@ extension Panel {
             data.bucketType = segmentAggs?.bucketType ?? .unKnown
             data.bucketValue = bucket1.bucketValue
             data.docCount = bucket1.docCount
+            data.metricValue = bucket1.metricValue
+            data.metricType = visState?.metricAggregationsArray.first?.metricType ?? .unKnown
             
             var items: [Bucket] = []
             

@@ -21,6 +21,13 @@ class ControlsViewController: PanelBaseViewController {
         return (panel?.visState as? InputControlsVisState)?.controls.first
     }
 
+    //Used for List Options only
+    private var chartContentList: [ChartContent] {
+        guard let contentList = panel?.chartContentList else { return [] }
+        guard let listOptions = control?.listOptions else { return contentList }
+        return listOptions.dynamicOptions ? contentList : Array(contentList.prefix(listOptions.size))
+    }
+    
     private var rangeControlsView: RangeControlsView?
     private var listControlsView: ListOptionControlsView?
     
@@ -106,8 +113,7 @@ class ControlsViewController: PanelBaseViewController {
             rangeWidget.selectedMaxValue = previousSelectedMaxValue
             rangeControlsView?.rangeControlWidget = rangeWidget
         } else {
-            let list = (panel as? ControlsPanel)?.chartContentList ?? []
-            let listWidget = ListControlsWidget(control, list: list)
+            let listWidget = ListControlsWidget(control, list: chartContentList)
             listWidget.selectedList = previousSelectedList ?? []
             listControlsView?.listControlWidget = listWidget
             listControlsView?.dropDownActionBlock = { [weak self] sender in
@@ -127,13 +133,13 @@ class ControlsViewController: PanelBaseViewController {
         // Generate the List options object using data source
         func generateListOptions() -> [ControlsListOption] {
             guard let selectedList = listControlsView.listControlWidget?.selectedList else { return []}
-            let list = panel?.chartContentList.compactMap({ (item) -> ControlsListOption? in
+            let list = chartContentList.compactMap({ (item) -> ControlsListOption? in
                 let option = ControlsListOption()
                 option.data = item
                 option.isSelected = selectedList.contains(where: { $0.key == item.key })
                 return option
-            }) ?? []
-            return list
+            })
+            return list.filter({ $0.data != nil }).sorted(by: { $0.data!.key < $1.data!.key})
         }
 
         popOverContent.list = generateListOptions()

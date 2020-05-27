@@ -256,11 +256,14 @@ class SavedSearchListViewController: PanelBaseViewController {
         let pageStartNumber = (SavedSearchPanel.Constant.pageSize * pageNumber) + 1
         let pageEndNumber = SavedSearchPanel.Constant.pageSize * pageNo
 
-        
+        let startPageNumber = NSNumber(value: pageStartNumber).formattedWithSeparator
+        let endPageNumber = NSNumber(value: pageEndNumber).formattedWithSeparator
+        let totalSearchCount = NSNumber(value: savedSearchPanel.totalSavedSearchCount).formattedWithSeparator
+
         if pageEndNumber > savedSearchPanel.totalSavedSearchCount {
-            pageNumberLabel.text = "\(pageStartNumber)-\(savedSearchPanel.totalSavedSearchCount) / \(savedSearchPanel.totalSavedSearchCount)"
+            pageNumberLabel.text = "\(startPageNumber)-\(totalSearchCount) / \(totalSearchCount)"
         } else {
-            pageNumberLabel.text = "\(pageStartNumber)-\(pageEndNumber) / \(savedSearchPanel.totalSavedSearchCount)"
+            pageNumberLabel.text = "\(startPageNumber)-\(endPageNumber) / \(totalSearchCount)"
         }
     }
     

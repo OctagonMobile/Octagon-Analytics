@@ -13,15 +13,30 @@ class ChartContent {
     var bucketType: BucketType  =   .unKnown
     var docCount                =   0.0
     var bucketValue             =   0.0
-    var items: [Bucket]      =   []
+    var metricValue             =   0.0
+    var metricType: MetricType  =   .unKnown
+    var items: [Bucket]         =   []
+    var otherAggsCount: Int     =   0
     
-    var displayValue: String {
+    var keyAsString: String {
         if bucketType == .dateHistogram {
             guard let keyValue = Int(key) else { return key }
             let date = Date(milliseconds: keyValue)
             return date.toFormat("YYYY-MM-dd HH:mm:ss")
         }
         return key
+    }
+    
+    var displayValue: Double {
+        if bucketType == .range {
+            return metricValue
+        } else if metricType == .median {
+            return bucketValue
+        } else if metricType == .count || metricType == .uniqueCount {
+            return docCount
+        } else {
+            return otherAggsCount > 1 ? metricValue : bucketValue
+        }
     }
 }
 

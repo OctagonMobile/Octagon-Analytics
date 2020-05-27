@@ -216,6 +216,6 @@ class BarChartFormatter: NSObject, IAxisValueFormatter {
             return ""
         }
         
-        return valueList[index].displayValue
+        return valueList[index].keyAsString
     }
 }
