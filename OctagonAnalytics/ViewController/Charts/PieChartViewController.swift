@@ -53,10 +53,7 @@ class PieChartViewController: ChartBaseViewController {
         let pieChartDataEntry: [ChartDataEntry] = panel.chartContentList.compactMap { (item) -> ChartDataEntry? in
             
             // Values
-            let metricTypeValue = panel.metricAggregation?.metricType
-            let shouldShowBucketValue = (metricTypeValue == .sum || metricTypeValue == .max || metricTypeValue == .average || metricTypeValue == .median)
-            let value = shouldShowBucketValue ? Double(item.bucketValue.magnitude)  : Double(item.docCount.magnitude)
-
+            let value = item.displayValue
             let dataEntry = PieChartDataEntry(value: value, label: item.key)
             dataEntry.data = item
             
