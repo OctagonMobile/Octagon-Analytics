@@ -24,13 +24,13 @@ class Bucket {
     var displayValue: Double {
         let aggregationsCount = (visState?.otherAggregationsArray.count ?? 0)
         let metricType = visState?.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
-        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median)
+        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
-        if aggregationsCount == 1 || metricType == .median {
+        if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
             return shouldShowBucketValue ? bucketValue : docCount
         } else {
-            return (metricType == .count || metricType == .topHit ) ? docCount : metricValue
+            return (metricType == .count) ? docCount : metricValue
         }
     }
     
@@ -45,6 +45,8 @@ class Bucket {
     init(_ dictionary: [String: Any], visState: VisState, index: Int, parentBucket: Bucket?, bucketType: BucketType) {
         
         docCount            =   dictionary[BucketConstant.docCount] as? Double ?? 0.0
+        self.visState = visState
+
         let metricType = visState.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
 
         if metricType == .median {
@@ -55,12 +57,13 @@ class Bucket {
                 let valueDict = values.first  {
                 bucketValue         =   valueDict[BucketConstant.value] as? Double ?? 0.0
             }
+        } else if metricType == .topHit {
+            bucketValue = parseTopHitValue(dict: dictionary)
         } else {
             bucketValue         =   dictionary[BucketConstant.bucketValue] as? Double ?? 0.0
         }
         
         self.bucketType = bucketType
-        self.visState = visState
         self.parentBucket = parentBucket
         
         switch bucketType {
@@ -136,6 +139,35 @@ class Bucket {
         return lhs.key == rhs.key && lhs.docCount == rhs.docCount && lhs.bucketValue == rhs.bucketValue
     }
 
+}
+
+extension Bucket {
+    func parseTopHitValue(dict: [String: Any]) -> Double {
+        guard let metricAgg = visState?.metricAggregationsArray.first else {
+            return 0.0
+        }
+        
+        let firstMetricId = metricAgg.id
+        var values: [Double] = []
+        if let firstAgg = dict[firstMetricId] as? [String: Any],
+            let hitsDict = firstAgg[BucketConstant.hits] as? [String : Any],
+            let hitsArray = hitsDict[BucketConstant.hits] as? [[String: Any]] {
+            for hit in hitsArray {
+                if let source = hit[BucketConstant.source] as? [String: Any],
+                    let value = source[metricAgg.field] as? Double {
+                    values.append(value)
+                }
+            }
+        }
+        
+        if let aggregate = metricAgg.params?.aggregate {
+            let value = values.apply(aggregate: aggregate)
+            return  Double(round(100*value)/100)
+        }
+        
+        return 0
+    }
+    
 }
 
 class RangeBucket: Bucket {
