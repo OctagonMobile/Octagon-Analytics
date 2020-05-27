@@ -14,7 +14,7 @@ enum MetricType: String {
     case count          =   "count"
     case sum            =   "sum"
     case uniqueCount    =   "unique_count"
-    case topHit         =   "top_hit"
+    case topHit         =   "top_hits"
     case max            =   "max"
     case average        =   "avg"
     case median         =   "median"
@@ -38,6 +38,32 @@ enum AggregationId: String {
     case unKnown        = "0"
     case metric         = "1"
     case bucket         = "2"
+}
+
+enum AggregateFunction: String {
+    case average
+    case max
+    case min
+    case sum
+    case unknown
+}
+
+
+extension Collection where Element == Double {
+    func apply(aggregate: AggregateFunction) -> Double {
+        switch aggregate {
+        case .average:
+            return reduce(0, +) / Double(count)
+        case .max:
+            return self.max() ?? 0.0
+        case .min:
+            return self.min() ?? 0.0
+        case .sum:
+            return reduce(0, +)
+        case .unknown:
+            return 0.0
+        }
+    }
 }
 
 class Aggregation : Mappable {
@@ -100,6 +126,7 @@ class AggregationParams: Mappable {
     var interval: IntervalType          = IntervalType.unKnown
     var customInterval: String          = ""
     var intervalInt: Int                = 0
+    var aggregate: AggregateFunction    = .unknown
     required init?(map: Map) {
         // Empty Method
     }
@@ -109,6 +136,7 @@ class AggregationParams: Mappable {
         interval            <- (map["interval"],EnumTransform<IntervalType>())
         customInterval      <- map["customInterval"]
         intervalInt         <- map["interval"]
+        aggregate           <- (map["aggregate"], EnumTransform<AggregateFunction>())
     }
     
 }

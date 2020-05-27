@@ -61,6 +61,8 @@ struct ApiConstant {
         static let from = "from"
         static let to = "to"
         static let type = "type"
+        static let hits = "hits"
+        static let source = "_source"
     }
 
     struct Aggregation {
