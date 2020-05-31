@@ -111,7 +111,7 @@ extension CanvasViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        hud.hide(animated: false)
+        hud.hide(animated: false, afterDelay: 0.5)
     }
 }
 
