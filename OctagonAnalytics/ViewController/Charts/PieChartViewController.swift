@@ -12,8 +12,17 @@ import LanguageManager_iOS
 
 class PieChartViewController: ChartBaseViewController {
 
-    var pieChartView: PieChartView? {
-        return (chart as? PieChartView)
+    
+    
+    lazy var chartProvider: PiecharProvider = {
+        let nodes = getPieChartData()
+        let config = PieChartConfiguration(nodes: nodes, marginBetweenArcs: 1.0, expandedArcThickness: 40.0, innerRadius: 40.0, startingAngle: 0)
+        let provider = SunburstProvider(configuration: config)
+        return provider
+    }()
+    
+    var chartVC: UIViewController {
+        return chartProvider.pieChartVC
     }
     
     override func viewDidLoad() {
@@ -21,72 +30,35 @@ class PieChartViewController: ChartBaseViewController {
 
         // Do any additional setup after loading the view.
         legendEnableButton?.isSelected = true
-        pieChartView?.scrollableLegend.isEnabled = true
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func setupChart() {
         super.setupChart()
-        pieChartView?.delegate = self
-
-        pieChartView?.transparentCircleRadiusPercent = 0.0
-        pieChartView?.holeColor = nil
-        pieChartView?.drawEntryLabelsEnabled = false
-        pieChartView?.rotationEnabled = false
-        
+       
         let isDonut = (panel?.visState as? PieChartVisState)?.isDonut ?? false
-        pieChartView?.drawHoleEnabled = isDonut
-        if isDonut {
-            pieChartView?.holeRadiusPercent = 0.8
-        }
-
+        addPieChart()
+    }
+    
+    private func addPieChart() {
+        displayContainerView.addSubview(chartVC.view)
+        
+        let top = NSLayoutConstraint(item: chartVC.view!, attribute: .top, relatedBy: .equal, toItem: displayContainerView, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let left = NSLayoutConstraint(item: chartVC.view!, attribute: .left, relatedBy: .equal, toItem: displayContainerView, attribute: .left, multiplier: 1.0, constant: 0.0)
+        let bottom = NSLayoutConstraint(item: chartVC.view!, attribute: .bottom, relatedBy: .equal, toItem: displayContainerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let right = NSLayoutConstraint(item: chartVC.view!, attribute: .right, relatedBy: .equal, toItem: displayContainerView, attribute: .right, multiplier: 1.0, constant: 0.0)
+        view.addConstraints([top, left, right, bottom])
+        chartVC.view.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override func updatePanelContent() {
         super.updatePanelContent()
-        
-        guard let panel = panel else { return }
-        
-        
-        var legendsList: [ScrollableLegendEntry] = []
-        var colorIndex = 0
-        let pieChartDataEntry: [ChartDataEntry] = panel.chartContentList.compactMap { (item) -> ChartDataEntry? in
-            
-            // Values
-            let value = item.displayValue
-            let dataEntry = PieChartDataEntry(value: value, label: item.key)
-            dataEntry.data = item
-            
-            // Legend Setup
-            if colorIndex >= defaultColors.count { colorIndex = 0 }
-            let color = defaultColors[colorIndex]
-            colorIndex += 1
-
-            let legend = ScrollableLegendEntry(dataEntry: dataEntry, title: item.key, color: color, titleColor: CurrentTheme.disabledStateBackgroundColor)
-            legendsList.append(legend)
-            return dataEntry
-        }
-        
-        let dataSet = PieChartDataSet(entries: pieChartDataEntry, label: "")
-        dataSet.sliceSpace = 2.0
-        dataSet.selectionShift = 8.0
-        dataSet.colors = defaultColors
-        dataSet.drawValuesEnabled = false
-        pieChartView?.data = PieChartData(dataSet: dataSet)
-        
-        let direction: ScrollableLegend.ChartShiftDirection = LanguageManager.shared.isRightToLeft ? .right : .left
-        pieChartView?.scrollableLegend.setWidthPercentage(0.3, direction: direction)
-        pieChartView?.animate(xAxisDuration: 1.5, easingOption: .easeOutBack)
-        
-        
-        pieChartView?.scrollableLegendRenderer.legendSelectionAction = { [weak self] (sender, legendEntry, index) in
-            self?.pieChartView?.highlightValue(x: Double(index), dataSetIndex: 0, callDelegate: true)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.pieChartView?.scrollableLegend.updateLegends(legendsList)
-        })
-
+        chartProvider.updateChart(nodes: getPieChartData())
     }
 }
 
@@ -113,4 +85,24 @@ extension PieChartViewController: ChartViewDelegate {
         deselectFieldAction?(self)
     }
 }
+
+
+extension PieChartViewController {
+    func getPieChartData() -> [PieChartNode] {
+        
+        guard let chartContentList = panel?.chartContentList else {
+            return []
+        }
+        var colorIndex = 0
+        let nodes: [PieChartNode] = chartContentList.compactMap {
+            if colorIndex >= defaultColors.count { colorIndex = 0 }
+            let color = defaultColors[colorIndex]
+            colorIndex += 1
+            return PieChartNode(name: $0.key, children: [], value: $0.displayValue, showName: false, image: nil, backgroundColor: color)
+        }
+        return nodes
+    }
+    
+}
+
 

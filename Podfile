@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '13`SunburstDiagram.0'
 use_frameworks!
 
 target 'OctagonAnalytics' do
@@ -8,6 +8,7 @@ target 'OctagonAnalytics' do
 
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'
+    pod 'SunburstDiagram', '~> 1.1.0'
 
 #Helper pods
     pod 'PopupDialog'

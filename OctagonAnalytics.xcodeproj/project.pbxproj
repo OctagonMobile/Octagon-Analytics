@@ -199,6 +199,8 @@
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
+		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
+		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
@@ -420,6 +422,8 @@
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
+		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
+		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -1049,6 +1053,7 @@
 		51AB677B1F9E12A700304234 /* CellsAndViews */ = {
 			isa = PBXGroup;
 			children = (
+				F133769F247FEAF4008A5D3D /* MultiLayerPieChart */,
 				51CD9AA123F2A318005ACD46 /* Tutorial */,
 				51D385E32370149400C59220 /* Canvas */,
 				51E9464B221BF02F00F30D1F /* Settings */,
@@ -1233,6 +1238,15 @@
 			path = DataTable;
 			sourceTree = "<group>";
 		};
+		F133769F247FEAF4008A5D3D /* MultiLayerPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				F13376A0247FEB23008A5D3D /* PieChartProvider.swift */,
+				F12BFE852483C168009A3753 /* SunburstProvider.swift */,
+			);
+			path = MultiLayerPieChart;
+			sourceTree = "<group>";
+		};
 		F145885823D5BF84006641FD /* BarChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -1395,6 +1409,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartGauge/SmartGauge.framework",
+				"${BUILT_PRODUCTS_DIR}/SunburstDiagram/SunburstDiagram.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDataTables/SwiftDataTables.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
@@ -1424,6 +1439,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartGauge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SunburstDiagram.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDataTables.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
@@ -1468,6 +1484,7 @@
 				513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */,
 				5114A1AB2074B99F00F3A419 /* MapTrackControlView.swift in Sources */,
 				F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */,
+				F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */,
 				51D385E02370091F00C59220 /* CanvasLoader.swift in Sources */,
 				513467F31F9DDC5100F9B67D /* Configuration.swift in Sources */,
 				51477DE62068DF2500955394 /* LoginViewController.swift in Sources */,
@@ -1475,6 +1492,7 @@
 				51D8ECA024025A4A009158C5 /* InputControlsVisState.swift in Sources */,
 				51CDDEDC246811FB00A68861 /* ListOptionControlsView.swift in Sources */,
 				51E8BF4D20F38048004B5D20 /* QuickDatePickerCollectionViewCell.swift in Sources */,
+				F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */,
 				51923ABF207E13490023FE27 /* MapTrackingViewController.swift in Sources */,
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
@@ -1695,7 +1713,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
@@ -1748,7 +1766,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
@@ -1774,7 +1792,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
@@ -1806,7 +1824,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
