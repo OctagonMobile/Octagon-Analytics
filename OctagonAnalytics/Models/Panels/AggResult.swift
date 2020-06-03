@@ -80,7 +80,8 @@ extension AggResult {
         return nodes
     }
     
-    func adjustNodeValuesBasedOnParent(nodes: [PieChartNode], totalValue: Double?) -> [PieChartNode] {
+    func adjustNodeValuesBasedOnParent(nodes: [PieChartNode],
+                                       totalValue: Double?) -> [PieChartNode] {
         var adjustedNodes: [PieChartNode] = []
         
         let nodesTotal = nodes.reduce(0.0) { (result, node) -> Double in
