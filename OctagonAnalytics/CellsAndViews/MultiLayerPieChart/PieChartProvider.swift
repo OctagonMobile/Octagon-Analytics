@@ -12,6 +12,7 @@ protocol PiecharProvider {
     init(configuration: PieChartConfiguration)
     var pieChartVC: UIViewController { get }
     var onSelect: ((PieChartNode) -> Void)? { get set }
+    var onDeselect: (() -> Void)? { get set }
     func updateChart(nodes: [PieChartNode])
 }
 
@@ -22,14 +23,18 @@ struct PieChartNode {
     var showName: Bool
     var image: UIImage?
     var backgroundColor: UIColor?
+    var associatedObject: Any?
 }
 
 struct PieChartConfiguration {
     var nodes: [PieChartNode]
     var marginBetweenArcs: CGFloat
     var expandedArcThickness: CGFloat
+    var collapsedArcThickness: CGFloat
+    var maxExpandedArcCount: UInt
     var innerRadius: CGFloat
     var startingAngle: Double
+    var strokeColor: UIColor
 }
 
 extension PieChartConfiguration {

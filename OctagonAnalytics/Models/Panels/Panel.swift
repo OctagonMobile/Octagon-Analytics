@@ -98,6 +98,11 @@ class Panel: Mappable {
     var chartContentList: [ChartContent] = []
     
     /**
+     Parsed Agg Result, Used only for Pie Chart - Multilayer
+     */
+    var parsedAgg: AggResult?
+    
+    /**
      Bucket Type of the panel.
      */
     var bucketType: BucketType {
@@ -315,6 +320,7 @@ class Panel: Mappable {
         
         guard let contentDict = aggregationsDict[id] as? [String: Any] else { return }
         let parsedData = AggResult(contentDict, visState: visState, idx: 0, parentBucket: nil)
+        parsedAgg = parsedData
         chartContentList = parsedDataForChart(parsedData)
     }
     

@@ -16,7 +16,15 @@ class PieChartViewController: ChartBaseViewController {
     
     lazy var chartProvider: PiecharProvider = {
         let nodes = getPieChartData()
-        let config = PieChartConfiguration(nodes: nodes, marginBetweenArcs: 1.0, expandedArcThickness: 40.0, innerRadius: 40.0, startingAngle: 0)
+        let isDonut = (panel?.visState as? PieChartVisState)?.isDonut ?? false
+        let config = PieChartConfiguration(nodes: nodes,
+                                           marginBetweenArcs: 1.0,
+                                           expandedArcThickness: 80.0,
+                                           collapsedArcThickness: 30.0,
+                                           maxExpandedArcCount: 1,
+                                           innerRadius: isDonut ? 40.0 : 0, startingAngle: 0,
+                                           strokeColor: SettingsBundleHelper.selectedTheme.darkBackgroundColor)
+        
         let provider = SunburstProvider(configuration: config)
         return provider
     }()
@@ -40,8 +48,6 @@ class PieChartViewController: ChartBaseViewController {
     
     override func setupChart() {
         super.setupChart()
-       
-        let isDonut = (panel?.visState as? PieChartVisState)?.isDonut ?? false
         addPieChart()
     }
     
@@ -54,6 +60,23 @@ class PieChartViewController: ChartBaseViewController {
         let right = NSLayoutConstraint(item: chartVC.view!, attribute: .right, relatedBy: .equal, toItem: displayContainerView, attribute: .right, multiplier: 1.0, constant: 0.0)
         view.addConstraints([top, left, right, bottom])
         chartVC.view.translatesAutoresizingMaskIntoConstraints = false
+        chartProvider.onSelect = nodeSelected
+        chartProvider.onDeselect = {
+            self.deselectFieldAction?(self)
+        }
+    }
+    
+    private func nodeSelected(node: PieChartNode) {
+        guard let bucket = node.associatedObject as? Bucket else { return }
+        
+          var dateComponant: DateComponents?
+          if let selectedDates =  panel?.currentSelectedDates,
+              let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+              dateComponant = fromDate.getDateComponents(toDate)
+          }
+          let filters = bucket.getRelatedfilters(dateComponant)
+          
+          showInfoFieldActionBlock?(self, filters, nil)
     }
 
     override func updatePanelContent() {
@@ -90,19 +113,11 @@ extension PieChartViewController: ChartViewDelegate {
 extension PieChartViewController {
     func getPieChartData() -> [PieChartNode] {
         
-        guard let chartContentList = panel?.chartContentList else {
+        guard let parsedAgg = panel?.parsedAgg else {
             return []
         }
-        var colorIndex = 0
-        let nodes: [PieChartNode] = chartContentList.compactMap {
-            if colorIndex >= defaultColors.count { colorIndex = 0 }
-            let color = defaultColors[colorIndex]
-            colorIndex += 1
-            return PieChartNode(name: $0.key, children: [], value: $0.displayValue, showName: false, image: nil, backgroundColor: color)
-        }
-        return nodes
+        return parsedAgg.asPieChartData()
     }
-    
 }
 
 
