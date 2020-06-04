@@ -72,6 +72,19 @@ class SunburstProvider: PiecharProvider {
     func highlightNodes(_ name: String) {
         sunburstView.highlightNodes(withName: name)
     }
+    
+    func updateThickness(expanded: CGFloat, collapsed: CGFloat) {
+        configuration.collapsedArcThickness = collapsed
+        sunburstConfiguration.collapsedArcThickness = collapsed
+        
+        configuration.expandedArcThickness = expanded
+        sunburstConfiguration.expandedArcThickness = expanded
+    }
+    
+    deinit {
+        cancellableHighlight?.cancel()
+        cancellableSelect?.cancel()
+    }
 }
 
 extension PieChartNode {

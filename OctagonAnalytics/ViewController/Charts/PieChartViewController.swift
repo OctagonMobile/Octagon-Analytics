@@ -46,6 +46,8 @@ class PieChartViewController: ChartBaseViewController {
 
         // Do any additional setup after loading the view.
         legendEnableButton?.isSelected = true
+        addPieChart()
+        addLegendView()
 
     }
     
@@ -55,8 +57,6 @@ class PieChartViewController: ChartBaseViewController {
     
     override func setupChart() {
         super.setupChart()
-        addPieChart()
-        addLegendView()
     }
     
     private func addPieChart() {
@@ -79,6 +79,10 @@ class PieChartViewController: ChartBaseViewController {
         piechartData = constructPieChartData()
         chartProvider.updateFromConfiguration(configuration: updatedConfiguration())
         updateLegends()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.chartProvider.updateThickness(expanded: (self.isDonut ? self.donutInnerLayerThickness : self.pieInnerLayerThickness), collapsed: PieChartConstant.collapsedArcThickness)
+        }
+        
     }
     
     override func legendButtonAction(_ sender: UIButton) {
@@ -125,8 +129,8 @@ class PieChartViewController: ChartBaseViewController {
 
         let config = PieChartConfiguration(nodes: piechartData,
         marginBetweenArcs: 1.0,
-        expandedArcThickness: isDonut ? donutInnerLayerThickness : pieInnerLayerThickness,
-        collapsedArcThickness: collapsedLayerThickness,
+        expandedArcThickness: 0,
+        collapsedArcThickness: 0,
         maxExpandedArcCount: 1,
         innerRadius:isDonut ? donutRadius : 0, startingAngle: 0,
         strokeColor: SettingsBundleHelper.selectedTheme.darkBackgroundColor)

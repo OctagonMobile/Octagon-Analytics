@@ -22,11 +22,16 @@ class ChartLegendsView: UIView {
     }
     
     func setLegends(_ legends: [ChartLegendType]) {
+        tableView.alpha = 0.0
         self.legends = legends
         tableView.reloadData()
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.alpha = 1.0
+        }
     }
     
     func setupTable() {
+        tableView.layer.backgroundColor = UIColor.clear.cgColor
         let cellNib = UINib.init(nibName: ChartLegendsView.CellIdentifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: ChartLegendsView.CellIdentifier)
         tableView.separatorStyle = .none

@@ -23,6 +23,7 @@ protocol PiecharProvider {
     func updateChart(nodes: [PieChartNode])
     func updateFromConfiguration(configuration: PieChartConfiguration)
     func highlightNodes(_ name: String)
+    func updateThickness(expanded: CGFloat, collapsed: CGFloat)
 }
 
 struct PieChartNode {
