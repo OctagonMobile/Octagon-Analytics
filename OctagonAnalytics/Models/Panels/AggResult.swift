@@ -69,6 +69,10 @@ extension AggResult {
         var nodes:[PieChartNode] = []
 
         for bucket in buckets {
+            if bucket.displayValue <= 0 {
+                //If the value is 0 or less, no point in adding to chart
+                continue
+            }
             //Get Color For Node
             var color: UIColor? = colorsDict[bucket.key]
             if colorsDict[bucket.key] == nil {
