@@ -289,3 +289,9 @@ extension Float {
         return String(format: "%0.\(places)f", self)
     }
 }
+
+extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: minX + width / 2, y: minY + height / 2)
+    }
+}

@@ -197,6 +197,12 @@
 		51FABE9C2073602C0015C802 /* MapTrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FABE9B2073602C0015C802 /* MapTrackPoint.swift */; };
 		72852DD7A349E17279523263 /* Pods_OctagonAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */; };
 		F10D6D5623D8422C00190754 /* FilterConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D6D5523D8422C00190754 /* FilterConvertible.swift */; };
+		F117847124892B2C00FF4F0E /* ChartLegendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847024892B2C00FF4F0E /* ChartLegendsView.swift */; };
+		F117847324892B3600FF4F0E /* ChartLegendsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F117847224892B3600FF4F0E /* ChartLegendsView.xib */; };
+		F117847624892BCF00FF4F0E /* ChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847424892BCE00FF4F0E /* ChartLegendTableViewCell.swift */; };
+		F117847724892BCF00FF4F0E /* ChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */; };
+		F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847824892BE500FF4F0E /* ChartLegendType.swift */; };
+		F117847B24892CAE00FF4F0E /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847A24892CAE00FF4F0E /* ChartLegend.swift */; };
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
@@ -420,6 +426,12 @@
 		B27D622D9D506B857F2A8BE7 /* Pods_OctagonAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctagonAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBE9455711B52235BD52919 /* Pods-OctagonAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctagonAnalytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics.release.xcconfig"; sourceTree = "<group>"; };
 		F10D6D5523D8422C00190754 /* FilterConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterConvertible.swift; sourceTree = "<group>"; };
+		F117847024892B2C00FF4F0E /* ChartLegendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendsView.swift; sourceTree = "<group>"; };
+		F117847224892B3600FF4F0E /* ChartLegendsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartLegendsView.xib; sourceTree = "<group>"; };
+		F117847424892BCE00FF4F0E /* ChartLegendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendTableViewCell.swift; sourceTree = "<group>"; };
+		F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartLegendTableViewCell.xib; sourceTree = "<group>"; };
+		F117847824892BE500FF4F0E /* ChartLegendType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendType.swift; sourceTree = "<group>"; };
+		F117847A24892CAE00FF4F0E /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
@@ -541,6 +553,7 @@
 		5130A10A1FA73313003D0525 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				F117846F24892B0500FF4F0E /* LegendsView */,
 				F12A7C17244BFDE000FB5494 /* DataTable */,
 				5104EF7D2402895100A4B053 /* ControlsView */,
 				5127EB94222D3D56000C4E79 /* DashboardList */,
@@ -1229,6 +1242,19 @@
 			path = HudView;
 			sourceTree = "<group>";
 		};
+		F117846F24892B0500FF4F0E /* LegendsView */ = {
+			isa = PBXGroup;
+			children = (
+				F117847024892B2C00FF4F0E /* ChartLegendsView.swift */,
+				F117847224892B3600FF4F0E /* ChartLegendsView.xib */,
+				F117847424892BCE00FF4F0E /* ChartLegendTableViewCell.swift */,
+				F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */,
+				F117847824892BE500FF4F0E /* ChartLegendType.swift */,
+				F117847A24892CAE00FF4F0E /* ChartLegend.swift */,
+			);
+			path = LegendsView;
+			sourceTree = "<group>";
+		};
 		F12A7C17244BFDE000FB5494 /* DataTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1366,7 @@
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
 				5174FBBA219C4EAB003BEB1E /* GraphNodeView.xib in Resources */,
 				F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */,
+				F117847724892BCF00FF4F0E /* ChartLegendTableViewCell.xib in Resources */,
 				513467DB1F9DD1B900F9B67D /* LaunchScreen.storyboard in Resources */,
 				5128ABA92340A512009BA056 /* Localizable.strings in Resources */,
 				51E8BF4A20F38048004B5D20 /* DatePickerCollectionViewCell.xib in Resources */,
@@ -1366,6 +1393,7 @@
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
 				517585DD1FB03705002AFB73 /* MetricsCollectionViewCell.xib in Resources */,
 				511A64CB23F52F76007E90C8 /* TutorialSettingsCarouselView.xib in Resources */,
+				F117847324892B3600FF4F0E /* ChartLegendsView.xib in Resources */,
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
@@ -1510,6 +1538,7 @@
 				5174FBB1219C27B7003BEB1E /* GraphVisState.swift in Sources */,
 				513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */,
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
+				F117847124892B2C00FF4F0E /* ChartLegendsView.swift in Sources */,
 				516292EA1FA06319008A547B /* StoryboardManager.swift in Sources */,
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
@@ -1570,6 +1599,7 @@
 				516E2A9E1FBAB2AA00E4D752 /* SavedSearchPopOverViewController.swift in Sources */,
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
+				F117847624892BCF00FF4F0E /* ChartLegendTableViewCell.swift in Sources */,
 				5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
 				F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */,
@@ -1609,6 +1639,7 @@
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,
 				5157C51E207A40B300CF0EB9 /* MapTrackingAnnotationView.swift in Sources */,
 				51CB2D231FBDA14C007BC0A0 /* DashboardListingViewController.swift in Sources */,
+				F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */,
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
 				F1A84BDE2472805000455B76 /* ChartContent.swift in Sources */,
@@ -1618,6 +1649,7 @@
 				51840DEC1FCE932B007B8D38 /* Extensions.swift in Sources */,
 				51923ABC207DF6B40023FE27 /* MapTrackingPanel.swift in Sources */,
 				51E93DC022F1BB5A006F3C3D /* MarkDownVisState.swift in Sources */,
+				F117847B24892CAE00FF4F0E /* ChartLegend.swift in Sources */,
 				5139104D21F0ACC600304D21 /* TileCarouselView.swift in Sources */,
 				51B0C9AF1FC17CD700BDF269 /* Session.swift in Sources */,
 				5174FBA1219C105E003BEB1E /* UIMultiPanGestureRecognizer.swift in Sources */,

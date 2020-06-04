@@ -20,6 +20,8 @@ class PieChartViewController: ChartBaseViewController {
     @IBOutlet var showLegendConstraint: NSLayoutConstraint!
     @IBOutlet var hideLegendConstraint: NSLayoutConstraint!
     private var piechartData: [PieChartNode] = []
+    private var legendsView: ChartLegendsView!
+
 
     
     lazy var chartProvider: PiecharProvider = {
@@ -48,12 +50,12 @@ class PieChartViewController: ChartBaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override func setupChart() {
         super.setupChart()
         addPieChart()
+        addLegendView()
     }
     
     private func addPieChart() {
@@ -62,24 +64,19 @@ class PieChartViewController: ChartBaseViewController {
         chartVC.view.translatesAutoresizingMaskIntoConstraints = false
         chartVC.view.backgroundColor = .clear
     }
- 
-    private func nodeSelected(node: PieChartNode) {
-        guard let bucket = node.associatedObject as? Bucket else { return }
-        
-          var dateComponant: DateComponents?
-          if let selectedDates =  panel?.currentSelectedDates,
-              let fromDate = selectedDates.0, let toDate = selectedDates.1 {
-              dateComponant = fromDate.getDateComponents(toDate)
-          }
-          let filters = bucket.getRelatedfilters(dateComponant)
-          
-          showInfoFieldActionBlock?(self, filters, nil)
+    
+    private func addLegendView() {
+        legendsView = UINib.init(nibName: String(describing: ChartLegendsView.self), bundle: nil).instantiate(withOwner: self, options: nil).first as? ChartLegendsView
+        legendBaseView.addSubview(legendsView)
+        view.addConstraints(legendViewConstraints)
+        legendsView.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
     override func updatePanelContent() {
         super.updatePanelContent()
         piechartData = constructPieChartData()
         chartProvider.updateFromConfiguration(configuration: updatedConfiguration())
+        updateLegends()
     }
     
     override func legendButtonAction(_ sender: UIButton) {
@@ -94,21 +91,70 @@ class PieChartViewController: ChartBaseViewController {
         view.layoutIfNeeded()
         chartProvider.updateFromConfiguration(configuration: updatedConfiguration())
     }
-    
-    private func showLegends() {
-        showLegendConstraint.isActive = true
-        hideLegendConstraint.isActive = false
+  
+    private func nodeSelected(node: PieChartNode) {
+        guard let bucket = node.associatedObject as? Bucket else { return }
+        
+          var dateComponant: DateComponents?
+          if let selectedDates =  panel?.currentSelectedDates,
+              let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+              dateComponant = fromDate.getDateComponents(toDate)
+          }
+          let filters = bucket.getRelatedfilters(dateComponant)
+          
+          showInfoFieldActionBlock?(self, filters, nil)
     }
     
-    private func hideLegends() {
-        showLegendConstraint.isActive = false
-        hideLegendConstraint.isActive = true
+    func updatedConfiguration() -> PieChartConfiguration {
+        
+        let collapsedLayerThickness = PieChartConstant.collapsedArcThickness
+
+        let config = PieChartConfiguration(nodes: piechartData,
+        marginBetweenArcs: 1.0,
+        expandedArcThickness: isDonut ? donutInnerLayerThickness : pieInnerLayerThickness,
+        collapsedArcThickness: collapsedLayerThickness,
+        maxExpandedArcCount: 1,
+        innerRadius:isDonut ? donutRadius : 0, startingAngle: 0,
+        strokeColor: SettingsBundleHelper.selectedTheme.darkBackgroundColor)
+        
+        return config
+    }
+   
+   
+}
+
+extension PieChartViewController {
+    func constructPieChartData() -> [PieChartNode] {
+        guard let parsedAgg = panel?.parsedAgg else {
+            return []
+        }
+        return parsedAgg.asPieChartData()
+    }
+}
+
+extension PieChartViewController {
+    var piechartViewConstraints: [NSLayoutConstraint] {
+        return [ NSLayoutConstraint(item: chartVC.view!, attribute: .top, relatedBy: .equal, toItem: pieChartBaseView, attribute: .top, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: chartVC.view!, attribute: .left, relatedBy: .equal, toItem: pieChartBaseView, attribute: .left, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: chartVC.view!, attribute: .bottom, relatedBy: .equal, toItem: pieChartBaseView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: chartVC.view!, attribute: .width, relatedBy: .equal, toItem: pieChartBaseView, attribute: .width, multiplier: 1.0, constant: 0.0) ]
     }
     
+    var legendViewConstraints: [NSLayoutConstraint] {
+        return [ NSLayoutConstraint(item: legendsView!, attribute: .top, relatedBy: .equal, toItem: legendBaseView, attribute: .top, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: legendsView!, attribute: .left, relatedBy: .equal, toItem: legendBaseView, attribute: .left, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: legendsView!, attribute: .bottom, relatedBy: .equal, toItem: legendBaseView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
+                 NSLayoutConstraint(item: legendsView!, attribute: .right, relatedBy: .equal, toItem: legendBaseView, attribute: .right, multiplier: 1.0, constant: 0.0) ]
+    }
+}
+
+
+extension PieChartViewController {
+    //PieChart Calculations
     var availableHeight: CGFloat {
         return min(pieChartBaseView.frame.size.height, pieChartBaseView.frame.size.width)
     }
-
+    
     var donutInnerLayerThickness: CGFloat {
         return ((legendEnableButton?.isSelected ?? false) && (UIDevice.current.userInterfaceIdiom == .phone)) ? PieChartConstant.expandedMinArcThickness : PieChartConstant.expandedMaxArcThickness
     }
@@ -143,29 +189,14 @@ class PieChartViewController: ChartBaseViewController {
     var isDonut: Bool {
         return (panel?.visState as? PieChartVisState)?.isDonut ?? false
     }
-
-    func updatedConfiguration() -> PieChartConfiguration {
-        
-        let collapsedLayerThickness = PieChartConstant.collapsedArcThickness
-
-        let config = PieChartConfiguration(nodes: piechartData,
-        marginBetweenArcs: 1.0,
-        expandedArcThickness: isDonut ? donutInnerLayerThickness : pieInnerLayerThickness,
-        collapsedArcThickness: collapsedLayerThickness,
-        maxExpandedArcCount: 1,
-        innerRadius:isDonut ? donutRadius : 0, startingAngle: 0,
-        strokeColor: SettingsBundleHelper.selectedTheme.darkBackgroundColor)
-        
-        return config
-    }
-   
+    
     private func chartHeight(nodes: [PieChartNode]) -> Int {
-           
-           var maxHeights: [Int] = []
-           for node in nodes {
-               maxHeights.append(findMaxHeight(node: node))
-           }
-           return maxHeights.max() ?? 0
+        
+        var maxHeights: [Int] = []
+        for node in nodes {
+            maxHeights.append(findMaxHeight(node: node))
+        }
+        return maxHeights.max() ?? 0
     }
     
     private func findMaxHeight(node: PieChartNode) -> Int {
@@ -183,21 +214,31 @@ class PieChartViewController: ChartBaseViewController {
 }
 
 extension PieChartViewController {
-    func constructPieChartData() -> [PieChartNode] {
-        guard let parsedAgg = panel?.parsedAgg else {
-            return []
+    //Legend View Operations
+    private func updateLegends() {
+       
+        guard let legends = panel?.parsedAgg?.chartLegends else {
+            return
         }
-        return parsedAgg.asPieChartData()
+        
+        var chartLegends = legends.map { legend in
+            ChartLegend.init(text: legend.text, color: legend.color, shape: .rect(width: 18, height: 12))
+        }
+        
+        chartLegends.sort { (lhs, rhs) -> Bool in
+            lhs.text < rhs.text
+        }
+        
+        legendsView?.setLegends(chartLegends)
+    }
+    
+    private func showLegends() {
+        showLegendConstraint.isActive = true
+        hideLegendConstraint.isActive = false
+    }
+    
+    private func hideLegends() {
+        showLegendConstraint.isActive = false
+        hideLegendConstraint.isActive = true
     }
 }
-
-extension PieChartViewController {
-    var piechartViewConstraints: [NSLayoutConstraint] {
-        return [ NSLayoutConstraint(item: chartVC.view!, attribute: .top, relatedBy: .equal, toItem: pieChartBaseView, attribute: .top, multiplier: 1.0, constant: 0.0),
-                 NSLayoutConstraint(item: chartVC.view!, attribute: .left, relatedBy: .equal, toItem: pieChartBaseView, attribute: .left, multiplier: 1.0, constant: 0.0),
-                 NSLayoutConstraint(item: chartVC.view!, attribute: .bottom, relatedBy: .equal, toItem: pieChartBaseView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
-                 NSLayoutConstraint(item: chartVC.view!, attribute: .width, relatedBy: .equal, toItem: pieChartBaseView, attribute: .width, multiplier: 1.0, constant: 0.0) ]
-    }
-}
-
-

@@ -7,11 +7,14 @@
 //
 
 import Foundation
+typealias Legend = (text: String, color: UIColor)
 
 class AggResult {
     
     var buckets: [Bucket]           =   []
     private var colorIndex = 0
+    private var colorsDict: [String: UIColor] = [:]
+    var chartLegends: [Legend] = []
 
     //MARK: Functions
     init(_ dictionary: [String: Any], visState: VisState, idx: Int, parentBucket: Bucket?) {
@@ -54,10 +57,11 @@ class AggResult {
 extension AggResult {
     func asPieChartData() -> [PieChartNode] {
         let convertedNodes = bucketsToNodes(buckets: buckets)
+        chartLegends = createLegends()
         return adjustNodeValuesBasedOnParent(nodes: convertedNodes, totalValue: nil)
     }
     
-    func bucketsToNodes(buckets: [Bucket]) -> [PieChartNode] {
+    private func bucketsToNodes(buckets: [Bucket]) -> [PieChartNode] {
         let defaultColors = CurrentTheme.chartColors1 +
         CurrentTheme.chartColors2 +
         CurrentTheme.chartColors3
@@ -66,9 +70,13 @@ extension AggResult {
 
         for bucket in buckets {
             //Get Color For Node
-            if colorIndex >= defaultColors.count { colorIndex = 0 }
-            let color = defaultColors[colorIndex]
-            colorIndex += 1
+            var color: UIColor? = colorsDict[bucket.key]
+            if colorsDict[bucket.key] == nil {
+                if colorIndex >= defaultColors.count { colorIndex = 0 }
+                color = defaultColors[colorIndex]
+                colorsDict[bucket.key] = color
+                colorIndex += 1
+            }
             
             var children:[PieChartNode] = []
             if let childBuckets = bucket.subAggsResult?.buckets {
@@ -80,7 +88,7 @@ extension AggResult {
         return nodes
     }
     
-    func adjustNodeValuesBasedOnParent(nodes: [PieChartNode],
+    private func adjustNodeValuesBasedOnParent(nodes: [PieChartNode],
                                        totalValue: Double?) -> [PieChartNode] {
         var adjustedNodes: [PieChartNode] = []
         
@@ -99,5 +107,13 @@ extension AggResult {
         }
         
         return adjustedNodes
+    }
+    
+    private func createLegends() -> [Legend] {
+        var legends:[Legend] = []
+        for (key, color) in colorsDict {
+            legends.append((key, color))
+        }
+        return legends
     }
 }
