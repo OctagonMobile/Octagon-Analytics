@@ -8,12 +8,19 @@
 
 import Foundation
 
+struct PieChartConstant {
+    static let collapsedArcThickness: CGFloat = 35.0
+    static let expandedMaxArcThickness: CGFloat =  50.0
+    static let expandedMinArcThickness: CGFloat =  35.0
+}
+
 protocol PiecharProvider {
     init(configuration: PieChartConfiguration)
     var pieChartVC: UIViewController { get }
     var onSelect: ((PieChartNode) -> Void)? { get set }
     var onDeselect: (() -> Void)? { get set }
     func updateChart(nodes: [PieChartNode])
+    func updateFromConfiguration(configuration: PieChartConfiguration)
 }
 
 struct PieChartNode {

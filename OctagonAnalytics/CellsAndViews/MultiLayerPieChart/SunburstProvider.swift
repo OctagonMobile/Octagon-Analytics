@@ -47,7 +47,18 @@ class SunburstProvider: PiecharProvider {
         sunburstConfiguration.calculationMode = .parentDependent(totalValue: configuration.totalValue)
     }
     
-    
+    func updateFromConfiguration(configuration: PieChartConfiguration) {
+        self.configuration = configuration
+        sunburstConfiguration.nodes = configuration.nodes.map {$0.asSunburstNode}
+        sunburstConfiguration.calculationMode = .parentDependent(totalValue: configuration.totalValue)
+        sunburstConfiguration.innerRadius = configuration.innerRadius
+        sunburstConfiguration.expandedArcThickness = configuration.expandedArcThickness
+        sunburstConfiguration.collapsedArcThickness = configuration.collapsedArcThickness
+        sunburstConfiguration.startingAngle = configuration.startingAngle
+        sunburstConfiguration.maximumExpandedRingsShownCount = configuration.maxExpandedArcCount
+        sunburstConfiguration.strokeColor = Color(configuration.strokeColor)
+    }
+
 }
 
 extension PieChartNode {

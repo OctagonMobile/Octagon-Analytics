@@ -27,7 +27,9 @@ class Bucket {
         let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
-        if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
+        if bucketType == .range {
+            return metricValue
+        } else if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
             return shouldShowBucketValue ? bucketValue : docCount
         } else {
             return (metricType == .count) ? docCount : metricValue

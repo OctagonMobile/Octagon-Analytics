@@ -72,7 +72,33 @@
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-Rv-7bR" userLabel="DisplayView">
                                         <rect key="frame" x="0.0" y="45" width="1014" height="713"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLO-7D-kVr">
+                                                <rect key="frame" x="0.0" y="0.0" width="659" height="713"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc7-Iy-z6w">
+                                                <rect key="frame" x="659" y="0.0" width="355" height="713"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="uLO-7D-kVr" firstAttribute="width" secondItem="yu0-Rv-7bR" secondAttribute="width" multiplier="0.65" id="GlQ-uf-7vm"/>
+                                            <constraint firstAttribute="bottom" secondItem="Xc7-Iy-z6w" secondAttribute="bottom" id="OGT-MX-Cf8"/>
+                                            <constraint firstItem="uLO-7D-kVr" firstAttribute="top" secondItem="yu0-Rv-7bR" secondAttribute="top" id="UaU-94-DuM"/>
+                                            <constraint firstItem="uLO-7D-kVr" firstAttribute="width" secondItem="yu0-Rv-7bR" secondAttribute="width" id="cTC-Qt-0Fr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xc7-Iy-z6w" secondAttribute="trailing" id="eNU-DM-epm"/>
+                                            <constraint firstItem="Xc7-Iy-z6w" firstAttribute="top" secondItem="yu0-Rv-7bR" secondAttribute="top" id="jY6-KB-SUL"/>
+                                            <constraint firstAttribute="bottom" secondItem="uLO-7D-kVr" secondAttribute="bottom" id="mCV-Bo-V66"/>
+                                            <constraint firstItem="Xc7-Iy-z6w" firstAttribute="leading" secondItem="uLO-7D-kVr" secondAttribute="trailing" id="tGE-wF-Bxq"/>
+                                            <constraint firstItem="uLO-7D-kVr" firstAttribute="leading" secondItem="yu0-Rv-7bR" secondAttribute="leading" id="uTx-d1-jgs"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="cTC-Qt-0Fr"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,9 +132,13 @@
                         <outlet property="flipButton" destination="B5E-Ss-RvR" id="uoG-4u-z6A"/>
                         <outlet property="headerTitleLabel" destination="ein-8l-LOb" id="g8U-Qf-qJe"/>
                         <outlet property="headerview" destination="oEs-W3-kwL" id="Gdm-Mp-vLB"/>
+                        <outlet property="hideLegendConstraint" destination="cTC-Qt-0Fr" id="TxH-YT-Qdp"/>
+                        <outlet property="legendBaseView" destination="Xc7-Iy-z6w" id="h86-V4-FPE"/>
                         <outlet property="legendEnableButton" destination="8XI-0e-eAn" id="Hd0-jY-MGw"/>
                         <outlet property="mainContainerView" destination="p5O-uX-8ap" id="syB-Cc-COn"/>
+                        <outlet property="pieChartBaseView" destination="uLO-7D-kVr" id="4jh-cB-SJg"/>
                         <outlet property="shadowView" destination="sxZ-ij-T7Q" id="QgS-RU-zLS"/>
+                        <outlet property="showLegendConstraint" destination="GlQ-uf-7vm" id="wbB-8D-6UO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fa-ef-LXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
