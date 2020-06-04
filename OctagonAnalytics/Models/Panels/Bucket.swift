@@ -93,11 +93,18 @@ class Bucket {
     }
     
     func getRelatedfilters(_ selectedDateComponant: DateComponents?) -> [FilterProtocol] {
-
+        //Loop through parent to find corresponding aggregation of the bucket
+        let level = aggIndex
+        
         var filtersList: [FilterProtocol] = []
         var outerBucket: Bucket? = self
         let othersAggs = visState?.otherAggregationsArray ?? []
+        var currentAggIndex = othersAggs.count - 1
         for otherAggs in othersAggs.reversed() {
+            if currentAggIndex > level {
+                currentAggIndex -= 1
+                continue
+            }
             let val = outerBucket?.key ?? ""
             guard let bucket = outerBucket else { continue }
             var filter: FilterProtocol
@@ -135,6 +142,16 @@ class Bucket {
         } else {
             return val as? String ?? ""
         }
+    }
+    
+    var aggIndex: Int {
+        var level = -1
+        var tempBucket: Bucket? = self
+        while tempBucket != nil {
+            level += 1
+            tempBucket = tempBucket?.parentBucket
+        }
+        return level
     }
     
     static func ==(lhs: Bucket, rhs: Bucket) -> Bool {

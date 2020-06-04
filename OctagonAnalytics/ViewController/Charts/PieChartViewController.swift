@@ -33,6 +33,7 @@ class PieChartViewController: ChartBaseViewController {
         provider.onDeselect = {
             self.deselectFieldAction?(self)
         }
+        provider.onHighlight = nodeHighlighted
         return provider
     }()
     
@@ -104,6 +105,18 @@ class PieChartViewController: ChartBaseViewController {
           let filters = bucket.getRelatedfilters(dateComponant)
           
           showInfoFieldActionBlock?(self, filters, nil)
+    }
+    
+    private func nodeHighlighted(node: PieChartNode) {
+        guard let bucket = node.associatedObject as? Bucket,
+            let aggregation = panel?.visState?.otherAggregationsArray[bucket.aggIndex] else { return }
+        var dateComponant: DateComponents?
+        if let selectedDates =  panel?.currentSelectedDates,
+            let fromDate = selectedDates.0, let toDate = selectedDates.1 {
+            dateComponant = fromDate.getDateComponents(toDate)
+        }
+        let filter = FilterProvider.shared.createFilter(bucket, dateComponents: dateComponant, agg: aggregation)
+        showInfoFieldActionBlock?(self, [filter], nil)
     }
     
     func updatedConfiguration() -> PieChartConfiguration {
@@ -244,6 +257,6 @@ extension PieChartViewController {
     }
     
     private func legendSelected(_ legend: ChartLegendType) {
-        
+        chartProvider.highlightNodes(legend.text)
     }
 }

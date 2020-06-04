@@ -51,7 +51,6 @@ extension ChartLegendsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChartLegendsView.CellIdentifier,
                                                  for: indexPath)
-        cell.selectionStyle = .none
         if let legendCell = cell as? ChartLegendTableViewCell {
             legendCell.legend = legends[indexPath.row]
         }

@@ -19,8 +19,10 @@ protocol PiecharProvider {
     var pieChartVC: UIViewController { get }
     var onSelect: ((PieChartNode) -> Void)? { get set }
     var onDeselect: (() -> Void)? { get set }
+    var onHighlight: ((PieChartNode) -> Void)? { get set }
     func updateChart(nodes: [PieChartNode])
     func updateFromConfiguration(configuration: PieChartConfiguration)
+    func highlightNodes(_ name: String)
 }
 
 struct PieChartNode {

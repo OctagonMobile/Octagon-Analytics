@@ -12,15 +12,19 @@ import SwiftUI
 import Combine
 
 class SunburstProvider: PiecharProvider {
+    
     //Public APis
     var onSelect: ((PieChartNode) -> Void)?
     var onDeselect: (() -> Void)?
-    
+    var onHighlight: ((PieChartNode) -> Void)?
+
     var pieChartVC: UIViewController {
         return hostingViewController
     }
     var configuration: PieChartConfiguration
-    private var cancellable: AnyCancellable?
+    private var cancellableSelect: AnyCancellable?
+    private var cancellableHighlight: AnyCancellable?
+
     
     //Private properties
     private var sunburstView: SunburstView
@@ -32,11 +36,17 @@ class SunburstProvider: PiecharProvider {
         self.sunburstConfiguration = configuration.asSunburstConfiguration
         self.sunburstView = SunburstView(configuration: sunburstConfiguration)
         self.hostingViewController = UIHostingController(rootView: sunburstView)
-        cancellable = sunburstConfiguration.$selectedNode.sink(receiveValue: { (node) in
+        cancellableSelect = sunburstConfiguration.$selectedNode.sink(receiveValue: { (node) in
             if let selectedNode = node {
                 self.onSelect?(selectedNode.asPieChartNode)
             } else {
                 self.onDeselect?()
+            }
+        })
+        
+        cancellableHighlight = sunburstConfiguration.$highlightedNodes.sink(receiveValue: { (nodes) in
+            if let node = nodes?.first  {
+                self.onHighlight?(node.asPieChartNode)
             }
         })
     }
@@ -59,6 +69,9 @@ class SunburstProvider: PiecharProvider {
         sunburstConfiguration.strokeColor = Color(configuration.strokeColor)
     }
 
+    func highlightNodes(_ name: String) {
+        sunburstView.highlightNodes(withName: name)
+    }
 }
 
 extension PieChartNode {
