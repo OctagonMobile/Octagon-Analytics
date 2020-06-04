@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="5" width="320" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNu-ng-se3">
-                                <rect key="frame" x="40" y="0.0" width="280" height="34"/>
+                                <rect key="frame" x="40" y="0.0" width="275" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="sNu-ng-se3" secondAttribute="bottom" id="9d3-JV-ZGG"/>
-                            <constraint firstAttribute="trailing" secondItem="sNu-ng-se3" secondAttribute="trailing" id="Erv-gl-mLV"/>
+                            <constraint firstAttribute="trailing" secondItem="sNu-ng-se3" secondAttribute="trailing" constant="5" id="Erv-gl-mLV"/>
                             <constraint firstItem="sNu-ng-se3" firstAttribute="centerY" secondItem="8xz-46-zpk" secondAttribute="centerY" id="Hne-G1-VDv"/>
                             <constraint firstItem="8xz-46-zpk" firstAttribute="leading" secondItem="Bz9-uu-8en" secondAttribute="leading" constant="10" id="KfN-Y1-1CZ"/>
                             <constraint firstItem="sNu-ng-se3" firstAttribute="top" secondItem="Bz9-uu-8en" secondAttribute="top" id="PJz-gf-SeD"/>

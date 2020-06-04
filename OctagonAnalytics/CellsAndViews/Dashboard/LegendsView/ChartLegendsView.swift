@@ -14,6 +14,7 @@ class ChartLegendsView: UIView {
     
     @IBOutlet var tableView: UITableView!
     private var legends: [ChartLegendType] = []
+    var onSelect: ((ChartLegendType) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,6 +60,6 @@ extension ChartLegendsView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("Legend Selected")
+        onSelect?(legends[indexPath.row])
     }
 }

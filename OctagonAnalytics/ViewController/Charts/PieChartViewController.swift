@@ -70,6 +70,7 @@ class PieChartViewController: ChartBaseViewController {
         legendBaseView.addSubview(legendsView)
         view.addConstraints(legendViewConstraints)
         legendsView.translatesAutoresizingMaskIntoConstraints = false
+        legendsView.onSelect = legendSelected
     }
     
     override func updatePanelContent() {
@@ -240,5 +241,9 @@ extension PieChartViewController {
     private func hideLegends() {
         showLegendConstraint.isActive = false
         hideLegendConstraint.isActive = true
+    }
+    
+    private func legendSelected(_ legend: ChartLegendType) {
+        
     }
 }
