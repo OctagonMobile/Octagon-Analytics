@@ -79,10 +79,13 @@ class PieChartViewController: ChartBaseViewController {
         piechartData = constructPieChartData()
         chartProvider.updateFromConfiguration(configuration: updatedConfiguration())
         updateLegends()
+        animateChart()
+    }
+    
+    private func animateChart() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.chartProvider.updateThickness(expanded: (self.isDonut ? self.donutInnerLayerThickness : self.pieInnerLayerThickness), collapsed: PieChartConstant.collapsedArcThickness)
         }
-        
     }
     
     override func legendButtonAction(_ sender: UIButton) {
@@ -96,6 +99,7 @@ class PieChartViewController: ChartBaseViewController {
         }
         view.layoutIfNeeded()
         chartProvider.updateFromConfiguration(configuration: updatedConfiguration())
+        animateChart()
     }
   
     private func nodeSelected(node: PieChartNode) {
