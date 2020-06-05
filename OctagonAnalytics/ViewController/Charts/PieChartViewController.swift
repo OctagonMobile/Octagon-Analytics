@@ -244,7 +244,7 @@ extension PieChartViewController {
         }
         
         var chartLegends = legends.map { legend in
-            ChartLegend.init(text: legend.text, color: legend.color, shape: .rect(width: 18, height: 12))
+            ChartLegend.init(text: legend.text, color: legend.color, shape: .rect(width: 32, height: 24))
         }
         
         chartLegends.sort { (lhs, rhs) -> Bool in

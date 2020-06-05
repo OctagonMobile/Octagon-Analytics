@@ -39,7 +39,7 @@ class ChartLegendTableViewCell: UITableViewCell {
                     case .circle(let radius):
                         return UIBezierPath(arcCenter: CGPoint(x: shape.bounds.center.x, y: shape.bounds.center.y), radius: radius, startAngle: 0, endAngle: (2 * CGFloat(CGFloat.pi)), clockwise: true)
                     case .rect(let width, let height):
-                        return UIBezierPath(roundedRect: CGRect(x: shape.bounds.center.x - width / 2, y: shape.bounds.center.y - height / 2, width: width, height: height), cornerRadius: 2.0)
+                        return UIBezierPath(roundedRect: CGRect(x: shape.bounds.center.x - width / 2, y: shape.bounds.center.y - height / 2, width: width, height: height), cornerRadius: 5.0)
                     }
                 }()
                 
