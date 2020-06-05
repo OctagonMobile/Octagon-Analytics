@@ -72,7 +72,7 @@ class DashboardViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
+        dashBoardCollectionView.allowsSelection = false
         dashBoardCollectionView.alwaysBounceVertical = true
         dashBoardCollectionView.showsVerticalScrollIndicator = true
         dashBoardCollectionView.register(UINib(nibName: NibName.dashboardCollectionViewCell, bundle: Bundle.main), forCellWithReuseIdentifier: CellIdentifiers.dashboardCollectionViewCell)

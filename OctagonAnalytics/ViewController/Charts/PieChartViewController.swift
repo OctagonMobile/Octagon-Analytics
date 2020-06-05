@@ -68,6 +68,8 @@ class PieChartViewController: ChartBaseViewController {
     
     private func addLegendView() {
         legendsView = UINib.init(nibName: String(describing: ChartLegendsView.self), bundle: nil).instantiate(withOwner: self, options: nil).first as? ChartLegendsView
+        legendBaseView.backgroundColor = CurrentTheme.cellBackgroundColor
+        legendsView.setColor(CurrentTheme.cellBackgroundColor)
         legendBaseView.addSubview(legendsView)
         view.addConstraints(legendViewConstraints)
         legendsView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,8 +131,6 @@ class PieChartViewController: ChartBaseViewController {
     
     func updatedConfiguration() -> PieChartConfiguration {
         
-        let collapsedLayerThickness = PieChartConstant.collapsedArcThickness
-
         let config = PieChartConfiguration(nodes: piechartData,
         marginBetweenArcs: 1.0,
         expandedArcThickness: 0,

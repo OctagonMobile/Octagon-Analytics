@@ -31,10 +31,15 @@ class ChartLegendsView: UIView {
     }
     
     func setupTable() {
-        tableView.layer.backgroundColor = UIColor.clear.cgColor
         let cellNib = UINib.init(nibName: ChartLegendsView.CellIdentifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: ChartLegendsView.CellIdentifier)
         tableView.separatorStyle = .none
+    }
+    
+    func setColor(_ color: UIColor) {
+        backgroundColor = color
+        tableView.layer.backgroundColor = color.cgColor
+        tableView.backgroundColor = color
     }
 
     /*
@@ -58,6 +63,7 @@ extension ChartLegendsView: UITableViewDelegate, UITableViewDataSource {
                                                  for: indexPath)
         if let legendCell = cell as? ChartLegendTableViewCell {
             legendCell.legend = legends[indexPath.row]
+            legendCell.bgColor = backgroundColor
         }
         return cell
     }

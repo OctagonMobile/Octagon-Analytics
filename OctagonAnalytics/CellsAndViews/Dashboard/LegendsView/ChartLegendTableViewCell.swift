@@ -13,6 +13,13 @@ class ChartLegendTableViewCell: UITableViewCell {
     @IBOutlet var shape: UIView!
     @IBOutlet var titleLabel: UILabel!
     
+    var bgColor: UIColor? {
+        didSet {
+            self.backgroundColor = bgColor
+            self.contentView.backgroundColor = backgroundColor
+        }
+    }
+    
     var legend: ChartLegendType? {
         didSet {
             if let legend = legend {
