@@ -26,7 +26,7 @@ class ChartLegendTableViewCell: UITableViewCell {
                 
                 titleLabel.text = legend.text
                 
-                titleLabel.font = legend.font ?? UIFont.systemFont(ofSize: 17)
+                titleLabel.font = legend.font ?? UIFont.systemFont(ofSize: 12)
 
                 if let textColor = legend.textColor {
                     titleLabel.textColor = textColor
