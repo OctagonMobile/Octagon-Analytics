@@ -27,7 +27,9 @@ class Bucket {
         let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
-        if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
+        if bucketType == .range {
+            return metricValue
+        } else if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
             return shouldShowBucketValue ? bucketValue : docCount
         } else {
             return (metricType == .count) ? docCount : metricValue
@@ -91,11 +93,18 @@ class Bucket {
     }
     
     func getRelatedfilters(_ selectedDateComponant: DateComponents?) -> [FilterProtocol] {
-
+        //Loop through parent to find corresponding aggregation of the bucket
+        let level = aggIndex
+        
         var filtersList: [FilterProtocol] = []
         var outerBucket: Bucket? = self
         let othersAggs = visState?.otherAggregationsArray ?? []
+        var currentAggIndex = othersAggs.count - 1
         for otherAggs in othersAggs.reversed() {
+            if currentAggIndex > level {
+                currentAggIndex -= 1
+                continue
+            }
             let val = outerBucket?.key ?? ""
             guard let bucket = outerBucket else { continue }
             var filter: FilterProtocol
@@ -133,6 +142,16 @@ class Bucket {
         } else {
             return val as? String ?? ""
         }
+    }
+    
+    var aggIndex: Int {
+        var level = -1
+        var tempBucket: Bucket? = self
+        while tempBucket != nil {
+            level += 1
+            tempBucket = tempBucket?.parentBucket
+        }
+        return level
     }
     
     static func ==(lhs: Bucket, rhs: Bucket) -> Bool {
