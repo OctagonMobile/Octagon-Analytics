@@ -220,6 +220,27 @@ extension UIColor {
     }
 }
 
+extension UITabBarController {
+    func setTabBarVisible(visible:Bool, duration: TimeInterval, animated:Bool) {
+        if (tabBarIsVisible() == visible) { return }
+        let frame = self.tabBar.frame
+        let height = frame.size.height
+        let offsetY = (visible ? -height : height)
+
+        // animation
+        UIViewPropertyAnimator(duration: duration, curve: .linear) {
+            _ = self.tabBar.frame.offsetBy(dx:0, dy:offsetY)
+            self.view.frame = CGRect(x:0,y:0,width: self.view.frame.width, height: self.view.frame.height + offsetY)
+            self.view.setNeedsDisplay()
+            self.view.layoutIfNeeded()
+        }.startAnimation()
+    }
+
+    func tabBarIsVisible() ->Bool {
+        return self.tabBar.frame.origin.y < UIScreen.main.bounds.height
+    }
+}
+
 extension MBProgressHUD {
     private class func createHud(addedTo view: UIView, rotate: Bool = true) -> MBProgressHUD {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
@@ -287,5 +308,11 @@ struct BoolAsString {
 extension Float {
     func round(to places: Int) -> String {
         return String(format: "%0.\(places)f", self)
+    }
+}
+
+extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: minX + width / 2, y: minY + height / 2)
     }
 }
