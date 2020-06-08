@@ -272,7 +272,7 @@ class SavedSearchListViewController: PanelBaseViewController {
         
         popOverContent.savedSearch = savedSearch
         
-        if let windowImage = UIApplication.shared.keyWindow?.capture() {
+        if let windowImage = UIApplication.appKeyWindow?.capture() {
              popOverContent.backgroundImage = windowImage
         }
         

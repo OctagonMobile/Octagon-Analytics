@@ -46,10 +46,10 @@ class NavigationManager: NSObject {
     
     func changeRootViewController(_ toViewController: UIViewController) {
         
-        UIApplication.shared.keyWindow?.rootViewController = toViewController
+        UIApplication.appKeyWindow?.rootViewController = toViewController
         
         
-        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let window = UIApplication.appKeyWindow else { return }
         
         guard let rootViewController = window.rootViewController else { return }
         
@@ -64,7 +64,7 @@ class NavigationManager: NSObject {
 
     func showSettingsScreen() {
         let settingsScreen = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.settingsViewController)
-        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let window = UIApplication.appKeyWindow else { return }
         
         guard let rootViewController = window.visibleViewController() else { return }
         if isIPhone {
@@ -86,7 +86,7 @@ class NavigationManager: NSObject {
     
     func showTutorial(_ showAutoFill: Bool = true,_ autoFillActionBlock: TutorialButtonActionBlock? = nil) {
         guard let tutorialViewCtr = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: ViewControllerIdentifiers.tutorialViewController) as? TutorialViewController else { return }
-        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let window = UIApplication.appKeyWindow else { return }
         guard let rootViewController = window.visibleViewController() else { return }
 
         tutorialViewCtr.modalPresentationStyle = .overCurrentContext
@@ -132,7 +132,7 @@ extension NavigationManager {
         popOverContent.quickPickerTheme = Constants.quickPickerTheme
         popOverContent.calendarPickerTheme = Constants.calendarDatePickerTheme
 
-        guard let window = UIApplication.shared.keyWindow else { return }
+        guard let window = UIApplication.appKeyWindow else { return }
         
         guard let rootViewController = window.rootViewController else { return }
 

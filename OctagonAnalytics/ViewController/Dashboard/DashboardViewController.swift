@@ -465,7 +465,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             cell.isFilterSelected = (indexPath == selectedFilterIndexPath)
             cell.removeFilterActionBlock = { [weak self] (sender, filterToBeRemoved) in
                 guard let filterToBeRemoved = filterToBeRemoved else { return }
-                guard let index = Session.shared.appliedFilters.index(where: {$0.isEqual(filterToBeRemoved)}) else {
+                guard let index = Session.shared.appliedFilters.firstIndex(where: {$0.isEqual(filterToBeRemoved)}) else {
                     return
                 }
                 Session.shared.removeFilter(filterToBeRemoved)
@@ -477,7 +477,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             
             cell.invertFilterActionBlock = { [weak self] (sender, filterToBeInverted) in
                 guard let filterToBeInverted = filterToBeInverted else { return }
-                guard let index = Session.shared.appliedFilters.index(where: {$0.isEqual(filterToBeInverted)}) else { return }
+                guard let index = Session.shared.appliedFilters.firstIndex(where: {$0.isEqual(filterToBeInverted)}) else { return }
 
                 Session.shared.appliedFilters[index] = filterToBeInverted
                 self?.refreshDashboard()

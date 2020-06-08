@@ -125,7 +125,7 @@ class ControlsViewController: PanelBaseViewController {
     private func showDropDownList() {
         
         guard let listControlsView = listControlsView,
-            let window = UIApplication.shared.keyWindow,
+            let window = UIApplication.appKeyWindow,
             let rootViewController = window.rootViewController else { return }
 
         let popOverContent = StoryboardManager.shared.storyBoard(.search).instantiateViewController(withIdentifier: ViewControllerIdentifiers.controlsListPopOverViewController) as? ControlsListPopOverViewController ?? ControlsListPopOverViewController()

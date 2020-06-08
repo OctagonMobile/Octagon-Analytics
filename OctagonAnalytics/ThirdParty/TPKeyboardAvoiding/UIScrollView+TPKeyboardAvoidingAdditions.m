@@ -64,7 +64,7 @@ static const int kStateKey;
 
     if ( !state.keyboardVisible ) {
         state.priorInset = self.contentInset;
-        state.priorScrollIndicatorInsets = self.scrollIndicatorInsets;
+        state.priorScrollIndicatorInsets = self.verticalScrollIndicatorInsets;
         state.priorPagingEnabled = self.pagingEnabled;
     }
 
@@ -147,19 +147,20 @@ static const int kStateKey;
     state.keyboardVisible = NO;
     
     // Restore dimensions to prior size
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationCurve:[[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];
-    [UIView setAnimationDuration:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]];
-    
-    if ( [self isKindOfClass:[TPKeyboardAvoidingScrollView class]] ) {
-        self.contentSize = state.priorContentSize;
-    }
-    
-    self.contentInset = state.priorInset;
-    self.scrollIndicatorInsets = state.priorScrollIndicatorInsets;
-    self.pagingEnabled = state.priorPagingEnabled;
-	[self layoutIfNeeded];
-    [UIView commitAnimations];
+    float duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [UIView animateWithDuration:duration animations:^{
+        if ( [self isKindOfClass:[TPKeyboardAvoidingScrollView class]] ) {
+            self.contentSize = state.priorContentSize;
+        }
+        
+        self.contentInset = state.priorInset;
+        self.scrollIndicatorInsets = state.priorScrollIndicatorInsets;
+        self.pagingEnabled = state.priorPagingEnabled;
+        [self layoutIfNeeded];
+
+    } completion:^(BOOL finished) {
+        //completed
+    }];
 }
 
 - (void)TPKeyboardAvoiding_updateContentInset {

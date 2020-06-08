@@ -146,7 +146,7 @@ public extension UIWindow {
 }
 
 extension UIApplication {
-    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    class func topViewController(controller: UIViewController? = UIApplication.appKeyWindow?.rootViewController) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
             return topViewController(controller: navigationController.visibleViewController)
         }
@@ -159,6 +159,10 @@ extension UIApplication {
             return topViewController(controller: presented)
         }
         return controller
+    }
+    
+    static var appKeyWindow: UIWindow? {
+        return UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     }
 }
 
@@ -208,8 +212,8 @@ extension UIColor {
             return UIColor.gray
         }
         
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
         
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
