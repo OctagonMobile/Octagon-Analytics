@@ -115,14 +115,7 @@ class Panel: Mappable {
     var bucketAggregation: Aggregation? {
         return visState?.aggregationsArray.filter( {$0.id == AggregationId.bucket.rawValue }).first
     }
-    
-    /**
-     Metric Aggregation.
-     */
-    var metricAggregation: Aggregation? {
-        return visState?.aggregationsArray.filter( {$0.id == AggregationId.metric.rawValue }).first
-    }
-    
+        
     //Sub Buckets Support, All Headers are put into an array
     var tableHeaders: [String] = []
 

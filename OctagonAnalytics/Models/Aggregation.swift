@@ -36,7 +36,6 @@ enum BucketType: String {
 
 enum AggregationId: String {
     case unKnown        = "0"
-    case metric         = "1"
     case bucket         = "2"
 }
 
