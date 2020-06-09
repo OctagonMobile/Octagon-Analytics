@@ -10,8 +10,12 @@ import UIKit
 
 class ChartLegendTableViewCell: UITableViewCell {
     
+    private static let FormBaseWidth: CGFloat = 25
+    private static let FormBaseHeight: CGFloat = 26
+    
     @IBOutlet var shape: UIView!
     @IBOutlet var titleLabel: UILabel!
+    private var shapeLayer: CAShapeLayer?
     
     var bgColor: UIColor? {
         didSet {
@@ -32,21 +36,22 @@ class ChartLegendTableViewCell: UITableViewCell {
                     titleLabel.textColor = textColor
                 }
                 
-                let shapeLayer = CAShapeLayer()
+                shapeLayer?.removeFromSuperlayer()
+                shapeLayer = CAShapeLayer()
 
                 let circlePath: UIBezierPath =  {
                     switch legend.shape {
                     case .circle(let radius):
-                        return UIBezierPath(arcCenter: CGPoint(x: shape.bounds.center.x, y: shape.bounds.center.y), radius: radius, startAngle: 0, endAngle: (2 * CGFloat(CGFloat.pi)), clockwise: true)
+                        return UIBezierPath(arcCenter: CGPoint(x: ChartLegendTableViewCell.FormBaseWidth/2, y: ChartLegendTableViewCell.FormBaseHeight/2), radius: radius, startAngle: 0, endAngle: (2 * CGFloat(CGFloat.pi)), clockwise: true)
                     case .rect(let width, let height):
-                        return UIBezierPath(roundedRect: CGRect(x: shape.bounds.center.x - width / 2, y: shape.bounds.center.y - height / 2, width: width, height: height), cornerRadius: 5.0)
+                        return UIBezierPath(roundedRect: CGRect(x: ChartLegendTableViewCell.FormBaseWidth/2 - width/2, y: ChartLegendTableViewCell.FormBaseHeight/2 - height/2, width: width, height: height), cornerRadius: 5.0)
                     }
                 }()
                 
-                shapeLayer.path = circlePath.cgPath
-                shapeLayer.fillColor = legend.color.cgColor
-                shapeLayer.frame = shape.bounds
-                shape.layer.addSublayer(shapeLayer)
+                shapeLayer?.path = circlePath.cgPath
+                shapeLayer?.fillColor = legend.color.cgColor
+                shapeLayer?.frame = shape.bounds
+                shape.layer.addSublayer(shapeLayer!)
             }
         }
     }
