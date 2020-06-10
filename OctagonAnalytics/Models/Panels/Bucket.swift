@@ -24,7 +24,7 @@ class Bucket {
     var displayValue: Double {
         let aggregationsCount = (visState?.otherAggregationsArray.count ?? 0)
         let metricType = visState?.metricAggregationsArray.first?.metricType ?? MetricType.unKnown
-        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .average || metricType == .median || metricType == .topHit)
+        let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .min || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
         if bucketType == .range {

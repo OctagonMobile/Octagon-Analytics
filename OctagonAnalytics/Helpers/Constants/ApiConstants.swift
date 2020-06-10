@@ -70,6 +70,7 @@ struct ApiConstant {
     }
 
     struct Metric {
+        static let id = "id"
         static let type = "type"
         static let label = "label"
         static let value = "value"

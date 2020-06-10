@@ -21,6 +21,10 @@ class MetricPanel: Panel {
     override func mapping(map: Map) {
         super.mapping(map: map)
         metricsList = Mapper<Metric>().mapArray(JSONObject: map.JSON) ?? []
+        metricsList = metricsList.map {
+            $0.panel = self
+            return $0
+        }
     }
     
     
@@ -44,6 +48,10 @@ class MetricPanel: Panel {
         }
         
         metricsList = Mapper<Metric>().mapArray(JSONArray: metricsArray)
+        metricsList = metricsList.map {
+            $0.panel = self
+            return $0
+        }
         return metricsList
     }
 }
