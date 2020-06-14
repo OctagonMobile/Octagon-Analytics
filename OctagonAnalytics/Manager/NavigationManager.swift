@@ -38,7 +38,7 @@ class NavigationManager: NSObject {
     
     func showDashboardList() {
         // Switch to Dashboard list screen
-        let identifier = SettingsBundleHelper.isXpackEnabled() ? ViewControllerIdentifiers.dashboardTabBarController : ViewControllerIdentifiers.dashboardListingNavigationController
+        let identifier = ViewControllerIdentifiers.dashboardTabBarController
         
         let mainController = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: identifier)
         changeRootViewController(mainController)
@@ -100,7 +100,7 @@ class NavigationManager: NSObject {
 
         var identifier: String
         if authenticationType == .none || Session.shared.isLoggedIn {
-            identifier = SettingsBundleHelper.isXpackEnabled() ? ViewControllerIdentifiers.dashboardTabBarController : ViewControllerIdentifiers.dashboardListingNavigationController
+            identifier = ViewControllerIdentifiers.dashboardTabBarController
         } else if authenticationType == .basic {
             identifier = ViewControllerIdentifiers.loginViewController
         } else {

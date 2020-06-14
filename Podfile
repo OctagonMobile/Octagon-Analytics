@@ -24,6 +24,9 @@ target 'OctagonAnalytics' do
     pod 'MarkdownView'
     pod 'SwiftDataTables', :git => 'https://github.com/OctagonMobile/SwiftDataTables.git'
     pod 'SmartGauge'
+   
+#Forms
+    pod 'Eureka'
     
 #Animation
     pod 'iCarousel'

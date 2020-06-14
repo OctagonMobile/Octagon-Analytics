@@ -13,11 +13,20 @@ class DashboardTabBarController: UITabBarController {
     enum TabItem: Int {
         case dashboard = 0
         case canvas
+        case video
     }
         
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if SettingsBundleHelper.isXpackEnabled() {
+            let canvasListNavCtr = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: StoryboardIdentifier.canvasNavCtr)
+            viewControllers?.append(canvasListNavCtr)
+        }
+        
+        let videoConfiguraNavCtr = StoryboardManager.shared.storyBoard(.timelineVideo).instantiateViewController(withIdentifier: StoryboardIdentifier.videoConfigurationNav)
+        viewControllers?.append(videoConfiguraNavCtr)
     }
 
     func showDashboard(_ dashboardId: String) {
@@ -30,5 +39,12 @@ class DashboardTabBarController: UITabBarController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             dashboardListCtr.showDashboardWith(dashboardId)
         }
+    }
+}
+
+extension DashboardTabBarController {
+    struct StoryboardIdentifier {
+        static let videoConfigurationNav = "videoConfigurationNav"
+        static let canvasNavCtr = "canvasNavCtr"
     }
 }

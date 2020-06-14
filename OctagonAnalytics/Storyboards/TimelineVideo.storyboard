@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Video Configuration-->
+        <scene sceneID="36I-4Q-hH6">
+            <objects>
+                <navigationController storyboardIdentifier="videoConfigurationNav" id="78x-8o-ohh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Video Configuration" image="TabCanvasNormal" selectedImage="TabCanvasSelected" id="fjg-co-bPy"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fn3-oT-hlh">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2bp-7X-uVp" kind="relationship" relationship="rootViewController" id="EN5-NH-H3Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAE-Um-0L7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-901" y="-194"/>
+        </scene>
+        <!--Video Configure View Controller-->
+        <scene sceneID="52I-B2-wjn">
+            <objects>
+                <viewController id="2bp-7X-uVp" customClass="VideoConfigureViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tSP-6t-j0q">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fzw-Oa-TeB">
+                                <rect key="frame" x="341.5" y="50" width="683" height="854"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIR-ww-Cgd">
+                                <rect key="frame" x="351.5" y="904" width="663" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BtS-jL-SzN"/>
+                                </constraints>
+                                <state key="normal" title="GENERATE VIDEO"/>
+                                <connections>
+                                    <action selector="generateVideoButtonAction:" destination="2bp-7X-uVp" eventType="touchUpInside" id="Nvc-qj-vyy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yBA-8k-aQd" firstAttribute="bottom" secondItem="KIR-ww-Cgd" secondAttribute="bottom" constant="20" id="49J-we-K52"/>
+                            <constraint firstItem="KIR-ww-Cgd" firstAttribute="trailing" secondItem="fzw-Oa-TeB" secondAttribute="trailing" constant="-10" id="DQH-cO-DFN"/>
+                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="centerX" secondItem="tSP-6t-j0q" secondAttribute="centerX" id="N2e-2S-xLe"/>
+                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="width" secondItem="tSP-6t-j0q" secondAttribute="width" multiplier="0.5" id="QSZ-TO-QRv"/>
+                            <constraint firstItem="yBA-8k-aQd" firstAttribute="trailing" secondItem="fzw-Oa-TeB" secondAttribute="trailing" id="TLv-ET-owD"/>
+                            <constraint firstItem="KIR-ww-Cgd" firstAttribute="top" secondItem="fzw-Oa-TeB" secondAttribute="bottom" id="iAa-2v-T1h"/>
+                            <constraint firstItem="KIR-ww-Cgd" firstAttribute="leading" secondItem="fzw-Oa-TeB" secondAttribute="leading" constant="10" id="kOw-lV-VHZ"/>
+                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="top" secondItem="yBA-8k-aQd" secondAttribute="top" id="lp8-sV-a3q"/>
+                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="leading" secondItem="yBA-8k-aQd" secondAttribute="leading" id="yw7-QH-LCI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yBA-8k-aQd"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="N2e-2S-xLe"/>
+                                <exclude reference="QSZ-TO-QRv"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="TLv-ET-owD"/>
+                                <include reference="N2e-2S-xLe"/>
+                                <include reference="QSZ-TO-QRv"/>
+                                <exclude reference="yw7-QH-LCI"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="fjp-KK-BsK"/>
+                    <connections>
+                        <outlet property="generateVideoButton" destination="KIR-ww-Cgd" id="gF3-Yg-dOx"/>
+                        <outlet property="tableView" destination="fzw-Oa-TeB" id="fag-YK-rlH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ipc-oK-CKs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-182.2840409956076" y="-195.1171875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TabCanvasNormal" width="24" height="25"/>
+        <image name="TabCanvasSelected" width="24" height="25"/>
+    </resources>
+</document>
