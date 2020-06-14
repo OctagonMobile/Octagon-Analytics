@@ -320,3 +320,19 @@ extension CGRect {
         return CGPoint(x: minX + width / 2, y: minY + height / 2)
     }
 }
+
+extension URL {
+
+    func URLByAppendingQueryParameters(_ params: [String: String]?) -> URL? {
+        guard let parameters = params,
+          var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
+            return self
+        }
+
+        var mutableQueryItems: [URLQueryItem] = urlComponents.queryItems ?? []
+        mutableQueryItems.append(contentsOf: parameters.compactMap({ URLQueryItem(name: $0, value: $1)}))
+
+        urlComponents.queryItems = mutableQueryItems
+        return urlComponents.url
+    }
+}

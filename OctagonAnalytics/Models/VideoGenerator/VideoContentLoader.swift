@@ -55,12 +55,11 @@ class VideoContentLoader {
     func loadVideoData(_ completion: CompletionBlock?) {
         
         guard let indexPattern = configContent.indexPattern else { return }
-        let params: [String : Any] =
+        let queryParams: [String : String] =
             ["method": "POST",
-             "path": "\(indexPattern.title)/_search", "query": generatedQuery()]
-            
-        let computedUrlComponant = UrlComponents.videoData
-        DataManager.shared.loadData(computedUrlComponant, methodType: .post, encoding: URLEncoding(destination: .httpBody), parameters: params) { [weak self] (result, error) in
+             "path": "\(indexPattern.title)/_search"]
+
+        DataManager.shared.loadData(UrlComponents.videoData, queryParametres: queryParams, parameters: generatedQuery()) { [weak self] (result, error) in
             guard error == nil else {
                 self?.videoContentList.removeAll()
                 completion?(self?.videoContentList, error)
@@ -96,7 +95,7 @@ class VideoContentLoader {
                       "lte": toDateStr]
             ]
         ]
-        return query
+        return ["query": query, "size": 10000]
     }
 }
 
