@@ -53,7 +53,8 @@ class BarChartRaceViewController: UIViewController {
         xAxis.labelFont = .systemFont(ofSize: 12)
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
-        xAxis.granularity = 10
+        xAxis.granularityEnabled = true
+        xAxis.labelRotationAngle = 360
         xAxis.spaceMax = 0.15
         xAxis.spaceMin = 0.15
         xAxis.axisMinimum = -0.5;
@@ -73,7 +74,7 @@ class BarChartRaceViewController: UIViewController {
         
         let rightAxis = chartView.rightAxis
         rightAxis.axisMinimum = 0
-        rightAxis.enabled = true
+        rightAxis.enabled = false
         rightAxis.axisMaximum = maxYValue + 1.0
         
         let formatter = BarChartRaceFormatter()
@@ -85,25 +86,24 @@ class BarChartRaceViewController: UIViewController {
         var yValIndex = 1
         runDataInAnimation(sortedYValues[0])
         setDate(sortedData[0].date)
-        hud.show(animated: true)
         timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
             guard let self = self else { return }
-            self.hud.hide(animated: true)
             if yValIndex >= self.sortedYValues.count {
                 timer.invalidate()
                 return
             }
-            
+
             DispatchQueue.main.async {
-                self.runDataInAnimation(self.sortedYValues[yValIndex])
                 self.setDate(self.sortedData[yValIndex].date)
+                self.runDataInAnimation(self.sortedYValues[yValIndex])
                 yValIndex += 1
             }
         }
+        timer?.fire()
     }
     
     func setDate(_ date: Date?) {
-        guard let date = sortedData[0].date else {
+        guard let date = date else {
             dateLabel.text = "Date:"
             return
         }
@@ -179,7 +179,7 @@ class BarChartRaceViewController: UIViewController {
             }
             
         } else {
-            set1 = BarChartDataSet(entries: yVals, label: "The year 2017")
+            set1 = BarChartDataSet(entries: yVals, label: "")
             set1.colors = ChartColorTemplates.material()
             set1.drawValuesEnabled = false
             
