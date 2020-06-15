@@ -248,6 +248,7 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
         
+        videoContentLoader.configContent.selectedFieldList.removeAll()
         let selectedFields = values[FormTag.preselectField] as? Set<IPField> ?? []
         for field in selectedFields {
             guard let found = filteredFields.filter({ $0.name == field.name}).first else { return }
