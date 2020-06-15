@@ -17,14 +17,11 @@ class BarChartRaceViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     
     private var inProgress: Bool = false
-    private var sortedYValues: [[CGFloat]] = []
+    private var sortedYValues: [[Double]] = []
     private var sortedData: [VideoContent] = []
+    private var maxYValue: Double = 0.0
     private var timer: Timer?
-    var barData: [VideoContent] = [] {
-        didSet {
-            print("data updated")
-        }
-    }
+    var barData: [VideoContent] = [] 
 
     fileprivate lazy var hud: MBProgressHUD = {
         return MBProgressHUD.refreshing(addedTo: self.view)
@@ -46,7 +43,6 @@ class BarChartRaceViewController: UIViewController {
         chartView.setScaleEnabled(true)
         chartView.pinchZoomEnabled = false
         
-        chartView.rightAxis.enabled = true
         chartView.delegate = self
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = true
@@ -61,10 +57,6 @@ class BarChartRaceViewController: UIViewController {
         xAxis.spaceMax = 0.15
         xAxis.spaceMin = 0.15
         xAxis.axisMinimum = -0.5;
-        
-        let leftAxis = chartView.leftAxis
-        leftAxis.axisMinimum = 0
-        leftAxis.enabled = false
                 
         let l = chartView.legend
         l.enabled = false
@@ -73,6 +65,16 @@ class BarChartRaceViewController: UIViewController {
     }
     
     func updateChart() {
+        
+        let leftAxis = chartView.leftAxis
+        leftAxis.axisMinimum = 0
+        leftAxis.enabled = false
+        leftAxis.axisMaximum = maxYValue + 1.0
+        
+        let rightAxis = chartView.rightAxis
+        rightAxis.axisMinimum = 0
+        rightAxis.enabled = true
+        rightAxis.axisMaximum = maxYValue + 1.0
         
         let formatter = BarChartRaceFormatter()
         formatter.valueList =  sortedData[0].entries
@@ -108,8 +110,8 @@ class BarChartRaceViewController: UIViewController {
         dateLabel.text = "Date: \(date.stringValue)"
     }
     
-    private func sort(_ data: [VideoContent]) -> ([VideoContent], [[CGFloat]]) {
-        var vals: [[CGFloat]] = []
+    private func sort(_ data: [VideoContent]) -> ([VideoContent], [[Double]]) {
+        var vals: [[Double]] = []
         let sorted = data.sorted { (content1, content2) -> Bool in
             if let date1 = content1.date, let date2 = content2.date {
                 return date1.compare(date2) == .orderedAscending
@@ -118,13 +120,19 @@ class BarChartRaceViewController: UIViewController {
             }
         }
         for content in sorted {
-            let sortedYVals: [CGFloat] = content.entries.map { $0.value }.sorted()
+            let sortedYVals: [Double] = content.entries.map {
+                let val = Double($0.value)
+                if maxYValue < val {
+                    maxYValue = val
+                }
+                return val
+            }.sorted()
             vals.append(sortedYVals)
         }
         return (sorted, vals)
     }
     
-    private func runDataInAnimation(_ vals: [CGFloat]) {
+    private func runDataInAnimation(_ vals: [Double]) {
         if self.inProgress {
             return
         }
@@ -132,7 +140,7 @@ class BarChartRaceViewController: UIViewController {
         var i = 0
         let yVals = vals.map { (yVal) -> BarChartDataEntry in
             
-            let entry = BarChartDataEntry(x: Double(i), y: Double(yVal))
+            let entry = BarChartDataEntry(x: Double(i), y: yVal)
             i += 1
             return entry
             
