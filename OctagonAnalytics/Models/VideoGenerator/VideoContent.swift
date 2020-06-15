@@ -39,6 +39,10 @@ class VideoEntry: Mappable {
     var title: String       =   ""
     var value: CGFloat      =   0.0
 
+    init(title: String, value: CGFloat) {
+        self.title = title
+        self.value = value
+    }
     //MARK: Functions
     required init?(map: Map) {}
     

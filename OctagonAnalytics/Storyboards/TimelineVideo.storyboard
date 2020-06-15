@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,6 +85,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipc-oK-CKs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-182.2840409956076" y="-195.1171875"/>
+        </scene>
+        <!--Bar Chart Race View Controller-->
+        <scene sceneID="nnh-Bf-HcR">
+            <objects>
+                <viewController storyboardIdentifier="BarChartRaceViewController" id="hHg-aX-uS9" customClass="BarChartRaceViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fvY-ao-9og">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep">
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLs-Z1-N5U" customClass="HorizontalBarChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="0.0" width="1366" height="994"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gZ-nx-z9z">
+                                        <rect key="frame" x="0.0" y="994" width="1366" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2na-px-psd">
+                                                <rect key="frame" x="5" y="5" width="1356" height="20"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="2na-px-psd" secondAttribute="bottom" constant="5" id="9Sl-sE-UeY"/>
+                                            <constraint firstAttribute="height" constant="30" id="s5h-cj-kDr"/>
+                                            <constraint firstAttribute="trailing" secondItem="2na-px-psd" secondAttribute="trailing" constant="5" id="xno-3h-eiV"/>
+                                            <constraint firstItem="2na-px-psd" firstAttribute="leading" secondItem="8gZ-nx-z9z" secondAttribute="leading" constant="5" id="zV5-KU-BCC"/>
+                                            <constraint firstItem="2na-px-psd" firstAttribute="top" secondItem="8gZ-nx-z9z" secondAttribute="top" constant="5" id="zW2-GH-7k2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8gZ-nx-z9z" secondAttribute="trailing" id="3Z6-02-96l"/>
+                                    <constraint firstItem="8gZ-nx-z9z" firstAttribute="leading" secondItem="TzH-z7-3ep" secondAttribute="leading" id="93N-hL-aLb"/>
+                                    <constraint firstItem="8gZ-nx-z9z" firstAttribute="top" secondItem="WLs-Z1-N5U" secondAttribute="bottom" id="PYo-y9-q6W"/>
+                                    <constraint firstItem="WLs-Z1-N5U" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="top" id="YAt-jw-e62"/>
+                                    <constraint firstAttribute="bottom" secondItem="8gZ-nx-z9z" secondAttribute="bottom" id="ewv-Np-Cwa"/>
+                                    <constraint firstItem="WLs-Z1-N5U" firstAttribute="leading" secondItem="TzH-z7-3ep" secondAttribute="leading" id="q40-6p-PRc"/>
+                                    <constraint firstAttribute="trailing" secondItem="WLs-Z1-N5U" secondAttribute="trailing" id="qa6-lY-0aa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="nzL-Js-NCE" secondAttribute="top" id="OVD-Lc-UDj"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
+                            <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="yg2-Ya-EwS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nzL-Js-NCE"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartBaseView" destination="TzH-z7-3ep" id="Mxf-W1-0vQ"/>
+                        <outlet property="chartView" destination="WLs-Z1-N5U" id="doA-tg-uOj"/>
+                        <outlet property="dateLabel" destination="2na-px-psd" id="p1n-BW-sJc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OyJ-cY-TVF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438.79941434846262" y="-195.1171875"/>
         </scene>
     </scenes>
     <resources>
