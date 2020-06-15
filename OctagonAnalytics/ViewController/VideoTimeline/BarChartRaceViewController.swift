@@ -158,7 +158,6 @@ class BarChartRaceViewController: UIViewController {
             Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { [weak self] timer in
                 guard let self = self else { return }
                 if phase > 1.0 {
-                    print("done invalidating timer")
                     self.inProgress = false
                     timer.invalidate()
                     return
