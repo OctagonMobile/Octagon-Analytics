@@ -238,12 +238,6 @@ class VideoConfigureViewController: FormViewController {
     
     //MARK: Button Action
     @IBAction func generateVideoButtonAction(_ sender: UIButton) {
-//        var data = [VideoContent]()
-//        for _ in 0 ... 10 {
-//            data.append(hardCodedData(5, range: 500))
-//        }
-//        NavigationManager.shared.showBarchartRace(self.navigationController!, data: data)
-//        return
         
         let validationErrorList = form.validate()
         guard validationErrorList.count <= 0  else { return }
@@ -262,19 +256,6 @@ class VideoConfigureViewController: FormViewController {
         
         // Load Video Data with specified params
         loadVideoData()
-    }
-    
-    private func hardCodedData(_ count: Int, range: UInt32) -> VideoContent {
-        let start = 1
-        let yVals = (start..<start+count).map { (i) -> VideoEntry in
-            let mult = range + 1
-            let val = Double(arc4random_uniform(mult))
-            let video = VideoEntry(title: "\(i)", value: CGFloat(val))
-            return video
-        }
-        let content = VideoContent()
-        content.entries = yVals
-        return content
     }
 }
 

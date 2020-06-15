@@ -46,7 +46,7 @@ class BarChartRaceViewController: UIViewController {
         chartView.setScaleEnabled(true)
         chartView.pinchZoomEnabled = false
         
-        chartView.rightAxis.enabled = false
+        chartView.rightAxis.enabled = true
         chartView.delegate = self
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = true
