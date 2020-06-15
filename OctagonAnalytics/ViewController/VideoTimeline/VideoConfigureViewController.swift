@@ -70,21 +70,21 @@ class VideoConfigureViewController: FormViewController {
                     }
 
                 }
-                $0.onChange { [weak self] (row) in
+                $0.onChange { (row) in
 
-                    guard let timeFieldRow = self?.form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField>,
-                        let fieldRow = self?.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<String>,
+                    guard let timeFieldRow = self.form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField>,
+                        let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField>,
                         let selectedIndexPattern = row.value else { return }
                     
-                    self?.filteredFields = selectedIndexPattern.fields.filter({ $0.name != "@timestamp" && $0.name != "@version" && $0.name != "@version.keyword" && $0.name != "_type" && $0.name != "_id" && $0.name != "_index" && $0.name != "_score" && $0.name != "_source" && $0.name != "host" && $0.name != "host.keyword" && $0.name != "message" })
+                    self.filteredFields = selectedIndexPattern.fields.filter({ $0.name != "@timestamp" && $0.name != "@version" && $0.name != "@version.keyword" && $0.name != "_type" && $0.name != "_id" && $0.name != "_index" && $0.name != "_score" && $0.name != "_source" && $0.name != "host" && $0.name != "host.keyword" && $0.name != "message" })
 
                     
                     timeFieldRow.options = selectedIndexPattern.fields.filter({ $0.type == "date"})
                     timeFieldRow.value = nil
                     timeFieldRow.updateCell()
                     
-                    fieldRow.options = self?.filteredFields.compactMap({ $0.name }) ?? []
-                    fieldRow.value = nil
+                    fieldRow.options = self.filteredFields.compactMap({ $0 })
+                    fieldRow.value = Set(self.filteredFields.prefix(5))
                     fieldRow.updateCell()
                     
                 }
@@ -94,6 +94,8 @@ class VideoConfigureViewController: FormViewController {
                 $0.title = "Time Field"
                 $0.tag = FormTag.timeField
                 $0.options = []
+                $0.add(rule: RuleRequired(msg: "Please select Time Field."))
+                $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.hidden = Condition.function([FormTag.indexPattern]){ form in
                    if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> {
                     return row.value == nil
@@ -106,25 +108,62 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
+                    if !row.isValid {
+
+                        cell.textLabel?.textColor = .red
+
+                        var errors = ""
+
+                        for error in row.validationErrors {
+                            let errorString = error.msg + "\n"
+                            errors = errors + errorString
+                        }
+
+                        cell.detailTextLabel?.text = errors
+                        cell.detailTextLabel?.isHidden = false
+                        cell.detailTextLabel?.textAlignment = .left
+                    }
+                }
+                $0.onChange { (row) in
+                    
+                    guard let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField> else { return }
+                    self.filteredFields = self.filteredFields.filter({ $0.name != row.value?.name })
+                    fieldRow.options = self.filteredFields.compactMap({ $0 })
+                    fieldRow.value = nil
+                    fieldRow.updateCell()
                 }
             }
             
-            <<< MultipleSelectorRow<String>() {
+            <<< MultipleSelectorRow<IPField>() {
                 $0.title = "Fields to display"
                 $0.tag = FormTag.preselectField
-                $0.options = []
-                $0.hidden = Condition.function([FormTag.indexPattern]){ form in
-                   if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> {
+                $0.hidden = Condition.function([FormTag.timeField]){ form in
+                   if let row = form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField> {
                     return row.value == nil
                     }
                     return false
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
+                    if !row.isValid {
+
+                        cell.textLabel?.textColor = .red
+
+                        var errors = ""
+
+                        for error in row.validationErrors {
+                            let errorString = error.msg + "\n"
+                            errors = errors + errorString
+                        }
+
+                        cell.detailTextLabel?.text = errors
+                        cell.detailTextLabel?.isHidden = false
+                        cell.detailTextLabel?.textAlignment = .left
+                    }
                 }
                 $0.displayValueFor  = {
                     if let t = $0 {
-                        return t.compactMap({ $0 }).joined(separator: ", ")
+                        return t.compactMap({ $0.name }).joined(separator: ", ")
                     }
                     return nil
                 }
@@ -132,34 +171,37 @@ class VideoConfigureViewController: FormViewController {
                     to.selectableRowCellSetup = { cell, row in
                         row.displayValueFor = { val in
                             if let value = val {
-                                return value
+                                return value.name
                             }
                             return nil
                         }
                     }
                 }
             }
-            
         
             <<< DateInlineRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
+                $0.value = Date()
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
+                    if let toDateRow = self.form.rowBy(tag: FormTag.toDate) as? DateInlineRow {
+                        toDateRow.minimumDate = row.value
+                    }
                 }
-                $0.value = Date()
-
             }
         
             <<< DateInlineRow() {
                 $0.title = "To Date"
                 $0.tag = FormTag.toDate
+                $0.value = Date()
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
+                    if let fromDateRow = self.form.rowBy(tag: FormTag.fromDate) as? DateInlineRow {
+                        fromDateRow.maximumDate = row.value
+                    }
                 }
-                $0.value = Date()
             }
-
     }
     
     private func loadIndexPatters() {
@@ -198,9 +240,9 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
         
-        let selectedFieldNames = values[FormTag.preselectField] as? Set<String> ?? []
-        for fieldName in selectedFieldNames {
-            guard let found = filteredFields.filter({ $0.name == fieldName}).first else { return }
+        let selectedFields = values[FormTag.preselectField] as? Set<IPField> ?? []
+        for field in selectedFields {
+            guard let found = filteredFields.filter({ $0.name == field.name}).first else { return }
             videoContentLoader.configContent.selectedFieldList.append(found)
         }
 

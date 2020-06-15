@@ -35,7 +35,7 @@ class IndexPattern: Mappable, Equatable {
     }
 }
 
-class IPField: Mappable, Equatable {
+class IPField: Mappable, Equatable, Hashable {
     
     var name                =   ""
     var type                =   ""
@@ -46,6 +46,10 @@ class IPField: Mappable, Equatable {
     var readFromDocValues   =   false
 
     //MARK: Functions
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
     
     required init?(map: Map) {}
     
