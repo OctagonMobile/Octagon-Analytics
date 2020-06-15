@@ -95,6 +95,11 @@ class NavigationManager: NSObject {
         rootViewController.present(tutorialViewCtr, animated: true, completion: nil)
     }
 
+    func showBarchartRace(_ navController: UINavigationController, data: [VideoContent]) {
+        guard let barchartRaceVC = StoryboardManager.shared.storyBoard(.timelineVideo).instantiateViewController(withIdentifier: ViewControllerIdentifiers.barChartRaceViewController) as? BarChartRaceViewController else { return }
+        navController.pushViewController(barchartRaceVC, animated: true)
+        barchartRaceVC.barData = data
+    }
     
     private func getInitialEntryPoint () -> UIViewController {
 
@@ -169,6 +174,7 @@ extension NavigationManager {
         static let dashboardListingNavigationController = "DashboardListingNavigationController"
         static let dashboardTabBarController = "DashboardTabBarController"
         static let tutorialViewController  = "TutorialViewController"
+        static let barChartRaceViewController = "BarChartRaceViewController"
     }
 
     struct Constants {

@@ -213,6 +213,7 @@
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
 		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
+		F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
@@ -447,6 +448,7 @@
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
 		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
+		F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRaceViewController.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
@@ -1100,6 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */,
+				F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */,
 			);
 			path = VideoTimeline;
 			sourceTree = "<group>";
@@ -1613,6 +1616,7 @@
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
 				5133778F24680B74001AB9AF /* RangeControlsView.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
+				F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */,
 				51CFC6A11FB9BDC700B99018 /* SavedSearchTableViewCell.swift in Sources */,
 				51677F46206CC9CA00C7751A /* TermsAndConditionViewController.swift in Sources */,
 				512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */,

@@ -82,6 +82,11 @@ class LoginViewController: BaseViewController {
             showTutorial()
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.didShowTutorial)
         }
+        #if DEBUG
+            userNameTextField.text = "demouser"
+            passwordTextField.text = "demouser654321"
+            credentialsUpdated()
+        #endif
     }
     
     //MARK: Private Functions
@@ -246,7 +251,6 @@ class LoginViewController: BaseViewController {
     //MARK: Button Actions
     @IBAction func loginButtonAction(_ sender: UIButton) {
         credentialsUpdated()
-        
         if isValidCredentials() {
             // Login
             Session.shared.user.userName = userNameTextField.text ?? ""
