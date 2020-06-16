@@ -54,6 +54,7 @@ class BarChartRaceViewController: UIViewController {
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
         xAxis.granularityEnabled = true
+        xAxis.granularity = 1
         xAxis.labelRotationAngle = 360
         xAxis.spaceMax = 0.15
         xAxis.spaceMin = 0.15
@@ -66,7 +67,9 @@ class BarChartRaceViewController: UIViewController {
     }
     
     func updateChart() {
-        
+        if let labelCount = sortedData.first?.entries.count {
+            chartView.xAxis.labelCount = labelCount
+        }
         let leftAxis = chartView.leftAxis
         leftAxis.axisMinimum = 0
         leftAxis.enabled = false

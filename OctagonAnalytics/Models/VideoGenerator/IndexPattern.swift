@@ -35,7 +35,10 @@ class IndexPattern: Mappable, Equatable {
     }
 }
 
-class IPField: Mappable, Equatable, Hashable {
+class IPField: Mappable, Equatable, Hashable, CustomStringConvertible {
+    var description: String {
+        return name.capitalized
+    }
     
     var name                =   ""
     var type                =   ""

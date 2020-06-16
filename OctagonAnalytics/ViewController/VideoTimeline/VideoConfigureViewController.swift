@@ -76,7 +76,7 @@ class VideoConfigureViewController: FormViewController {
                         let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField>,
                         let selectedIndexPattern = row.value else { return }
                     
-                    self.filteredFields = selectedIndexPattern.fields.filter({ $0.name != "@timestamp" && $0.name != "@version" && $0.name != "@version.keyword" && $0.name != "_type" && $0.name != "_id" && $0.name != "_index" && $0.name != "_score" && $0.name != "_source" && $0.name != "host" && $0.name != "host.keyword" && $0.name != "message" })
+                    self.filteredFields = selectedIndexPattern.fields.filter({ $0.name != "@timestamp" && $0.name != "@version" && $0.name != "@version.keyword" && $0.name != "_type" && $0.name != "_id" && $0.name != "_index" && $0.name != "_score" && $0.name != "_source" && $0.name != "host" && $0.name != "host.keyword" && $0.name != "message" && $0.name != "message.keyword" })
 
                     
                     timeFieldRow.options = selectedIndexPattern.fields.filter({ $0.type == "date"})
