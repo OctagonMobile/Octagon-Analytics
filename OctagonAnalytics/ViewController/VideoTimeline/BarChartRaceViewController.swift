@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import MBProgressHUD
+import Repeat
 
 enum DiffFunction {
     case increment
@@ -34,6 +35,7 @@ class BarChartRaceViewController: UIViewController {
     }()
     
     var barData: [VideoContent] = []
+    private var repeater: Repeater?
     
     
     override func viewDidLoad() {
@@ -263,7 +265,74 @@ extension BarChartRaceViewController {
         if let set = chartView.data?.dataSets.first as? BarChartDataSet {
             let pointsPerTime = calculatePointsPerTime(targetData)
             var previousSet = set
-            Timer.scheduledTimer(withTimeInterval: 0.00000001, repeats: true) { [weak self] timer in
+            
+            
+            self.repeater = Repeater.every(.milliseconds(5)) { (repeater) in
+//                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    var shouldInvalidate = true
+                                   for index in 0..<previousSet.entries.count {
+                                       let previousVal = previousSet.entries[index].y
+                                       let targetVal = vals[index]
+                                       if previousVal != targetVal {
+                                           shouldInvalidate = false
+                                           break
+                                       }
+                                   }
+                                   if shouldInvalidate {
+                                       repeater.pause()
+                                       if currentIndex < (self.sortedYValues.count - 1) {
+                                           let nextIndex = currentIndex + 1
+                                           DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                               self.applyDiffFunction(targetDatSet, nextIndex: nextIndex)
+                                               self.drawData(self.sortedYValues[nextIndex],
+                                                             currentIndex: nextIndex)
+                                           }
+                                       }
+                                       return
+                                   }
+                                   
+                                   let newDataSet = BarChartDataSet()
+                                   for index in 0..<previousSet.entries.count {
+                                       let prevY = previousSet.entries[index].y
+                                       let diffFn = self.diffFunctions[index]
+                                       let targetVal = vals[index]
+                                       var newY = prevY
+                                       let diffPoints = pointsPerTime[index]
+
+                                       switch diffFn {
+                                       case .increment:
+                                           newY += diffPoints
+                                           if newY > targetVal {
+                                               newY = targetVal
+                                               self.diffFunctions[index] = .none
+                                           }
+                                       case .decrement:
+                                           newY -= diffPoints
+                                           if newY < targetVal {
+                                               newY = targetVal
+                                               self.diffFunctions[index] = .none
+                                           }
+                                       default:
+                                           newY = targetVal
+                                       }
+                                       
+                                       newDataSet.append(BarChartDataEntry(x: Double(index), y: newY))
+                                   }
+                                   newDataSet.colors = previousSet.colors
+                                   let newData = BarChartData(dataSet: newDataSet)
+                                   newData.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 12)!)
+                                   newData.barWidth = 0.7
+                                   
+                                   self.chartView.data = newData
+                                   self.chartView.notifyDataSetChanged()
+                                   previousSet = newDataSet
+                }
+               
+            }
+            repeater?.start()
+            /*Timer.scheduledTimer(withTimeInterval: 0.0, repeats: true) { [weak self] timer in
+                print("Time Interval \(timer.timeInterval)")
                 guard let self = self else { return }
                 var shouldInvalidate = true
                 for index in 0..<previousSet.entries.count {
@@ -322,7 +391,7 @@ extension BarChartRaceViewController {
                 self.chartView.data = newData
                 self.chartView.notifyDataSetChanged()
                 previousSet = newDataSet
-            }
+            }*/
             
         } else {
             targetDatSet.colors = ChartColorTemplates.material()

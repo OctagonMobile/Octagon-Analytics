@@ -238,7 +238,6 @@ class VideoConfigureViewController: FormViewController {
     
     //MARK: Button Action
     @IBAction func generateVideoButtonAction(_ sender: UIButton) {
-        
         let validationErrorList = form.validate()
         guard validationErrorList.count <= 0  else { return }
         
