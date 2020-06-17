@@ -37,7 +37,7 @@ class IndexPattern: Mappable, Equatable {
 
 class IPField: Mappable, Equatable, Hashable, CustomStringConvertible {
     var description: String {
-        return name.capitalized
+        return name
     }
     
     var name                =   ""

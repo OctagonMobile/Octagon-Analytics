@@ -85,14 +85,15 @@ class VideoContentLoader {
     private func generatedQuery() -> [String: Any] {
         
         guard let fromDate = configContent.fromDate,
-            let toDate = configContent.toDate else { return [:] }
+            let toDate = configContent.toDate,
+            let timeFieldName = configContent.timeField?.name else { return [:] }
         
         let fromDateStr = queryDateFormatter.string(from: fromDate)
         let toDateStr = queryDateFormatter.string(from: toDate)
-
+        
         let query = [ "range": [
-            "date": [ "gte": fromDateStr,
-                      "lte": toDateStr]
+            "\(timeFieldName)": [ "gte": fromDateStr,
+                                  "lte": toDateStr]
             ]
         ]
         return ["query": query, "size": 10000]
