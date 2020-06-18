@@ -6,6 +6,7 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 import ObjectMapper
+import BarChartRace
 
 class VideoContent {
     
@@ -49,5 +50,16 @@ class VideoEntry: Mappable {
     func mapping(map: Map) {
         title       <-  map["title"]
         value       <-  map["value"]
+    }
+}
+
+extension VideoEntry {
+    func barChartEntry() -> DataEntry {
+        
+        let val = value.truncatingRemainder(dividingBy: 100.0)
+        let height: Float = Float(val) / 100.0
+
+        let entry = DataEntry(color: .red, height: height, textValue: "\(value)", textValueFont: UIFont.systemFont(ofSize: 14), title: "\(title)", titleValueFont: UIFont.systemFont(ofSize: 14))
+        return entry
     }
 }

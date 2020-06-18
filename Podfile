@@ -9,6 +9,7 @@ target 'OctagonAnalytics' do
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'
     pod 'SunburstDiagram', :git => 'https://github.com/OctagonMobile/SwiftSunburstDiagram.git'
+    pod 'BarChartRace'
 
 #Helper pods
     pod 'PopupDialog'
