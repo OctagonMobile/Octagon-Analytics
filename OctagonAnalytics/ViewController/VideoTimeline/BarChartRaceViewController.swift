@@ -42,7 +42,8 @@ class BarChartRaceViewController: UIViewController {
                     return
             }
             let videoEntry = strongSelf.barData[strongSelf.currentIndex]
-            let dataEntries = videoEntry.entries.compactMap({ $0.barChartEntry() })
+            let maxVal = videoEntry.entries.compactMap {$0.value}.reduce(0, +)
+            let dataEntries = videoEntry.entries.compactMap({ $0.barChartEntry(Float(maxVal)) })
             strongSelf.barChartView.updateDataEntries(dataEntries: dataEntries, animated: true)
             
             strongSelf.currentIndex += 1
