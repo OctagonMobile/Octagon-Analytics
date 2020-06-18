@@ -19,6 +19,7 @@ class BarChartRaceViewController: UIViewController {
     
     private var currentIndex: Int = 0
     private var timer: Timer?
+    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
     //MARK: Funnctions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,10 @@ class BarChartRaceViewController: UIViewController {
             }
             let videoEntry = strongSelf.barData[strongSelf.currentIndex]
             let maxVal = videoEntry.entries.compactMap {$0.value}.reduce(0, +)
-            let dataEntries = videoEntry.entries.compactMap({ $0.barChartEntry(Float(maxVal)) })
+            let dataEntries = videoEntry.entries.enumerated().compactMap { (index, videoEntry) -> DataEntry? in
+                let colorIndex = index < strongSelf.colors.count - 1 ? index : 0
+                return videoEntry.barChartEntry(Float(maxVal), color: strongSelf.colors[colorIndex])
+            }
             strongSelf.barChartView.updateDataEntries(dataEntries: dataEntries, animated: true)
             
             strongSelf.currentIndex += 1
