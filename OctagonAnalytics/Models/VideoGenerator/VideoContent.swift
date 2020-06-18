@@ -56,7 +56,7 @@ class VideoEntry: Mappable {
 extension VideoEntry {
     func barChartEntry(_ max: Float, color: UIColor) -> DataEntry {
         let height: Float = max > 0 ? Float(value) / max : 0
-        let entry = DataEntry(color: color, height: height, textValue: "\(value)", textValueFont: UIFont.systemFont(ofSize: 14), title: "\(title)", titleValueFont: UIFont.systemFont(ofSize: 14))
+        let entry = DataEntry(color: color, height: height, textValue: String(format: "%0.2f", value), textValueFont: UIFont.systemFont(ofSize: 14), title: "\(title)", titleValueFont: UIFont.systemFont(ofSize: 14))
         return entry
     }
 }

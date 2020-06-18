@@ -25,6 +25,7 @@ class BarChartRaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
+        dateLabel.style(CurrentTheme.title1TextStyle(CurrentTheme.standardColor))
         barData.sort { (first, second) -> Bool in
             guard let otherDate = second.date else { return false }
             return first.date?.compare(otherDate) == .orderedAscending
@@ -58,7 +59,7 @@ class BarChartRaceViewController: UIViewController {
             
             strongSelf.currentIndex += 1
             if let date = videoEntry.date {
-                strongSelf.dateLabel.text = "\(date.toString())"
+                strongSelf.dateLabel.text = "\(date.toString(.custom("MMM dd yyyy")))"
             }
         }
         timer?.fire()

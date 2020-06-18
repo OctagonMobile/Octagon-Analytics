@@ -95,12 +95,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep" customClass="BasicBarChart" customModule="BarChartRace">
-                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1009"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="0.0" y="1024" width="1366" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <rect key="frame" x="0.0" y="1009" width="1366" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -113,7 +113,7 @@
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
                             <constraint firstItem="H6T-f9-RrA" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="afx-Bt-6cV"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
-                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="H6T-f9-RrA" secondAttribute="bottom" id="vaV-C2-EST"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="H6T-f9-RrA" secondAttribute="bottom" constant="15" id="vaV-C2-EST"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nzL-Js-NCE"/>
                     </view>
