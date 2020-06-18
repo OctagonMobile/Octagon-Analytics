@@ -8,6 +8,7 @@
 
 import UIKit
 import BarChartRace
+import SwiftDate
 
 class BarChartRaceViewController: UIViewController {
     
@@ -23,6 +24,11 @@ class BarChartRaceViewController: UIViewController {
     //MARK: Funnctions
     override func viewDidLoad() {
         super.viewDidLoad()
+        title   =   "Bar Chart Video".localiz()
+        barData.sort { (first, second) -> Bool in
+            guard let otherDate = second.date else { return false }
+            return first.date?.compare(otherDate) == .orderedAscending
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
