@@ -77,6 +77,7 @@ class VideoConfigureViewController: FormViewController {
                         let selectedIndexPattern = row.value else { return }
                     
                     self.filteredFields = selectedIndexPattern.fields.filter({ $0.type == "number"})
+                    self.filteredFields = self.filteredFields.filter({ $0.name != "_score"})
                     
                     timeFieldRow.options = selectedIndexPattern.fields.filter({ $0.type == "date"})
                     timeFieldRow.value = nil
