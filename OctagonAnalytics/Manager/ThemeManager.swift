@@ -192,7 +192,7 @@ enum Theme: String {
     }
 
     var barChartRaceColors: [UIColor] {
-        return UIColor.GaugeRangeColorsSet.all + firstSetChartColors
+        return UIColor.BarChartRaceColorsSet.all + secondSetChartColors
     }
 
     var gaugeRangeColors: [UIColor] {

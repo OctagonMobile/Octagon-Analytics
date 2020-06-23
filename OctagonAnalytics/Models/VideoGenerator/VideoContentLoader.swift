@@ -77,6 +77,10 @@ class VideoContentLoader {
                     videoContent.updateContent(dict)
                     self?.videoContentList.append(videoContent)
                 }
+                self?.videoContentList.sort(by: { (first, second) -> Bool in
+                    guard let firstDate = first.date, let secondDate = second.date else { return false }
+                    return firstDate < secondDate
+                })
             }
             completion?(self?.videoContentList, error)
         }
