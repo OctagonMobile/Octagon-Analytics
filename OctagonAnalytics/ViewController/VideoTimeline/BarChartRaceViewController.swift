@@ -14,54 +14,56 @@ class BarChartRaceViewController: UIViewController {
     
     var barData: [VideoContent] = []
     @IBOutlet weak var dateLabel: UILabel!
-
+    @IBOutlet weak var playButton: UIButton!
+    
     //MARK: Outlets
     @IBOutlet weak var barChartView: BasicBarChart!
     
     private var currentIndex: Int = 0
     private var timer: Timer?
-    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
+
     //MARK: Funnctions
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
         dateLabel.style(CurrentTheme.title1TextStyle(CurrentTheme.standardColor))
-        barData.sort { (first, second) -> Bool in
-            guard let otherDate = second.date else { return false }
-            return first.date?.compare(otherDate) == .orderedAscending
+        barChartView.delegate = self
+        barChartView.timeInterval = 0.5
+        
+        let dataSetList = barData.compactMap { (videoContent) -> DataSet? in
+            return videoContent.barChartDataSet()
         }
+        barChartView.setupBarChartRace(dataSetList, animated: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateChart()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        barChartView?.play()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        timer?.invalidate()
+        barChartView?.stop()
     }
     
-    private func updateChart()  {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] (timer) in
-            guard let strongSelf = self,
-                strongSelf.currentIndex <= strongSelf.barData.count - 1 else {
-                    timer.invalidate()
-                    return
-            }
-            let videoEntry = strongSelf.barData[strongSelf.currentIndex]
-            let maxVal = videoEntry.entries.compactMap {$0.value}.reduce(0, +)
-            let dataEntries = videoEntry.entries.enumerated().compactMap { (index, videoEntry) -> DataEntry? in
-                let colorIndex = index < strongSelf.colors.count - 1 ? index : 0
-                return videoEntry.barChartEntry(Float(maxVal), color: strongSelf.colors[colorIndex])
-            }
-            strongSelf.barChartView.updateDataEntries(dataEntries: dataEntries, animated: true)
-            
-            strongSelf.currentIndex += 1
-            if let date = videoEntry.date {
-                strongSelf.dateLabel.text = "\(date.toString(.custom("MMM dd yyyy")))"
-            }
+    //MARK: Button Actions
+    @IBAction func playButtonAction(_ sender: UIButton) {
+        if barChartView.playerState == .playing {
+            barChartView.pause()
+        } else {
+            barChartView.play()
         }
-        timer?.fire()
+    }
+}
+
+extension BarChartRaceViewController: BarChartRaceDelegate {
+    
+    func playerStateUpdated(_ state: BasicBarChart.PlayerState) {
+        let playButtonTitle = (state == .playing) ? "TrackingPauseIcon" : "TrackingPlayIcon"
+        playButton.setImage(UIImage(named: playButtonTitle), for: .normal)
+    }
+    
+    func currentDataSet(_ dataSet: DataSet) {
+        dateLabel.text = dataSet.date.toString(.custom("MMM dd yyyy"))
     }
 }

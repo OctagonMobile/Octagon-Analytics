@@ -15,6 +15,8 @@ class VideoContent {
     var date: Date?
     var entries: [VideoEntry]   =   []
     
+    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
+
     //MARK: Functions
     
     func updateContent(_ dict: [String: Any]) {
@@ -32,6 +34,19 @@ class VideoContent {
         }
 
         entries = Mapper<VideoEntry>().mapArray(JSONArray: list)
+    }
+}
+
+extension VideoContent {
+    func barChartDataSet() -> DataSet? {
+        guard let date = date else { return nil }
+        let maxVal = entries.compactMap {$0.value}.reduce(0, +)
+        let entriesList = entries.enumerated().compactMap { [weak self] (index, videoEntry) -> DataEntry? in
+            guard let strongSelf = self else { return nil}
+            let colorIndex = index < strongSelf.colors.count - 1 ? index : 0
+            return videoEntry.barChartEntry(Float(maxVal), color: strongSelf.colors[colorIndex])
+        }
+        return DataSet(date, dataEntries: entriesList)
     }
 }
 

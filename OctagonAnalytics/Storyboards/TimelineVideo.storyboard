@@ -95,31 +95,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep" customClass="BasicBarChart" customModule="BarChartRace">
-                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1009"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="884"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="0.0" y="1009" width="1366" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <rect key="frame" x="1346" y="864" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                </variation>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Fv-tjP">
+                                <rect key="frame" x="20" y="894" width="1326" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-uf-n9w">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="kZu-uf-n9w" secondAttribute="height" multiplier="1:1" id="S4I-w9-QP9"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="playButtonAction:" destination="hHg-aX-uS9" eventType="touchUpInside" id="CdG-fs-YhK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.45424410700000001" green="0.76790571210000003" blue="0.8157393932" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kZu-uf-n9w" secondAttribute="bottom" id="3RZ-OU-IQ7"/>
+                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="leading" secondItem="hAo-Fv-tjP" secondAttribute="leading" id="Uj9-T3-iRt"/>
+                                    <constraint firstAttribute="height" constant="60" id="pk5-E7-Nxo"/>
+                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="top" secondItem="hAo-Fv-tjP" secondAttribute="top" id="vjl-zE-LRZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="H6T-f9-RrA" secondAttribute="trailing" id="7kp-wM-z3G"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="FOs-a2-Hna"/>
+                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="10" id="7sE-5x-1EX"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="nzL-Js-NCE" secondAttribute="top" id="OVD-Lc-UDj"/>
+                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="-20" id="aI0-IM-ROP"/>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="afx-Bt-6cV"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="hAo-Fv-tjP" secondAttribute="trailing" constant="20" id="i5o-hu-9gk"/>
+                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" constant="20" id="k53-AR-URh"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
-                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="H6T-f9-RrA" secondAttribute="bottom" constant="15" id="vaV-C2-EST"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="hAo-Fv-tjP" secondAttribute="bottom" constant="20" id="xo7-Nn-cNp"/>
+                            <constraint firstItem="H6T-f9-RrA" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" constant="-20" id="zQB-8u-iIc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nzL-Js-NCE"/>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barChartView" destination="TzH-z7-3ep" id="aKq-AR-mre"/>
                         <outlet property="dateLabel" destination="H6T-f9-RrA" id="IfR-FX-zID"/>
+                        <outlet property="playButton" destination="kZu-uf-n9w" id="kmf-xS-FUM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyJ-cY-TVF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
