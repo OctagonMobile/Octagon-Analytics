@@ -122,5 +122,5 @@ class VideoConfigContent {
     var selectedFieldList: [IPField]    =   []
     var fromDate: Date?
     var toDate: Date?
-    var speed: Float                    =   0.5
+    var speed: Float                    =   1.0
 }
