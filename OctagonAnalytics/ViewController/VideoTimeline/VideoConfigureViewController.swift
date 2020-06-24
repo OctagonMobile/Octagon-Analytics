@@ -54,24 +54,24 @@ class VideoConfigureViewController: FormViewController {
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     
                     if !row.isValid {
-
+                        
                         cell.textLabel?.textColor = .red
-
+                        
                         var errors = ""
-
+                        
                         for error in row.validationErrors {
                             let errorString = error.msg + "\n"
                             errors = errors + errorString
                         }
-
+                        
                         cell.detailTextLabel?.text = errors
                         cell.detailTextLabel?.isHidden = false
                         cell.detailTextLabel?.textAlignment = .left
                     }
-
+                    
                 }
                 $0.onChange { (row) in
-
+                    
                     guard let timeFieldRow = self.form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField>,
                         let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField>,
                         let selectedIndexPattern = row.value else { return }
@@ -97,8 +97,8 @@ class VideoConfigureViewController: FormViewController {
                 $0.add(rule: RuleRequired(msg: "Please select Time Field."))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.hidden = Condition.function([FormTag.indexPattern]){ form in
-                   if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> {
-                    return row.value == nil
+                    if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> {
+                        return row.value == nil
                     }
                     return false
                 }
@@ -109,16 +109,16 @@ class VideoConfigureViewController: FormViewController {
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     if !row.isValid {
-
+                        
                         cell.textLabel?.textColor = .red
-
+                        
                         var errors = ""
-
+                        
                         for error in row.validationErrors {
                             let errorString = error.msg + "\n"
                             errors = errors + errorString
                         }
-
+                        
                         cell.detailTextLabel?.text = errors
                         cell.detailTextLabel?.isHidden = false
                         cell.detailTextLabel?.textAlignment = .left
@@ -138,24 +138,24 @@ class VideoConfigureViewController: FormViewController {
                 $0.title = "Fields to display"
                 $0.tag = FormTag.preselectField
                 $0.hidden = Condition.function([FormTag.timeField]){ form in
-                   if let row = form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField> {
-                    return row.value == nil
+                    if let row = form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField> {
+                        return row.value == nil
                     }
                     return false
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     if !row.isValid {
-
+                        
                         cell.textLabel?.textColor = .red
-
+                        
                         var errors = ""
-
+                        
                         for error in row.validationErrors {
                             let errorString = error.msg + "\n"
                             errors = errors + errorString
                         }
-
+                        
                         cell.detailTextLabel?.text = errors
                         cell.detailTextLabel?.isHidden = false
                         cell.detailTextLabel?.textAlignment = .left
@@ -178,7 +178,7 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
             }
-        
+            
             <<< DateInlineRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
@@ -190,7 +190,7 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
             }
-        
+            
             <<< DateInlineRow() {
                 $0.title = "To Date"
                 $0.tag = FormTag.toDate
@@ -202,6 +202,40 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
             }
+            
+            <<< SliderRow() {
+                $0.title = "Speed"
+                $0.tag = FormTag.speed
+                $0.value = videoContentLoader.configContent.speed
+                $0.steps = 19
+                $0.cellSetup { (cell, row) in
+                    cell.slider.minimumValue = 0.0
+                    cell.slider.maximumValue = 1.9
+                    cell.slider.tintColor = CurrentTheme.standardColor
+                }
+                $0.displayValueFor = {
+                    guard let value = $0 else { return nil }
+                    if floor(value) < 1 {
+                        let displayValue = value + 0.1
+                        return String(format: "%0.1fx", displayValue)
+                    } else {
+                        
+                        let integerPart = Int(value)
+                        let fractionalPart = value - Float(integerPart)
+                        
+                        let numberComponent = String(value).components(separatedBy :".")
+                        let integerNumber = Int(numberComponent[0])
+                        let fractionalNumber = Int(numberComponent[1])
+                        let displayValue = Float( integerNumber! + fractionalNumber!)
+                        print("\(value)")
+                        return String(format: "%dx", Int(displayValue))
+                    }
+                }
+                
+                $0.cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = CurrentTheme.standardColor
+                }
+        }
     }
     
     private func loadIndexPatters() {
@@ -232,7 +266,7 @@ class VideoConfigureViewController: FormViewController {
                 return
             }
             
-            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result)
+            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
         }
     }
     
@@ -246,7 +280,8 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.timeField          = values[FormTag.timeField] as? IPField
         videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
-        
+        videoContentLoader.configContent.speed              = values[FormTag.speed] as? Float ?? videoContentLoader.configContent.speed
+
         videoContentLoader.configContent.selectedFieldList.removeAll()
         let selectedFields = values[FormTag.preselectField] as? Set<IPField> ?? []
         for field in selectedFields {
@@ -266,5 +301,6 @@ extension VideoConfigureViewController {
         static let preselectField   =   "PreselectField"
         static let fromDate         =   "FromDate"
         static let toDate           =   "ToDate"
+        static let speed            =   "Speed"
     }
 }

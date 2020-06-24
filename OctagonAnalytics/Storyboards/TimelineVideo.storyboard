@@ -95,12 +95,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep" customClass="BasicBarChart" customModule="BarChartRace">
-                                <rect key="frame" x="0.0" y="0.0" width="1366" height="884"/>
+                                <rect key="frame" x="0.0" y="80" width="1366" height="874"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="1346" y="864" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="1346" y="934" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -108,10 +108,10 @@
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Fv-tjP">
-                                <rect key="frame" x="20" y="894" width="1326" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-uf-n9w">
-                                        <rect key="frame" x="633" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="20" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kZu-uf-n9w" secondAttribute="height" multiplier="1:1" id="S4I-w9-QP9"/>
                                         </constraints>
@@ -122,23 +122,29 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="kZu-uf-n9w" secondAttribute="bottom" id="3RZ-OU-IQ7"/>
-                                    <constraint firstAttribute="height" constant="60" id="pk5-E7-Nxo"/>
-                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="top" secondItem="hAo-Fv-tjP" secondAttribute="top" id="vjl-zE-LRZ"/>
-                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="centerX" secondItem="hAo-Fv-tjP" secondAttribute="centerX" id="zFd-gC-AeP"/>
+                                    <constraint firstAttribute="bottom" secondItem="kZu-uf-n9w" secondAttribute="bottom" constant="10" id="3RZ-OU-IQ7"/>
+                                    <constraint firstAttribute="height" constant="60" id="pk5-E7-Nxo">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                                    </constraint>
+                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="leading" secondItem="hAo-Fv-tjP" secondAttribute="leading" constant="10" id="ueu-mm-t0u">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
+                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="top" secondItem="hAo-Fv-tjP" secondAttribute="top" constant="10" id="vjl-zE-LRZ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="10" id="7sE-5x-1EX"/>
-                            <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="nzL-Js-NCE" secondAttribute="top" id="OVD-Lc-UDj"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="-20" id="aI0-IM-ROP"/>
+                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="top" secondItem="nzL-Js-NCE" secondAttribute="top" id="2G8-Ad-URx"/>
+                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="-5" id="aI0-IM-ROP">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
-                            <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="hAo-Fv-tjP" secondAttribute="trailing" constant="20" id="i5o-hu-9gk"/>
-                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" constant="20" id="k53-AR-URh"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="20" id="e3p-JC-Zcl"/>
+                            <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="hAo-Fv-tjP" secondAttribute="trailing" id="i5o-hu-9gk"/>
+                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="k53-AR-URh"/>
+                            <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="hAo-Fv-tjP" secondAttribute="bottom" id="lUb-bP-BGf"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
-                            <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="hAo-Fv-tjP" secondAttribute="bottom" constant="20" id="xo7-Nn-cNp"/>
                             <constraint firstItem="H6T-f9-RrA" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" constant="-20" id="zQB-8u-iIc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nzL-Js-NCE"/>
@@ -146,6 +152,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barChartView" destination="TzH-z7-3ep" id="aKq-AR-mre"/>
+                        <outlet property="controlsHolder" destination="hAo-Fv-tjP" id="eY1-x5-61q"/>
                         <outlet property="dateLabel" destination="H6T-f9-RrA" id="IfR-FX-zID"/>
                         <outlet property="playButton" destination="kZu-uf-n9w" id="kmf-xS-FUM"/>
                     </connections>

@@ -12,9 +12,11 @@ import SwiftDate
 
 class BarChartRaceViewController: UIViewController {
     
+    var speed: Float    =   0.5
     var barData: [VideoContent] = []
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var controlsHolder: UIView!
     
     //MARK: Outlets
     @IBOutlet weak var barChartView: BasicBarChart!
@@ -26,13 +28,15 @@ class BarChartRaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
-        view.backgroundColor = CurrentTheme.lightBackgroundColor
+        view.backgroundColor = CurrentTheme.cellBackgroundColor
+        controlsHolder.backgroundColor = CurrentTheme.lightBackgroundColor
         playButton.backgroundColor = CurrentTheme.standardColor
         
-        dateLabel.style(CurrentTheme.title1TextStyle(CurrentTheme.standardColor))
+        dateLabel.style(CurrentTheme.textStyleWith(dateLabel.font.pointSize, weight: .semibold))
+
         barChartView.delegate = self
-        barChartView.backgroundColor = .clear
-        barChartView.timeInterval = 0.5
+        barChartView.backgroundColor = CurrentTheme.cellBackgroundColor
+        barChartView.timeInterval = TimeInterval(speed)
         
         let dataSetList = barData.compactMap { (videoContent) -> DataSet? in
             return videoContent.barChartDataSet()
@@ -68,6 +72,6 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
     }
     
     func currentDataSet(_ dataSet: DataSet) {
-        dateLabel.text = dataSet.date.toString(.custom("MMM dd yyyy"))
+        dateLabel.text = dataSet.date.toString(.custom("dd MMM yyyy"))
     }
 }

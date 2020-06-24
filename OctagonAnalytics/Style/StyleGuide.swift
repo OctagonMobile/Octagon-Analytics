@@ -388,20 +388,13 @@ extension UIColor {
     }
 
     struct BarChartRaceColorsSet {
-        static var first: UIColor   { return UIColor.colorFromHexString("#1700FF") }
-        static var second: UIColor  { return UIColor.colorFromHexString("#3854D7") }
-        static var third: UIColor   { return UIColor.colorFromHexString("#3A7CCC") }
-        static var fourth: UIColor  { return UIColor.colorFromHexString("#3DAABF") }
-        static var fifth: UIColor   { return UIColor.colorFromHexString("#3BDBA6") }
-        static var sixth: UIColor   { return UIColor.colorFromHexString("#21A579") }
-        static var seventh: UIColor { return UIColor.colorFromHexString("#02724D") }
-        static var eighth: UIColor   { return UIColor.colorFromHexString("#FCE58A") }
-        static var ninth: UIColor   { return UIColor.colorFromHexString("#F6CD2D") }
-        static var tenth: UIColor   { return UIColor.colorFromHexString("#F6902D") }
-        static var eleventh: UIColor    { return UIColor.colorFromHexString("#F69682D") }
-        static var twelfth: UIColor  { return UIColor.colorFromHexString("#C43627") }
+        static var first: UIColor   { return UIColor.colorFromHexString("#813a8d") }
+        static var second: UIColor  { return UIColor.colorFromHexString("#149fc5") }
+        static var third: UIColor   { return UIColor.colorFromHexString("#fb291a") }
+        static var fourth: UIColor  { return UIColor.colorFromHexString("#faaf0e") }
+        static var fifth: UIColor   { return UIColor.colorFromHexString("#72b632") }
 
-        static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
+        static var all: [UIColor] = [first, second, third, fourth, fifth]
     }
 
 }
