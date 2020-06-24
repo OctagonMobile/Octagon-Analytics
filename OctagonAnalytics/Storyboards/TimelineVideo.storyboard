@@ -111,7 +111,7 @@
                                 <rect key="frame" x="20" y="894" width="1326" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-uf-n9w">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="633" y="0.0" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kZu-uf-n9w" secondAttribute="height" multiplier="1:1" id="S4I-w9-QP9"/>
                                         </constraints>
@@ -120,12 +120,12 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.45424410700000001" green="0.76790571210000003" blue="0.8157393932" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kZu-uf-n9w" secondAttribute="bottom" id="3RZ-OU-IQ7"/>
-                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="leading" secondItem="hAo-Fv-tjP" secondAttribute="leading" id="Uj9-T3-iRt"/>
                                     <constraint firstAttribute="height" constant="60" id="pk5-E7-Nxo"/>
                                     <constraint firstItem="kZu-uf-n9w" firstAttribute="top" secondItem="hAo-Fv-tjP" secondAttribute="top" id="vjl-zE-LRZ"/>
+                                    <constraint firstItem="kZu-uf-n9w" firstAttribute="centerX" secondItem="hAo-Fv-tjP" secondAttribute="centerX" id="zFd-gC-AeP"/>
                                 </constraints>
                             </view>
                         </subviews>

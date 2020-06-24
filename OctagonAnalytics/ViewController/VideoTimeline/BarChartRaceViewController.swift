@@ -26,8 +26,12 @@ class BarChartRaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
+        view.backgroundColor = CurrentTheme.lightBackgroundColor
+        playButton.backgroundColor = CurrentTheme.standardColor
+        
         dateLabel.style(CurrentTheme.title1TextStyle(CurrentTheme.standardColor))
         barChartView.delegate = self
+        barChartView.backgroundColor = .clear
         barChartView.timeInterval = 0.5
         
         let dataSetList = barData.compactMap { (videoContent) -> DataSet? in
