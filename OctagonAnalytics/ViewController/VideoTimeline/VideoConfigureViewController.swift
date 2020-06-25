@@ -22,7 +22,6 @@ class VideoConfigureViewController: FormViewController {
 
     private var filteredFields:[IPField]    =   []
     
-    private var speedsList: [Float] = [10,9,8,7,6,5,4,3,2,1,0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1]
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -203,27 +202,6 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
             }
-            
-            <<< SliderRow() {
-                $0.title = "Speed"
-                $0.tag = FormTag.speed
-                $0.value = Float(speedsList.firstIndex(of: videoContentLoader.configContent.speed) ?? 0)
-                $0.steps = UInt(speedsList.count)
-                $0.cellSetup { (cell, row) in
-                    cell.slider.minimumValue = 0
-                    cell.slider.maximumValue = 18
-                    cell.slider.tintColor = CurrentTheme.standardColor
-                }
-                $0.displayValueFor = {
-                    guard let index = $0 else { return nil }
-                    let speedValue = self.speedsList[Int(index)]
-                    return String(format: "%0.1f", speedValue)
-                }
-                
-                $0.cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = CurrentTheme.standardColor
-                }
-        }
     }
     
     private func loadIndexPatters() {
@@ -254,7 +232,7 @@ class VideoConfigureViewController: FormViewController {
                 return
             }
             
-            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
+            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result)
         }
     }
     
@@ -269,11 +247,6 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
         
-        if let index = values[FormTag.speed] as? Float {
-            let speedValue = self.speedsList[Int(index)]
-            videoContentLoader.configContent.speed      =   speedValue
-        }
-
         videoContentLoader.configContent.selectedFieldList.removeAll()
         let selectedFields = values[FormTag.preselectField] as? Set<IPField> ?? []
         for field in selectedFields {
@@ -293,6 +266,5 @@ extension VideoConfigureViewController {
         static let preselectField   =   "PreselectField"
         static let fromDate         =   "FromDate"
         static let toDate           =   "ToDate"
-        static let speed            =   "Speed"
     }
 }

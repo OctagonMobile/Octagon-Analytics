@@ -95,11 +95,10 @@ class NavigationManager: NSObject {
         rootViewController.present(tutorialViewCtr, animated: true, completion: nil)
     }
 
-    func showBarchartRace(_ navController: UINavigationController, data: [VideoContent], config: VideoConfigContent) {
+    func showBarchartRace(_ navController: UINavigationController, data: [VideoContent]) {
         guard let barchartRaceVC = StoryboardManager.shared.storyBoard(.timelineVideo).instantiateViewController(withIdentifier: ViewControllerIdentifiers.barChartRaceViewController) as? BarChartRaceViewController else { return }
         navController.pushViewController(barchartRaceVC, animated: true)
         barchartRaceVC.barData = data
-        barchartRaceVC.speed = config.speed
     }
     
     private func getInitialEntryPoint () -> UIViewController {
