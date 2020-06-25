@@ -31,8 +31,10 @@ class BarChartRaceViewController: UIViewController {
     private var speed: Float    =   0.4 {
         didSet {
             barChartView.timeInterval = TimeInterval(speed)
-            barChartView.pause()
-            barChartView.play()
+            if barChartView.playerState == .playing {
+                barChartView.pause()
+                barChartView.play()
+            }
         }
     }
     //MARK: Funnctions
@@ -65,12 +67,15 @@ class BarChartRaceViewController: UIViewController {
         speedSlider.maximumTrackTintColor = CurrentTheme.sliderTrackColor
         speedSlider.thumbTintColor = CurrentTheme.standardColor
         speedSlider.minimumValue = 0.0
-        speedSlider.value = CGFloat(sliderValues.firstIndex(of: speed) ?? 0)
         speedSlider.tickCount = sliderValuesString.count
         camelLabels.names = sliderValuesString
         camelLabels.upFontColor = CurrentTheme.standardColor
         camelLabels.downFontColor = CurrentTheme.sliderTrackColor
+        camelLabels.upFontSize = 15
+        camelLabels.downFontSize = 15
         speedSlider.ticksListener = camelLabels
+        speedSlider.value = CGFloat(sliderValues.firstIndex(of: speed) ?? 0)
+        camelLabels.value = UInt(speedSlider.value)
         speedSlider.addTarget(self, action: #selector(BarChartRaceViewController.speedSliderDragEnded(_:)), for: .touchUpInside)
 
         
@@ -103,10 +108,7 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
     
     func playerStateUpdated(_ state: BasicBarChart.PlayerState) {
         var playButtonTitle = (state == .playing) ? "videoPause" : "videoPlay"
-        if CurrentTheme.isDarkTheme {
-            playButtonTitle += "-Dark"
-        }
-        
+        playButtonTitle += CurrentTheme.isDarkTheme ? "-Dark" : "-Light"
         playButton.setImage(UIImage(named: playButtonTitle), for: .normal)
     }
     

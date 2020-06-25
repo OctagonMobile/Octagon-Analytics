@@ -43,6 +43,9 @@
                                     <constraint firstAttribute="height" constant="50" id="BtS-jL-SzN"/>
                                 </constraints>
                                 <state key="normal" title="GENERATE VIDEO"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                                 <connections>
                                     <action selector="generateVideoButtonAction:" destination="2bp-7X-uVp" eventType="touchUpInside" id="Nvc-qj-vyy"/>
                                 </connections>

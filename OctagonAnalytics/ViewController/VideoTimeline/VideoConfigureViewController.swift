@@ -31,10 +31,12 @@ class VideoConfigureViewController: FormViewController {
         title   =   "Video Configuration".localiz()
         navigationItem.leftBarButtonItems = []
         
-        generateVideoButton.style(CurrentTheme.textStyleWith(generateVideoButton.titleLabel?.font.pointSize ?? 20, weight: .regular, color: CurrentTheme.secondaryTitleColor))
+        generateVideoButton.style(CurrentTheme.textStyleWith(generateVideoButton.titleLabel?.font.pointSize ?? 20, weight: .semibold, color: CurrentTheme.secondaryTitleColor))
+        generateVideoButton.style(.roundCorner(5.0, 0.0))
         generateVideoButton.backgroundColor = CurrentTheme.standardColor
 
         createForm()
+        tableView.tableFooterView = UIView()
         loadIndexPatters()
     }
     
