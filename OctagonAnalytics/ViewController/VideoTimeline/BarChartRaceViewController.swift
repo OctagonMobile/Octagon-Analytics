@@ -117,7 +117,7 @@ class BarChartRaceViewController: BaseViewController {
     @objc override func rightBarButtonAction(_ sender: UIBarButtonItem) {
         guard !recorder.isRecording else { return }
         barChartView.pause()
-        showOkCancelAlert("Export Video", "If you start to record the Video, please make sure to not interrupt it untill it finishes", okTitle: "Record", okActionBlock: {
+        showOkCancelAlert("Export Video", "Video Record Don't interrupt message", okTitle: "Record", okActionBlock: {
             self.barChartView.stop()
             self.recording(true)
         }, cancelTitle: "Not Now") {
