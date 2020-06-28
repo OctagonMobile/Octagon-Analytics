@@ -12,7 +12,7 @@ import SwiftDate
 import TGPControls
 import ReplayKit
 
-class BarChartRaceViewController: UIViewController {
+class BarChartRaceViewController: BaseViewController {
     
     private let recorder = RPScreenRecorder.shared()
 
@@ -58,8 +58,21 @@ class BarChartRaceViewController: UIViewController {
         barChartView?.stop()
     }
     
-    func rightBarButtons() -> [UIBarButtonItem] {
-        return [UIBarButtonItem(image: UIImage(named: "export"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
+    override func rightBarButtons() -> [UIBarButtonItem] {
+        guard !recorder.isRecording else {
+            return []
+        }
+        return [UIBarButtonItem(image: UIImage(named: "Record"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
+    }
+
+    override func leftBarButtons() -> [UIBarButtonItem] {
+        if recorder.isRecording {
+            let button = RecordButton(frame: CGRect(x: 0, y: 0, width: 60, height: 25))
+            button.addTarget(self, action: #selector(BarChartRaceViewController.stopRecordingButtonAction(_:)), for: .touchUpInside)
+            return [UIBarButtonItem(customView: button)]
+        } else {
+            return super.leftBarButtons()
+        }
     }
 
     //MARK: Private Functions
@@ -97,30 +110,45 @@ class BarChartRaceViewController: UIViewController {
         barChartView.setupBarChartRace(dataSetList, animated: true)
     }
     
-    @objc func rightBarButtonAction(_ sender: UIBarButtonItem) {
-        if !recorder.isRecording {
-            recording(true)
-        } else {
-            recording(false)
+    @objc override func rightBarButtonAction(_ sender: UIBarButtonItem) {
+        guard !recorder.isRecording else { return }
+        barChartView.pause()
+        showOkCancelAlert("Export Video", "Video Record Don't interrupt message", okTitle: "Record", okActionBlock: {
+            self.barChartView.stop()
+            self.recording(true)
+        }, cancelTitle: "Not Now") {
+            self.barChartView.play()
         }
     }
 
+    @objc func stopRecordingButtonAction(_ button: UIButton) {
+        recording(false)
+    }
+    
     private func recording(_ state: Bool) {
         if state {
             guard recorder.isAvailable else { return }
             recorder.startRecording{ (error) in
                 guard error == nil else { return }
+                self.barChartView.play()
+                self.updateNavigationBarItems()
             }
         } else {
             recorder.stopRecording { (preview, error) in
                 guard let preview = preview else { return }
-
+                self.updateNavigationBarItems()
+                self.barChartView.stop()
                 preview.modalPresentationStyle = .automatic
                 preview.previewControllerDelegate = self
 
                 self.present(preview, animated: true, completion: nil)
             }
         }
+    }
+    
+    private func updateNavigationBarItems() {
+        navigationItem.leftBarButtonItems = leftBarButtons()
+        navigationItem.rightBarButtonItems = rightBarButtons()
     }
 
     //MARK: Button Actions
@@ -144,6 +172,10 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
         var playButtonTitle = (state == .playing) ? "videoPause" : "videoPlay"
         playButtonTitle += CurrentTheme.isDarkTheme ? "-Dark" : "-Light"
         playButton.setImage(UIImage(named: playButtonTitle), for: .normal)
+        
+        if state == .stopped, recorder.isRecording {
+            recording(false)
+        }
     }
     
     func currentDataSet(_ dataSet: DataSet, index: Int) {
@@ -156,5 +188,4 @@ extension BarChartRaceViewController : RPPreviewViewControllerDelegate {
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true, completion: nil)
     }
-    
 }
