@@ -40,7 +40,7 @@ class VideoContent {
 extension VideoContent {
     func barChartDataSet() -> DataSet? {
         guard let date = date else { return nil }
-        let maxVal = entries.compactMap {$0.value}.reduce(0, +)
+        let maxVal = entries.sorted(by: { $0.value > $1.value}).first?.value ?? 0.0
         
         var colorIndex = -1
         let entriesList = entries.enumerated().compactMap { [weak self] (index, videoEntry) -> DataEntry? in
