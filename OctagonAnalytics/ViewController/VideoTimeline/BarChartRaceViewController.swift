@@ -62,17 +62,13 @@ class BarChartRaceViewController: BaseViewController {
         guard !recorder.isRecording else {
             return []
         }
-        return [UIBarButtonItem(image: UIImage(named: "export"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
+        return [UIBarButtonItem(image: UIImage(named: "Record"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
     }
 
     override func leftBarButtons() -> [UIBarButtonItem] {
         if recorder.isRecording {
-            let button = UIButton(type: .custom)
-            button.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
-            button.setTitle("0:00", for: .normal)
+            let button = RecordButton(frame: CGRect(x: 0, y: 0, width: 60, height: 25))
             button.addTarget(self, action: #selector(BarChartRaceViewController.stopRecordingButtonAction(_:)), for: .touchUpInside)
-            button.layer.backgroundColor = UIColor.red.cgColor
-            button.layer.cornerRadius = 5.0
             return [UIBarButtonItem(customView: button)]
         } else {
             return super.leftBarButtons()
@@ -141,6 +137,7 @@ class BarChartRaceViewController: BaseViewController {
             recorder.stopRecording { (preview, error) in
                 guard let preview = preview else { return }
                 self.updateNavigationBarItems()
+                self.barChartView.stop()
                 preview.modalPresentationStyle = .automatic
                 preview.previewControllerDelegate = self
 
