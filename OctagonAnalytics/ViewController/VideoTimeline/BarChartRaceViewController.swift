@@ -10,9 +10,12 @@ import UIKit
 import BarChartRace
 import SwiftDate
 import TGPControls
+import ReplayKit
 
 class BarChartRaceViewController: UIViewController {
     
+    private let recorder = RPScreenRecorder.shared()
+
     var barData: [VideoContent] = []
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -41,6 +44,7 @@ class BarChartRaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
+        navigationItem.rightBarButtonItems = rightBarButtons()
         initialSetup()
     }
     
@@ -54,6 +58,10 @@ class BarChartRaceViewController: UIViewController {
         barChartView?.stop()
     }
     
+    func rightBarButtons() -> [UIBarButtonItem] {
+        return [UIBarButtonItem(image: UIImage(named: "export"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
+    }
+
     //MARK: Private Functions
     private func initialSetup() {
         view.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -89,6 +97,32 @@ class BarChartRaceViewController: UIViewController {
         barChartView.setupBarChartRace(dataSetList, animated: true)
     }
     
+    @objc func rightBarButtonAction(_ sender: UIBarButtonItem) {
+        if !recorder.isRecording {
+            recording(true)
+        } else {
+            recording(false)
+        }
+    }
+
+    private func recording(_ state: Bool) {
+        if state {
+            guard recorder.isAvailable else { return }
+            recorder.startRecording{ (error) in
+                guard error == nil else { return }
+            }
+        } else {
+            recorder.stopRecording { (preview, error) in
+                guard let preview = preview else { return }
+
+                preview.modalPresentationStyle = .automatic
+                preview.previewControllerDelegate = self
+
+                self.present(preview, animated: true, completion: nil)
+            }
+        }
+    }
+
     //MARK: Button Actions
     @IBAction func playButtonAction(_ sender: UIButton) {
         if barChartView.playerState == .playing {
@@ -115,4 +149,12 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
     func currentDataSet(_ dataSet: DataSet, index: Int) {
         dateLabel.text = dataSet.date.toString(.custom("dd MMM yyyy"))
     }
+}
+
+extension BarChartRaceViewController : RPPreviewViewControllerDelegate {
+    
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        previewController.dismiss(animated: true, completion: nil)
+    }
+    
 }
