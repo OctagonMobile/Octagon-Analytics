@@ -97,8 +97,8 @@ class NavigationManager: NSObject {
 
     func showBarchartRace(_ navController: UINavigationController, data: [VideoContent]) {
         guard let barchartRaceVC = StoryboardManager.shared.storyBoard(.timelineVideo).instantiateViewController(withIdentifier: ViewControllerIdentifiers.barChartRaceViewController) as? BarChartRaceViewController else { return }
-        navController.pushViewController(barchartRaceVC, animated: true)
         barchartRaceVC.barData = data
+        navController.pushViewController(barchartRaceVC, animated: true)
     }
     
     private func getInitialEntryPoint () -> UIViewController {

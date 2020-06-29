@@ -14,14 +14,17 @@ import ReplayKit
 
 class BarChartRaceViewController: BaseViewController {
     
+    private var shouldHideControls: Bool     =   true
     private let recorder = RPScreenRecorder.shared()
 
     var barData: [VideoContent] = []
+    @IBOutlet weak var recordIndicator: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var controlsHolder: UIView!
     @IBOutlet weak var speedSlider: TGPDiscreteSlider!
     @IBOutlet weak var camelLabels: TGPCamelLabels!
+    @IBOutlet weak var controlsBottomConstraint: NSLayoutConstraint!
     
     //MARK: Outlets
     @IBOutlet weak var barChartView: BasicBarChart!
@@ -44,6 +47,10 @@ class BarChartRaceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "Bar Chart Video".localiz()
+        navigationController?.setNavigationBarHidden(shouldHideControls, animated: false)
+        recordIndicator.isHidden = shouldHideControls
+        controlsBottomConstraint.constant = -100
+        controlsHolder.isHidden = shouldHideControls
         navigationItem.rightBarButtonItems = rightBarButtons()
         initialSetup()
     }
@@ -51,6 +58,11 @@ class BarChartRaceViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         barChartView?.play()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        recordIndicator.layer.cornerRadius = recordIndicator.frame.width / 2
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,22 +77,12 @@ class BarChartRaceViewController: BaseViewController {
         return [UIBarButtonItem(image: UIImage(named: "Record"), style: .plain, target: self, action: #selector(rightBarButtonAction(_ :)))]
     }
 
-    override func leftBarButtons() -> [UIBarButtonItem] {
-        if recorder.isRecording {
-            let button = RecordButton(frame: CGRect(x: 0, y: 0, width: 60, height: 25))
-            button.addTarget(self, action: #selector(BarChartRaceViewController.stopRecordingButtonAction(_:)), for: .touchUpInside)
-            return [UIBarButtonItem(customView: button)]
-        } else {
-            return super.leftBarButtons()
-        }
-    }
-
     //MARK: Private Functions
     private func initialSetup() {
         view.backgroundColor = CurrentTheme.cellBackgroundColor
         controlsHolder.backgroundColor = CurrentTheme.lightBackgroundColor
         dateLabel.style(CurrentTheme.textStyleWith(dateLabel.font.pointSize, weight: .semibold))
-
+        
         //setup speed slider
         speedSlider.thumbStyle = ComponentStyle.rounded.rawValue
         speedSlider.thumbSize  = CGSize(width: 20, height: 20)
@@ -113,50 +115,71 @@ class BarChartRaceViewController: BaseViewController {
     @objc override func rightBarButtonAction(_ sender: UIBarButtonItem) {
         guard !recorder.isRecording else { return }
         barChartView.pause()
-        showOkCancelAlert("Export Video", "Video Record Don't interrupt message", okTitle: "Record", okActionBlock: {
+        showOkCancelAlert("Export Video".localiz(), "Video Record Don't interrupt message".localiz(), okTitle: "Record".localiz(), okActionBlock: {
             self.barChartView.stop()
-            self.recording(true)
-        }, cancelTitle: "Not Now") {
+            self.hideAllControls(true) { (completed) in
+                self.startRecording()
+            }
+        }, cancelTitle: "Not Now".localiz()) {
             self.barChartView.play()
         }
     }
-
-    @objc func stopRecordingButtonAction(_ button: UIButton) {
-        recording(false)
-    }
     
-    private func recording(_ state: Bool) {
-        if state {
-            guard recorder.isAvailable else { return }
-            recorder.startRecording{ (error) in
-                guard error == nil else { return }
-                self.barChartView.play()
-                self.updateNavigationBarItems()
-            }
-        } else {
-            recorder.stopRecording { (preview, error) in
-                guard let preview = preview else { return }
-                self.updateNavigationBarItems()
-                self.barChartView.stop()
-                preview.modalPresentationStyle = .automatic
-                preview.previewControllerDelegate = self
-
-                self.present(preview, animated: true, completion: nil)
-            }
+    
+    private func startRecording() {
+        guard recorder.isAvailable else { return }
+        recorder.startRecording{ (error) in
+            guard error == nil else { return }
+            self.barChartView.play()
+            self.recordIndicator.isHidden = false
         }
     }
     
-    private func updateNavigationBarItems() {
-        navigationItem.leftBarButtonItems = leftBarButtons()
-        navigationItem.rightBarButtonItems = rightBarButtons()
-    }
+    private func stopRecording() {
+        recorder.stopRecording { (preview, error) in
+            guard let preview = preview else { return }
+            
+            self.barChartView.stop()
+            self.recordIndicator.isHidden = true
 
+            preview.modalPresentationStyle = .automatic
+            preview.previewControllerDelegate = self
+            self.present(preview, animated: true, completion: nil)
+        }
+        
+    }
+    
+    private func hideAllControls(_ hide: Bool, completion: ((Bool) -> Void)?) {
+        
+        navigationController?.setNavigationBarHidden(hide, animated: true)
+        controlsBottomConstraint.constant = hide ? -100 : 0
+        if !hide {
+            self.controlsHolder.isHidden = false
+        }
+        UIView.animate(withDuration: TimeInterval(UINavigationController.hideShowBarDuration), animations: {
+            self.view.layoutIfNeeded()
+        }) { (completed) in
+            if hide {
+                self.controlsHolder.isHidden = hide
+            }
+            completion?(completed)
+        }
+    }
+    
     //MARK: Button Actions
     @IBAction func playButtonAction(_ sender: UIButton) {
         if barChartView.playerState == .playing {
             barChartView.pause()
         } else {
             barChartView.play()
+        }
+    }
+    
+    @IBAction func tapAction(_ sender: UITapGestureRecognizer) {
+        shouldHideControls = !shouldHideControls
+        hideAllControls(shouldHideControls) { (completed) in
+            guard self.recorder.isRecording else { return }
+            self.stopRecording()
         }
     }
     
@@ -174,7 +197,7 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
         playButton.setImage(UIImage(named: playButtonTitle), for: .normal)
         
         if state == .stopped, recorder.isRecording {
-            recording(false)
+            stopRecording()
         }
     }
     
