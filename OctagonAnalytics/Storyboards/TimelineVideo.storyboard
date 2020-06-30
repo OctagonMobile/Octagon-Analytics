@@ -98,7 +98,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEt-jd-Keb">
-                                <rect key="frame" x="20" y="79" width="5" height="5"/>
+                                <rect key="frame" x="20" y="76" width="8" height="8"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="QQL-ib-7te">
@@ -110,11 +110,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep" customClass="BasicBarChart" customModule="BarChartRace">
-                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="698"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="394" y="857" width="0.0" height="0.0"/>
+                                <rect key="frame" x="404" y="782" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDt-kH-JMX" userLabel="Overlay">
-                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="698"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -131,7 +131,7 @@
                                 </connections>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Fv-tjP">
-                                <rect key="frame" x="0.0" y="882" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-uf-n9w">
                                         <rect key="frame" x="10" y="10" width="40" height="40"/>
@@ -186,9 +186,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="zEt-jd-Keb" secondAttribute="bottom" id="W5N-mq-jjq"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="-5" id="aI0-IM-ROP">
-                                <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
-                            </constraint>
+                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="aI0-IM-ROP"/>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="leading" secondItem="TzH-z7-3ep" secondAttribute="leading" id="hd5-pb-Ek9"/>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="hAo-Fv-tjP" secondAttribute="trailing" id="i5o-hu-9gk"/>
@@ -197,8 +195,10 @@
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="uow-PR-Ahf"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="yuY-aG-XAO"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" constant="-20" id="zQB-8u-iIc"/>
-                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="5" id="zkS-ui-W6p"/>
+                            <constraint firstItem="H6T-f9-RrA" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" constant="-10" id="zQB-8u-iIc">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-30"/>
+                            </constraint>
+                            <constraint firstItem="hAo-Fv-tjP" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="bottom" constant="20" id="zkS-ui-W6p"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nzL-Js-NCE"/>
                     </view>

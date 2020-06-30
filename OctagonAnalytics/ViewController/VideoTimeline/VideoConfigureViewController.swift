@@ -127,7 +127,6 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
                 $0.onChange { (row) in
-                    
                     guard let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField> else { return }
                     self.filteredFields = self.filteredFields.filter({ $0.name != row.value?.name })
                     fieldRow.options = self.filteredFields.compactMap({ $0 })
@@ -170,12 +169,20 @@ class VideoConfigureViewController: FormViewController {
                     return nil
                 }
                 $0.onPresent { (from, to) in
+                    to.title = "Fields Options"
                     to.selectableRowCellSetup = { cell, row in
                         row.displayValueFor = { val in
                             if let value = val {
                                 return value.name
                             }
                             return nil
+                        }
+                    }
+                    to.selectableRowCellUpdate = { cell, row in
+                        cell.textLabel?.textColor = CurrentTheme.standardColor
+                        cell.tintColor = CurrentTheme.standardColor
+                        row.displayValueFor = { val -> String in
+                            return ""
                         }
                     }
                 }

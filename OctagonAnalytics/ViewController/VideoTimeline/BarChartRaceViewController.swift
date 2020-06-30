@@ -49,7 +49,7 @@ class BarChartRaceViewController: BaseViewController {
         title   =   "Bar Chart Video".localiz()
         navigationController?.setNavigationBarHidden(shouldHideControls, animated: false)
         recordIndicator.isHidden = shouldHideControls
-        controlsBottomConstraint.constant = -100
+        controlsBottomConstraint.constant = -80
         controlsHolder.isHidden = shouldHideControls
         navigationItem.rightBarButtonItems = rightBarButtons()
         initialSetup()
@@ -153,7 +153,7 @@ class BarChartRaceViewController: BaseViewController {
     private func hideAllControls(_ hide: Bool, completion: ((Bool) -> Void)?) {
         
         navigationController?.setNavigationBarHidden(hide, animated: true)
-        controlsBottomConstraint.constant = hide ? -100 : 0
+        controlsBottomConstraint.constant = hide ? -80 : 0
         if !hide {
             self.controlsHolder.isHidden = false
         }
