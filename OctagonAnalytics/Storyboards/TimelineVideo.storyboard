@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,7 +14,7 @@
                     <tabBarItem key="tabBarItem" title="Video Configuration" image="TabCanvasNormal" selectedImage="TabCanvasSelected" id="fjg-co-bPy"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fn3-oT-hlh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -30,15 +30,15 @@
             <objects>
                 <viewController id="2bp-7X-uVp" customClass="VideoConfigureViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tSP-6t-j0q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fzw-Oa-TeB">
-                                <rect key="frame" x="0.0" y="88" width="414" height="655"/>
+                                <rect key="frame" x="194.5" y="50" width="723" height="664"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIR-ww-Cgd">
-                                <rect key="frame" x="10" y="743" width="394" height="50"/>
+                                <rect key="frame" x="204.5" y="714" width="703" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="BtS-jL-SzN"/>
                                 </constraints>
@@ -56,7 +56,7 @@
                             <constraint firstItem="yBA-8k-aQd" firstAttribute="bottom" secondItem="KIR-ww-Cgd" secondAttribute="bottom" constant="20" id="49J-we-K52"/>
                             <constraint firstItem="KIR-ww-Cgd" firstAttribute="trailing" secondItem="fzw-Oa-TeB" secondAttribute="trailing" constant="-10" id="DQH-cO-DFN"/>
                             <constraint firstItem="fzw-Oa-TeB" firstAttribute="centerX" secondItem="tSP-6t-j0q" secondAttribute="centerX" id="N2e-2S-xLe"/>
-                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="width" secondItem="tSP-6t-j0q" secondAttribute="width" multiplier="0.5" id="QSZ-TO-QRv"/>
+                            <constraint firstItem="fzw-Oa-TeB" firstAttribute="width" secondItem="tSP-6t-j0q" secondAttribute="width" multiplier="0.65" id="QSZ-TO-QRv"/>
                             <constraint firstItem="yBA-8k-aQd" firstAttribute="trailing" secondItem="fzw-Oa-TeB" secondAttribute="trailing" id="TLv-ET-owD"/>
                             <constraint firstItem="KIR-ww-Cgd" firstAttribute="top" secondItem="fzw-Oa-TeB" secondAttribute="bottom" id="iAa-2v-T1h"/>
                             <constraint firstItem="KIR-ww-Cgd" firstAttribute="leading" secondItem="fzw-Oa-TeB" secondAttribute="leading" constant="10" id="kOw-lV-VHZ"/>
@@ -94,11 +94,11 @@
             <objects>
                 <viewController storyboardIdentifier="BarChartRaceViewController" hidesBottomBarWhenPushed="YES" id="hHg-aX-uS9" customClass="BarChartRaceViewController" customModule="OctagonAnalytics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvY-ao-9og">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEt-jd-Keb">
-                                <rect key="frame" x="20" y="76" width="8" height="8"/>
+                                <rect key="frame" x="40" y="24" width="16" height="16"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="QQL-ib-7te">
@@ -110,11 +110,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzH-z7-3ep" customClass="BasicBarChart" customModule="BarChartRace">
-                                <rect key="frame" x="0.0" y="84" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="40" width="1112" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="404" y="782" width="0.0" height="0.0"/>
+                                <rect key="frame" x="1082" y="734" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDt-kH-JMX" userLabel="Overlay">
-                                <rect key="frame" x="0.0" y="84" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="40" width="1112" height="694"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -131,10 +131,10 @@
                                 </connections>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Fv-tjP">
-                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="754" width="1112" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-uf-n9w">
-                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="30" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kZu-uf-n9w" secondAttribute="height" multiplier="1:1" id="S4I-w9-QP9"/>
                                         </constraints>
@@ -144,15 +144,18 @@
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AnD-CC-EkT" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                        <rect key="frame" x="75" y="5" width="314" height="28"/>
+                                        <rect key="frame" x="115" y="5" width="972" height="39"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdU-jF-UxN" customClass="TGPCamelLabels" customModule="TGPControls">
-                                        <rect key="frame" x="75" y="33" width="314" height="22"/>
+                                        <rect key="frame" x="115" y="44" width="972" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="regularLayout">
                                                 <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="offCenter">
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>

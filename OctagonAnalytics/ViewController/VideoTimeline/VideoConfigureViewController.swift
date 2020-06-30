@@ -42,7 +42,7 @@ class VideoConfigureViewController: FormViewController {
     
     private func createForm() {
         form +++ Section("")
-            <<< PickerInlineRow<IndexPattern>() {
+            <<< PickerInputRow<IndexPattern>() {
                 $0.title = "Index Pattern"
                 $0.tag = FormTag.indexPattern
                 $0.add(rule: RuleRequired(msg: "Please select Index Pattern."))
@@ -53,12 +53,14 @@ class VideoConfigureViewController: FormViewController {
                     return indexPattern.title
                 }
                 $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     
                     if !row.isValid {
                         
-                        cell.textLabel?.textColor = .red
-                        
+                        cell.textLabel?.textColor = CurrentTheme.errorMessageColor
+                        cell.detailTextLabel?.textColor = CurrentTheme.errorMessageColor
                         var errors = ""
                         
                         for error in row.validationErrors {
@@ -74,7 +76,7 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.onChange { (row) in
                     
-                    guard let timeFieldRow = self.form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField>,
+                    guard let timeFieldRow = self.form.rowBy(tag: FormTag.timeField) as? PickerInputRow<IPField>,
                         let fieldRow = self.form.rowBy(tag: FormTag.preselectField) as? MultipleSelectorRow<IPField>,
                         let selectedIndexPattern = row.value else { return }
                     
@@ -92,14 +94,14 @@ class VideoConfigureViewController: FormViewController {
                 }
             }
             
-            <<< PickerInlineRow<IPField>() {
+            <<< PickerInputRow<IPField>() {
                 $0.title = "Time Field"
                 $0.tag = FormTag.timeField
                 $0.options = []
-                $0.add(rule: RuleRequired(msg: "Please select Time Field."))
+                $0.add(rule: RuleRequired(msg: "Please select Time Field"))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.hidden = Condition.function([FormTag.indexPattern]){ form in
-                    if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> {
+                    if let row = form.rowBy(tag: FormTag.indexPattern) as? PickerInputRow<IndexPattern> {
                         return row.value == nil
                     }
                     return false
@@ -109,11 +111,14 @@ class VideoConfigureViewController: FormViewController {
                     return field.name
                 }
                 $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     if !row.isValid {
                         
-                        cell.textLabel?.textColor = .red
-                        
+                        cell.textLabel?.textColor = CurrentTheme.errorMessageColor
+                        cell.detailTextLabel?.textColor = CurrentTheme.errorMessageColor
+
                         var errors = ""
                         
                         for error in row.validationErrors {
@@ -138,18 +143,23 @@ class VideoConfigureViewController: FormViewController {
             <<< MultipleSelectorRow<IPField>() {
                 $0.title = "Fields to display"
                 $0.tag = FormTag.preselectField
+                $0.add(rule: RuleRequired(msg: "Please select Fields"))
+                $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.hidden = Condition.function([FormTag.timeField]){ form in
-                    if let row = form.rowBy(tag: FormTag.timeField) as? PickerInlineRow<IPField> {
+                    if let row = form.rowBy(tag: FormTag.timeField) as? PickerInputRow<IPField> {
                         return row.value == nil
                     }
                     return false
                 }
                 $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
                     cell.textLabel?.textColor = CurrentTheme.standardColor
                     if !row.isValid {
                         
-                        cell.textLabel?.textColor = .red
-                        
+                        cell.textLabel?.textColor = CurrentTheme.errorMessageColor
+                        cell.detailTextLabel?.textColor = CurrentTheme.errorMessageColor
+
                         var errors = ""
                         
                         for error in row.validationErrors {
@@ -188,25 +198,29 @@ class VideoConfigureViewController: FormViewController {
                 }
             }
             
-            <<< DateInlineRow() {
+            <<< DateRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
                 $0.value = Date()
                 $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
                     cell.textLabel?.textColor = CurrentTheme.standardColor
-                    if let toDateRow = self.form.rowBy(tag: FormTag.toDate) as? DateInlineRow {
+                    if let toDateRow = self.form.rowBy(tag: FormTag.toDate) as? DateRow {
                         toDateRow.minimumDate = row.value
                     }
                 }
             }
             
-            <<< DateInlineRow() {
+            <<< DateRow() {
                 $0.title = "To Date"
                 $0.tag = FormTag.toDate
                 $0.value = Date()
                 $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
                     cell.textLabel?.textColor = CurrentTheme.standardColor
-                    if let fromDateRow = self.form.rowBy(tag: FormTag.fromDate) as? DateInlineRow {
+                    if let fromDateRow = self.form.rowBy(tag: FormTag.fromDate) as? DateRow {
                         fromDateRow.maximumDate = row.value
                     }
                 }
@@ -218,7 +232,7 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.loadIndexPatters { [weak self] (res, error) in
             self?.hud.hide(animated: true)
             guard let options = res as? [IndexPattern] else { return }
-            guard let indePatternRow = self?.form.rowBy(tag: FormTag.indexPattern) as? PickerInlineRow<IndexPattern> else { return }
+            guard let indePatternRow = self?.form.rowBy(tag: FormTag.indexPattern) as? PickerInputRow<IndexPattern> else { return }
             indePatternRow.options = options
             indePatternRow.reload()
         }

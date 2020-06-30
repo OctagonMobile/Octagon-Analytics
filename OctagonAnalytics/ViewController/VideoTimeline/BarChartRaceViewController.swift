@@ -99,6 +99,7 @@ class BarChartRaceViewController: BaseViewController {
         speedSlider.ticksListener = camelLabels
         speedSlider.value = CGFloat(sliderValues.firstIndex(of: speed) ?? 0)
         camelLabels.value = UInt(speedSlider.value)
+        camelLabels.offCenter = 0.2
         speedSlider.addTarget(self, action: #selector(BarChartRaceViewController.speedSliderDragEnded(_:)), for: .touchUpInside)
 
         
