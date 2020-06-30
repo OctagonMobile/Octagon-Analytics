@@ -178,26 +178,28 @@ class VideoConfigureViewController: FormViewController {
                     }
                     return nil
                 }
-                $0.onPresent { (from, to) in
-                    to.title = "Fields Options"
-                    to.selectableRowCellSetup = { cell, row in
-                        row.displayValueFor = { val in
-                            if let value = val {
-                                return value.name
-                            }
-                            return nil
+            }
+            .onPresent { (from, to) in
+                to.title = "Fields Options"
+                to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(VideoConfigureViewController.doneButtonAction(_:)))
+                to.selectableRowCellSetup = { cell, row in
+                    row.displayValueFor = { val in
+                        if let value = val {
+                            return value.name
                         }
+                        return nil
                     }
-                    to.selectableRowCellUpdate = { cell, row in
-                        cell.textLabel?.textColor = CurrentTheme.standardColor
-                        cell.tintColor = CurrentTheme.standardColor
-                        row.displayValueFor = { val -> String in
-                            return ""
-                        }
+                }
+                to.selectableRowCellUpdate = { cell, row in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.detailTextLabel?.textColor = CurrentTheme.titleColor
+                    cell.textLabel?.textColor = CurrentTheme.standardColor
+                    row.displayValueFor = { val -> String in
+                        return ""
                     }
                 }
             }
-            
+
             <<< DateRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
@@ -279,6 +281,10 @@ class VideoConfigureViewController: FormViewController {
         
         // Load Video Data with specified params
         loadVideoData()
+    }
+    
+    @objc func doneButtonAction(_ button: UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 
