@@ -8,6 +8,7 @@
 
 import ObjectMapper
 import Alamofire
+import SwiftDate
 
 class VideoContentLoader {
     
@@ -23,7 +24,7 @@ class VideoContentLoader {
         return formatter
     }
     
-    //MARK: Functions    
+    //MARK: Functions
     func loadIndexPatters(_ completion: CompletionBlock?) {
         let params: [String : Any] = ["type": "index-pattern",
                                       "per_page": Constant.pageSize]
@@ -51,9 +52,8 @@ class VideoContentLoader {
         let list = savedObjectsList.compactMap({ IndexPattern(JSON: $0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
         return list
     }
-    
-    func loadVideoData(_ completion: CompletionBlock?) {
         
+    func loadVideoData(_ completion: CompletionBlock?) {
         guard let indexPattern = configContent.indexPattern else { return }
         let queryParams: [String : String] =
             ["method": "POST",
@@ -61,28 +61,24 @@ class VideoContentLoader {
 
         DataManager.shared.loadData(UrlComponents.videoData, queryParametres: queryParams, parameters: generatedQuery()) { [weak self] (result, error) in
             guard error == nil else {
-                self?.videoContentList.removeAll()
-                completion?(self?.videoContentList, error)
+                completion?(nil, error)
                 return
             }
 
             if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] as? [AnyHashable: Any?],
-                let hitsDictionary = finalResult["hits"] as? [AnyHashable: Any?],
-                let hitsResult = hitsDictionary["hits"] as? [[String: Any]]{
+                let hitsDictionary = finalResult["aggregations"] as? [AnyHashable: Any?],
+                let hitsResult = hitsDictionary["dateHistogramName"] as? [String: Any],
+                let buckets = hitsResult["buckets"] as? [[String: Any]] {
 
-                self?.videoContentList.removeAll()
-                for dict in hitsResult {
-                    let videoContent = VideoContent()
-                    videoContent.configContent = self?.configContent
-                    videoContent.updateContent(dict)
-                    self?.videoContentList.append(videoContent)
-                }
+                self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
+
                 self?.videoContentList.sort(by: { (first, second) -> Bool in
                     guard let firstDate = first.date, let secondDate = second.date else { return false }
                     return firstDate < secondDate
                 })
+                
+                completion?(self?.videoContentList, nil)
             }
-            completion?(self?.videoContentList, error)
         }
     }
     
@@ -90,17 +86,27 @@ class VideoContentLoader {
         
         guard let fromDate = configContent.fromDate,
             let toDate = configContent.toDate,
-            let timeFieldName = configContent.timeField?.name else { return [:] }
+            let timeFieldName = configContent.timeField?.name,
+            let fieldName = configContent.field?.name,
+            let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
         
         let fromDateStr = queryDateFormatter.string(from: fromDate)
         let toDateStr = queryDateFormatter.string(from: toDate)
+
+        let query = [ "range":
+            ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]
+
         
-        let query = [ "range": [
-            "\(timeFieldName)": [ "gte": fromDateStr,
-                                  "lte": toDateStr]
-            ]
-        ]
-        return ["query": query, "size": 10000]
+        let datHistogram = ["field":"\(timeFieldName)", "interval": "1d"]
+        
+        let maxAggs = ["sum": ["field": valueToDisplayFieldName]]
+        let sortAggs = ["bucket_sort": ["sort": [["max_field": ["order": "desc"]]], "size": configContent.topMaxNumber]]
+        
+        let innerMostAggs = ["max_field": maxAggs, "count_bucket_sort": sortAggs]
+        let middleLevelAggs: [String : Any] = ["terms": ["field": fieldName, "size": 500], "aggs": innerMostAggs]
+        let topMostAggs: [String : Any] = ["date_histogram": datHistogram, "aggs": ["aggs_Fields": middleLevelAggs]]
+        
+        return ["query": query, "size": 0, "aggs": ["dateHistogramName" : topMostAggs]]
     }
 }
 
@@ -117,9 +123,12 @@ extension VideoContentLoader {
 
 ///Used to store all the selected data from forms
 class VideoConfigContent {
+    var videoType: VideoType                 =   .barChartRace
     var indexPattern: IndexPattern?
     var timeField: IPField?
-    var selectedFieldList: [IPField]    =   []
+    var field: IPField?
+    var valueToDisplay: IPField?
+    var topMaxNumber: Int               =   5
     var fromDate: Date?
     var toDate: Date?
 }

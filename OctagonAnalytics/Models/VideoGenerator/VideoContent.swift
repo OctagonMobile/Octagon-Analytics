@@ -8,32 +8,23 @@
 import ObjectMapper
 import BarChartRace
 
-class VideoContent {
-    
-    var configContent: VideoConfigContent?
-    
+class VideoContent: Mappable {
     var date: Date?
     var entries: [VideoEntry]   =   []
-    
+
     private var colors: [UIColor] = CurrentTheme.barChartRaceColors
 
     //MARK: Functions
+    required init?(map: Map) {}
     
-    func updateContent(_ dict: [String: Any]) {
-        guard let source = dict["_source"] as? [String: Any] else { return }
-
-        if let timeFieldName = configContent?.timeField?.name,
-            let dateString = source[timeFieldName] as? String {
+    func mapping(map: Map) {
+        if let dateString = map.JSON["key_as_string"] as? String {
             date = dateString.formattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         }
-
-        var list: [[String: Any]] = []
-        for field in configContent?.selectedFieldList ?? [] {
-            let val = source[field.name] as? CGFloat ?? 0.0
-            list.append(["title":field.name, "value": val])
-        }
-
-        entries = Mapper<VideoEntry>().mapArray(JSONArray: list)
+        
+        guard let aggsFields = map.JSON["aggs_Fields"] as? [String: Any],
+            let buckets = aggsFields["buckets"] as? [[String : Any]] else { return }
+        entries = Mapper<VideoEntry>().mapArray(JSONArray: buckets)
     }
 }
 
@@ -69,8 +60,8 @@ class VideoEntry: Mappable {
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        title       <-  map["title"]
-        value       <-  map["value"]
+        title       <-  map["key"]
+        value       <-  map["max_field.value"]
     }
 }
 

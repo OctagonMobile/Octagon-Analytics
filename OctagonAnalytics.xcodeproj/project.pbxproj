@@ -46,6 +46,8 @@
 		513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 513A908A229AA17400B7E844 /* Exo2-Regular.otf */; };
 		513A909F229AA17400B7E844 /* Exo2-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 513A908D229AA17400B7E844 /* Exo2-Bold.otf */; };
 		513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A9CF320442B550001A2A2 /* TileImageCollectionViewCell.swift */; };
+		513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */; };
+		513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B635B24B1D2DE0060F7C4 /* OADateRow.swift */; };
 		513D89792175F725001B12D6 /* WorldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D89782175F724001B12D6 /* WorldMapView.swift */; };
 		513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 513D897C2175F796001B12D6 /* CountriesBoundary.geojson */; };
 		513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */; };
@@ -269,6 +271,8 @@
 		513A908A229AA17400B7E844 /* Exo2-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Regular.otf"; sourceTree = "<group>"; };
 		513A908D229AA17400B7E844 /* Exo2-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Bold.otf"; sourceTree = "<group>"; };
 		513A9CF320442B550001A2A2 /* TileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAPickerInputRow.swift; sourceTree = "<group>"; };
+		513B635B24B1D2DE0060F7C4 /* OADateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OADateRow.swift; sourceTree = "<group>"; };
 		513D89782175F724001B12D6 /* WorldMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldMapView.swift; sourceTree = "<group>"; };
 		513D897C2175F796001B12D6 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 		513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMapViewController.swift; sourceTree = "<group>"; };
@@ -543,9 +547,9 @@
 			children = (
 				F1A84BE32472827000455B76 /* Constants */,
 				51F359EE24601A8D0009AC07 /* HudView */,
-				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51E8BF3C20F38048004B5D20 /* DatePicker */,
 				5174FB96219C105E003BEB1E /* ForceDirectedGraph */,
+				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51D5777520DB83410080608D /* DatePickerMapper.swift */,
 				5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */,
 				51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */,
@@ -560,6 +564,15 @@
 				512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */,
 			);
 			path = TagCloud;
+			sourceTree = "<group>";
+		};
+		5130187024AB753300258B0C /* VideoConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */,
+				513B635B24B1D2DE0060F7C4 /* OADateRow.swift */,
+			);
+			path = VideoConfiguration;
 			sourceTree = "<group>";
 		};
 		5130A10A1FA73313003D0525 /* Dashboard */ = {
@@ -1081,6 +1094,7 @@
 		51AB677B1F9E12A700304234 /* CellsAndViews */ = {
 			isa = PBXGroup;
 			children = (
+				5130187024AB753300258B0C /* VideoConfiguration */,
 				F133769F247FEAF4008A5D3D /* MultiLayerPieChart */,
 				51CD9AA123F2A318005ACD46 /* Tutorial */,
 				51D385E32370149400C59220 /* Canvas */,
@@ -1618,6 +1632,7 @@
 				51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */,
 				51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */,
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
+				513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */,
 				5133778F24680B74001AB9AF /* RangeControlsView.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
 				F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */,
@@ -1638,6 +1653,7 @@
 				51A6B3291FCD3FE400F6A3E8 /* Panel.swift in Sources */,
 				5130A11A1FA86C26003D0525 /* Aggregation.swift in Sources */,
 				51831C271FA89DF00017173B /* DKTagCloudView.m in Sources */,
+				513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */,
 				51D385E5237014B400C59220 /* CanvasListCollectionViewCell.swift in Sources */,
 				513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */,
 				514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */,
