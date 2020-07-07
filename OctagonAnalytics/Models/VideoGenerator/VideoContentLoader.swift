@@ -71,11 +71,6 @@ class VideoContentLoader {
                 let buckets = hitsResult["buckets"] as? [[String: Any]] {
 
                 self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
-
-                self?.videoContentList.sort(by: { (first, second) -> Bool in
-                    guard let firstDate = first.date, let secondDate = second.date else { return false }
-                    return firstDate < secondDate
-                })
                 
                 completion?(self?.videoContentList, nil)
             }

@@ -12,8 +12,6 @@ class VideoContent: Mappable {
     var date: Date?
     var entries: [VideoEntry]   =   []
 
-    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
-
     //MARK: Functions
     required init?(map: Map) {}
     
@@ -29,19 +27,12 @@ class VideoContent: Mappable {
 }
 
 extension VideoContent {
-    func barChartDataSet() -> DataSet? {
+    func barChartDataSet(_ colors: [UIColor]) -> DataSet? {
         guard let date = date else { return nil }
         let maxVal = entries.sorted(by: { $0.value > $1.value}).first?.value ?? 0.0
         
-        var colorIndex = -1
-        let entriesList = entries.enumerated().compactMap { [weak self] (index, videoEntry) -> DataEntry? in
-            guard let strongSelf = self else { return nil}
-            if (colorIndex + 1) >= strongSelf.colors.count {
-                colorIndex = 0
-            } else {
-                colorIndex += 1
-            }
-            return videoEntry.barChartEntry(Float(maxVal), color: strongSelf.colors[colorIndex])
+        let entriesList = entries.enumerated().compactMap { (index, videoEntry) -> DataEntry? in
+            return videoEntry.barChartEntry(Float(maxVal), color: colors[index])
         }
         return DataSet(date, dataEntries: entriesList)
     }

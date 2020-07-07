@@ -261,6 +261,30 @@ class VideoConfigureViewController: FormViewController {
                 }
             }
             
+            <<< StepperRow() {
+                $0.title = "Top Count"
+                $0.tag = FormTag.maxCount
+                $0.value = Double(videoContentLoader.configContent.topMaxNumber)
+                $0.cellSetup { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.stepper.minimumValue = 2
+                    cell.stepper.maximumValue = 50
+                    cell.stepper.setIncrementImage(UIImage(named: "ZoomIn"), for: .normal)
+                    cell.stepper.setDecrementImage(UIImage(named: "ZoomOut"), for: .normal)
+                    cell.valueLabel.textColor = CurrentTheme.titleColor
+                    cell.tintColor = CurrentTheme.titleColor
+                }
+                $0.cellUpdate { (cell, row) in
+                    cell.titleLabel?.textColor = CurrentTheme.standardColor
+                    cell.titleLabel?.text = row.title
+                }
+                $0.displayValueFor = {
+                    guard let val = $0 else { return nil }
+                    return "\(Int(val))"
+                }
+
+            }
+            
             <<< OADateRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
@@ -341,7 +365,8 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
         videoContentLoader.configContent.videoType          = values[FormTag.videoType] as? VideoType ?? .barChartRace
-        
+        videoContentLoader.configContent.topMaxNumber       = Int(values[FormTag.maxCount] as? Double ?? 5.0)
+
         // Load Video Data with specified params
         loadVideoData()
     }
@@ -356,6 +381,7 @@ extension VideoConfigureViewController {
         static let valueToDisplay   =   "ValueToDisplay"
         static let fromDate         =   "FromDate"
         static let toDate           =   "ToDate"
+        static let maxCount         =   "MaxCount"
     }
     
     struct ErrorMessages {

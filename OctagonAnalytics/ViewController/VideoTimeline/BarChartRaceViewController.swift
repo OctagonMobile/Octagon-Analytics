@@ -43,6 +43,11 @@ class BarChartRaceViewController: BaseViewController {
             }
         }
     }
+    
+    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
+    private var colorsDict: [String: UIColor] = [:]
+    private var currentColorIndex: Int = 0
+
     //MARK: Funnctions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +114,18 @@ class BarChartRaceViewController: BaseViewController {
         barChartView.timeInterval = TimeInterval(speed)
         barChartView.titleColor = CurrentTheme.titleColor
         barChartView.valueColor = CurrentTheme.titleColor
-        let dataSetList = barData.compactMap({ $0.barChartDataSet() })
+        
+        let dataSetList = barData.compactMap { (videoContent) -> DataSet? in
+            let colorSet: [UIColor] =  videoContent.entries.compactMap { (entry) -> UIColor? in
+                if colorsDict[entry.title] == nil {
+                    colorsDict[entry.title] = colors[currentColorIndex % colors.count]
+                    currentColorIndex += 1
+                }
+                return colorsDict[entry.title] ?? CurrentTheme.standardColor
+            }
+            return videoContent.barChartDataSet(colorSet)
+        }
+        
         barChartView.setupBarChartRace(dataSetList, animated: true)
     }
     
