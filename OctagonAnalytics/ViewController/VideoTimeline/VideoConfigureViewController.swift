@@ -49,6 +49,7 @@ class VideoConfigureViewController: FormViewController {
     private func createForm() {
         form +++ Section("")
 
+            /*
             <<< SegmentedRow<VideoType>() {
                 $0.tag      =   FormTag.videoType
                 $0.options  =   VideoType.all
@@ -66,7 +67,7 @@ class VideoConfigureViewController: FormViewController {
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
                 }
-            }
+            }*/
             
             <<< OAPickerInputRow<IndexPattern>() {
                 $0.title = "Index Pattern"
