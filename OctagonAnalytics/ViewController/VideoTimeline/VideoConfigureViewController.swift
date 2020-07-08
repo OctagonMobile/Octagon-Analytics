@@ -70,7 +70,7 @@ class VideoConfigureViewController: FormViewController {
             }*/
             
             <<< OAPickerInputRow<IndexPattern>() {
-                $0.title = "Index Pattern"
+                $0.title = "Index Pattern".localiz()
                 $0.tag = FormTag.indexPattern
                 $0.add(rule: RuleRequired(msg: ErrorMessages.indexPatternError))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
@@ -81,7 +81,7 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Index Pattern", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Index Pattern".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -125,7 +125,7 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< OAPickerInputRow<IPField>() {
-                $0.title = "Time Field"
+                $0.title = "Time Field".localiz()
                 $0.tag = FormTag.timeField
                 $0.options = []
                 $0.add(rule: RuleRequired(msg: ErrorMessages.timeFieldError))
@@ -142,7 +142,7 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Time Field", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Time Field".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -171,7 +171,7 @@ class VideoConfigureViewController: FormViewController {
             }
 
             <<< OAPickerInputRow<IPField>() {
-                $0.title = "Field"
+                $0.title = "Field".localiz()
                 $0.tag = FormTag.field
                 $0.options = []
                 $0.add(rule: RuleRequired(msg: ErrorMessages.fieldError))
@@ -188,7 +188,7 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Field", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Field".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -217,7 +217,7 @@ class VideoConfigureViewController: FormViewController {
             }
 
             <<< OAPickerInputRow<IPField>() {
-                $0.title = "Value To Display"
+                $0.title = "Value To Display".localiz()
                 $0.tag = FormTag.valueToDisplay
                 $0.options = []
                 $0.add(rule: RuleRequired(msg: ErrorMessages.valueToDisplayError))
@@ -234,7 +234,7 @@ class VideoConfigureViewController: FormViewController {
                 }
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Value To Display", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Value To Display".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -263,7 +263,7 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< StepperRow() {
-                $0.title = "Top Count"
+                $0.title = "Top Count".localiz()
                 $0.tag = FormTag.maxCount
                 $0.value = Double(videoContentLoader.configContent.topMaxNumber)
                 $0.cellSetup { (cell, row) in
@@ -287,12 +287,12 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< OADateRow() {
-                $0.title = "From Date"
+                $0.title = "From Date".localiz()
                 $0.tag = FormTag.fromDate
                 $0.value = videoContentLoader.configContent.fromDate
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select From Date", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select From Date".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -313,12 +313,12 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< OADateRow() {
-                $0.title = "To Date"
+                $0.title = "To Date".localiz()
                 $0.tag = FormTag.toDate
                 $0.value = videoContentLoader.configContent.toDate
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select To Date", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select To Date".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -339,7 +339,7 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< OAPickerInputRow<SpanType>() {
-                $0.title = "Span"
+                $0.title = "Span".localiz()
                 $0.tag = FormTag.span
                 $0.options = SpanType.spanTypeListFor(videoContentLoader.configContent.fromDate, toDate: videoContentLoader.configContent.toDate)
                 $0.add(rule: RuleRequired(msg: ErrorMessages.spanError))
@@ -347,7 +347,7 @@ class VideoConfigureViewController: FormViewController {
                 $0.cellSetup { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.displayValueFor = {
                     guard let val = $0 else { return nil }
