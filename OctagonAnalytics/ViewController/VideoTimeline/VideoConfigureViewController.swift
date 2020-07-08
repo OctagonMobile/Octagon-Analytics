@@ -328,7 +328,7 @@ class VideoConfigureViewController: FormViewController {
             <<< OADateRow() {
                 $0.title = "To Date"
                 $0.tag = FormTag.toDate
-                $0.value = Date().dateAtStartOf(.day)
+                $0.value = Date().dateAtEndOf(.day)
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select To Date", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
@@ -342,47 +342,47 @@ class VideoConfigureViewController: FormViewController {
                 }
             }
             
-        <<< OAPickerInputRow<SpanType>() {
-            $0.title = "Span"
-            $0.tag = FormTag.span
-            $0.options = SpanType.all
-            $0.add(rule: RuleRequired(msg: ErrorMessages.valueToDisplayError))
-            $0.validationOptions = .validatesOnChangeAfterBlurred
-            $0.cellSetup { (cell, row) in
-                cell.backgroundColor = CurrentTheme.cellBackgroundColor
-                cell.titleLabel?.textColor = CurrentTheme.standardColor
-                cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
-            }
-            $0.displayValueFor = {
-                guard let val = $0 else { return nil }
-                return "1 " + val.rawValue
-            }
-            $0.onCellSelection { (cell, row) in
-                if row.value == nil {
-                    row.value = row.options.first
-                    row.updateCell()
+            <<< OAPickerInputRow<SpanType>() {
+                $0.title = "Span"
+                $0.tag = FormTag.span
+                $0.options = SpanType.all
+                $0.add(rule: RuleRequired(msg: ErrorMessages.valueToDisplayError))
+                $0.validationOptions = .validatesOnChangeAfterBlurred
+                $0.cellSetup { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.titleLabel?.textColor = CurrentTheme.standardColor
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
-            }
-            $0.cellUpdate { (cell, row) in
-                cell.backgroundColor = CurrentTheme.cellBackgroundColor
-                cell.valueTextField?.textColor = CurrentTheme.titleColor
-                if !row.isValid {
-                    
-                    cell.valueTextField?.textColor = CurrentTheme.errorMessageColor
-
-                    var errors = ""
-                    
-                    for error in row.validationErrors {
-                        let errorString = error.msg + "\n"
-                        errors = errors + errorString
+                $0.displayValueFor = {
+                    guard let val = $0 else { return nil }
+                    return "1 " + val.rawValue
+                }
+                $0.onCellSelection { (cell, row) in
+                    if row.value == nil {
+                        row.value = row.options.first
+                        row.updateCell()
                     }
-                    
-                    cell.valueTextField?.text = errors
-                    cell.valueTextField?.isHidden = false
                 }
+                $0.cellUpdate { (cell, row) in
+                    cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.valueTextField?.textColor = CurrentTheme.titleColor
+                    if !row.isValid {
+                        
+                        cell.valueTextField?.textColor = CurrentTheme.errorMessageColor
+                        
+                        var errors = ""
+                        
+                        for error in row.validationErrors {
+                            let errorString = error.msg + "\n"
+                            errors = errors + errorString
+                        }
+                        
+                        cell.valueTextField?.text = errors
+                        cell.valueTextField?.isHidden = false
+                    }
+                }
+                
             }
-
-        }
     }
     
     private func loadIndexPatters() {
