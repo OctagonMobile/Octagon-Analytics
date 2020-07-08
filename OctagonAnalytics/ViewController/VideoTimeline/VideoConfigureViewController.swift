@@ -18,29 +18,6 @@ enum VideoType: String {
     static var all: [VideoType]    =   [.barChartRace, .heatMap]
 }
 
-public enum SpanType: String {
-    case seconds    =   "Second"
-    case minutes    =   "Minute"
-    case hours      =   "Hour"
-    case days       =   "Day"
-    case weeks      =   "Week"
-    case months     =   "Month"
-    case years      =   "Year"
-
-    var code: String {
-        switch self {
-        case .seconds:  return "s"
-        case .minutes:  return "m"
-        case .hours:    return "h"
-        case .days:     return "d"
-        case .weeks:    return "w"
-        case .months:   return "M"
-        case .years:    return "y"
-        }
-    }
-    static var all: [SpanType]    =   [.seconds, .minutes, .hours, .days, .weeks, .months, .years]
-}
-
 class VideoConfigureViewController: FormViewController {
 
     var videoContentLoader  =   VideoContentLoader()
@@ -311,7 +288,7 @@ class VideoConfigureViewController: FormViewController {
             <<< OADateRow() {
                 $0.title = "From Date"
                 $0.tag = FormTag.fromDate
-                $0.value = Date().dateAtStartOf(.day)
+                $0.value = videoContentLoader.configContent.fromDate
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select From Date", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
@@ -323,12 +300,21 @@ class VideoConfigureViewController: FormViewController {
                         toDateRow.minimumDate = row.value
                     }
                 }
+                $0.onChange { (row) in
+                    guard let fromDate = row.value,
+                        let toDate = (self.form.rowBy(tag: FormTag.toDate) as? OADateRow)?.value else { return }
+                    if let spanRow = self.form.rowBy(tag: FormTag.span) as? OAPickerInputRow<SpanType> {
+                        spanRow.options = SpanType.spanTypeListFor(fromDate, toDate: toDate)
+                        spanRow.value = nil
+                        spanRow.updateCell()
+                    }
+                }
             }
             
             <<< OADateRow() {
                 $0.title = "To Date"
                 $0.tag = FormTag.toDate
-                $0.value = Date().dateAtEndOf(.day)
+                $0.value = videoContentLoader.configContent.toDate
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select To Date", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
@@ -340,13 +326,22 @@ class VideoConfigureViewController: FormViewController {
                         fromDateRow.maximumDate = row.value
                     }
                 }
+                $0.onChange { (row) in
+                    guard let fromDate = (self.form.rowBy(tag: FormTag.fromDate) as? OADateRow)?.value,
+                        let toDate = row.value else { return }
+                    if let spanRow = self.form.rowBy(tag: FormTag.span) as? OAPickerInputRow<SpanType> {
+                        spanRow.options = SpanType.spanTypeListFor(fromDate, toDate: toDate)
+                        spanRow.value = nil
+                        spanRow.updateCell()
+                    }
+                }
             }
             
             <<< OAPickerInputRow<SpanType>() {
                 $0.title = "Span"
                 $0.tag = FormTag.span
-                $0.options = SpanType.all
-                $0.add(rule: RuleRequired(msg: ErrorMessages.valueToDisplayError))
+                $0.options = SpanType.spanTypeListFor(videoContentLoader.configContent.fromDate, toDate: videoContentLoader.configContent.toDate)
+                $0.add(rule: RuleRequired(msg: ErrorMessages.spanError))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.cellSetup { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
@@ -427,8 +422,8 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.timeField          = values[FormTag.timeField] as? IPField
         videoContentLoader.configContent.field              = values[FormTag.field] as? IPField
         videoContentLoader.configContent.valueToDisplay     = values[FormTag.valueToDisplay] as? IPField
-        videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date
-        videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
+        videoContentLoader.configContent.fromDate           = values[FormTag.fromDate] as? Date ?? Date().dateAtStartOf(.day)
+        videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date ?? Date().dateAtEndOf(.day)
         videoContentLoader.configContent.videoType          = values[FormTag.videoType] as? VideoType ?? .barChartRace
         videoContentLoader.configContent.topMaxNumber       = Int(values[FormTag.maxCount] as? Double ?? 5.0)
         videoContentLoader.configContent.spanType           = values[FormTag.span] as? SpanType

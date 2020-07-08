@@ -79,15 +79,13 @@ class VideoContentLoader {
     
     private func generatedQuery() -> [String: Any] {
         
-        guard let fromDate = configContent.fromDate,
-            let toDate = configContent.toDate,
-            let timeFieldName = configContent.timeField?.name,
+        guard let timeFieldName = configContent.timeField?.name,
             let fieldName = configContent.field?.name,
             let spanType = configContent.spanType,
             let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
         
-        let fromDateStr = queryDateFormatter.string(from: fromDate)
-        let toDateStr = queryDateFormatter.string(from: toDate)
+        let fromDateStr = queryDateFormatter.string(from: configContent.fromDate)
+        let toDateStr = queryDateFormatter.string(from: configContent.toDate)
 
         let query = [ "range":
             ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]
@@ -119,13 +117,56 @@ extension VideoContentLoader {
 
 ///Used to store all the selected data from forms
 class VideoConfigContent {
-    var videoType: VideoType                 =   .barChartRace
+    var videoType: VideoType            =   .barChartRace
     var indexPattern: IndexPattern?
     var timeField: IPField?
     var field: IPField?
     var valueToDisplay: IPField?
     var topMaxNumber: Int               =   5
     var spanType: SpanType?
-    var fromDate: Date?
-    var toDate: Date?
+    var fromDate: Date                  =   Date().dateAtStartOf(.day)
+    var toDate: Date                    =   Date().dateAtEndOf(.day)
+}
+
+
+public enum SpanType: String {
+    case seconds    =   "Second"
+    case minutes    =   "Minute"
+    case hours      =   "Hour"
+    case days       =   "Day"
+    case weeks      =   "Week"
+    case months     =   "Month"
+    case years      =   "Year"
+
+    var code: String {
+        switch self {
+        case .seconds:  return "s"
+        case .minutes:  return "m"
+        case .hours:    return "h"
+        case .days:     return "d"
+        case .weeks:    return "w"
+        case .months:   return "M"
+        case .years:    return "y"
+        }
+    }
+    static var all: [SpanType]    =   [.seconds, .minutes, .hours, .days, .weeks, .months, .years]
+    
+    static func spanTypeListFor(_ fromDate: Date, toDate: Date) -> [SpanType] {
+        let dateUnits = toDate.timeIntervalSince(fromDate).toUnits([.year, .month, .weekOfMonth, .day, .hour, .minute, .second])
+        
+        guard let year = dateUnits[.year], let month = dateUnits[.month],
+            let week = dateUnits[.weekOfMonth], let day = dateUnits[.day] else { return all }
+        
+        if year >= 2 {
+            return [years, .months,.weeks, .days, .hours, .minutes,.seconds]
+        } else if year == 1 || month >= 2 {
+            return [.months,.weeks, .days, .hours, .minutes,.seconds]
+        } else if month == 1 || week >= 2 {
+            return [.weeks, .days, .hours, .minutes,.seconds]
+        } else if week == 1 || day >= 2 {
+            return [.days, .hours, .minutes,.seconds]
+        } else {
+            return [.hours, .minutes,.seconds]
+        }
+    }
 }
