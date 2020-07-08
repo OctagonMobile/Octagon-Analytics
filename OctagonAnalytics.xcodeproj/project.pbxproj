@@ -569,8 +569,8 @@
 		5130187024AB753300258B0C /* VideoConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */,
 				513B635B24B1D2DE0060F7C4 /* OADateRow.swift */,
+				513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */,
 			);
 			path = VideoConfiguration;
 			sourceTree = "<group>";

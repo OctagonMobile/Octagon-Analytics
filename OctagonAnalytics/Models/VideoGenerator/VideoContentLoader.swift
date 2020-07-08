@@ -83,6 +83,7 @@ class VideoContentLoader {
             let toDate = configContent.toDate,
             let timeFieldName = configContent.timeField?.name,
             let fieldName = configContent.field?.name,
+            let spanType = configContent.spanType,
             let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
         
         let fromDateStr = queryDateFormatter.string(from: fromDate)
@@ -92,7 +93,7 @@ class VideoContentLoader {
             ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]
 
         
-        let datHistogram = ["field":"\(timeFieldName)", "interval": "1d"]
+        let datHistogram = ["field":"\(timeFieldName)", "interval": "1\(spanType.code)"]
         
         let maxAggs = ["sum": ["field": valueToDisplayFieldName]]
         let sortAggs = ["bucket_sort": ["sort": [["max_field": ["order": "desc"]]], "size": configContent.topMaxNumber]]
@@ -124,6 +125,7 @@ class VideoConfigContent {
     var field: IPField?
     var valueToDisplay: IPField?
     var topMaxNumber: Int               =   5
+    var spanType: SpanType?
     var fromDate: Date?
     var toDate: Date?
 }

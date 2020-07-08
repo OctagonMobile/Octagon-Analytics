@@ -18,6 +18,29 @@ enum VideoType: String {
     static var all: [VideoType]    =   [.barChartRace, .heatMap]
 }
 
+public enum SpanType: String {
+    case seconds    =   "Second"
+    case minutes    =   "Minute"
+    case hours      =   "Hour"
+    case days       =   "Day"
+    case weeks      =   "Week"
+    case months     =   "Month"
+    case years      =   "Year"
+
+    var code: String {
+        switch self {
+        case .seconds:  return "s"
+        case .minutes:  return "m"
+        case .hours:    return "h"
+        case .days:     return "d"
+        case .weeks:    return "w"
+        case .months:   return "M"
+        case .years:    return "y"
+        }
+    }
+    static var all: [SpanType]    =   [.seconds, .minutes, .hours, .days, .weeks, .months, .years]
+}
+
 class VideoConfigureViewController: FormViewController {
 
     var videoContentLoader  =   VideoContentLoader()
@@ -318,6 +341,48 @@ class VideoConfigureViewController: FormViewController {
                     }
                 }
             }
+            
+        <<< OAPickerInputRow<SpanType>() {
+            $0.title = "Span"
+            $0.tag = FormTag.span
+            $0.options = SpanType.all
+            $0.add(rule: RuleRequired(msg: ErrorMessages.valueToDisplayError))
+            $0.validationOptions = .validatesOnChangeAfterBlurred
+            $0.cellSetup { (cell, row) in
+                cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                cell.titleLabel?.textColor = CurrentTheme.standardColor
+                cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span", attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+            }
+            $0.displayValueFor = {
+                guard let val = $0 else { return nil }
+                return "1 " + val.rawValue
+            }
+            $0.onCellSelection { (cell, row) in
+                if row.value == nil {
+                    row.value = row.options.first
+                    row.updateCell()
+                }
+            }
+            $0.cellUpdate { (cell, row) in
+                cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                cell.valueTextField?.textColor = CurrentTheme.titleColor
+                if !row.isValid {
+                    
+                    cell.valueTextField?.textColor = CurrentTheme.errorMessageColor
+
+                    var errors = ""
+                    
+                    for error in row.validationErrors {
+                        let errorString = error.msg + "\n"
+                        errors = errors + errorString
+                    }
+                    
+                    cell.valueTextField?.text = errors
+                    cell.valueTextField?.isHidden = false
+                }
+            }
+
+        }
     }
     
     private func loadIndexPatters() {
@@ -366,7 +431,8 @@ class VideoConfigureViewController: FormViewController {
         videoContentLoader.configContent.toDate             = values[FormTag.toDate] as? Date
         videoContentLoader.configContent.videoType          = values[FormTag.videoType] as? VideoType ?? .barChartRace
         videoContentLoader.configContent.topMaxNumber       = Int(values[FormTag.maxCount] as? Double ?? 5.0)
-
+        videoContentLoader.configContent.spanType           = values[FormTag.span] as? SpanType
+        
         // Load Video Data with specified params
         loadVideoData()
     }
@@ -382,6 +448,7 @@ extension VideoConfigureViewController {
         static let fromDate         =   "FromDate"
         static let toDate           =   "ToDate"
         static let maxCount         =   "MaxCount"
+        static let span             =   "Span"
     }
     
     struct ErrorMessages {
@@ -389,5 +456,6 @@ extension VideoConfigureViewController {
         static let timeFieldError       =   "Please select Time Field".localiz()
         static let fieldError           =   "Please select Field".localiz()
         static let valueToDisplayError  =   "Please select Value To Display".localiz()
+        static let spanError            =   "Please select Span".localiz()
     }
 }

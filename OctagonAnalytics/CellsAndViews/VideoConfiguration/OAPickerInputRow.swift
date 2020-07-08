@@ -39,8 +39,6 @@ open class _OAPickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UI
     }
     
     private func setupLabels() {
-
-        
         titleLabel = UILabel()
         titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel)
