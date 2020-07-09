@@ -38,7 +38,7 @@ extension VideoContent {
     }
 }
 
-class VideoEntry: Mappable {
+class VideoEntry: Mappable, Equatable {
     
     var title: String       =   ""
     var value: CGFloat      =   0.0
@@ -54,6 +54,11 @@ class VideoEntry: Mappable {
         title       <-  map["key"]
         value       <-  map["max_field.value"]
     }
+    
+    static func == (lhs: VideoEntry, rhs: VideoEntry) -> Bool {
+        return lhs.title == rhs.title
+    }
+
 }
 
 extension VideoEntry {

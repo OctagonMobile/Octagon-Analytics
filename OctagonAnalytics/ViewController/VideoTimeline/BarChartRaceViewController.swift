@@ -46,7 +46,7 @@ class BarChartRaceViewController: BaseViewController {
         }
     }
     
-    private var colors: [UIColor] = CurrentTheme.barChartRaceColors
+    private var colors: [UIColor] = []
     private var colorsDict: [String: UIColor] = [:]
     private var currentColorIndex: Int = 0
 
@@ -118,6 +118,8 @@ class BarChartRaceViewController: BaseViewController {
         barChartView.titleColor = CurrentTheme.titleColor
         barChartView.valueColor = CurrentTheme.titleColor
         
+        let uniqueVideoEntries = getUniqueVideoEntries()
+        colors = CurrentTheme.barChartRaceColors(uniqueVideoEntries.count)
         let dataSetList = barData.compactMap { (videoContent) -> DataSet? in
             let colorSet: [UIColor] =  videoContent.entries.compactMap { (entry) -> UIColor? in
                 if colorsDict[entry.title] == nil {
@@ -145,6 +147,16 @@ class BarChartRaceViewController: BaseViewController {
         }
     }
     
+    private func getUniqueVideoEntries() -> [VideoEntry] {
+        var uniqueVideoEntries: [VideoEntry]    =   []
+        barData.forEach { (videoContent) in
+            videoContent.entries.forEach { (entry) in
+                guard !uniqueVideoEntries.contains(entry) else { return }
+                uniqueVideoEntries.append(entry)
+            }
+        }
+        return uniqueVideoEntries
+    }
     
     private func startRecording() {
         guard recorder.isAvailable else { return }
@@ -238,5 +250,17 @@ extension BarChartRaceViewController : RPPreviewViewControllerDelegate {
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension Array where Element : Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            if !uniqueValues.contains(item) {
+                uniqueValues += [item]
+            }
+        }
+        return uniqueValues
     }
 }

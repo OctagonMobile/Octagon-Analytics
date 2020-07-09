@@ -387,16 +387,6 @@ extension UIColor {
         static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh]
     }
 
-    struct BarChartRaceColorsSet {
-        static var first: UIColor   { return UIColor.colorFromHexString("#813a8d") }
-        static var second: UIColor  { return UIColor.colorFromHexString("#149fc5") }
-        static var third: UIColor   { return UIColor.colorFromHexString("#fb291a") }
-        static var fourth: UIColor  { return UIColor.colorFromHexString("#faaf0e") }
-        static var fifth: UIColor   { return UIColor.colorFromHexString("#72b632") }
-
-        static var all: [UIColor] = [first, second, third, fourth, fifth]
-    }
-
 }
 
 ////////////////////////////////////// Font Extension //////////////////////////////////////

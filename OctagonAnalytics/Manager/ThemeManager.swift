@@ -8,6 +8,7 @@
 
 import UIKit
 import PopupDialog
+import RandomColorSwift
 
 enum Theme: String {
     
@@ -191,10 +192,6 @@ enum Theme: String {
         return firstSetChartColors + secondSetChartColors
     }
 
-    var barChartRaceColors: [UIColor] {
-        return UIColor.BarChartRaceColorsSet.all
-    }
-
     var gaugeRangeColors: [UIColor] {
         return UIColor.GaugeRangeColorsSet.all + firstSetChartColors
     }
@@ -291,6 +288,10 @@ enum Theme: String {
         case .light: return UIColor.Primary.antiFlash
         case .dark: return UIColor.DarkThemeColors.darkBackgroundColor
         }
+    }
+    
+    func barChartRaceColors(_ total: Int) -> [UIColor] {
+        return randomColors(count: total)
     }
 
     //MARK: Styles
