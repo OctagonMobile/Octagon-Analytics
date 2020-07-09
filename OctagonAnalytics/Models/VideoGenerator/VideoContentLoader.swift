@@ -122,7 +122,7 @@ class VideoConfigContent {
     var timeField: IPField?
     var field: IPField?
     var valueToDisplay: IPField?
-    var topMaxNumber: Int               =   5
+    var topMaxNumber: Int               =   10
     var spanType: SpanType?
     var fromDate: Date                  =   Date().dateAtStartOf(.day)
     var toDate: Date                    =   Date().dateAtEndOf(.day)
