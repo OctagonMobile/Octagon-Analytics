@@ -114,12 +114,21 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-f9-RrA">
-                                <rect key="frame" x="1082" y="734" width="0.0" height="0.0"/>
+                                <rect key="frame" x="1082" y="732" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-3Y-52B" userLabel="TimeLabel">
+                                <rect key="frame" x="1082" y="734" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDt-kH-JMX" userLabel="Overlay">
@@ -184,17 +193,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="bottom" secondItem="hAo-Fv-tjP" secondAttribute="bottom" id="DaT-su-PU9"/>
+                            <constraint firstItem="RNv-3Y-52B" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="DoQ-WY-ebg"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="top" secondItem="TzH-z7-3ep" secondAttribute="top" id="KpD-29-fqs"/>
                             <constraint firstItem="zEt-jd-Keb" firstAttribute="leading" secondItem="TzH-z7-3ep" secondAttribute="leading" constant="20" id="TkP-2s-veo">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
+                            <constraint firstItem="RNv-3Y-52B" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" constant="-10" id="Uvm-YH-mg2">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-30"/>
+                            </constraint>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="zEt-jd-Keb" secondAttribute="bottom" id="W5N-mq-jjq"/>
-                            <constraint firstItem="H6T-f9-RrA" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="aI0-IM-ROP"/>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="aeZ-23-AOA"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="leading" secondItem="TzH-z7-3ep" secondAttribute="leading" id="hd5-pb-Ek9"/>
                             <constraint firstItem="nzL-Js-NCE" firstAttribute="trailing" secondItem="hAo-Fv-tjP" secondAttribute="trailing" id="i5o-hu-9gk"/>
                             <constraint firstItem="hAo-Fv-tjP" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="k53-AR-URh"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="top" secondItem="nzL-Js-NCE" secondAttribute="top" constant="40" id="lbF-j2-eP3"/>
+                            <constraint firstItem="RNv-3Y-52B" firstAttribute="top" secondItem="H6T-f9-RrA" secondAttribute="bottom" constant="2" id="nWS-rK-J7D"/>
                             <constraint firstItem="TzH-z7-3ep" firstAttribute="leading" secondItem="nzL-Js-NCE" secondAttribute="leading" id="uoI-1G-B3D"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="bottom" secondItem="TzH-z7-3ep" secondAttribute="bottom" id="uow-PR-Ahf"/>
                             <constraint firstItem="wDt-kH-JMX" firstAttribute="trailing" secondItem="TzH-z7-3ep" secondAttribute="trailing" id="yuY-aG-XAO"/>
@@ -215,6 +228,7 @@
                         <outlet property="playButton" destination="kZu-uf-n9w" id="kmf-xS-FUM"/>
                         <outlet property="recordIndicator" destination="zEt-jd-Keb" id="cg8-QV-5YU"/>
                         <outlet property="speedSlider" destination="AnD-CC-EkT" id="4yZ-9k-Fxp"/>
+                        <outlet property="timeLabel" destination="RNv-3Y-52B" id="ADn-rb-Xkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyJ-cY-TVF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

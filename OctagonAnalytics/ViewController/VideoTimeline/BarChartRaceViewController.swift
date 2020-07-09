@@ -17,9 +17,11 @@ class BarChartRaceViewController: BaseViewController {
     private var shouldHideControls: Bool     =   true
     private let recorder = RPScreenRecorder.shared()
 
+    var videoConfig: VideoConfigContent?
     var barData: [VideoContent] = []
     @IBOutlet weak var recordIndicator: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var controlsHolder: UIView!
     @IBOutlet weak var speedSlider: TGPDiscreteSlider!
@@ -87,7 +89,8 @@ class BarChartRaceViewController: BaseViewController {
         view.backgroundColor = CurrentTheme.cellBackgroundColor
         controlsHolder.backgroundColor = CurrentTheme.lightBackgroundColor
         dateLabel.style(CurrentTheme.textStyleWith(dateLabel.font.pointSize, weight: .semibold))
-        
+        timeLabel.style(CurrentTheme.textStyleWith(timeLabel.font.pointSize, weight: .semibold))
+
         //setup speed slider
         speedSlider.thumbStyle = ComponentStyle.rounded.rawValue
         speedSlider.thumbSize  = CGSize(width: 20, height: 20)
@@ -221,6 +224,11 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
     
     func currentDataSet(_ dataSet: DataSet, index: Int) {
         dateLabel.text = dataSet.date.toString(.custom("dd MMM yyyy"))
+        guard videoConfig?.spanType == .seconds || videoConfig?.spanType == .minutes || videoConfig?.spanType == .hours else {
+            timeLabel.text = ""
+            return
+        }
+        timeLabel.text = dataSet.date.toString(.custom("HH:mm:ss"))
     }
 }
 
