@@ -151,8 +151,10 @@ class BarChartRaceViewController: BaseViewController {
         recorder.startRecording{ (error) in
             guard error == nil else { return }
             self.barChartView.play()
+            /*
             self.recordIndicator.isHidden = false
             self.recordIndicator.blink()
+             */
         }
     }
     
