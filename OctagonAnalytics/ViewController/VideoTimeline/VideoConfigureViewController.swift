@@ -80,6 +80,8 @@ class VideoConfigureViewController: FormViewController {
                     return indexPattern.title
                 }
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Index Pattern".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -141,6 +143,8 @@ class VideoConfigureViewController: FormViewController {
                     return field.name
                 }
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Time Field".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -187,6 +191,8 @@ class VideoConfigureViewController: FormViewController {
                     return field.name
                 }
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Field".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -233,6 +239,8 @@ class VideoConfigureViewController: FormViewController {
                     return field.name
                 }
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Value To Display".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -267,6 +275,7 @@ class VideoConfigureViewController: FormViewController {
                 $0.tag = FormTag.maxCount
                 $0.value = Double(videoContentLoader.configContent.topMaxNumber)
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
                     cell.stepper.minimumValue = 2
                     cell.stepper.maximumValue = 50
@@ -291,6 +300,8 @@ class VideoConfigureViewController: FormViewController {
                 $0.tag = FormTag.fromDate
                 $0.value = videoContentLoader.configContent.fromDate
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select From Date".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -317,6 +328,8 @@ class VideoConfigureViewController: FormViewController {
                 $0.tag = FormTag.toDate
                 $0.value = videoContentLoader.configContent.toDate
                 $0.cellSetup { (cell, row) in
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select To Date".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -346,6 +359,8 @@ class VideoConfigureViewController: FormViewController {
                 $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.cellSetup { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
+                    cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
                     cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
@@ -409,7 +424,7 @@ class VideoConfigureViewController: FormViewController {
                 return
             }
             
-            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result)
+            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
         }
     }
     
