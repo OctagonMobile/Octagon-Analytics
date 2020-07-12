@@ -177,6 +177,7 @@ class BarChartRaceViewController: BaseViewController {
             self.barChartView.stop()
             self.recordIndicator.isHidden = true
 
+            UIApplication.appKeyWindow?.tintColor = .systemBlue
             preview.modalPresentationStyle = .fullScreen
             preview.previewControllerDelegate = self
             self.present(preview, animated: true, completion: nil)
@@ -249,6 +250,7 @@ extension BarChartRaceViewController: BarChartRaceDelegate {
 extension BarChartRaceViewController : RPPreviewViewControllerDelegate {
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        UIApplication.appKeyWindow?.tintColor = CurrentTheme.secondaryTitleColor
         previewController.dismiss(animated: true, completion: nil)
     }
 }
