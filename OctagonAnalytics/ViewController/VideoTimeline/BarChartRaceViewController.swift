@@ -177,7 +177,7 @@ class BarChartRaceViewController: BaseViewController {
             self.barChartView.stop()
             self.recordIndicator.isHidden = true
 
-            preview.modalPresentationStyle = .automatic
+            preview.modalPresentationStyle = .fullScreen
             preview.previewControllerDelegate = self
             self.present(preview, animated: true, completion: nil)
         }
