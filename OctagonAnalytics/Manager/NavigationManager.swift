@@ -38,7 +38,7 @@ class NavigationManager: NSObject {
     
     func showDashboardList() {
         // Switch to Dashboard list screen
-        let identifier = SettingsBundleHelper.isXpackEnabled() ? ViewControllerIdentifiers.dashboardTabBarController : ViewControllerIdentifiers.dashboardListingNavigationController
+        let identifier = ViewControllerIdentifiers.dashboardTabBarController
         
         let mainController = StoryboardManager.shared.storyBoard(.main).instantiateViewController(withIdentifier: identifier)
         changeRootViewController(mainController)
@@ -95,12 +95,18 @@ class NavigationManager: NSObject {
         rootViewController.present(tutorialViewCtr, animated: true, completion: nil)
     }
 
+    func showBarchartRace(_ navController: UINavigationController, data: [VideoContent], config: VideoConfigContent?) {
+        guard let barchartRaceVC = StoryboardManager.shared.storyBoard(.timelineVideo).instantiateViewController(withIdentifier: ViewControllerIdentifiers.barChartRaceViewController) as? BarChartRaceViewController else { return }
+        barchartRaceVC.barData = data
+        barchartRaceVC.videoConfig = config
+        navController.pushViewController(barchartRaceVC, animated: true)
+    }
     
     private func getInitialEntryPoint () -> UIViewController {
 
         var identifier: String
         if authenticationType == .none || Session.shared.isLoggedIn {
-            identifier = SettingsBundleHelper.isXpackEnabled() ? ViewControllerIdentifiers.dashboardTabBarController : ViewControllerIdentifiers.dashboardListingNavigationController
+            identifier = ViewControllerIdentifiers.dashboardTabBarController
         } else if authenticationType == .basic {
             identifier = ViewControllerIdentifiers.loginViewController
         } else {
@@ -169,6 +175,7 @@ extension NavigationManager {
         static let dashboardListingNavigationController = "DashboardListingNavigationController"
         static let dashboardTabBarController = "DashboardTabBarController"
         static let tutorialViewController  = "TutorialViewController"
+        static let barChartRaceViewController = "BarChartRaceViewController"
     }
 
     struct Constants {

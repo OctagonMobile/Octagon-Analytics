@@ -92,3 +92,32 @@
 "Canvas"            =   "Canvas";
 "Canvas List"       =   "Canvas List";
 "NoCanvasFound"     =   "No canvas found";
+
+//Video
+"Video Configuration"   =   "Video Configuration";
+"Bar Chart Video"       =   "Bar Chart Video";
+"Export Video"          =   "Export Video";
+"Video Record Don't interrupt message"  =   "If you start to record the Video, please do not interrupt untill it finishes";
+"Record"                =   "Record";
+"Not Now"               =   "Not Now";
+"Index Pattern"         =   "Index Pattern";
+"Select Index Pattern"  =   "Select Index Pattern";
+"Time Field"            =   "Time Field";
+"Select Time Field"     =   "Select Time Field";
+"Field"                 =   "Field";
+"Select Field"          =   "Select Field";
+"Value To Display"      =   "Value To Display";
+"Select Value To Display"=  "Select Value To Display";
+"Top Count"             =   "Top Count";
+"From Date"             =   "From Date";
+"Select From Date"      =   "Select From Date";
+"To Date"               =   "To Date";
+"Select To Date"        =   "Select To Date";
+"Span"                  =   "Span";
+"Select Span"           =   "Select Span";
+"No data found!"        =   "No data found!";
+"Please select Index Pattern"   =   "Please select Index Pattern";
+"Please select Time Field"  =   "Please select Time Field";
+"Please select Field"       =   "Please select Field";
+"Please select Value To Display"    =   "Please select Value To Display";
+"Please select Span"    =   "Please select Span";

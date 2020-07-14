@@ -288,6 +288,10 @@ enum Theme: String {
         case .dark: return UIColor.DarkThemeColors.darkBackgroundColor
         }
     }
+    
+    func barChartRaceColors(_ total: Int) -> [UIColor] {
+        return UIColor.BarChartRaceColorsSet.colors(total)
+    }
 
     //MARK: Styles
     /// Styles
@@ -455,8 +459,7 @@ class ThemeManager: NSObject {
         UserDefaults.standard.synchronize()
         
         // Apply the main color to the tintColor property of your application’s window.
-        let sharedApplication = UIApplication.shared
-        sharedApplication.delegate?.window??.tintColor = theme.secondaryTitleColor
+        UIApplication.shared.windows.forEach({ $0.tintColor = theme.secondaryTitleColor})
 
         UINavigationBar.appearance().isTranslucent = theme.isTranslucent
         UINavigationBar.appearance().barTintColor = theme.darkBackgroundColor

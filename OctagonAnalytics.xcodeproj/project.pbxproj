@@ -46,6 +46,8 @@
 		513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 513A908A229AA17400B7E844 /* Exo2-Regular.otf */; };
 		513A909F229AA17400B7E844 /* Exo2-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 513A908D229AA17400B7E844 /* Exo2-Bold.otf */; };
 		513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A9CF320442B550001A2A2 /* TileImageCollectionViewCell.swift */; };
+		513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */; };
+		513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B635B24B1D2DE0060F7C4 /* OADateRow.swift */; };
 		513D89792175F725001B12D6 /* WorldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D89782175F724001B12D6 /* WorldMapView.swift */; };
 		513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 513D897C2175F796001B12D6 /* CountriesBoundary.geojson */; };
 		513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */; };
@@ -135,6 +137,11 @@
 		51B0C9AF1FC17CD700BDF269 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AE1FC17CD700BDF269 /* Session.swift */; };
 		51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */; };
 		51B7C42E2059099400565D99 /* MetricVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B7C42D2059099400565D99 /* MetricVisState.swift */; };
+		51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */; };
+		51C46F12248FB5ED00EA0AAC /* TimelineVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C46F11248FB5ED00EA0AAC /* TimelineVideo.storyboard */; };
+		51C46F15248FC8EB00EA0AAC /* VideoContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F14248FC8EB00EA0AAC /* VideoContentLoader.swift */; };
+		51C46F172492709B00EA0AAC /* IndexPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F162492709B00EA0AAC /* IndexPattern.swift */; };
+		51C46F19249270DF00EA0AAC /* VideoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F18249270DF00EA0AAC /* VideoContent.swift */; };
 		51C5DFC4221D8AB6003DE8B1 /* TouchIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */; };
 		51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CB2D131FBD55DE007BC0A0 /* SavedSearchHeaderView.swift */; };
 		51CB2D161FBD5644007BC0A0 /* SavedSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CB2D151FBD5644007BC0A0 /* SavedSearchHeaderView.xib */; };
@@ -208,6 +215,7 @@
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
 		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
+		F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
@@ -263,6 +271,8 @@
 		513A908A229AA17400B7E844 /* Exo2-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Regular.otf"; sourceTree = "<group>"; };
 		513A908D229AA17400B7E844 /* Exo2-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Bold.otf"; sourceTree = "<group>"; };
 		513A9CF320442B550001A2A2 /* TileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAPickerInputRow.swift; sourceTree = "<group>"; };
+		513B635B24B1D2DE0060F7C4 /* OADateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OADateRow.swift; sourceTree = "<group>"; };
 		513D89782175F724001B12D6 /* WorldMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldMapView.swift; sourceTree = "<group>"; };
 		513D897C2175F796001B12D6 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 		513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMapViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +370,11 @@
 		51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateMapViewController.swift; sourceTree = "<group>"; };
 		51B0C9AE1FC17CD700BDF269 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		51B7C42D2059099400565D99 /* MetricVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricVisState.swift; sourceTree = "<group>"; };
+		51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConfigureViewController.swift; sourceTree = "<group>"; };
+		51C46F11248FB5ED00EA0AAC /* TimelineVideo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimelineVideo.storyboard; sourceTree = "<group>"; };
+		51C46F14248FC8EB00EA0AAC /* VideoContentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContentLoader.swift; sourceTree = "<group>"; };
+		51C46F162492709B00EA0AAC /* IndexPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPattern.swift; sourceTree = "<group>"; };
+		51C46F18249270DF00EA0AAC /* VideoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContent.swift; sourceTree = "<group>"; };
 		51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchIdHelper.swift; sourceTree = "<group>"; };
 		51CB2D131FBD55DE007BC0A0 /* SavedSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSearchHeaderView.swift; sourceTree = "<group>"; };
 		51CB2D151FBD5644007BC0A0 /* SavedSearchHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedSearchHeaderView.xib; sourceTree = "<group>"; };
@@ -437,6 +452,7 @@
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
 		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
+		F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRaceViewController.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
@@ -531,9 +547,9 @@
 			children = (
 				F1A84BE32472827000455B76 /* Constants */,
 				51F359EE24601A8D0009AC07 /* HudView */,
-				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51E8BF3C20F38048004B5D20 /* DatePicker */,
 				5174FB96219C105E003BEB1E /* ForceDirectedGraph */,
+				516292DF1FA05B6E008A547B /* Utility.swift */,
 				51D5777520DB83410080608D /* DatePickerMapper.swift */,
 				5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */,
 				51C5DFC3221D8AB6003DE8B1 /* TouchIdHelper.swift */,
@@ -548,6 +564,15 @@
 				512D8C3723AFA4F0005A6B92 /* TagCloudVisState.swift */,
 			);
 			path = TagCloud;
+			sourceTree = "<group>";
+		};
+		5130187024AB753300258B0C /* VideoConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				513B635B24B1D2DE0060F7C4 /* OADateRow.swift */,
+				513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */,
+			);
+			path = VideoConfiguration;
 			sourceTree = "<group>";
 		};
 		5130A10A1FA73313003D0525 /* Dashboard */ = {
@@ -621,6 +646,7 @@
 		513467E21F9DD3EA00F9B67D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				51C46F0C248F9F7F00EA0AAC /* VideoTimeline */,
 				5146761E22E45C8200D9FE8C /* Canvas */,
 				51E94648221BEE5500F30D1F /* Settings */,
 				513D897E2175FBCD001B12D6 /* VectorMap */,
@@ -652,6 +678,7 @@
 		513467E41F9DD3FF00F9B67D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				51C46F13248FC8E000EA0AAC /* VideoGenerator */,
 				518DD0BD243F420D00522314 /* Gauge */,
 				512D8C3623AFA4F0005A6B92 /* TagCloud */,
 				51D385DE2370090D00C59220 /* Canvas */,
@@ -833,6 +860,7 @@
 				516292E71FA06171008A547B /* Charts.storyboard */,
 				516E2A981FBAB10D00E4D752 /* SavedSearch.storyboard */,
 				5136038B2226706E002D12B6 /* Search.storyboard */,
+				51C46F11248FB5ED00EA0AAC /* TimelineVideo.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1066,6 +1094,7 @@
 		51AB677B1F9E12A700304234 /* CellsAndViews */ = {
 			isa = PBXGroup;
 			children = (
+				5130187024AB753300258B0C /* VideoConfiguration */,
 				F133769F247FEAF4008A5D3D /* MultiLayerPieChart */,
 				51CD9AA123F2A318005ACD46 /* Tutorial */,
 				51D385E32370149400C59220 /* Canvas */,
@@ -1081,6 +1110,25 @@
 				51B7C42D2059099400565D99 /* MetricVisState.swift */,
 			);
 			path = Metric;
+			sourceTree = "<group>";
+		};
+		51C46F0C248F9F7F00EA0AAC /* VideoTimeline */ = {
+			isa = PBXGroup;
+			children = (
+				51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */,
+				F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */,
+			);
+			path = VideoTimeline;
+			sourceTree = "<group>";
+		};
+		51C46F13248FC8E000EA0AAC /* VideoGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				51C46F14248FC8EB00EA0AAC /* VideoContentLoader.swift */,
+				51C46F162492709B00EA0AAC /* IndexPattern.swift */,
+				51C46F18249270DF00EA0AAC /* VideoContent.swift */,
+			);
+			path = VideoGenerator;
 			sourceTree = "<group>";
 		};
 		51CB2D1B1FBDA0DA007BC0A0 /* Base */ = {
@@ -1388,6 +1436,7 @@
 				51840DFA1FCEC314007B8D38 /* TileImageCollectionViewCell.xib in Resources */,
 				51F0E62622CA14A9001B390A /* CustomTemplate.json in Resources */,
 				5133779124680B7E001AB9AF /* RangeControlsView.xib in Resources */,
+				51C46F12248FB5ED00EA0AAC /* TimelineVideo.storyboard in Resources */,
 				51CD9AA323F2A35B005ACD46 /* TutorialLoginCarouselView.xib in Resources */,
 				519D85B922C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml in Resources */,
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
@@ -1425,9 +1474,11 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BarChartRace/BarChartRace.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/DTMHeatmap/DTMHeatmap.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/EverLayout/EverLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/LanguageManager-iOS/LanguageManager_iOS.framework",
@@ -1455,9 +1506,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarChartRace.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTMHeatmap.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EverLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LanguageManager_iOS.framework",
@@ -1509,6 +1562,7 @@
 				51CD9A9A23F28108005ACD46 /* TutorialViewController.swift in Sources */,
 				516292E31FA05E2E008A547B /* BarChartViewController.swift in Sources */,
 				513F3F83206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				51C46F172492709B00EA0AAC /* IndexPattern.swift in Sources */,
 				513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */,
 				5114A1AB2074B99F00F3A419 /* MapTrackControlView.swift in Sources */,
 				F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */,
@@ -1535,6 +1589,7 @@
 				513A9CF420442B550001A2A2 /* TileImageCollectionViewCell.swift in Sources */,
 				51840DF31FCEA2F8007B8D38 /* TagCloudViewController.swift in Sources */,
 				51A6B32C1FCD404200F6A3E8 /* Metric.swift in Sources */,
+				51C46F15248FC8EB00EA0AAC /* VideoContentLoader.swift in Sources */,
 				5174FBB1219C27B7003BEB1E /* GraphVisState.swift in Sources */,
 				513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */,
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
@@ -1552,6 +1607,7 @@
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
 				51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */,
 				51D3E70B1FF5094200CC4F2B /* DashboardItem.swift in Sources */,
+				51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */,
 				51E94653221C281200F30D1F /* AuthenticationViewController.swift in Sources */,
 				51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */,
 				F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */,
@@ -1574,8 +1630,10 @@
 				51CB2D141FBD55DE007BC0A0 /* SavedSearchHeaderView.swift in Sources */,
 				51923ABB207DF6B40023FE27 /* HeatMapPanel.swift in Sources */,
 				516292E01FA05B6E008A547B /* Utility.swift in Sources */,
+				513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */,
 				5133778F24680B74001AB9AF /* RangeControlsView.swift in Sources */,
 				517585DC1FB03705002AFB73 /* MetricsCollectionViewCell.swift in Sources */,
+				F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */,
 				51CFC6A11FB9BDC700B99018 /* SavedSearchTableViewCell.swift in Sources */,
 				51677F46206CC9CA00C7751A /* TermsAndConditionViewController.swift in Sources */,
 				512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */,
@@ -1584,6 +1642,7 @@
 				51E8BF4E20F38048004B5D20 /* QuickDatePickerView.swift in Sources */,
 				513D89792175F725001B12D6 /* WorldMapView.swift in Sources */,
 				516292DC1FA05677008A547B /* PieChartViewController.swift in Sources */,
+				51C46F19249270DF00EA0AAC /* VideoContent.swift in Sources */,
 				51DF3FDD2340D3F3002B41DE /* LanguageSelectionViewController.swift in Sources */,
 				5174FBAA219C1096003BEB1E /* GrpahUtility.swift in Sources */,
 				F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */,
@@ -1592,6 +1651,7 @@
 				51A6B3291FCD3FE400F6A3E8 /* Panel.swift in Sources */,
 				5130A11A1FA86C26003D0525 /* Aggregation.swift in Sources */,
 				51831C271FA89DF00017173B /* DKTagCloudView.m in Sources */,
+				513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */,
 				51D385E5237014B400C59220 /* CanvasListCollectionViewCell.swift in Sources */,
 				513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */,
 				514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */,
@@ -1816,7 +1876,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1826,7 +1886,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
@@ -1847,7 +1907,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
@@ -1858,7 +1918,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";

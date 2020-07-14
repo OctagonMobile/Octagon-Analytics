@@ -13,6 +13,7 @@ enum Storyboard: String {
     case charts = "Charts"
     case savedSearch = "SavedSearch"
     case search = "Search"
+    case timelineVideo = "TimelineVideo"
 }
 
 class StoryboardManager: NSObject {

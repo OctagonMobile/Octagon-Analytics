@@ -387,6 +387,22 @@ extension UIColor {
         static var all: [UIColor] = [first, second, third, fourth, fifth, sixth, seventh]
     }
 
+    struct BarChartRaceColorsSet {
+        private static var colorHexa: [String] = ["#5F0F40", "#810017", "#FB8B24", "#E36414", "#0F4C5C", "#F72585", "#7209B7", "#3A0CA3", "#4361EE", "#4CC9F0", "#0EAD69", "#007EA7", "#00A8E8", "#87BBA2", "#679436", "#BED1E6", "#A5BE00", "#F4D35E", "#714674", "#4ECDC4", "#FAAE7B", "#6E6056", "#BCB8B1", "#E0AFA0", "#B76935", "#C200FB", "#FF6EAB", "#FC2F00", "#E5EC10", "#FFBC0A", "#B35483", "#BC3908", "#CA0000", "#F4CBC6", "#0C090D", "#26447E", "#003FFF", "#415A77", "#7793AE", "#E4E4E4", "#FF6B7A", "#F37748", "#D1AC00", "#C1FF9B", "#C7C2F4", "#472D30", "#84E6F8", "#B4436C", "#00E16F", "#009900"]
+        
+        static func colors(_ count: Int) -> [UIColor] {
+            var colors: [UIColor]   =   []
+            var colorIndex  =   0
+            for _ in 0..<count {
+                if colorIndex >= colorHexa.count {
+                    colorIndex = 0
+                }
+                colors.append(UIColor.colorFromHexString(colorHexa[colorIndex]))
+                colorIndex += 1
+            }
+            return colors
+        }
+    }
 }
 
 ////////////////////////////////////// Font Extension //////////////////////////////////////
