@@ -16,8 +16,32 @@ enum MetricType: String {
     case uniqueCount    =   "unique_count"
     case topHit         =   "top_hits"
     case max            =   "max"
+    case min            =   "min"
     case average        =   "avg"
     case median         =   "median"
+    
+    var displayValue: String {
+        switch self {
+        case .count:
+            return "Count"
+        case .sum:
+            return "Sum of"
+        case .topHit:
+            return "Last"
+        case .max:
+            return "Max"
+        case .min:
+            return "Min"
+        case .average:
+            return "Average"
+        case .median:
+            return "50th Percentile of"
+        case .uniqueCount:
+            return "Unique Count of"
+        case .unKnown:
+            return ""
+        }
+    }
 }
 
 enum BucketType: String {
@@ -36,7 +60,6 @@ enum BucketType: String {
 
 enum AggregationId: String {
     case unKnown        = "0"
-    case metric         = "1"
     case bucket         = "2"
 }
 

@@ -110,6 +110,43 @@ class DataManager: NSObject {
     }
 
     /**
+     Loads data from server.
+     
+     - parameter urlComponent: Components to be appended to the url.
+     - parameter queryParametres: Query Parametres to append.
+     - parameter methodType: HTTP Method Type (Default value is GET).
+     - parameter parameters: Parameters to be passed to server.
+     - parameter completion: Call back once the server returns the response.
+     
+     */
+    func loadData(_ urlComponent: String = "", queryParametres: [String: String], methodType: HTTPMethod = .post, encoding: ParameterEncoding =  JSONEncoding.default, parameters: [String: Any]?, completion:CompletionBlock?) {
+        
+        func loadData() {
+            let baseUrl = Configuration.shared.baseUrl + UrlComponent.defaultComponant
+            let urlString = urlComponent.isEmpty ? baseUrl : (baseUrl + "/" + urlComponent)
+
+            guard let url = URL(string: urlString), let computedUrl = url.URLByAppendingQueryParameters(queryParametres) else {
+                let error = NSError(domain: AppName, code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
+                completion?(nil, error)
+                return
+            }
+
+            DLog("URL: \(urlString), Params: \(String(describing: parameters))")
+            sessionManager?.request(computedUrl, method: methodType, parameters: parameters, encoding: encoding, headers: defaultHeaders).validate().responseJSON { [weak self] (response) in
+
+                self?.handleResponse(response: response, completion)
+            }
+        }
+
+        guard keyCloakEnabled else {
+            loadData()
+            return
+        }
+        Session.shared.refreshToken { (refreshedAccessToken, error) in
+            loadData()
+        }
+    }
+    /**
      Loads XML data from server.
      
      - parameter baseUrl: base url.(Default : Map Url)

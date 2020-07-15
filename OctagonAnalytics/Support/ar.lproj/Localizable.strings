@@ -91,3 +91,32 @@
 "Canvas"            =   "كنفس";
 "Canvas List"       =   "كنفس لست";
 "NoCanvasFound"     =   "لم يتم العثور على قماش!";
+
+//Video
+"Video Configuration"   =   "تكوين الفيديو";
+"Bar Chart Video"       =   "فيديو مخطط شريطي";
+"Export Video"          =   "تصدير الفيديو";
+"Video Record Don't interrupt message"  =   "إذا بدأت في تسجيل الفيديو ، من فضلك لا تقاطع حتى ينتهي";
+"Record"                =   "سجل";
+"Not Now"               =   "ليس الان";
+"Index Pattern"         =   "نمط الفهرس";
+"Select Index Pattern"  =   "حدد نمط الفهرس";
+"Time Field"            =   "حقل الوقت";
+"Select Time Field"     =   "حدد حقل الوقت";
+"Field"                 =   "حقل";
+"Select Field"          =   "حدد الحقل";
+"Value To Display"      =   "القيمة المعروضة";
+"Select Value To Display"=  "حدد القيمة المراد عرضها";
+"Top Count"             =   "العد الأعلى";
+"From Date"             =   "من التاريخ";
+"Select From Date"      =   "حدد من التاريخ";
+"To Date"               =   "حتى الآن";
+"Select To Date"        =   "حدد حتى الآن";
+"Span"                  =   "Span";
+"Select Span"           =   "حدد Span";
+"No data found!"        =   "لاتوجد بيانات!";
+"Please select Index Pattern"   =   "يرجى تحديد نمط الفهرس";
+"Please select Time Field"  =   "يرجى تحديد حقل الوقت";
+"Please select Field"       =   "يرجى تحديد الحقل";
+"Please select Value To Display"    =   "يرجى تحديد القيمة للعرض";
+"Please select Span"    =   "يرجى تحديد Span";

@@ -10,9 +10,9 @@ import UIKit
 
 func DLog(_ message: String?, function: String = #function) {
     #if DEBUG
-        if let mess = message {
+//        if let mess = message {
 //            print("\(function): \(mess)")
-        }
+//        }
     #endif
 }
 
@@ -27,7 +27,12 @@ var CurrentTheme = ThemeManager.currentTheme()
 
 let isIPhone                =   UIDevice.current.userInterfaceIdiom == .phone
 var isLandscapeMode: Bool {
-    return UIApplication.shared.statusBarOrientation.isLandscape
+    
+    return UIApplication.shared.windows
+        .first?
+        .windowScene?
+        .interfaceOrientation
+        .isLandscape ?? false
 }
 
 let keyCloakEnabled = SettingsBundleHelper.isKeycloakLoginEnabled()

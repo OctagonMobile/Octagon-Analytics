@@ -112,4 +112,10 @@ extension Date {
         let formatter = DateComponentUnitFormatter()
         return formatter.string(forDateComponents: components, useNumericDates: useNumericDates)
     }
+    
+    var stringValue: String {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        return df.string(from: self)
+    }
 }

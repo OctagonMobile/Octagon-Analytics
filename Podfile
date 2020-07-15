@@ -9,6 +9,7 @@ target 'OctagonAnalytics' do
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'
     pod 'SunburstDiagram', :git => 'https://github.com/OctagonMobile/SwiftSunburstDiagram.git'
+    pod 'BarChartRace'
 
 #Helper pods
     pod 'PopupDialog'
@@ -24,6 +25,9 @@ target 'OctagonAnalytics' do
     pod 'MarkdownView'
     pod 'SwiftDataTables', :git => 'https://github.com/OctagonMobile/SwiftDataTables.git'
     pod 'SmartGauge'
+   
+#Forms
+    pod 'Eureka'
     
 #Animation
     pod 'iCarousel'

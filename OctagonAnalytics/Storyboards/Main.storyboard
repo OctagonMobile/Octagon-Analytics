@@ -849,7 +849,7 @@
                                 </variation>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6tJ-C1-eqf">
-                                <rect key="frame" x="25" y="75" width="1030" height="660"/>
+                                <rect key="frame" x="25" y="75" width="1030" height="710"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SJ6-xh-KG7">
                                     <size key="itemSize" width="50" height="50"/>
@@ -960,7 +960,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="KSH-wG-Ilx" kind="relationship" relationship="viewControllers" id="0hc-iN-bta"/>
-                        <segue destination="f99-0f-kNL" kind="relationship" relationship="viewControllers" id="628-7a-1nO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kD-ez-zhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -985,11 +984,11 @@
             </objects>
             <point key="canvasLocation" x="-361" y="430"/>
         </scene>
-        <!--Canvas-->
+        <!--Canvas List-->
         <scene sceneID="rRk-QY-q8O">
             <objects>
-                <navigationController id="f99-0f-kNL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Canvas" image="TabCanvasNormal" landscapeImage="TabCanvasNormal" selectedImage="TabCanvasSelected" id="hnE-LM-UtO"/>
+                <navigationController storyboardIdentifier="canvasNavCtr" id="f99-0f-kNL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Canvas List" image="TabCanvasNormal" landscapeImage="TabCanvasNormal" selectedImage="TabCanvasSelected" id="hnE-LM-UtO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BYG-FB-brj">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1124,14 +1123,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCellIdentifier" id="nmf-pi-LSQ" customClass="DropDownTableViewCell" customModule="OctagonAnalytics" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="300" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nmf-pi-LSQ" id="BNB-mt-SEQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDa-u0-t8F">
-                                                    <rect key="frame" x="0.0" y="15" width="300" height="21.5"/>
+                                                    <rect key="frame" x="0.0" y="15" width="300" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
