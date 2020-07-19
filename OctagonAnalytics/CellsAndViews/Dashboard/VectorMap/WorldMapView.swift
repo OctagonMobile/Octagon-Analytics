@@ -32,7 +32,7 @@ class WorldMapView: UIView {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    private var regionList: [WorldMapVectorRegion]   =   []
+    var regionList: [WorldMapVectorRegion]   =   []
 
     //MARK:
     override init(frame: CGRect) {
@@ -206,29 +206,29 @@ extension WorldMapView {
             return polygonRenderer.path.contains(polygonViewPoint)
         }
     }
+}
+
+struct WorldMapVectorRegion {
+    var name: String?
+    var code: String?
+    var coordinatesList: [[CLLocationCoordinate2D]]   =   []
     
-    struct WorldMapVectorRegion {
-        var name: String?
-        var code: String?
-        var coordinatesList: [[CLLocationCoordinate2D]]   =   []
+    init(name: String?, code: String?, polygonSet: [[[[Double]]]]) {
+        self.name = name
+        self.code = code
         
-        init(name: String?, code: String?, polygonSet: [[[[Double]]]]) {
-            self.name = name
-            self.code = code
+        for set in polygonSet {
             
-            for set in polygonSet {
-                
-                var list: [CLLocationCoordinate2D] = []
-                
-                for eachPolygon in set {
-                    for point in eachPolygon {
-                        guard let lat = point.last, let long = point.first else { continue }
-                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                        list.append(coordinate)
-                    }
+            var list: [CLLocationCoordinate2D] = []
+            
+            for eachPolygon in set {
+                for point in eachPolygon {
+                    guard let lat = point.last, let long = point.first else { continue }
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    list.append(coordinate)
                 }
-                coordinatesList.append(list)
             }
+            coordinatesList.append(list)
         }
     }
 }

@@ -213,6 +213,13 @@
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
+		F12CA8D524C444BE00890BAC /* VectorMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CB24C444BD00890BAC /* VectorMapView.swift */; };
+		F12CA8D624C444BE00890BAC /* VectorMapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */; };
+		F12CA8D824C444BE00890BAC /* VectorTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */; };
+		F12CA8D924C444BE00890BAC /* VectorRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CF24C444BD00890BAC /* VectorRegion.swift */; };
+		F12CA8DA24C444BE00890BAC /* BoundaryPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */; };
+		F12CA8DB24C444BE00890BAC /* VectorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8D124C444BD00890BAC /* VectorMap.swift */; };
+		F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */; };
 		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 		F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */; };
@@ -450,6 +457,13 @@
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
+		F12CA8CB24C444BD00890BAC /* VectorMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMapView.swift; sourceTree = "<group>"; };
+		F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMapContainer.swift; sourceTree = "<group>"; };
+		F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTimelineViewController.swift; sourceTree = "<group>"; };
+		F12CA8CF24C444BD00890BAC /* VectorRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorRegion.swift; sourceTree = "<group>"; };
+		F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundaryPolygon.swift; sourceTree = "<group>"; };
+		F12CA8D124C444BD00890BAC /* VectorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMap.swift; sourceTree = "<group>"; };
+		F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VectorTimelineViewController.xib; sourceTree = "<group>"; };
 		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRaceViewController.swift; sourceTree = "<group>"; };
@@ -650,6 +664,7 @@
 				5146761E22E45C8200D9FE8C /* Canvas */,
 				51E94648221BEE5500F30D1F /* Settings */,
 				513D897E2175FBCD001B12D6 /* VectorMap */,
+				F12CA8C924C444BD00890BAC /* VectorMapTimeLine */,
 				51923AB5207DE2FC0023FE27 /* Map */,
 				51677F47206D07E000C7751A /* DropDown */,
 				51477DE42068DF1100955394 /* Login */,
@@ -1312,6 +1327,20 @@
 			path = DataTable;
 			sourceTree = "<group>";
 		};
+		F12CA8C924C444BD00890BAC /* VectorMapTimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				F12CA8CB24C444BD00890BAC /* VectorMapView.swift */,
+				F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */,
+				F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */,
+				F12CA8CF24C444BD00890BAC /* VectorRegion.swift */,
+				F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */,
+				F12CA8D124C444BD00890BAC /* VectorMap.swift */,
+				F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */,
+			);
+			path = VectorMapTimeLine;
+			sourceTree = "<group>";
+		};
 		F133769F247FEAF4008A5D3D /* MultiLayerPieChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -1445,6 +1474,7 @@
 				F117847324892B3600FF4F0E /* ChartLegendsView.xib in Resources */,
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
+				F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
 				513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */,
 				51E8BF4620F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib in Resources */,
@@ -1561,6 +1591,7 @@
 			files = (
 				51CD9A9A23F28108005ACD46 /* TutorialViewController.swift in Sources */,
 				516292E31FA05E2E008A547B /* BarChartViewController.swift in Sources */,
+				F12CA8D824C444BE00890BAC /* VectorTimelineViewController.swift in Sources */,
 				513F3F83206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				51C46F172492709B00EA0AAC /* IndexPattern.swift in Sources */,
 				513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */,
@@ -1606,6 +1637,7 @@
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
 				51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */,
+				F12CA8DB24C444BE00890BAC /* VectorMap.swift in Sources */,
 				51D3E70B1FF5094200CC4F2B /* DashboardItem.swift in Sources */,
 				51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */,
 				51E94653221C281200F30D1F /* AuthenticationViewController.swift in Sources */,
@@ -1639,6 +1671,7 @@
 				512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */,
 				518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */,
 				51CB2D211FBDA141007BC0A0 /* PanelBaseViewController.swift in Sources */,
+				F12CA8D524C444BE00890BAC /* VectorMapView.swift in Sources */,
 				51E8BF4E20F38048004B5D20 /* QuickDatePickerView.swift in Sources */,
 				513D89792175F725001B12D6 /* WorldMapView.swift in Sources */,
 				516292DC1FA05677008A547B /* PieChartViewController.swift in Sources */,
@@ -1657,10 +1690,12 @@
 				514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */,
 				51CD9AA523F2A366005ACD46 /* TutorialLoginCarouselView.swift in Sources */,
 				516E2A9E1FBAB2AA00E4D752 /* SavedSearchPopOverViewController.swift in Sources */,
+				F12CA8DA24C444BE00890BAC /* BoundaryPolygon.swift in Sources */,
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
 				F117847624892BCF00FF4F0E /* ChartLegendTableViewCell.swift in Sources */,
 				5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */,
+				F12CA8D624C444BE00890BAC /* VectorMapContainer.swift in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
 				F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
@@ -1699,6 +1734,7 @@
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,
 				5157C51E207A40B300CF0EB9 /* MapTrackingAnnotationView.swift in Sources */,
 				51CB2D231FBDA14C007BC0A0 /* DashboardListingViewController.swift in Sources */,
+				F12CA8D924C444BE00890BAC /* VectorRegion.swift in Sources */,
 				F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */,
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
