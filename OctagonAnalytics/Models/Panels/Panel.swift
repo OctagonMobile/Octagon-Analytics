@@ -85,11 +85,6 @@ class Panel: Mappable {
      Search query string.
      */
     var searchQuery                     = ""
-
-    /**
-     Index (Note : Currently note used).
-     */
-    var index: String                   = ""
     
     /**
      List of chart items.
@@ -149,7 +144,6 @@ class Panel: Mappable {
         column      <- map[PanelConstant.column]
         width       <- map[PanelConstant.width]
         height      <- map[PanelConstant.height]
-        index       <- map[PanelConstant.searchIndex]
         searchQuery <- map[PanelConstant.searchQuery]
 
         // Manual mapping based on visualization type

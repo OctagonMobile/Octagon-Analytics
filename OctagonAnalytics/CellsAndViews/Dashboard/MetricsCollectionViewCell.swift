@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 
 class MetricsCollectionViewCell: UICollectionViewCell {
 

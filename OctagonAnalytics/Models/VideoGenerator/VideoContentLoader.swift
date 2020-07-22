@@ -7,7 +7,6 @@
 //
 
 import ObjectMapper
-import Alamofire
 import SwiftDate
 
 class VideoContentLoader {
