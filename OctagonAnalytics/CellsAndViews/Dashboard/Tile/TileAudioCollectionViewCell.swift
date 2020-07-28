@@ -99,12 +99,10 @@ class TileAudioCollectionViewCell: TileBaseCollectionViewCell {
         guard let thumbnailUrlString = tile?.thumbnailUrl, let thumbnailUrl = URL(string: thumbnailUrlString)  else { return }
         
         imageActivityIndicator.startAnimating()
-        audioImageView.af_setImage(withURL: thumbnailUrl, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.flipFromTop(1.0), runImageTransitionIfCached: true) { [weak self] (response) in
+        audioImageView.af.setImage(withURL: thumbnailUrl, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.flipFromTop(1.0), runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageActivityIndicator.stopAnimating()
-            guard let image = response.result.value else {
-                return
-            }
+            let image =  try? response.result.get()
             self?.tile?.thumbnailImage = image
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 import AeroGearOAuth2
 import LanguageManager_iOS
 import SwiftDate
+import OctagonAnalyticsService
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Initial entry point to the application based on configuration
         NavigationManager.shared.setupInitialEntryPoint()
+        
+        ServiceConfiguration.configure(Configuration.shared.baseUrl, version: .v654)
 
         return true
     }

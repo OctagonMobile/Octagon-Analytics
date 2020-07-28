@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import Alamofire
+import OctagonAnalyticsService
 
 class ThumbnailView: UIView {
 
@@ -129,11 +130,11 @@ class ThumbnailView: UIView {
         
         thumbnailImageView.image = nil
         imageActivityIndicator.startAnimating()
-        DataRequest.addAcceptableImageContentTypes(["image/svg+xml"])
-        thumbnailImageView.af_setImage(withURL: thumbnailUrl, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.flipFromTop(1.0), runImageTransitionIfCached: true) { [weak self] (response) in
+        ImageResponseSerializer.addAcceptableImageContentTypes(["image/svg+xml"])
+        thumbnailImageView.af.setImage(withURL: thumbnailUrl, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.flipFromTop(1.0), runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageActivityIndicator.stopAnimating()
-            guard let image = response.result.value else {
+            guard let image = try? response.result.get() else {
                 if self?.enableErrorLabel == true {
                     self?.errorLabel.isHidden = false
                 }
@@ -154,6 +155,6 @@ class ThumbnailView: UIView {
      */
     func cancelImageDownloading() {
         thumbnailImageView.image = nil
-        thumbnailImageView.af_cancelImageRequest()
+        thumbnailImageView.af.cancelImageRequest()
     }
 }

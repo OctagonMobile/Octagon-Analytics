@@ -8,6 +8,7 @@
 
 import Foundation
 import MBProgressHUD
+import OctagonAnalyticsService
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -332,5 +333,11 @@ extension URL {
 
         urlComponents.queryItems = mutableQueryItems
         return urlComponents.url
+    }
+}
+
+extension OAServiceError {
+    var asNSError: NSError {
+        return NSError(domain: AppName, code: 1001, userInfo: [NSLocalizedDescriptionKey: self.errorDescription])
     }
 }
