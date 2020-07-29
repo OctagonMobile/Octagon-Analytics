@@ -9,6 +9,7 @@
 import UIKit
 import AMPopTip
 import LanguageManager_iOS
+import OctagonAnalyticsService
 
 class DashboardViewController: BaseViewController {
 
@@ -21,7 +22,7 @@ class DashboardViewController: BaseViewController {
     @IBOutlet weak var removeFiltersButton: UIButton!
     
     ///Dashboard Item Object.
-    var dashboardItem = DashboardItem(JSON: [:])
+    var dashboardItem: DashboardItem!
 
     ///Array Of Panels.
     fileprivate var panels: [Panel] {
@@ -243,7 +244,7 @@ class DashboardViewController: BaseViewController {
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: ViewControllerIdentifiers.tileViewController) as? TileViewController ?? TileViewController()
             case .heatMap:
                 let mapType = (panel.visState as? MapVisState)?.mapType
-                let storyboardId = (mapType == MapVisState.MapType.heatMap) ? ViewControllerIdentifiers.heatMapViewController :
+                let storyboardId = (mapType == MapVisStateService.MapType.heatMap) ? ViewControllerIdentifiers.heatMapViewController :
                     ViewControllerIdentifiers.coordinateMapViewController
                 panelViewController = StoryboardManager.shared.storyBoard(.charts).instantiateViewController(withIdentifier: storyboardId) as? MapBaseViewController ?? PanelBaseViewController()
                 (panelViewController as? HeatMapViewController)?.enableDashboardScrolling = { [weak self] ( enable ) in

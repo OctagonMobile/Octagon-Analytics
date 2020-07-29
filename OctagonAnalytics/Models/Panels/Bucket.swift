@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
 
 class Bucket {
     
@@ -110,7 +111,7 @@ class Bucket {
             var filter: FilterProtocol
             switch bucket.bucketType {
             case .dateHistogram:
-                let interval = otherAggs.params?.interval ?? AggregationParams.IntervalType.unKnown
+                let interval = otherAggs.params?.interval ?? AggregationParamsService.IntervalType.unKnown
                 let customInterval = otherAggs.params?.customInterval ?? ""
                 filter = DateHistogramFilter(fieldName: otherAggs.field, fieldValue: val, type: otherAggs.bucketType, interval: interval, customInterval: customInterval, selectedComponants: selectedDateComponant)
             default:

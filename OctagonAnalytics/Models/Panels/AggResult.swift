@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
 typealias Legend = (text: String, color: UIColor)
 
 class AggResult {

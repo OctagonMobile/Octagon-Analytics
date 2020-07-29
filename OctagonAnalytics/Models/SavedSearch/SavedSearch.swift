@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
-class SavedSearch: Mappable {
+class SavedSearch {
 
     var keys: [String]          = []
 
@@ -18,11 +18,7 @@ class SavedSearch: Mappable {
     var columnsWidth: [CGFloat] = []
 
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
-    
-    func mapping(map: Map) {
-        data                = map.JSON
+    init(_ responseModel: SavedSearchService) {
+        self.data   =   responseModel.data
     }
 }

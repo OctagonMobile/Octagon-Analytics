@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
-class Metric: Mappable {
+class Metric {
     var id: String = ""
     var type: String    = ""
     var value: NSNumber  = NSNumber(value: 0)
@@ -45,16 +45,11 @@ class Metric: Mappable {
     }
     
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
+    init(_ responseModel: MetricService) {
+        self.id     =   responseModel.id
+        self.type   =   responseModel.type
+        self.labelStr   =   responseModel.label
+        self.labelInt   =   Int(responseModel.label)
+        self.value      =   responseModel.value
     }
-    
-    func mapping(map: Map) {
-        id              <- map[MetricConstant.id]
-        type            <- map[MetricConstant.type]
-        labelStr        <- map[MetricConstant.label]
-        labelInt        <- map[MetricConstant.label]
-        value           <- map[MetricConstant.value]
-    }
-
 }

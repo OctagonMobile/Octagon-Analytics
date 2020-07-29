@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class PieChartVisState: VisState {
 
     var isDonut: Bool   = false
     
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        isDonut     <- map["params.isDonut"]
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
+        
+        guard let pieVisService = responseModel as? PieChartVisStateService else { return }
+        self.isDonut    =   pieVisService.isDonut
     }
 
 }

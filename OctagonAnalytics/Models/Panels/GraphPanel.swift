@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import Alamofire
 
 class GraphPanel: Panel {

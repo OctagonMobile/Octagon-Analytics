@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftDate
+import OctagonAnalyticsService
 
 //MARK:
 protocol FilterProtocol {
@@ -250,7 +251,7 @@ struct DateHistogramFilter: FilterProtocol {
     var fieldName: String
     var fieldValue: String
     var bucketType: BucketType
-    var interval: AggregationParams.IntervalType
+    var interval: AggregationParamsService.IntervalType
     var customInterval: String
     var selectedDateComponants: DateComponents?
     
@@ -259,7 +260,7 @@ struct DateHistogramFilter: FilterProtocol {
     var combinedFilterValue: String { return "" }
     /////////
 
-    init(fieldName: String, fieldValue: String, type: BucketType, interval: AggregationParams.IntervalType, customInterval: String = "", selectedComponants: DateComponents?) {
+    init(fieldName: String, fieldValue: String, type: BucketType, interval: AggregationParamsService.IntervalType, customInterval: String = "", selectedComponants: DateComponents?) {
         self.fieldName  = fieldName
         self.fieldValue = fieldValue
         self.bucketType = type
@@ -273,7 +274,7 @@ struct DateHistogramFilter: FilterProtocol {
         return fieldName == obj.fieldName && fieldValue == obj.fieldValue
     }
 
-    private func dateForIntervalType(_ interval: AggregationParams.IntervalType, value: Int = 1) -> Date? {
+    private func dateForIntervalType(_ interval: AggregationParamsService.IntervalType, value: Int = 1) -> Date? {
         guard let fromDate = calculatedFromDate else { return nil }
         
         switch interval {
@@ -305,7 +306,7 @@ struct DateHistogramFilter: FilterProtocol {
     
     private func dateForCustomInterval() -> Date? {
         
-        guard let matchedType = AggregationParams.IntervalType.customTypes.filter( { customInterval.contains($0.rawValue) } ).first else { return calculatedFromDate }
+        guard let matchedType = AggregationParamsService.IntervalType.customTypes.filter( { customInterval.contains($0.rawValue) } ).first else { return calculatedFromDate }
         let value = customInterval.replacingOccurrences(of: matchedType.rawValue, with: "")
         
         guard let intervalValue = Int(value) else { return calculatedFromDate }

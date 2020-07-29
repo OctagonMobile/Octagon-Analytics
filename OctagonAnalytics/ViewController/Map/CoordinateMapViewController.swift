@@ -9,6 +9,7 @@
 import UIKit
 import DTMHeatmap
 import CoreLocation
+import OctagonAnalyticsService
 
 class CoordinateMapViewController: BaseHeatMapViewController {
 
@@ -34,10 +35,10 @@ class CoordinateMapViewController: BaseHeatMapViewController {
     private func drawPoints(_ locationsArray: [[String: Any?]]) {
         
         let currentZoomLevel = mapView.getZoom()
-        let mapType = (panel?.visState as? MapVisState)?.mapType ?? MapVisState.MapType.unknown
+        let mapType = (panel?.visState as? MapVisState)?.mapType ?? MapVisStateService.MapType.unknown
         var radius: CLLocationDistance = 1000
         
-        if mapType == MapVisState.MapType.shadedCircleMarkers {
+        if mapType == MapVisStateService.MapType.shadedCircleMarkers {
             radius = radiusForShadedCircleMarkers(currentZoomLevel)
         }
         
@@ -48,7 +49,7 @@ class CoordinateMapViewController: BaseHeatMapViewController {
         for item in locationsArray {
             guard let loc = item["location"] as? CLLocation else { continue }
             let value = item["docCount"] as? Double ?? 0.0
-            if mapType == MapVisState.MapType.scaledCircleMarkers {
+            if mapType == MapVisStateService.MapType.scaledCircleMarkers {
                 radius = radiusForScaledCircleMarkers(currentZoomLevel, value: value, oldRange: oldRange)
             }
 

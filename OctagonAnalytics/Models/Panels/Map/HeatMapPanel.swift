@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import OctagonAnalyticsService
 
 class HeatMapPanel: Panel, WMSLayerProtocol {
 

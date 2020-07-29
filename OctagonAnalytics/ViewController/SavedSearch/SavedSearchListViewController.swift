@@ -14,7 +14,7 @@ class SavedSearchListViewController: PanelBaseViewController {
 
     /// Saved Search Panel object
     fileprivate var savedSearchPanel: SavedSearchPanel {
-        return (panel as? SavedSearchPanel) ?? SavedSearchPanel(JSON: [:])!
+        return (panel as? SavedSearchPanel)!
     }
 
     /// This CollectionView is used to provide horizontal scrolling

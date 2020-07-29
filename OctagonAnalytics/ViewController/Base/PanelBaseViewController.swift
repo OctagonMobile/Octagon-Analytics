@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import MarqueeLabel
+import OctagonAnalyticsService
 
 typealias FilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: FilterProtocol) -> Void
 typealias SelectFieldActionBlock = (_ sender: Any,_ item: FilterProtocol,_ widgetRect: CGRect?) -> Void

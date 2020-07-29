@@ -83,7 +83,7 @@ class SavedSearchPanel: Panel {
         
         columns                 = hitsDict["columns"] as? [String] ?? []
         totalSavedSearchCount   = hitsDict["total"] as? Int ?? 0
-        hits                    = Mapper<SavedSearch>().mapArray(JSONArray: hitsArray)
+//        hits                    = Mapper<SavedSearch>().mapArray(JSONArray: hitsArray)
         
         return hits
     }

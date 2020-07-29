@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
 
 protocol BucketAggType {
     var bucketKey: String { get }
@@ -32,7 +33,7 @@ class FilterProvider: FilterProviderType {
     private func makeDateFilter(dateComponents: DateComponents?,
                         aggregation: Aggregation,
                         key: String) -> DateHistogramFilter {
-        let interval = aggregation.params?.interval ?? AggregationParams.IntervalType.unKnown
+        let interval = aggregation.params?.interval ?? AggregationParamsService.IntervalType.unKnown
         let customInterval = aggregation.params?.customInterval ?? ""
         return DateHistogramFilter(fieldName: aggregation.field,
                                    fieldValue: key,

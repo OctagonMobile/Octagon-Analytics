@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import SwiftDate
 
-class DashboardItem: NSObject, Mappable {
-
+class DashboardItem: NSObject {
     /**
      Title of the dashboard.
      */
@@ -69,64 +68,46 @@ class DashboardItem: NSObject, Mappable {
         return datePickerMode == .quickPicker ? (QuickPicker(rawValue: selectedDateString)?.localizedValue ?? selectedDateString) : selectedDateString
     }
     
-    //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
-    
-    func mapping(map: Map) {
-        title       <- map["title"]
-        id          <- map["id"]
-        type        <- map["type"]
-        desc        <- map["description"]
-        fromTime    <- map["timeFrom"]
-        toTime      <- map["timeTo"]
-        searchQuery <- map["searchQueryDashboard"]
+    //MARK: Functions    
+    init(_ responseModel: DashboardItemService) {
+        super.init()
+        self.title          =   responseModel.title
+        self.id             =   responseModel.id
+        self.type           =   responseModel.type
+        self.desc           =   responseModel.desc
+        self.fromTime       =   responseModel.fromTime
+        self.toTime         =   responseModel.toTime
+        self.searchQuery    =   responseModel.searchQuery
         
-        updateDatePickerModeAndSelectedDateString()
-        
-        guard let panelsJson  = map.JSON["panels"] as? [[String: Any]] else { return }
-
-        let panelsList = panelsJson.compactMap { (json) -> Panel? in
-            let panelType: String? = (json["visState"] as? [String: Any])?["type"] as? String
-            var panel: Panel?
-            if panelType == PanelType.metric.rawValue {
-                panel = MetricPanel(JSON: json)
-            } else if panelType == PanelType.tile.rawValue {
-                panel = TilePanel(JSON: json)
-            } else if panelType == PanelType.search.rawValue {
-                panel = SavedSearchPanel(JSON: json)
-            } else if panelType == PanelType.heatMap.rawValue {
-                panel = HeatMapPanel(JSON: json)
-            } else if panelType == PanelType.mapTracking.rawValue {
-                panel = MapTrackingPanel(JSON: json)
-            } else if panelType == PanelType.faceTile.rawValue {
-                panel = FaceTilePanel(JSON: json)
-            } else if panelType == PanelType.neo4jGraph.rawValue {
-                panel = GraphPanel(JSON: json)
-            } else if panelType == PanelType.gauge.rawValue ||
-                panelType == PanelType.goal.rawValue {
-                panel = GaugePanel(JSON: json)
-            } else if panelType == PanelType.inputControls.rawValue {
-                panel = ControlsPanel(JSON: json)
-            }  else {
-                panel = Panel(JSON: json)
+        let panelsList  =   responseModel.panels.compactMap { (panelService) -> Panel? in
+            switch panelService.visState?.type {
+            case .metric:   return MetricPanel(panelService)
+            case .tile:     return TilePanel(panelService)
+            case .search:   return SavedSearchPanel(panelService)
+            case .heatMap:  return HeatMapPanel(panelService)
+            case .mapTracking:  return MapTrackingPanel(panelService)
+            case .faceTile:     return FaceTilePanel(panelService)
+            case .neo4jGraph:   return GraphPanel(panelService)
+            case .gauge, .goal: return GaugePanel(panelService)
+            case .inputControls: return ControlsPanel(panelService)
+            default: return Panel(panelService)
             }
-            
-            panel?.dashboardItem = self
-            
-            return panel
         }
-
         let sortedPanels:[Panel] = panelsList.sorted { (first, second) -> Bool in
 
             if first.row == second.row {
                 return first.column <= second.column
             }
-            return first.row < second.row
+            return first.row <= second.row
         }
-        
+
         panels = sortedPanels
+
+        updateDatePickerModeAndSelectedDateString()
+    }
+    
+    override init() {
+        super.init()
     }
     
     func updateDatePickerModeAndSelectedDateString() {
@@ -153,21 +134,18 @@ extension DashboardItem: NSCopying {
     
     func copy(with zone: NSZone? = nil) -> Any {
         
-        let copy = DashboardItem(JSON: [:])
-        copy?.title             = self.title
-        copy?.id                = self.id
-        copy?.type              = self.type
-        copy?.desc              = self.desc
-        copy?.fromTime          = self.fromTime
-        copy?.toTime            = self.toTime
-        copy?.searchQuery       = self.searchQuery
-        copy?.panels            = self.panels
-        copy?.datePickerMode      = self.datePickerMode
-        copy?.selectedDateString  = self.selectedDateString
+        let copy = DashboardItem()
+        copy.title             = self.title
+        copy.id                = self.id
+        copy.type              = self.type
+        copy.desc              = self.desc
+        copy.fromTime          = self.fromTime
+        copy.toTime            = self.toTime
+        copy.searchQuery       = self.searchQuery
+        copy.panels            = self.panels
+        copy.datePickerMode      = self.datePickerMode
+        copy.selectedDateString  = self.selectedDateString
 
-        return copy ?? self
-//        return Swift.type(of:self).init(map: self)
+        return copy
     }
-    
-    
 }

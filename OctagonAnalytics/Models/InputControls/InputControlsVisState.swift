@@ -7,75 +7,61 @@
 //
 
 import Foundation
-import ObjectMapper
+import OctagonAnalyticsService
 
 class InputControlsVisState: VisState {
     
     var controls: [Control]  =  []
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-
-        guard let params = map.JSON["params"] as? [String: Any],
-        let controlsList = params["controls"] as? [[String: Any]] else {
-            return
-        }
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        controls = Mapper<Control>().mapArray(JSONArray: controlsList)
-        
+        guard let controlsServiceVis = responseModel as? InputControlsVisStateService else { return }
+        self.controls   =   controlsServiceVis.controls.compactMap({ Control($0) })
     }
 }
 
-class Control: Mappable {
+class Control {
     
-    enum ControlType: String {
-        case range
-        case list
-    }
-
     var id: String              =   ""
     var indexPattern: String    =   ""
     var fieldName: String       =   ""
     var parent: String          =   ""
     var label: String           =   ""
-    var type: ControlType       =   .range
+    var type: ControlService.ControlType       =   .range
     var rangeOptions: RangeOptions?
     var listOptions: ListOptions?
 
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        id              <-  map["id"]
-        indexPattern    <-  map["indexPattern"]
-        fieldName       <-  map["fieldName"]
-        parent          <-  map["parent"]
-        label           <-  map["label"]
-        type            <-  (map["type"],EnumTransform<ControlType>())
+    init(_ responseModel: ControlService) {
+        self.id  =   responseModel.id
+        self.indexPattern   =   responseModel.indexPattern
+        self.fieldName      =   responseModel.fieldName
+        self.parent         =   responseModel.parent
+        self.label          =   responseModel.label
+        self.type           =   responseModel.type
         
-        switch type {
-        case .range:
-            rangeOptions        <-  map["options"]
-        case .list:
-            listOptions         <-  map["options"]
+        if let range = responseModel.rangeOptions {
+            self.rangeOptions   =   RangeOptions(range)
+        }
+        
+        if let listOpt = responseModel.listOptions {
+            self.listOptions   =   ListOptions(listOpt)
         }
     }
 }
 
-class RangeOptions: Mappable {
+class RangeOptions {
     
     var decimalPlaces: Int  =   0
     var step: Int           =   0
 
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        decimalPlaces   <-  map["decimalPlaces"]
-        step            <-  map["step"]
+    init(_ responseModel: RangeOptionsService) {
+        self.decimalPlaces  =   responseModel.decimalPlaces
+        self.step           =   responseModel.step
     }
-
 }
 
-class ListOptions: Mappable {
+class ListOptions {
     
     var type: BucketType        =   .unKnown
     var multiselect: Bool       =   true
@@ -83,14 +69,13 @@ class ListOptions: Mappable {
     var size: Int               =   0
     var order: String           =   ""
 
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        type            <-  (map["type"],EnumTransform<BucketType>())
-        multiselect     <-  map["multiselect"]
-        dynamicOptions  <-  map["dynamicOptions"]
-        size            <-  map["size"]
-        order           <-  map["order"]
+    init(_ responseModel: ListOptionsService) {
+        self.type           =   responseModel.type
+        self.multiselect    =   responseModel.multiselect
+        self.dynamicOptions =   responseModel.dynamicOptions
+        self.size           =   responseModel.size
+        self.order          =   responseModel.order
+
     }
 
 }

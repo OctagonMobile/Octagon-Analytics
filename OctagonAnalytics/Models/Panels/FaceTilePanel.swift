@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class FaceTilePanel: Panel {
     
@@ -18,41 +18,42 @@ class FaceTilePanel: Panel {
      */
     var faceTileList: [FaceTile] = []
     
-    
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
         
-        filterName      <-  map["visState.params.file"]
+        guard let faceTilePanelService = responseModel as? FaceTilePanelService else { return }
+        self.filterName = faceTilePanelService.filterName
     }
+    
     /**
      Parse the data into Tiles object.
      
      - parameter result: Data to be parsed.
      - returns:  Array of Tiles Object
      */
-    override func parseData(_ result: Any?) -> [Any] {
-        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-            let hitsDict = responseJson.first?["hits"] as? [String: Any],
-            let metricsArray = hitsDict["hits"] as? [[String: Any]] else {
-                faceTileList.removeAll()
-                return []
-        }
-        
-        faceTileList.removeAll()
-        
-        // Parse the response to create list of face tile object
-        var parsedArray: [[String: Any]] = []
-        for item in metricsArray {
-            guard let faceUrls = item["faces"] as? [String] else { continue }
-            for faceUrlString in faceUrls {
-                var dict: [String: Any] = [:]
-                dict["fileName"] = item["fileName"] as? String
-                dict["faceUrl"] = faceUrlString
-                parsedArray.append(dict)
-            }
-        }
-        faceTileList = Mapper<FaceTile>().mapArray(JSONArray: parsedArray)
-        return faceTileList
-    }
+//    override func parseData(_ result: Any?) -> [Any] {
+//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
+//            let hitsDict = responseJson.first?["hits"] as? [String: Any],
+//            let metricsArray = hitsDict["hits"] as? [[String: Any]] else {
+//                faceTileList.removeAll()
+//                return []
+//        }
+//
+//        faceTileList.removeAll()
+//
+//        // Parse the response to create list of face tile object
+//        var parsedArray: [[String: Any]] = []
+//        for item in metricsArray {
+//            guard let faceUrls = item["faces"] as? [String] else { continue }
+//            for faceUrlString in faceUrls {
+//                var dict: [String: Any] = [:]
+//                dict["fileName"] = item["fileName"] as? String
+//                dict["faceUrl"] = faceUrlString
+//                parsedArray.append(dict)
+//            }
+//        }
+//        faceTileList = Mapper<FaceTile>().mapArray(JSONArray: parsedArray)
+//        return faceTileList
+//    }
     
 }

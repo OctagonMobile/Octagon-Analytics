@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class TagCloudVisState: VisState {
 
@@ -22,11 +22,11 @@ class TagCloudVisState: VisState {
     var maxFontSize: NSInteger    = 60
 
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        minFontSize     <- map["params.minFontSize"]
-        maxFontSize     <- map["params.maxFontSize"]
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
+        
+        guard let tagCloudVisService = responseModel as? TagCloudVisStateService else { return }
+        self.minFontSize    =   tagCloudVisService.minFontSize
+        self.maxFontSize    =   tagCloudVisService.maxFontSize
     }
-    
-
 }

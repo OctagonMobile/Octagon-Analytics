@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import Alamofire
 
 class MetricPanel: Panel {
@@ -18,15 +18,17 @@ class MetricPanel: Panel {
     var metricsList: [Metric] = []
     
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        metricsList = Mapper<Metric>().mapArray(JSONObject: map.JSON) ?? []
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
+        
+        guard let panelService = responseModel as? MetricPanelService else { return }
+        self.metricsList    =   panelService.metricsList.compactMap({ Metric($0) })
+        
         metricsList = metricsList.map {
             $0.panel = self
             return $0
         }
-    }
-    
+    }    
     
     override func resetDataSource() {
         super.resetDataSource()
@@ -39,19 +41,19 @@ class MetricPanel: Panel {
      - parameter result: Data to be parsed.
      - returns:  Array of Metric Object
      */
-    override func parseData(_ result: Any?) -> [Any] {
-        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
-            let metricsArray = aggregationsDict["metrics"] as? [[String: Any]] else {
-                metricsList.removeAll()
-                return []
-        }
-        
-        metricsList = Mapper<Metric>().mapArray(JSONArray: metricsArray)
-        metricsList = metricsList.map {
-            $0.panel = self
-            return $0
-        }
-        return metricsList
-    }
+//    override func parseData(_ result: Any?) -> [Any] {
+//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
+//            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
+//            let metricsArray = aggregationsDict["metrics"] as? [[String: Any]] else {
+//                metricsList.removeAll()
+//                return []
+//        }
+//
+//        metricsList = Mapper<Metric>().mapArray(JSONArray: metricsArray)
+//        metricsList = metricsList.map {
+//            $0.panel = self
+//            return $0
+//        }
+//        return metricsList
+//    }
 }

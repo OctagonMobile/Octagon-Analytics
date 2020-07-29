@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class GraphVisState: VisState {
 
@@ -15,11 +15,19 @@ class GraphVisState: VisState {
     var nodeImageBaseUrl: String    =   ""
     var nodeImageProperty: String   =   ""
 
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        query               <-  map["params.query"]
-        nodeImageBaseUrl    <-  map["params.node_image_base_url"]
-        nodeImageProperty   <-  map["params.node_image_property"]
+        guard let graphServiceVisState = responseModel as? GraphVisStateService else { return }
+        self.query      =   graphServiceVisState.query
+        self.nodeImageBaseUrl   =   graphServiceVisState.nodeImageBaseUrl
+        self.nodeImageProperty  =   graphServiceVisState.nodeImageProperty
     }
+//    override func mapping(map: Map) {
+//        super.mapping(map: map)
+//
+//        query               <-  map["params.query"]
+//        nodeImageBaseUrl    <-  map["params.node_image_base_url"]
+//        nodeImageProperty   <-  map["params.node_image_property"]
+//    }
 }

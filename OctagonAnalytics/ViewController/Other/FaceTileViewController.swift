@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OctagonAnalyticsService
 
 class FaceTileViewController: PanelBaseViewController {
 

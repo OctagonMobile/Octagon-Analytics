@@ -7,17 +7,18 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class MetricVisState: VisState {
 
     var fontSize: CGFloat?            = 10.0
     
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        fontSize        <- map["params.metric.style.fontSize"]
+        guard let metricVisService = responseModel as? MetricVisStateService else { return }
+        self.fontSize   =   metricVisService.fontSize
     }
 
 }

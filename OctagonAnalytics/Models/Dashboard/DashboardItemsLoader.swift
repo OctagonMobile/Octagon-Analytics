@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import OctagonAnalyticsService
 
 class DashboardItemsLoader: NSObject {
     
@@ -19,7 +20,7 @@ class DashboardItemsLoader: NSObject {
     /**
      Page number.
      */
-    var pageNumber: Int                         = 0
+    var pageNumber: Int                         = 1
 
     //MARK: Functions
     /**
@@ -30,34 +31,20 @@ class DashboardItemsLoader: NSObject {
      */
     func loadDashBoardItems(_ completion: CompletionBlock?) {
         
-        let params: [String : Any] = ["pageNum": pageNumber ,"pageSize": Constant.pageSize]
-        DataManager.shared.loadData(UrlComponents.dashBoardList, parameters: params) { [weak self] (result, error) in
-
+        ServiceProvider.shared.loadDashboards(pageNumber, pageSize: Constant.pageSize) { [weak self] (result, error) in
+            
             guard error == nil else {
                 self?.dashBoardItems.removeAll()
-                completion?(self?.dashBoardItems, error)
+                completion?(self?.dashBoardItems, error?.asNSError)
                 return
             }
             
-            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] {
-                self?.dashBoardItems = self?.parseDashboardItems(finalResult) ?? []
+            if let res = result as? DashboardListResponse {
+                self?.dashBoardItems = res.dashboards.compactMap({ DashboardItem($0) }).sorted(by:  {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending} )
             }
-            
-            completion?(self?.dashBoardItems, error)
+            completion?(self?.dashBoardItems, error?.asNSError)
+
         }
-    }
-    
-    /**
-     Used to parse the server response (Dashboard items).
-     
-     - parameter result: result to be parsed.
-     - returns : Parsed array of DashboardItem
-     */
-    private func parseDashboardItems(_ result: Any?) -> [DashboardItem] {
-        guard let itemsArray = result as? [[String: Any]] else { return [] }
-        
-        let dashboardList = itemsArray.compactMap { DashboardItem(JSON: $0) }.sorted(by:  {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending} )
-        return dashboardList
     }
 }
 

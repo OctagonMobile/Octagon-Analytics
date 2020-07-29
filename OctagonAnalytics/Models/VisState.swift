@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
-class VisState: Mappable {
+class VisState {
 
     enum AxisPosition: String {
         case left   =   "left"
@@ -50,34 +50,40 @@ class VisState: Mappable {
     var seriesMode: SeriesMode  =   .stacked
     
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
+//    required init?(map: Map) {
+//        // Empty Method
+//    }
     
-    func mapping(map: Map) {
-        title           <- map["title"]
-        type            <- (map["type"],EnumTransform<PanelType>())
-        seriesMode      <- (map["params.seriesParams.mode"],EnumTransform<SeriesMode>())
-
-        if let params = map.JSON["params"] as? [String: Any] {
-            if let categoryAxes = (params["categoryAxes"] as? [[String: Any]])?.first,
-                let axisPositionString =  categoryAxes["position"] as? String {
-                xAxisPosition = AxisPosition(rawValue: axisPositionString) ?? .bottom
-            }
-            
-            if let seriesParams = (params["seriesParams"] as? [[String: Any]])?.first,
-                let mode =  seriesParams["mode"] as? String {
-                seriesMode = SeriesMode(rawValue: mode) ?? .stacked
-            }
-        }
-
-        // Mapping Aggregation
-        if let aggregationJson = (map.JSON["aggs"] as? [[String: Any]]) {
-            aggregationsArray = Mapper<Aggregation>().mapArray(JSONArray: aggregationJson)
-        }
-
-        metricAggregationsArray = aggregationsArray.filter({ $0.schema == "metric"})
-        otherAggregationsArray = aggregationsArray.filter({ $0.schema != "metric"})
-        segmentSchemeAggregation = otherAggregationsArray.filter({ $0.schema == "segment"}).first
+//    func mapping(map: Map) {
+//        title           <- map["title"]
+//        type            <- (map["type"],EnumTransform<PanelType>())
+//        seriesMode      <- (map["params.seriesParams.mode"],EnumTransform<SeriesMode>())
+//
+//        if let params = map.JSON["params"] as? [String: Any] {
+//            if let categoryAxes = (params["categoryAxes"] as? [[String: Any]])?.first,
+//                let axisPositionString =  categoryAxes["position"] as? String {
+//                xAxisPosition = AxisPosition(rawValue: axisPositionString) ?? .bottom
+//            }
+//
+//            if let seriesParams = (params["seriesParams"] as? [[String: Any]])?.first,
+//                let mode =  seriesParams["mode"] as? String {
+//                seriesMode = SeriesMode(rawValue: mode) ?? .stacked
+//            }
+//        }
+//
+//        // Mapping Aggregation
+//        if let aggregationJson = (map.JSON["aggs"] as? [[String: Any]]) {
+//            aggregationsArray = Mapper<Aggregation>().mapArray(JSONArray: aggregationJson)
+//        }
+//
+//        metricAggregationsArray = aggregationsArray.filter({ $0.schema == "metric"})
+//        otherAggregationsArray = aggregationsArray.filter({ $0.schema != "metric"})
+//        segmentSchemeAggregation = otherAggregationsArray.filter({ $0.schema == "segment"}).first
+//    }
+    
+    init(_ responseModel: VisStateService) {
+        self.title  =   responseModel.title
+        self.type   =   responseModel.type
+        
     }
 }

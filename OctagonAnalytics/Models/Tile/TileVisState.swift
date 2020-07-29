@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class TileVisState: VisState {
     
@@ -16,12 +16,13 @@ class TileVisState: VisState {
     var containerId: Int            = 1
 
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        imageHashField      <- map["params.imageHashField"]
-        maxDistance         <- map["params.maxDistance"]
-        containerId         <- map["params.containerId"]
-    }
-    
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
+        
+        guard let tileVisService = responseModel as? TileVisStateService else { return }
+        self.imageHashField =   tileVisService.imageHashField
+        self.maxDistance    =   tileVisService.maxDistance
+        self.containerId    =   tileVisService.containerId
+    }    
 }
 
