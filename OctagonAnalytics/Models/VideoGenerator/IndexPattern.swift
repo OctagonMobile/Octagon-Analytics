@@ -6,28 +6,19 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 
-import ObjectMapper
+import OctagonAnalyticsService
 
-class IndexPattern: Mappable, Equatable {
+class IndexPattern: Equatable {
     var id: String              =   ""
     var title: String           =   ""
     var timeFieldName: String   =   ""
     var fields: [IPField]       =   []
     
-    private var fieldsString: String          =   ""
-
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        id              <-  map["id"]
-        title           <-  map["attributes.title"]
-        timeFieldName   <-  map["attributes.timeFieldName"]
-        fieldsString    <-  map["attributes.fields"]
-        
-        let fieldsData = Data(fieldsString.utf8)
-        if let fieldsList =  try? JSONSerialization.jsonObject(with: fieldsData, options: .allowFragments) as? [[String: Any]] {
-            fields = Mapper<IPField>().mapArray(JSONArray: fieldsList)
-        }
+    init(_ responseModel: IndexPatternService) {
+        self.id     =   responseModel.id
+        self.title  =   responseModel.title
+        self.timeFieldName  =   responseModel.timeFieldName
+        self.fields     =   responseModel.fields.compactMap({ IPField($0) })
     }
     
     static func == (lhs: IndexPattern, rhs: IndexPattern) -> Bool {
@@ -35,7 +26,7 @@ class IndexPattern: Mappable, Equatable {
     }
 }
 
-class IPField: Mappable, Equatable, Hashable, CustomStringConvertible {
+class IPField: Equatable, Hashable, CustomStringConvertible {
     var description: String {
         return name
     }
@@ -54,16 +45,15 @@ class IPField: Mappable, Equatable, Hashable, CustomStringConvertible {
         hasher.combine(ObjectIdentifier(self))
     }
     
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        name                <-  map["name"]
-        type                <-  map["type"]
-        count               <-  map["count"]
-        scripted            <-  map["scripted"]
-        searchable          <-  map["searchable"]
-        aggregatable        <-  map["aggregatable"]
-        readFromDocValues   <-  map["readFromDocValues"]
+    init(_ responseModel: IPFieldService) {
+        self.name       =   responseModel.name
+        self.type       =   responseModel.type
+        self.count      =   responseModel.count
+        self.scripted   =   responseModel.scripted
+        self.searchable =   responseModel.searchable
+        self.aggregatable       =   responseModel.aggregatable
+        self.readFromDocValues  =   responseModel.readFromDocValues
+
     }
     
     static func == (lhs: IPField, rhs: IPField) -> Bool {

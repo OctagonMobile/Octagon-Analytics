@@ -6,7 +6,7 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 
-import ObjectMapper
+import OctagonAnalyticsService
 import SwiftDate
 
 class VideoContentLoader {
@@ -25,54 +25,35 @@ class VideoContentLoader {
     
     //MARK: Functions
     func loadIndexPatters(_ completion: CompletionBlock?) {
-        let params: [String : Any] = ["type": "index-pattern",
-                                      "per_page": Constant.pageSize]
-        DataManager.shared.loadData(UrlComponents.savedObjects, parameters: params) { [weak self] (result, error) in
+        
+        ServiceProvider.shared.loadIndexPatterns(1, pageSize: Constant.pageSize) { [weak self] (result, error) in
             guard error == nil else {
                 self?.indexPattersList.removeAll()
-                completion?(self?.indexPattersList, error)
+                completion?(self?.indexPattersList, error?.asNSError)
                 return
             }
             
-            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] {
-                self?.indexPattersList = self?.parseIndexPattersList(finalResult) ?? []
+            if let res = result as? IndexPatternsListResponse{
+                self?.indexPattersList = res.indexPatterns.compactMap({ IndexPattern($0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
             }
             
-            completion?(self?.indexPattersList, error)
+            completion?(self?.indexPattersList, error?.asNSError)
         }
     }
-    
-    private func parseIndexPattersList(_ result: Any?) -> [IndexPattern] {
-        guard let dict = result as? [String: Any?],
-            let savedObjectsList = dict["saved_objects"] as? [[String: Any]] else {
-            return []
-        }
-        
-        let list = savedObjectsList.compactMap({ IndexPattern(JSON: $0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
-        return list
-    }
-        
+            
     func loadVideoData(_ completion: CompletionBlock?) {
         guard let indexPattern = configContent.indexPattern else { return }
-        let queryParams: [String : String] =
-            ["method": "POST",
-             "path": "\(indexPattern.title)/_search"]
 
-        DataManager.shared.loadData(UrlComponents.videoData, queryParametres: queryParams, parameters: generatedQuery()) { [weak self] (result, error) in
+        ServiceProvider.shared.loadVideoContent(indexPattern.title, query: generatedQuery()) { [weak self] (result, error) in
             guard error == nil else {
-                completion?(nil, error)
+                completion?(nil, error?.asNSError)
                 return
             }
-
-            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] as? [AnyHashable: Any?],
-                let hitsDictionary = finalResult["aggregations"] as? [AnyHashable: Any?],
-                let hitsResult = hitsDictionary["dateHistogramName"] as? [String: Any],
-                let buckets = hitsResult["buckets"] as? [[String: Any]] {
-
-                self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
-                
-                completion?(self?.videoContentList, nil)
+            
+            if let res = result as? VideoContentListResponse {
+                self?.videoContentList = res.buckets.compactMap({ VideoContent($0) })
             }
+            completion?(self?.videoContentList, nil)
         }
     }
     

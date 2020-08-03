@@ -80,18 +80,22 @@ class DashboardItem: NSObject {
         self.searchQuery    =   responseModel.searchQuery
         
         let panelsList  =   responseModel.panels.compactMap { (panelService) -> Panel? in
+            var panel: Panel?
             switch panelService.visState?.type {
-            case .metric:   return MetricPanel(panelService)
-            case .tile:     return TilePanel(panelService)
-            case .search:   return SavedSearchPanel(panelService)
-            case .heatMap:  return HeatMapPanel(panelService)
-            case .mapTracking:  return MapTrackingPanel(panelService)
-            case .faceTile:     return FaceTilePanel(panelService)
-            case .neo4jGraph:   return GraphPanel(panelService)
-            case .gauge, .goal: return GaugePanel(panelService)
-            case .inputControls: return ControlsPanel(panelService)
-            default: return Panel(panelService)
+            case .metric:   panel = MetricPanel(panelService)
+            case .tile:     panel = TilePanel(panelService)
+            case .search:   panel = SavedSearchPanel(panelService)
+            case .heatMap:  panel = HeatMapPanel(panelService)
+            case .mapTracking:  panel = MapTrackingPanel(panelService)
+            case .faceTile:     panel = FaceTilePanel(panelService)
+            case .neo4jGraph:   panel = GraphPanel(panelService)
+            case .gauge, .goal: panel = GaugePanel(panelService)
+            case .inputControls: panel = ControlsPanel(panelService)
+            default: panel = Panel(panelService)
             }
+            
+            panel?.dashboardItem    =   self
+            return panel
         }
         let sortedPanels:[Panel] = panelsList.sorted { (first, second) -> Bool in
 
