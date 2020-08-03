@@ -102,6 +102,14 @@ class NavigationManager: NSObject {
         navController.pushViewController(barchartRaceVC, animated: true)
     }
     
+    func showVectorMapTimeline(_ navController: UINavigationController,
+                               data: [VectorMapContainer]) {
+        let vectorMap = VectorTimelineViewController.init(nibName: String(describing: VectorTimelineViewController.self), bundle: nil)
+        vectorMap.hidesBottomBarWhenPushed = true
+        vectorMap.vectorMapData = data
+        navController.pushViewController(vectorMap, animated: true)
+    }
+    
     private func getInitialEntryPoint () -> UIViewController {
 
         var identifier: String

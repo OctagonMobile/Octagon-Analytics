@@ -61,7 +61,7 @@ class WorldMapView: UIView {
     private func zoomOutMapToMaximum() {
         guard let mapView = mapView else { return }
         let coordinateSpan = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 360)
-        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: coordinateSpan)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(0.0, 0.0), span: coordinateSpan)
         mapView.setRegion(region, animated: true)
     }
     

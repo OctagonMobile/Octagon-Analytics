@@ -69,10 +69,16 @@ class VideoContentLoader {
                 let hitsDictionary = finalResult["aggregations"] as? [AnyHashable: Any?],
                 let hitsResult = hitsDictionary["dateHistogramName"] as? [String: Any],
                 let buckets = hitsResult["buckets"] as? [[String: Any]] {
-
-                self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
-                
-                completion?(self?.videoContentList, nil)
+                switch self?.configContent.videoType {
+                case .barChartRace?:
+                    self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
+                    completion?(self?.videoContentList, nil)
+                case .vectorMap?:
+                    let vectorMapData = Mapper<VectorMapContainer>().mapArray(JSONArray: buckets)
+                    completion?(vectorMapData, nil)
+                case .none:
+                    completion?(nil, nil)
+                }
             }
         }
     }

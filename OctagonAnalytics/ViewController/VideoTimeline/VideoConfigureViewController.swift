@@ -13,9 +13,9 @@ import MBProgressHUD
 
 enum VideoType: String {
     case barChartRace   =   "BarChart Race"
-    case heatMap        =   "HeatMap"
+    case vectorMap        =   "Vector Map"
     
-    static var all: [VideoType]    =   [.barChartRace, .heatMap]
+    static var all: [VideoType]    =   [.barChartRace, .vectorMap]
 }
 
 class VideoConfigureViewController: FormViewController {
@@ -49,7 +49,7 @@ class VideoConfigureViewController: FormViewController {
     private func createForm() {
         form +++ Section("")
 
-            /*
+            
             <<< SegmentedRow<VideoType>() {
                 $0.tag      =   FormTag.videoType
                 $0.options  =   VideoType.all
@@ -67,7 +67,7 @@ class VideoConfigureViewController: FormViewController {
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
                 }
-            }*/
+            }
             
             <<< OAPickerInputRow<IndexPattern>() {
                 $0.title = "Index Pattern".localiz()
@@ -419,12 +419,14 @@ class VideoConfigureViewController: FormViewController {
                 return
             }
             
-            guard let result = res as? [VideoContent], !result.isEmpty else {
+            if let result = res as? [VectorMapContainer], !result.isEmpty  {
+                NavigationManager.shared.showVectorMapTimeline(self.navigationController!, data: result)
+
+            } else if let result = res as? [VideoContent], !result.isEmpty {
+                NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
+            } else {
                 self.showAlert("No data found!")
-                return
             }
-            
-            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
         }
     }
     

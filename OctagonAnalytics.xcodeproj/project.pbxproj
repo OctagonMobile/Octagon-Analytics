@@ -210,6 +210,8 @@
 		F117847724892BCF00FF4F0E /* ChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */; };
 		F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847824892BE500FF4F0E /* ChartLegendType.swift */; };
 		F117847B24892CAE00FF4F0E /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847A24892CAE00FF4F0E /* ChartLegend.swift */; };
+		F1251E8B24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */; };
+		F1251E8D24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */; };
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
@@ -454,6 +456,8 @@
 		F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartLegendTableViewCell.xib; sourceTree = "<group>"; };
 		F117847824892BE500FF4F0E /* ChartLegendType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendType.swift; sourceTree = "<group>"; };
 		F117847A24892CAE00FF4F0E /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
+		F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelper.swift"; sourceTree = "<group>"; };
+		F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTimelineBaseViewController.swift; sourceTree = "<group>"; };
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
@@ -664,7 +668,6 @@
 				5146761E22E45C8200D9FE8C /* Canvas */,
 				51E94648221BEE5500F30D1F /* Settings */,
 				513D897E2175FBCD001B12D6 /* VectorMap */,
-				F12CA8C924C444BD00890BAC /* VectorMapTimeLine */,
 				51923AB5207DE2FC0023FE27 /* Map */,
 				51677F47206D07E000C7751A /* DropDown */,
 				51477DE42068DF1100955394 /* Login */,
@@ -886,6 +889,7 @@
 				5169E88B1FFCEC5600B9239D /* NSValueExtension */,
 				5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */,
 				51840DEB1FCE932B007B8D38 /* Extensions.swift */,
+				F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1130,8 +1134,10 @@
 		51C46F0C248F9F7F00EA0AAC /* VideoTimeline */ = {
 			isa = PBXGroup;
 			children = (
+				F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */,
 				51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */,
 				F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */,
+				F12CA8C924C444BD00890BAC /* VectorMapTimeLine */,
 			);
 			path = VideoTimeline;
 			sourceTree = "<group>";
@@ -1330,13 +1336,13 @@
 		F12CA8C924C444BD00890BAC /* VectorMapTimeLine */ = {
 			isa = PBXGroup;
 			children = (
+				F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */,
+				F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */,
 				F12CA8CB24C444BD00890BAC /* VectorMapView.swift */,
 				F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */,
-				F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */,
 				F12CA8CF24C444BD00890BAC /* VectorRegion.swift */,
 				F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */,
 				F12CA8D124C444BD00890BAC /* VectorMap.swift */,
-				F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */,
 			);
 			path = VectorMapTimeLine;
 			sourceTree = "<group>";
@@ -1609,6 +1615,7 @@
 				51923ABF207E13490023FE27 /* MapTrackingViewController.swift in Sources */,
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
+				F1251E8D24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift in Sources */,
 				51743CBE22B1143200C92E73 /* SSCustomTemplateDataProvider.swift in Sources */,
 				518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */,
 				51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */,
@@ -1656,6 +1663,7 @@
 				51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */,
 				51CB2D181FBDA043007BC0A0 /* ChartBaseViewController.swift in Sources */,
 				51C5DFC4221D8AB6003DE8B1 /* TouchIdHelper.swift in Sources */,
+				F1251E8B24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift in Sources */,
 				5136038F2226713A002D12B6 /* WebContentViewController.swift in Sources */,
 				51E5311D1FFBAABD0065680B /* MapDetails.swift in Sources */,
 				51477DE92068E6AE00955394 /* User.swift in Sources */,

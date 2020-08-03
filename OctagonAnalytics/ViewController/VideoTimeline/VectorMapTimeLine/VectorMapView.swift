@@ -15,6 +15,7 @@ class VectorMapView: UIView {
     var regionSubLayers: [VectorRegionLayer] = []
     var highlightColor: UIColor = .gray
     var toHighlight = [String]()
+    var currentSpeed = 0.5
     
     init(regions: [WorldMapVectorRegion], mapView: MKMapView) {
         self.regions = regions
@@ -45,13 +46,21 @@ class VectorMapView: UIView {
     }
     
     func highlight(_ regions: [String: ([VectorMap], UIColor)]) {
+        var highlighted = [VectorRegionLayer]()
         for (_, (vectorMaps, color)) in regions {
             regionSubLayers.forEach { (regionSubLayer) in
                 let code = regionSubLayer.region.code ?? ""
                 let codes = vectorMaps.map { $0.countryCode }
                 if codes.contains(code) {
-                    regionSubLayer.higlight(color)
+                    regionSubLayer.higlight(color, speed: currentSpeed)
+                    highlighted.append(regionSubLayer)
                 }
+            }
+        }
+        
+        regionSubLayers.forEach { (subLayer) in
+            if !highlighted.contains(subLayer) {
+                subLayer.higlight(.gray, speed: currentSpeed)
             }
         }
     }

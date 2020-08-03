@@ -46,10 +46,10 @@ class VectorRegionLayer: CALayer {
         }
     }
     
-    func higlight(_ color: UIColor) {
+    func higlight(_ color: UIColor, speed: Double) {
         let currentColor = fillColor
         for polygon in polygons {
-            polygon.animate(from: currentColor, to: color)
+            polygon.animate(from: currentColor, to: color, speed: speed)
         }
         fillColor = color
     }

@@ -43,10 +43,10 @@ class BoundaryPolygon: CAShapeLayer {
         return polygon
     }
     
-    func animate(from fromColor: UIColor, to toColor: UIColor) {
+    func animate(from fromColor: UIColor, to toColor: UIColor, speed: Double) {
         fillColor = toColor.cgColor
         let fillColorAnimation = CABasicAnimation.init(keyPath: "fillColor")
-        fillColorAnimation.duration = 1.5
+        fillColorAnimation.duration = speed
         fillColorAnimation.fromValue =  fromColor.cgColor
         fillColorAnimation.toValue = toColor.cgColor
         fillColorAnimation.autoreverses = false
