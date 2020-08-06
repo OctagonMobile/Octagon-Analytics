@@ -27,7 +27,8 @@ struct VectorMap: Mappable {
 
 extension String {
     var toRange: ClosedRange<Int>? {
-        let splitted = components(separatedBy: " to ")
+        let commaRemoved = replacingOccurrences(of: ",", with: "")
+        let splitted = commaRemoved.components(separatedBy: " to ")
         if let firstHalf = splitted.first,
             let lastHalf = splitted.last,
             let floor = Int(firstHalf),
@@ -40,7 +41,7 @@ extension String {
 
 extension ClosedRange where Bound == Int {
     var toString: String {
-        return "\(lowerBound) to \(upperBound)"
+        return "\(NSNumber(value: lowerBound).formattedWithSeparator) to \(NSNumber(value: upperBound).formattedWithSeparator)"
     }
 }
 

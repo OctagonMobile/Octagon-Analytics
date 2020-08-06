@@ -57,7 +57,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sk-Tp-bcJ">
-                    <rect key="frame" x="583" y="427" width="200" height="170"/>
+                    <rect key="frame" x="1166" y="740" width="200" height="170"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="8bH-cT-XpI"/>
@@ -65,7 +65,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYI-2K-YPn">
-                    <rect key="frame" x="1195.5" y="874" width="140.5" height="36"/>
+                    <rect key="frame" x="1336" y="910" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -125,23 +125,23 @@
             <constraints>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="centerY" secondItem="vkQ-I8-8Yo" secondAttribute="centerY" id="1v6-eu-eq3"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="height" secondItem="vkQ-I8-8Yo" secondAttribute="height" id="2mj-6I-TYs"/>
-                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="32s-zr-grR"/>
+                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="32s-zr-grR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Sk-Tp-bcJ" secondAttribute="trailing" id="6pl-WA-Qy6"/>
                 <constraint firstItem="Tih-3x-qZv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6ss-fx-JIV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tih-3x-qZv" secondAttribute="trailing" id="BKh-Co-xlr"/>
+                <constraint firstAttribute="trailing" secondItem="Tih-3x-qZv" secondAttribute="trailing" id="BKh-Co-xlr"/>
                 <constraint firstItem="xYI-2K-YPn" firstAttribute="top" secondItem="2Sk-Tp-bcJ" secondAttribute="bottom" id="BL8-op-71M"/>
                 <constraint firstItem="vkQ-I8-8Yo" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BZ6-EO-Gnb"/>
-                <constraint firstItem="Tih-3x-qZv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="C2K-dp-ZLa"/>
+                <constraint firstItem="Tih-3x-qZv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C2K-dp-ZLa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xYI-2K-YPn" secondAttribute="trailing" constant="30" id="FuB-4a-3bf"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="centerX" secondItem="vkQ-I8-8Yo" secondAttribute="centerX" id="O51-f6-1dK"/>
                 <constraint firstAttribute="bottom" secondItem="IjJ-Ua-nC3" secondAttribute="bottom" id="QR7-8b-ZQP"/>
                 <constraint firstItem="xYI-2K-YPn" firstAttribute="bottom" secondItem="IjJ-Ua-nC3" secondAttribute="top" constant="-10" id="bc7-d4-Gec"/>
                 <constraint firstAttribute="trailing" secondItem="IjJ-Ua-nC3" secondAttribute="trailing" id="dvA-5N-Lr4"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="width" secondItem="vkQ-I8-8Yo" secondAttribute="width" id="euR-07-335"/>
-                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="mVw-P7-FSj"/>
+                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="height" secondItem="Tih-3x-qZv" secondAttribute="height" id="mVw-P7-FSj"/>
                 <constraint firstAttribute="bottom" secondItem="Tih-3x-qZv" secondAttribute="bottom" id="pmj-bg-iJT"/>
                 <constraint firstItem="IjJ-Ua-nC3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qbF-Bd-RFY"/>
-                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="wbZ-wU-h43"/>
+                <constraint firstItem="vkQ-I8-8Yo" firstAttribute="width" secondItem="Tih-3x-qZv" secondAttribute="width" id="wbZ-wU-h43"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

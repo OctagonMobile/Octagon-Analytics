@@ -15,15 +15,18 @@ class VectorRegionLayer: CALayer {
     let strokeColor: UIColor
     var fillColor: UIColor
     var polygons: [BoundaryPolygon] = []
+    weak var vectorBase: UIView?
     
     init(mapView: MKMapView,
          region: WorldMapVectorRegion,
          strokeColor: UIColor,
-         fillColor: UIColor) {
+         fillColor: UIColor,
+         vectorBase: UIView) {
         self.mapView = mapView
         self.region = region
         self.strokeColor = strokeColor
         self.fillColor = fillColor
+        self.vectorBase = vectorBase
         super.init()
         constructPolygons()
     }
@@ -33,10 +36,15 @@ class VectorRegionLayer: CALayer {
     }
     
     func constructPolygons() {
+        guard let vectorView = vectorBase else {
+            return
+        }
         for list in region.coordinatesList {
             let points = list.compactMap {
-                return mapView.convert($0, toPointTo: mapView)
+                return mapView.convert($0, toPointTo: vectorView)
             }
+            print("Points of Canada")
+            print(points)
             let polygon = BoundaryPolygon(with: points,
                                           region: region,
                                           strokeColor: strokeColor,

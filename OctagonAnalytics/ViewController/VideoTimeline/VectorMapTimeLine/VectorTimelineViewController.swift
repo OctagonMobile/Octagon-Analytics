@@ -25,8 +25,8 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
     private var countryCodes: [String: String] = [:]
     private var ranges: [ClosedRange<Int>] = []
     private var state: VectorMapVideoState = .notStarted
-    private var timeInterVal: TimeInterval = 1.0
-    
+    private var timeInterVal: TimeInterval =  0.4
+    private var deviceRotated: Bool = false
     var vectorMapData: [VectorMapContainer]! {
         didSet {
             calculateRanges()
@@ -65,7 +65,10 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        worldMapView.onLayout = mapViewOnLayout
+        worldMapView.layer.masksToBounds = true
+        NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
         setupView()
         setupSliders()
         
@@ -75,7 +78,40 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
         updatePlayButton(.play)
         dateLabel.textColor = CurrentTheme == .dark ?  .black : .white 
     }
+    deinit {
+       NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
 
+    @objc
+    func rotated() {
+        deviceRotated = true
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            reset()
+        }
+    }
+
+    func mapViewOnLayout() {
+        if UIDevice.current.userInterfaceIdiom == .phone && deviceRotated {
+            deviceRotated = false
+            reset()
+        }
+    }
+    
+    func reset() {
+        var videoPaused = false
+        if state == .play {
+            pauseVideo()
+            videoPaused = true
+        }
+        self.vectorMapView.reset()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.vectorMapView.createRegions()
+            if videoPaused {
+                self.playVideo()
+            }
+        }
+    }
     private func calculateRanges() {
         let totalRange = 5
         
@@ -175,7 +211,6 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
                     break
                 }
             }
-            print(rangeIndex)
             let color =  colors[rangeIndex]
             dataDict[key] = (value, color)
             rangesIncluded[key] = color
@@ -226,6 +261,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
     
    //Overridden Methods
     override func speedUpdated() {
+        timeInterVal = TimeInterval(speed)
+        if state == .play {
+            pauseVideo()
+            playVideo()
+        }
         vectorMapView.currentSpeed = TimeInterval(speed)
     }
     override func recordingStarted() {

@@ -49,7 +49,6 @@
 		513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */; };
 		513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B635B24B1D2DE0060F7C4 /* OADateRow.swift */; };
 		513D89792175F725001B12D6 /* WorldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D89782175F724001B12D6 /* WorldMapView.swift */; };
-		513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 513D897C2175F796001B12D6 /* CountriesBoundary.geojson */; };
 		513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */; };
 		513D898221761035001B12D6 /* CountryCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 513D898121761035001B12D6 /* CountryCodes.plist */; };
 		513F3F80206A3E9C00221F27 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 513F3F7E206A3E9B00221F27 /* TPKeyboardAvoidingScrollView.m */; };
@@ -224,6 +223,8 @@
 		F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */; };
 		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
+		F16233AC24D94DA60039C121 /* countries.geojson in Resources */ = {isa = PBXBuildFile; fileRef = F16233AB24D94DA60039C121 /* countries.geojson */; };
+		F16233AE24DAD3DF0039C121 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = F16233AD24DAD3DF0039C121 /* CountriesBoundary.geojson */; };
 		F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
@@ -283,7 +284,6 @@
 		513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAPickerInputRow.swift; sourceTree = "<group>"; };
 		513B635B24B1D2DE0060F7C4 /* OADateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OADateRow.swift; sourceTree = "<group>"; };
 		513D89782175F724001B12D6 /* WorldMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldMapView.swift; sourceTree = "<group>"; };
-		513D897C2175F796001B12D6 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 		513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMapViewController.swift; sourceTree = "<group>"; };
 		513D898121761035001B12D6 /* CountryCodes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CountryCodes.plist; sourceTree = "<group>"; };
 		513F3F7E206A3E9B00221F27 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
@@ -470,6 +470,8 @@
 		F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VectorTimelineViewController.xib; sourceTree = "<group>"; };
 		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
+		F16233AB24D94DA60039C121 /* countries.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countries.geojson; sourceTree = "<group>"; };
+		F16233AD24DAD3DF0039C121 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 		F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRaceViewController.swift; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -768,7 +770,8 @@
 		513D89772175F717001B12D6 /* VectorMap */ = {
 			isa = PBXGroup;
 			children = (
-				513D897C2175F796001B12D6 /* CountriesBoundary.geojson */,
+				F16233AB24D94DA60039C121 /* countries.geojson */,
+				F16233AD24DAD3DF0039C121 /* CountriesBoundary.geojson */,
 				513D89782175F724001B12D6 /* WorldMapView.swift */,
 				513D898121761035001B12D6 /* CountryCodes.plist */,
 			);
@@ -1481,8 +1484,8 @@
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
 				F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */,
+				F16233AC24D94DA60039C121 /* countries.geojson in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
-				513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */,
 				51E8BF4620F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib in Resources */,
 				51E9464F221BF08500F30D1F /* Settings.plist in Resources */,
 				511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */,
@@ -1490,6 +1493,7 @@
 				5114A1AD2074B9B000F3A419 /* MapTrackControlView.xib in Resources */,
 				51E8BF4C20F38048004B5D20 /* DatePickerCollectionReusableView.xib in Resources */,
 				513467D81F9DD1B900F9B67D /* Assets.xcassets in Resources */,
+				F16233AE24DAD3DF0039C121 /* CountriesBoundary.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

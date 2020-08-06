@@ -33,6 +33,7 @@ class WorldMapView: UIView {
     @IBOutlet weak var mapView: MKMapView!
     
     var regionList: [WorldMapVectorRegion]   =   []
+    var onLayout: (() -> Void)?
 
     //MARK:
     override init(frame: CGRect) {
@@ -50,19 +51,23 @@ class WorldMapView: UIView {
         mapView.delegate = self
         
         addTapGestureToDetectRegionSelection()
-        refreshMapView()
+//        refreshMapView()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        print("Laying out")
         zoomOutMapToMaximum()
+        onLayout?()
     }
+    
     
     private func zoomOutMapToMaximum() {
         guard let mapView = mapView else { return }
-        let coordinateSpan = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 360)
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(0.0, 0.0), span: coordinateSpan)
+        mapView.mapType = .mutedStandard
+        let region = MKCoordinateRegion(.world)
         mapView.setRegion(region, animated: true)
+        
     }
     
     private func readGeoJsonFile() {
@@ -190,7 +195,16 @@ extension WorldMapView: MKMapViewDelegate {
         // Dismiss location details pop up if shown
         mapViewRegionChangeBlock?(animated)
     }
-
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        print("Loaded")
+    }
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        print("Rendered")
+    }
+    func mapView(_ mapView: MKMapView, didAdd renderers: [MKOverlayRenderer]) {
+         print("Added Renderers")
+    }
 }
 
 extension WorldMapView {
@@ -208,7 +222,7 @@ extension WorldMapView {
     }
 }
 
-struct WorldMapVectorRegion {
+struct WorldMapVectorRegion: Equatable {
     var name: String?
     var code: String?
     var coordinatesList: [[CLLocationCoordinate2D]]   =   []
@@ -231,4 +245,8 @@ struct WorldMapVectorRegion {
             coordinatesList.append(list)
         }
     }
+    static func == (lhs: WorldMapVectorRegion, rhs: WorldMapVectorRegion) -> Bool {
+        return lhs.name == rhs.name && lhs.code == rhs.code
+    }
+    
 }
