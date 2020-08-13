@@ -49,6 +49,11 @@ class VisState {
     
     var seriesMode: SeriesMode  =   .stacked
     
+    var indexPatternId: String?
+    
+    // The following is used to load the data for Visualization
+    var serviceAggregationsList: [AggregationService] = []
+    
     //MARK: Functions
 //    required init?(map: Map) {
 //        // Empty Method
@@ -84,6 +89,12 @@ class VisState {
     init(_ responseModel: VisStateService) {
         self.title  =   responseModel.title
         self.type   =   responseModel.type
+        self.indexPatternId =   responseModel.indexPatternId
+        self.aggregationsArray = responseModel.aggregationsArray.compactMap({ Aggregation($0) })
+        self.metricAggregationsArray = aggregationsArray.filter({ $0.schema == "metric" })
+        self.otherAggregationsArray = aggregationsArray.filter({ $0.schema != "metric" })
+        self.segmentSchemeAggregation = aggregationsArray.filter({ $0.schema == "segment" }).first
         
+        serviceAggregationsList = responseModel.aggregationsArray
     }
 }

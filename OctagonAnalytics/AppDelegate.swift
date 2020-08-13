@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Initial entry point to the application based on configuration
         NavigationManager.shared.setupInitialEntryPoint()
         
-        ServiceConfiguration.configure(Configuration.shared.baseUrl, version: .v654)
+        ServiceConfiguration.configure(Configuration.shared.baseUrl, version: Configuration.shared.kibVersion)
 
         return true
     }

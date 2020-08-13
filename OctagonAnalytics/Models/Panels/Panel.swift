@@ -160,25 +160,32 @@ class Panel {
     func loadChartData(_ completion: CompletionBlock?) {
         // Load ChartData using id
 
-        let urlString = UrlComponents.visualizationData
-
-        let params: [String: Any]? = dataParams()
+        guard let indexPatternId = visState?.indexPatternId else { return }
+        let reqParameters = VizDataParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
         
-        DataManager.shared.loadData(urlString, methodType: .post, encoding: JSONEncoding.default, parameters: params) { [weak self] (result, error) in
-            
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+        
+        reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
+        
+        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
             
             guard error == nil else {
                 self?.resetDataSource()
-                completion?(nil, error)
+                completion?(nil, error?.asNSError)
                 return
             }
             
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res[PanelConstant.result], let parsedData = self?.parseData(finalResult) else {
+            guard let res = result as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) else {
                 self?.resetDataSource()
-                completion?(nil, error)
+                completion?(nil, error?.asNSError)
                 return
             }
-            completion?(parsedData, error)
+            completion?(parsedData, error?.asNSError)
         }
     }
     
@@ -231,6 +238,7 @@ class Panel {
      */
     internal func parseData(_ result: Any?) -> [Any] {
         // Parse here and update/create chart item
+//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?[PanelConstant.aggregations] as? [String: Any] else {
                 return []
