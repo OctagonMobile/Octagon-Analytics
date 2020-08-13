@@ -146,6 +146,26 @@
 				<string>Dark</string>
 			</array>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>kibVersion</string>
+			<key>DefaultValue</key>
+			<string>Version 6.5.4</string>
+			<key>Titles</key>
+			<array>
+				<string>Version 6.5.4</string>
+				<string>Version 7.3.2</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>Version 6.5.4</string>
+				<string>Version 7.3.2</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>
