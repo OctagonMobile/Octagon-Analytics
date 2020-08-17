@@ -11,18 +11,6 @@ import OctagonAnalyticsService
 
 class VisState {
 
-    enum AxisPosition: String {
-        case left   =   "left"
-        case right  =   "right"
-        case top    =   "top"
-        case bottom =   "bottom"
-    }
-    
-    enum SeriesMode: String {
-        case normal   =   "normal"
-        case stacked  =   "stacked"
-    }
-
     /**
      Type of the panel (eg.: Pie, TagCloud, Donut etc).
      */
@@ -45,9 +33,9 @@ class VisState {
     /**
      Position of X-Axis
      */
-    var xAxisPosition: AxisPosition  =   .bottom
+    var xAxisPosition: VisStateService.AxisPosition  =   .bottom
     
-    var seriesMode: SeriesMode  =   .stacked
+    var seriesMode: VisStateService.SeriesMode  =   .stacked
     
     var indexPatternId: String?
     
@@ -94,6 +82,8 @@ class VisState {
         self.metricAggregationsArray = aggregationsArray.filter({ $0.schema == "metric" })
         self.otherAggregationsArray = aggregationsArray.filter({ $0.schema != "metric" })
         self.segmentSchemeAggregation = aggregationsArray.filter({ $0.schema == "segment" }).first
+        self.xAxisPosition  =   responseModel.xAxisPosition
+        self.seriesMode     =   responseModel.seriesMode
         
         serviceAggregationsList = responseModel.aggregationsArray
     }

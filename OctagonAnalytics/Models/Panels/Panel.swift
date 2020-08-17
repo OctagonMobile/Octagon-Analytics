@@ -170,6 +170,11 @@ class Panel {
             reqParameters.filters = filtersList
         }
         
+        // In case of date histogram send the interval
+        if bucketType == .dateHistogram, let interval = mappedIntervalValue {
+            reqParameters.interval = "\(interval)"
+        }
+
         reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
         
         ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
@@ -248,12 +253,13 @@ class Panel {
         
         
         // Parse table headers for Tables
-        if visState?.type == .table , let headersArray = responseJson.first?[PanelConstant.tableHeaders] as? [[String: Any]] {
-            //Sub Buckets Support
+        if visState?.type == .table {
             var headers = [String]()
-            for headerDict in headersArray {
-                if let header = headerDict[PanelConstant.label] as? String {
-                    headers.append(header)
+            for aggregation in visState?.aggregationsArray ?? [] {
+                if aggregation.metricType != .unKnown {
+                    headers.append(aggregation.metricType.rawValue)
+                } else if !aggregation.field.isEmpty {
+                    headers.append(aggregation.field)
                 }
             }
             if headers.count > 1 {
