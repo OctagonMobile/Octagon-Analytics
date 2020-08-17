@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import Alamofire
+import OctagonAnalyticsService
 
 class SavedSearchPanel: Panel {
 
@@ -36,27 +37,34 @@ class SavedSearchPanel: Panel {
      - parameter completion: Call back once the server returns the response.
      */
     func loadSavedSearch(_ pageNumber: Int, _ completion: CompletionBlock?) {
-        
-        let urlString = UrlComponents.savedSearchData
-        
-        var params = dataParams()
-        params?["pageSize"] = Constant.pageSize
-        params?["pageNum"] = pageNumber
-        
-        DataManager.shared.loadData(urlString, methodType: .post, encoding: JSONEncoding.default, parameters: params) { [weak self] (result, error) in
-            
+                
+        guard let indexPatternId = visState?.indexPatternId else { return }
+        let reqParameters = SavedSearchDataParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
+        reqParameters.savedSearchId = id
+        reqParameters.pageNum = pageNumber
+        reqParameters.pageSize = Constant.pageSize
+
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+
+        ServiceProvider.shared.loadSavedSearchData(reqParameters) { [weak self] (result, error) in
+
             guard error == nil else {
                 self?.resetDataSource()
-                completion?(nil, error)
+                completion?(nil, error?.asNSError)
                 return
             }
-            
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res["result"], let parsedData = self?.parseSavedSearch(finalResult) else {
+
+            guard let res = result as? [[AnyHashable: Any?]], let parsedData = self?.parseSavedSearch(res) else {
                 self?.resetDataSource()
-                completion?(nil, error)
+                completion?(nil, error?.asNSError)
                 return
             }
-            completion?(parsedData, error)
+            completion?(parsedData, error?.asNSError)
         }
     }
     
@@ -83,8 +91,8 @@ class SavedSearchPanel: Panel {
         
         columns                 = hitsDict["columns"] as? [String] ?? []
         totalSavedSearchCount   = hitsDict["total"] as? Int ?? 0
-//        hits                    = Mapper<SavedSearch>().mapArray(JSONArray: hitsArray)
-        
+        hits                    = hitsArray.compactMap({ SavedSearch($0) })
+
         return hits
     }
 

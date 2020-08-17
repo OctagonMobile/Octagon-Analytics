@@ -17,7 +17,7 @@ class Panel {
     /**
      Panel Id.
      */
-    fileprivate var id                              = ""
+    internal var id                              = ""
     
     /**
      Panel Index.

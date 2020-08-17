@@ -21,4 +21,8 @@ class SavedSearch {
     init(_ responseModel: SavedSearchService) {
         self.data   =   responseModel.data
     }
+    
+    init(_ dict: [String: Any?]) {
+        self.data = dict
+    }
 }
