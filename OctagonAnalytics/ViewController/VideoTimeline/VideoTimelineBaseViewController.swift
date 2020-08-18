@@ -45,6 +45,11 @@ class VideoTimelineBaseViewController: BaseViewController {
         navigationItem.rightBarButtonItems = rightBarButtons()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        controlsBottomConstraint.constant = -controlsHolder.frame.height
+    }
+    
     @IBAction func tapAction(_ sender: UITapGestureRecognizer) {
         shouldHideControls = !shouldHideControls
         hideAllControls(shouldHideControls) { (completed) in
