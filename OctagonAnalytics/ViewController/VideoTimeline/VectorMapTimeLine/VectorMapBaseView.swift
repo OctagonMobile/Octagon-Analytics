@@ -81,6 +81,6 @@ extension VectorMapBaseView: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
     }
     func mapViewSnapshotReady(_ mapView: GMSMapView) {
-        onLoad?()
+//        onLoad?()
     }
 }
