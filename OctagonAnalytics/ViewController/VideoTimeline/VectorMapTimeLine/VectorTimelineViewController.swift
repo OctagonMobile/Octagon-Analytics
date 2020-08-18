@@ -87,7 +87,9 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         readCountryCodes()
         addLegendView()
         updatePlayButton(.play)
-        dateLabel.textColor = CurrentTheme == .dark ?  .black : .white 
+        dateLabel.textColor = CurrentTheme == .dark ?  .black : .white
+        hud.show(animated: true)
+        onMapLoad()
     }
     
     func addVectorBaseMapView() {
@@ -164,7 +166,6 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        hud.show(animated: true)
     }
     
     private func addLegendView() {
@@ -176,14 +177,12 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     }    
     
     private func onMapLoad() {
-        if isMapLoaded {
+        let delay = isMapLoaded ? 1.0 : 3.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            self.setMapLoaded()
             self.setupVectorMap()
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.setMapLoaded()
-                self.setupVectorMap()
-            }
         }
+        
     }
     
     func setupVectorMap() {
