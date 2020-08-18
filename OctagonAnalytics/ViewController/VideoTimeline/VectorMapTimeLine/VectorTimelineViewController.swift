@@ -9,6 +9,7 @@
 import UIKit
 import TGPControls
 import ReplayKit
+import MBProgressHUD
 
 enum VectorMapVideoState {
     case notStarted
@@ -45,6 +46,10 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
             }
         }
     }
+    
+    private lazy var hud: MBProgressHUD = {
+        return MBProgressHUD.refreshing(addedTo: self.view)
+    }()
 
     
     func correct() -> [VectorMapContainer] {
@@ -87,6 +92,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     func addVectorBaseMapView() {
         vectorBase = UINib.init(nibName: String(describing: VectorMapBaseView.self), bundle: nil).instantiate(withOwner: self, options: nil).first as? VectorMapBaseView
+        vectorBase.onLoad = onMapLoad
         mapBaseView.addSubview(vectorBase!)
         vectorBase?.translatesAutoresizingMaskIntoConstraints = false
         vectorBase?.fillSuperView()
@@ -158,7 +164,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupVectorMap()
+        hud.show(animated: true)
     }
     
     private func addLegendView() {
@@ -169,24 +175,29 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         legendsView.fillSuperView()
     }    
     
-    private func setupVectorMap() {
-        zoomToRegion {
-            self.vectorMapView.set(regions: self.regionList/*[zoomRegion]*/,
-                                   mapView: self.vectorBase.mapView)
-            self.play()
+    private func onMapLoad() {
+        if isMapLoaded {
+            self.setupVectorMap()
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.setMapLoaded()
+                self.setupVectorMap()
+            }
         }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            self.vectorMapView.set(regions: self.worldMapView.regionList,
-//                                   mapView: self.vectorBase.mapView)
-//
-//            self.play()
-//        }
     }
     
-    func zoomToRegion(onComplete: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            onComplete()
+    func setupVectorMap() {
+        self.zoomToRegion {
+            self.vectorMapView.set(regions: self.regionList/*[zoomRegion]*/,
+                                   mapView: self.vectorBase.mapView)
+            self.hud.hide(animated: true)
+            self.play()
         }
+    }
+    
+    
+    func zoomToRegion(onComplete: @escaping () -> Void) {
+        onComplete()
         return
         let zoomTo = "United States"
         var zoomRegion = WorldMapVectorRegion(name: zoomTo,
@@ -332,6 +343,14 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         
     }
     
+    var isMapLoaded: Bool {
+        return UserDefaults.standard.bool(forKey: "shouldDelayVector")
+    }
+    
+    func setMapLoaded() {
+        UserDefaults.standard.set(true, forKey: "shouldDelayVector")
+        UserDefaults.standard.synchronize()
+    }
     //Deinit
     deinit {
        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)

@@ -16,6 +16,7 @@ class VectorMapBaseView: UIView {
 
     var mapView: GMSMapView!
     private var heatmapLayer: GMUHeatmapTileLayer!
+    var onLoad: (()->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,5 +79,8 @@ class VectorMapBaseView: UIView {
 
 extension VectorMapBaseView: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-    }    
+    }
+    func mapViewSnapshotReady(_ mapView: GMSMapView) {
+        onLoad?()
+    }
 }
