@@ -13,7 +13,7 @@ class VectorMapView: UIView {
     var regions: [WorldMapVectorRegion] = []
     var mapView: GMSMapView!
     var regionSubLayers: [VectorRegionLayer] = []
-    var highlightColor: UIColor = .gray
+    var highlightColor: UIColor = .white
     var toHighlight = [String]()
     var currentSpeed = 0.5
     
@@ -40,7 +40,8 @@ class VectorMapView: UIView {
         }
         var regionLayers = [VectorRegionLayer]()
         for region in regions {
-            let regionLayer = VectorRegionLayer(mapView: mapView, region: region, strokeColor: .white, fillColor: highlightColor, vectorBase: self)
+            let strokeColor = UIColor.colorFromHexString("999999")
+            let regionLayer = VectorRegionLayer(mapView: mapView, region: region, strokeColor: strokeColor, fillColor: highlightColor, vectorBase: self)
             layer.addSublayer(regionLayer)
             regionLayers.append(regionLayer)
         }
@@ -69,7 +70,7 @@ class VectorMapView: UIView {
         
         regionSubLayers.forEach { (subLayer) in
             if !highlighted.contains(subLayer) {
-                subLayer.higlight(.gray, speed: currentSpeed)
+                subLayer.higlight(.white, speed: currentSpeed)
             }
         }
     }

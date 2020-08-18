@@ -292,6 +292,21 @@ enum Theme: String {
     func barChartRaceColors(_ total: Int) -> [UIColor] {
         return UIColor.BarChartRaceColorsSet.colors(total)
     }
+    
+    var vectorMapVideoColors: [UIColor] {
+        switch self {
+        case .light, .dark:
+            return [UIColor.colorFromHexString("FFF7B8"),
+                    UIColor.colorFromHexString("FFBC63"),
+                    UIColor.colorFromHexString("F18130"),
+                    UIColor.colorFromHexString("CD513A"),
+                    UIColor.colorFromHexString("7C0015")]
+        }
+    }
+    
+    var vectorMapLegendTitleColor: UIColor {
+        return UIColor.colorFromHexString("070707")
+    }
 
     //MARK: Styles
     /// Styles

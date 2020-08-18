@@ -24,7 +24,7 @@ class BoundaryPolygon: CAShapeLayer {
         self.region = region
         super.init()
         path = createPolygon().cgPath
-        lineWidth = 2
+        lineWidth = 1
         self.strokeColor = strokeColor.cgColor
         self.fillColor = fillColor.cgColor
     }

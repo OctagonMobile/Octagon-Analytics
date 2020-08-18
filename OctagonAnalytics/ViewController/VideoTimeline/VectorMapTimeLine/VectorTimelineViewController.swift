@@ -70,6 +70,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title   =   "VectorMap Video".localiz()
         regionList = readCountryGeoJson()
         addVectorBaseMapView()
         NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
@@ -77,7 +78,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         setupView()
         setupSliders()
         
-        self.colors = CurrentTheme.barChartRaceColors(5)
+        self.colors = CurrentTheme.vectorMapVideoColors
         readCountryCodes()
         addLegendView()
         updatePlayButton(.play)

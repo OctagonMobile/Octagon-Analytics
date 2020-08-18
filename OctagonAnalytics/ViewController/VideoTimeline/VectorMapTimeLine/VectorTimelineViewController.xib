@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,15 +26,15 @@
             <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-AY-pq1">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-AY-pq1">
                     <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkQ-I8-8Yo" customClass="VectorMapView" customModule="OctagonAnalytics" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkQ-I8-8Yo" customClass="VectorMapView" customModule="OctagonAnalytics" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XB-SF-GeN" userLabel="Overlay">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XB-SF-GeN" userLabel="Overlay">
                     <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
@@ -43,7 +43,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sk-Tp-bcJ">
-                    <rect key="frame" x="1166" y="740" width="200" height="170"/>
+                    <rect key="frame" x="1166" y="758" width="200" height="170"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="8bH-cT-XpI"/>
@@ -51,7 +51,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYI-2K-YPn">
-                    <rect key="frame" x="1336" y="910" width="0.0" height="0.0"/>
+                    <rect key="frame" x="683" y="910" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -114,12 +114,12 @@
                 <constraint firstItem="vkQ-I8-8Yo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="32s-zr-grR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Sk-Tp-bcJ" secondAttribute="trailing" id="6pl-WA-Qy6"/>
                 <constraint firstItem="vkQ-I8-8Yo" firstAttribute="height" secondItem="EKE-AY-pq1" secondAttribute="height" id="A69-2W-nl1"/>
-                <constraint firstItem="xYI-2K-YPn" firstAttribute="top" secondItem="2Sk-Tp-bcJ" secondAttribute="bottom" id="BL8-op-71M"/>
                 <constraint firstItem="vkQ-I8-8Yo" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BZ6-EO-Gnb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xYI-2K-YPn" secondAttribute="trailing" constant="30" id="FuB-4a-3bf"/>
+                <constraint firstItem="IjJ-Ua-nC3" firstAttribute="top" secondItem="2Sk-Tp-bcJ" secondAttribute="bottom" constant="-16" id="ML1-h3-CP9"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="centerX" secondItem="vkQ-I8-8Yo" secondAttribute="centerX" id="O51-f6-1dK"/>
                 <constraint firstAttribute="bottom" secondItem="IjJ-Ua-nC3" secondAttribute="bottom" id="QR7-8b-ZQP"/>
-                <constraint firstItem="xYI-2K-YPn" firstAttribute="bottom" secondItem="IjJ-Ua-nC3" secondAttribute="top" constant="-10" id="bc7-d4-Gec"/>
+                <constraint firstItem="IjJ-Ua-nC3" firstAttribute="top" secondItem="xYI-2K-YPn" secondAttribute="bottom" constant="12" id="YLE-EQ-5Sx"/>
+                <constraint firstItem="xYI-2K-YPn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bOP-cN-rjQ"/>
                 <constraint firstAttribute="trailing" secondItem="IjJ-Ua-nC3" secondAttribute="trailing" id="dvA-5N-Lr4"/>
                 <constraint firstItem="vkQ-I8-8Yo" firstAttribute="width" secondItem="EKE-AY-pq1" secondAttribute="width" id="eAI-g9-zkK"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="width" secondItem="vkQ-I8-8Yo" secondAttribute="width" id="euR-07-335"/>

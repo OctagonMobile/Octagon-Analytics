@@ -22,7 +22,7 @@ struct ChartLegend: ChartLegendType, Equatable {
     
     init(text: String,
          color: UIColor,
-         textColor: UIColor = CurrentTheme.disabledStateBackgroundColor,
+         textColor: UIColor = CurrentTheme.vectorMapLegendTitleColor,
          font: UIFont? = CurrentTheme.caption1TextStyle().font,
          shape: LegendIconShape) {
         self.text = text
