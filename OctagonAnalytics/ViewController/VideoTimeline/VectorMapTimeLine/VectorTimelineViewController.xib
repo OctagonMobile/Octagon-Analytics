@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,7 +23,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-AY-pq1">
@@ -43,7 +43,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sk-Tp-bcJ">
-                    <rect key="frame" x="1166" y="758" width="200" height="170"/>
+                    <rect key="frame" x="1166" y="766" width="200" height="170"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="8bH-cT-XpI"/>
@@ -51,7 +51,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYI-2K-YPn">
-                    <rect key="frame" x="683" y="910" width="0.0" height="0.0"/>
+                    <rect key="frame" x="683" y="908" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -118,6 +118,7 @@
                 <constraint firstItem="IjJ-Ua-nC3" firstAttribute="top" secondItem="2Sk-Tp-bcJ" secondAttribute="bottom" constant="-16" id="ML1-h3-CP9"/>
                 <constraint firstItem="4XB-SF-GeN" firstAttribute="centerX" secondItem="vkQ-I8-8Yo" secondAttribute="centerX" id="O51-f6-1dK"/>
                 <constraint firstAttribute="bottom" secondItem="IjJ-Ua-nC3" secondAttribute="bottom" id="QR7-8b-ZQP"/>
+                <constraint firstItem="xYI-2K-YPn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Wlk-2e-DBC"/>
                 <constraint firstItem="IjJ-Ua-nC3" firstAttribute="top" secondItem="xYI-2K-YPn" secondAttribute="bottom" constant="12" id="YLE-EQ-5Sx"/>
                 <constraint firstItem="xYI-2K-YPn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bOP-cN-rjQ"/>
                 <constraint firstAttribute="trailing" secondItem="IjJ-Ua-nC3" secondAttribute="trailing" id="dvA-5N-Lr4"/>
@@ -131,6 +132,27 @@
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Wlk-2e-DBC"/>
+                    <exclude reference="bOP-cN-rjQ"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="bOP-cN-rjQ"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="Wlk-2e-DBC"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="bOP-cN-rjQ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="139" y="148"/>
         </view>
         <tapGestureRecognizer id="BAc-YF-7ZA">
