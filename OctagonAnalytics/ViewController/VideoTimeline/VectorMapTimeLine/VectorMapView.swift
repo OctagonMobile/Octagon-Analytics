@@ -7,17 +7,17 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
 class VectorMapView: UIView {
     var regions: [WorldMapVectorRegion] = []
-    var mapView: MKMapView!
+    var mapView: GMSMapView!
     var regionSubLayers: [VectorRegionLayer] = []
     var highlightColor: UIColor = .gray
     var toHighlight = [String]()
     var currentSpeed = 0.5
     
-    init(regions: [WorldMapVectorRegion], mapView: MKMapView) {
+    init(regions: [WorldMapVectorRegion], mapView: GMSMapView) {
         self.regions = regions
         self.mapView = mapView
         super.init(frame: mapView.frame)
@@ -28,7 +28,7 @@ class VectorMapView: UIView {
         super.init(coder: coder)
     }
     
-    func set(regions: [WorldMapVectorRegion], mapView: MKMapView) {
+    func set(regions: [WorldMapVectorRegion], mapView: GMSMapView) {
         self.regions = regions
         self.mapView = mapView
         createRegions()

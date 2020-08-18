@@ -15,11 +15,12 @@ enum VectorMapVideoState {
     case play
     case pause
 }
-class VectorTimelineViewController: VideoTimelineBaseViewController {
+class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJsonParser {
     
-    @IBOutlet weak var worldMapView: WorldMapView!
     @IBOutlet weak var vectorMapView: VectorMapView!
     @IBOutlet weak var legendsBaseView: UIView!
+    @IBOutlet weak var mapBaseView: UIView!
+    var vectorBase: VectorMapBaseView!
 
     private var legendsView: ChartLegendsView!
     private var countryCodes: [String: String] = [:]
@@ -27,11 +28,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
     private var state: VectorMapVideoState = .notStarted
     private var timeInterVal: TimeInterval =  0.4
     private var deviceRotated: Bool = false
-    var vectorMapData: [VectorMapContainer]! {
-        didSet {
-            calculateRanges()
-        }
-    }
+    private var regionList: [WorldMapVectorRegion] = []
     private lazy var data: [[String: [VectorMap]]]  = {
         var index = 0
         return correct().map {
@@ -41,6 +38,14 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
            return $0.reGroup(by: ranges)
         }
     }()
+    var vectorMapData: [VectorMapContainer]! {
+        didSet {
+            if !vectorMapData.isEmpty {
+                calculateRanges()
+            }
+        }
+    }
+
     
     func correct() -> [VectorMapContainer] {
          readCountryCodes()
@@ -62,11 +67,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
         }
         return containers
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        worldMapView.onLayout = mapViewOnLayout
-        worldMapView.layer.masksToBounds = true
+        regionList = readCountryGeoJson()
+        addVectorBaseMapView()
         NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
         
         setupView()
@@ -78,8 +83,14 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
         updatePlayButton(.play)
         dateLabel.textColor = CurrentTheme == .dark ?  .black : .white 
     }
-    deinit {
-       NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    
+    func addVectorBaseMapView() {
+        vectorBase = UINib.init(nibName: String(describing: VectorMapBaseView.self), bundle: nil).instantiate(withOwner: self, options: nil).first as? VectorMapBaseView
+        mapBaseView.addSubview(vectorBase!)
+        vectorBase?.translatesAutoresizingMaskIntoConstraints = false
+        vectorBase?.fillSuperView()
+        view.sendSubviewToBack(vectorBase!)
+        
     }
 
     @objc
@@ -155,18 +166,44 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
         legendsBaseView.addSubview(legendsView)
         legendsView.translatesAutoresizingMaskIntoConstraints = false
         legendsView.fillSuperView()
-    }
-    
-    
+    }    
     
     private func setupVectorMap() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.vectorMapView.set(regions: self.worldMapView.regionList,
-                                   mapView: self.worldMapView.mapView)
-            
+        zoomToRegion {
+            self.vectorMapView.set(regions: self.regionList/*[zoomRegion]*/,
+                                   mapView: self.vectorBase.mapView)
             self.play()
         }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//            self.vectorMapView.set(regions: self.worldMapView.regionList,
+//                                   mapView: self.vectorBase.mapView)
+//
+//            self.play()
+//        }
     }
+    
+    func zoomToRegion(onComplete: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            onComplete()
+        }
+        return
+        let zoomTo = "United States"
+        var zoomRegion = WorldMapVectorRegion(name: zoomTo,
+                                              code: nil,
+                                              polygonSet: [])
+        
+        for region in self.regionList {
+            if region.name?.lowercased() == zoomTo.lowercased() {
+                zoomRegion = region
+                break
+            }
+        }
+        
+        vectorBase.zoomTo(zoomRegion, worldRegions: self.regionList) {
+            onComplete()
+        }
+    }
+
     
     func play() {
         state = .play
@@ -288,5 +325,14 @@ class VectorTimelineViewController: VideoTimelineBaseViewController {
     
     override func stopVideo() {
         stop()
+    }
+    
+    override func controlsToggled() {
+        
+    }
+    
+    //Deinit
+    deinit {
+       NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 }

@@ -7,17 +7,17 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
 class VectorRegionLayer: CALayer {
-    weak var mapView: MKMapView!
+    weak var mapView: GMSMapView!
     let region: WorldMapVectorRegion
     let strokeColor: UIColor
     var fillColor: UIColor
     var polygons: [BoundaryPolygon] = []
     weak var vectorBase: UIView?
     
-    init(mapView: MKMapView,
+    init(mapView: GMSMapView,
          region: WorldMapVectorRegion,
          strokeColor: UIColor,
          fillColor: UIColor,
@@ -36,15 +36,21 @@ class VectorRegionLayer: CALayer {
     }
     
     func constructPolygons() {
-        guard let vectorView = vectorBase else {
-            return
-        }
         for list in region.coordinatesList {
             let points = list.compactMap {
-                return mapView.convert($0, toPointTo: vectorView)
+                return mapView.projection.point(for: $0)
             }
-            print("Points of Canada")
-            print(points)
+           
+            var anyPointInside = false
+            for point in points {
+                if mapView.bounds.contains(point) {
+                    anyPointInside = true
+                }
+            }
+            
+            if !anyPointInside {
+                continue
+            }
             let polygon = BoundaryPolygon(with: points,
                                           region: region,
                                           strokeColor: strokeColor,

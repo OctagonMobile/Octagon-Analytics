@@ -48,6 +48,7 @@ class VideoTimelineBaseViewController: BaseViewController {
     @IBAction func tapAction(_ sender: UITapGestureRecognizer) {
         shouldHideControls = !shouldHideControls
         hideAllControls(shouldHideControls) { (completed) in
+            self.controlsToggled()
             guard self.recorder.isRecording else { return }
             self.stopRecording()
         }
@@ -182,6 +183,9 @@ class VideoTimelineBaseViewController: BaseViewController {
         
     }
     
+    func controlsToggled() {
+        
+    }
 }
 
 extension VideoTimelineBaseViewController : RPPreviewViewControllerDelegate {
