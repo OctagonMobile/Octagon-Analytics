@@ -1402,8 +1402,8 @@
 				513467C91F9DD1B900F9B67D /* Sources */,
 				513467CA1F9DD1B900F9B67D /* Frameworks */,
 				513467CB1F9DD1B900F9B67D /* Resources */,
-				3673B3EA88456759DD2B026B /* [CP] Embed Pods Frameworks */,
-				CA865E9D59FDE762E454F0BA /* [CP] Copy Pods Resources */,
+				07000116AECE1ADAD03B0B7B /* [CP] Embed Pods Frameworks */,
+				0DCBAE8AB377D12D6E5A8859 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1511,7 +1511,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3673B3EA88456759DD2B026B /* [CP] Embed Pods Frameworks */ = {
+		07000116AECE1ADAD03B0B7B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1585,7 +1585,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CA865E9D59FDE762E454F0BA /* [CP] Copy Pods Resources */ = {
+		0DCBAE8AB377D12D6E5A8859 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1957,7 +1957,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1988,7 +1988,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;

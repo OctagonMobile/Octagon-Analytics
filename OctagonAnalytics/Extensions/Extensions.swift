@@ -349,13 +349,13 @@ extension Double {
         let millionNum = num/1000000
         if self >= 1000 && num < 1000000{
             if(floor(thousandNum) == thousandNum){
-                return("\(Int(thousandNum))k")
+                return("\(Int(thousandNum))K")
             }
-            return("\(thousandNum.round(to:1))k")
+            return("\(thousandNum.round(to:1))K")
         }
         if self > 1000000{
             if(floor(millionNum) == millionNum){
-                return("\(Int(thousandNum))k")
+                return("\(Int(thousandNum))K")
             }
             return ("\(millionNum.round(to:1))M")
         }
