@@ -165,7 +165,9 @@ class Panel {
         reqParameters.panelType = visState?.type ?? .unKnown
         reqParameters.timeFrom = dashboardItem?.fromTime
         reqParameters.timeTo = dashboardItem?.toTime
-        
+        reqParameters.searchQueryPanel = searchQuery
+        reqParameters.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+
         if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
             reqParameters.filters = filtersList
         }
