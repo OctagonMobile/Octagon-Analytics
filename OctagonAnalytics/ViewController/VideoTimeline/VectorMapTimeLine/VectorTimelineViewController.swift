@@ -21,6 +21,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     @IBOutlet weak var vectorMapView: VectorMapView!
     @IBOutlet weak var legendsBaseView: UIView!
     @IBOutlet weak var mapBaseView: UIView!
+    @IBOutlet weak var dateHolder: UIView!
     var vectorBase: VectorMapBaseView!
 
     private var legendsView: ChartLegendsView!
@@ -76,6 +77,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     override func viewDidLoad() {
         super.viewDidLoad()
         title   =   "VectorMap Video".localiz()
+        dateHolder.layer.cornerRadius = 7.0
         regionList = readCountryGeoJson()
         addVectorBaseMapView()
         NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
@@ -87,7 +89,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         readCountryCodes()
         addLegendView()
         updatePlayButton(.play)
-        dateLabel.textColor = CurrentTheme == .dark ?  .black : .white
+        dateLabel.textColor = .white
+        if isIPhone {
+            dateLabel.style(CurrentTheme.textStyleWith((dateLabel.font.pointSize - 10),
+                                                       weight: .semibold))
+        }
         hud.show(animated: true)
         onMapLoad()
     }
@@ -218,7 +224,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     func play() {
         state = .play
-        let rangeColorDict = Dictionary(uniqueKeysWithValues: zip(ranges.map{$0.toString}, colors))
+        let rangeColorDict = Dictionary(uniqueKeysWithValues: zip(ranges.map{$0}, colors))
         updateLegends(rangeColorDict)
         if currentIndex >= data.count {
             currentIndex = 0
@@ -273,14 +279,15 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         countryCodes = codes
     }
     
-    private func updateLegends(_ ranges: [String: UIColor]) {
+    private func updateLegends(_ ranges: [ClosedRange<Int>: UIColor]) {
         var chartLegends = [ChartLegend]()
         for (range, color) in ranges {
-            chartLegends.append(ChartLegend.init(text: range, color: color, shape: .rect(width: 25, height: 20)))
+            chartLegends.append(ChartLegend.init(text: range.toKAndMString, color: color, shape: .rect(width: 25, height: 20)))
         }
-        chartLegends.sort {
-            return ($0.text.toRange?.upperBound ?? 0) < ($1.text.toRange?.upperBound ?? 0)
-        }
+        let keySorted = ranges.keys.sorted { $0.upperBound < $1.upperBound }
+        let keySortedMinimal = keySorted.map { $0.toKAndMString }
+        chartLegends = chartLegends.reorder(basedOn: keySortedMinimal)
+        chartLegends.reverse()
         legendsView?.setLegends(chartLegends)
     }
     

@@ -35,3 +35,11 @@ struct ChartLegend: ChartLegendType, Equatable {
         return lhs.text == rhs.text && lhs.color.isEqual(rhs.color)
     }
 }
+
+
+extension ChartLegend: Orderable {
+    typealias OrderElement = String
+    var orderElement: String {
+        return text
+    }
+}

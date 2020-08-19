@@ -43,6 +43,9 @@ extension ClosedRange where Bound == Int {
     var toString: String {
         return "\(NSNumber(value: lowerBound).formattedWithSeparator) to \(NSNumber(value: upperBound).formattedWithSeparator)"
     }
+    var toKAndMString: String {
+           return "\(Double(lowerBound).formatToKandM) to \(Double(upperBound).formatToKandM)"
+    }
 }
 
 
