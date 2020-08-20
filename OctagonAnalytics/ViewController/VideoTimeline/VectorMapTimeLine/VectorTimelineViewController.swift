@@ -22,6 +22,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     @IBOutlet weak var legendsBaseView: UIView!
     @IBOutlet weak var mapBaseView: UIView!
     @IBOutlet weak var dateHolder: UIView!
+    @IBOutlet weak var legendsHeightConstraint: NSLayoutConstraint!
     var vectorBase: VectorMapBaseView!
 
     private var legendsView: ChartLegendsView!
@@ -293,6 +294,25 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     @IBAction func buttonTapped(_ button: UIButton) {
         updateState()
+    }
+    
+    @IBAction func infoButtonAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        showLegends(sender.isSelected)
+    }
+    
+    private func showLegends(_ show: Bool) {
+        legendsHeightConstraint.constant = show ? 0 : 460
+
+        if !show {
+            legendsBaseView.isHidden = false
+        }
+
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        }) { (completed) in
+            self.legendsBaseView.isHidden = show
+        }
     }
     
     func updateState() {
