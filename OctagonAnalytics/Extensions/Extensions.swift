@@ -8,6 +8,7 @@
 
 import Foundation
 import MBProgressHUD
+import Eureka
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -388,5 +389,33 @@ extension Array where Element: Orderable {
 
             return first < second
         }
+    }
+}
+
+extension SegmentedCell {
+    func setControlWidth(_ width: CGFloat) {
+        guard let segmentedControl = segmentedControl else { return }
+        let widthConstraint = NSLayoutConstraint(
+            item: segmentedControl,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: width
+        )
+        
+        let centerConstraint = NSLayoutConstraint(
+            item: segmentedControl,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0
+        )
+        addConstraint(centerConstraint)
+
+        addConstraints([widthConstraint, centerConstraint])
     }
 }

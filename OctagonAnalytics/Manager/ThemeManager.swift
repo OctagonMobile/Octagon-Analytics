@@ -294,18 +294,25 @@ enum Theme: String {
     }
     
     var vectorMapVideoColors: [UIColor] {
-        switch self {
-        case .light, .dark:
-            return [UIColor.colorFromHexString("FFF7B8"),
-                    UIColor.colorFromHexString("FFBC63"),
-                    UIColor.colorFromHexString("F18130"),
-                    UIColor.colorFromHexString("CD513A"),
-                    UIColor.colorFromHexString("7C0015")]
-        }
+        return UIColor.VectorMapVideoColorsSet.colors(16)
     }
     
     var vectorMapLegendTitleColor: UIColor {
         return UIColor.colorFromHexString("070707")
+    }
+    
+    var videoTypeSegmentBackgroundColor: UIColor {
+        switch self {
+        case .light: return UIColor.colorFromHexString("EBEBEB")
+        case .dark: return UIColor.colorFromHexString("161616")
+        }
+    }
+    
+    var videoTypeSegmentSelectedColor: UIColor {
+        switch self {
+        case .light: return UIColor.white
+        case .dark: return UIColor.DarkThemeColors.buttonColor
+        }
     }
 
     //MARK: Styles

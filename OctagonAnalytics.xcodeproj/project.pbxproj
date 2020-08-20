@@ -1403,7 +1403,7 @@
 				513467CA1F9DD1B900F9B67D /* Frameworks */,
 				513467CB1F9DD1B900F9B67D /* Resources */,
 				07000116AECE1ADAD03B0B7B /* [CP] Embed Pods Frameworks */,
-				0DCBAE8AB377D12D6E5A8859 /* [CP] Copy Pods Resources */,
+				0799A39B8B9155144DB37A0B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1585,7 +1585,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0DCBAE8AB377D12D6E5A8859 /* [CP] Copy Pods Resources */ = {
+		0799A39B8B9155144DB37A0B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

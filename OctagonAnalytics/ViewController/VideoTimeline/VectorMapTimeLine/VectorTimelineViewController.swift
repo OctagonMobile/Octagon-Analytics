@@ -139,7 +139,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         }
     }
     private func calculateRanges() {
-        let totalRange = 5
+        let totalRange = 16
         
         var lowerBound = Int.max
         var upperBound = Int.min

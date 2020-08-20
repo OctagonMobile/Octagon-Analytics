@@ -59,13 +59,17 @@ class VideoConfigureViewController: FormViewController {
                     return type.rawValue
                 }
                 $0.cellSetup { (cell, row) in
-                    cell.segmentedControl.backgroundColor = CurrentTheme.enabledStateBackgroundColor
-//                    cell.segmentedControl.selectedSegmentTintColor = CurrentTheme.titleColor
-                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor], for: .normal)
-                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.selectedTitleColor], for: .selected)
+                    
+                    let textStyle = CurrentTheme.textStyleWith(14, weight: .regular)
+                    cell.segmentedControl.backgroundColor = CurrentTheme.videoTypeSegmentBackgroundColor
+                    cell.segmentedControl.selectedSegmentTintColor = CurrentTheme.videoTypeSegmentSelectedColor
+                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor, NSAttributedString.Key.font: textStyle.font], for: .normal)
+                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor, NSAttributedString.Key.font: textStyle.font], for: .selected)
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    let segmentWidth: CGFloat = isIPhone ? 300 : 500
+                    cell.setControlWidth(segmentWidth)
                 }
             }
             
