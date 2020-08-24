@@ -81,8 +81,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         dateHolder.layer.cornerRadius = 7.0
         regionList = readCountryGeoJson()
         addVectorBaseMapView()
-        NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
-        
+//        NotificationCenter.default.addObserver(self, selector: #selector(VectorTimelineViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
         setupView()
         setupSliders()
         
@@ -98,7 +97,19 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         hud.show(animated: true)
         onMapLoad()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isIPhone {
+            AppOrientationUtility.lockOrientation(.landscape, andRotateTo: .landscapeLeft)
+        }
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isIPhone {
+            AppOrientationUtility.lockOrientation(.allButUpsideDown)
+        }
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stop()
