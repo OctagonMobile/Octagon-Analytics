@@ -90,11 +90,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         readCountryCodes()
         addLegendView()
         updatePlayButton(.play)
-        dateLabel.textColor = .white
         if isIPhone {
             dateLabel.style(CurrentTheme.textStyleWith((dateLabel.font.pointSize - 10),
                                                        weight: .semibold))
         }
+        dateLabel.textColor = CurrentTheme.secondaryTitleColor
         hud.show(animated: true)
         onMapLoad()
     }
