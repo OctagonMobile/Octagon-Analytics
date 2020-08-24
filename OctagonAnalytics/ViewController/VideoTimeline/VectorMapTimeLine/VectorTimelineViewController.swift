@@ -273,7 +273,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         let shouldShowTime = videoConfig?.spanType == SpanType.hours ||
             videoConfig?.spanType == SpanType.minutes ||
             videoConfig?.spanType == SpanType.seconds
-        let dateFormat = shouldShowTime ? DateFormat.withSeconds : DateFormat.simple
+        let dateFormat = shouldShowTime ? DateFormat.withSecondsAmPm : DateFormat.simple
         dateLabel.text = vectorMapData[index].date.stringVal(format: dateFormat)
         let rangesList = ranges
         var dataDict: [String: ([VectorMap], UIColor)] = [:]

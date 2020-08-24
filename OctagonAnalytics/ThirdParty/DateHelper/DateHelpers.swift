@@ -124,6 +124,7 @@ enum DateFormat: String {
     case simple = "dd-MM-yyyy"
     case simpleReverse = "yyyy-MM-dd"
     case withSeconds = "yyyy-MM-dd hh:mm:ss"
+    case withSecondsAmPm = "yyyy-MM-dd hh:mm:ss a"
 }
 
 extension Date {
