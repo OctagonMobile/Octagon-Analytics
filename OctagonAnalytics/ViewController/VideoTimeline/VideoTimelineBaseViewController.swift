@@ -22,6 +22,7 @@ class VideoTimelineBaseViewController: BaseViewController {
     @IBOutlet weak var recordIndicator: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     
+    var videoConfig: VideoConfigContent?
     var timer: Timer?
     var shouldHideControls: Bool     =   true
     let recorder = RPScreenRecorder.shared()

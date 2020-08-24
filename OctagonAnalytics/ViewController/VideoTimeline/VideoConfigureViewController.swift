@@ -424,7 +424,7 @@ class VideoConfigureViewController: FormViewController {
             }
             
             if let result = res as? [VectorMapContainer], !result.isEmpty  {
-                NavigationManager.shared.showVectorMapTimeline(self.navigationController!, data: result)
+                NavigationManager.shared.showVectorMapTimeline(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
 
             } else if let result = res as? [VideoContent], !result.isEmpty {
                 NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)

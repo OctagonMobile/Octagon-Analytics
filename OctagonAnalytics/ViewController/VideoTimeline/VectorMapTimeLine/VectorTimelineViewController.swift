@@ -99,6 +99,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         onMapLoad()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stop()
+    }
+    
     func addVectorBaseMapView() {
         vectorBase = UINib.init(nibName: String(describing: VectorMapBaseView.self), bundle: nil).instantiate(withOwner: self, options: nil).first as? VectorMapBaseView
         vectorBase.onLoad = onMapLoad
@@ -254,7 +259,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     private func highlight(index: Int) {
         let content = data[index]
-        dateLabel.text = vectorMapData[index].date.stringVal()
+        let shouldShowTime = videoConfig?.spanType == SpanType.hours ||
+            videoConfig?.spanType == SpanType.minutes ||
+            videoConfig?.spanType == SpanType.seconds
+        let dateFormat = shouldShowTime ? DateFormat.withSeconds : DateFormat.simple
+        dateLabel.text = vectorMapData[index].date.stringVal(format: dateFormat)
         let rangesList = ranges
         var dataDict: [String: ([VectorMap], UIColor)] = [:]
         var rangesIncluded = [String: UIColor]()

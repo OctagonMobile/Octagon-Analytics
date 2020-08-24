@@ -13,7 +13,7 @@ import TGPControls
 import ReplayKit
 
 class BarChartRaceViewController: VideoTimelineBaseViewController {
-    var videoConfig: VideoConfigContent?
+
     var barData: [VideoContent] = []
     
     //MARK: Outlets

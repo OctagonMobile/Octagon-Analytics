@@ -103,10 +103,11 @@ class NavigationManager: NSObject {
     }
     
     func showVectorMapTimeline(_ navController: UINavigationController,
-                               data: [VectorMapContainer]) {
+                               data: [VectorMapContainer], config: VideoConfigContent?) {
         let vectorMap = VectorTimelineViewController.init(nibName: String(describing: VectorTimelineViewController.self), bundle: nil)
         vectorMap.hidesBottomBarWhenPushed = true
         vectorMap.vectorMapData = data
+        vectorMap.videoConfig = config
         navController.pushViewController(vectorMap, animated: true)
     }
     
