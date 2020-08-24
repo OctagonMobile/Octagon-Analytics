@@ -21,6 +21,23 @@ class ControlsPanel: Panel {
         self.maxAgg =   controlsPanelService.maxAgg
         self.minAgg =   controlsPanelService.minAgg
     }
+    
+    override func requestParams() -> VizDataParamsBase? {
+        
+        var controlsList: [ControlsParams] = []
+        
+        for control in (visState as? InputControlsVisState)?.controls ?? [] {
+            let controlParam = ControlsParams(control.type, indexPatternId: control.indexPattern, fieldName: control.fieldName)
+            controlsList.append(controlParam)
+        }
+        let reqParam = ControlsVizDataParams(controlsList)
+        reqParam.panelType = visState?.type ?? .unKnown
+        reqParam.timeFrom = dashboardItem?.fromTime
+        reqParam.timeTo = dashboardItem?.toTime
+        reqParam.searchQueryPanel = searchQuery
+        reqParam.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+        return reqParam
+    }
     /**
      Parse the data into Metrics List.
      

@@ -39,7 +39,7 @@ class SavedSearchPanel: Panel {
     func loadSavedSearch(_ pageNumber: Int, _ completion: CompletionBlock?) {
                 
         guard let indexPatternId = visState?.indexPatternId else { return }
-        let reqParameters = SavedSearchDataParams(indexPatternId)
+        let reqParameters = SavedSearchDataParams([indexPatternId])
         reqParameters.panelType = visState?.type ?? .unKnown
         reqParameters.timeFrom = dashboardItem?.fromTime
         reqParameters.timeTo = dashboardItem?.toTime

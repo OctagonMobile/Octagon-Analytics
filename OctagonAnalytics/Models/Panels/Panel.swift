@@ -160,8 +160,29 @@ class Panel {
     func loadChartData(_ completion: CompletionBlock?) {
         // Load ChartData using id
 
-        guard let indexPatternId = visState?.indexPatternId else { return }
-        let reqParameters = VizDataParams(indexPatternId)
+        guard let reqParameters = requestParams() else {
+            return
+        }
+        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
+            
+            guard error == nil else {
+                self?.resetDataSource()
+                completion?(nil, error?.asNSError)
+                return
+            }
+            
+            guard let res = result as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) else {
+                self?.resetDataSource()
+                completion?(nil, error?.asNSError)
+                return
+            }
+            completion?(parsedData, error?.asNSError)
+        }
+    }
+    
+    func requestParams() -> VizDataParamsBase? {
+        guard let indexPatternId = visState?.indexPatternId else { return nil }
+        let reqParameters = VizDataParams([indexPatternId])
         reqParameters.panelType = visState?.type ?? .unKnown
         reqParameters.timeFrom = dashboardItem?.fromTime
         reqParameters.timeTo = dashboardItem?.toTime
@@ -178,22 +199,7 @@ class Panel {
         }
 
         reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
-        
-        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
-            
-            guard error == nil else {
-                self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
-            }
-            
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) else {
-                self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
-            }
-            completion?(parsedData, error?.asNSError)
-        }
+        return reqParameters
     }
     
     /**
