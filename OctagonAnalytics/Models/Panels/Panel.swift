@@ -182,7 +182,7 @@ class Panel {
     
     func requestParams() -> VizDataParamsBase? {
         guard let indexPatternId = visState?.indexPatternId else { return nil }
-        let reqParameters = VizDataParams([indexPatternId])
+        let reqParameters = VizDataParams(indexPatternId)
         reqParameters.panelType = visState?.type ?? .unKnown
         reqParameters.timeFrom = dashboardItem?.fromTime
         reqParameters.timeTo = dashboardItem?.toTime

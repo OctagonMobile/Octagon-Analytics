@@ -41,19 +41,19 @@ class MetricPanel: Panel {
      - parameter result: Data to be parsed.
      - returns:  Array of Metric Object
      */
-//    override func parseData(_ result: Any?) -> [Any] {
-//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-//            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
-//            let metricsArray = aggregationsDict["metrics"] as? [[String: Any]] else {
-//                metricsList.removeAll()
-//                return []
-//        }
-//
-//        metricsList = Mapper<Metric>().mapArray(JSONArray: metricsArray)
-//        metricsList = metricsList.map {
-//            $0.panel = self
-//            return $0
-//        }
-//        return metricsList
-//    }
+    override func parseData(_ result: Any?) -> [Any] {
+        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
+            let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
+            let metricsArray = aggregationsDict["metrics"] as? [[String: Any]] else {
+                metricsList.removeAll()
+                return []
+        }
+
+        metricsList = metricsArray.compactMap({ Metric($0) })
+        metricsList = metricsList.map {
+            $0.panel = self
+            return $0
+        }
+        return metricsList
+    }
 }

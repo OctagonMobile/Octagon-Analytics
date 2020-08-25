@@ -52,4 +52,17 @@ class Metric {
         self.labelInt   =   Int(responseModel.label)
         self.value      =   responseModel.value
     }
+    
+    init(_ dict: [String: Any]) {
+        self.id         =   dict["id"] as? String ?? ""
+        self.type       =   dict["type"] as? String ?? ""
+        self.labelStr   =   dict["label"] as? String ?? ""
+        if let label = self.labelStr {
+            self.labelInt   =   Int(label)
+        }
+        
+        if let val = dict["value"] as? Double {
+            self.value      =   NSNumber(value: val)
+        }
+    }
 }
