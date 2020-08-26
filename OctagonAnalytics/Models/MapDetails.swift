@@ -31,7 +31,8 @@ class MapDetails: ChartContent, Mappable {
         
         type <- map[BucketConstant.type]
         
-        if let locationDict = map.JSON[MapDetailsConstant.location] as? [String: Any] {
+        if let dict = map.JSON["3"] as? [String: Any],
+            let locationDict = dict[MapDetailsConstant.location] as? [String: Any] {
             let lat = locationDict[MapDetailsConstant.lat] as? Double ?? 0.0
             let longitude = locationDict[MapDetailsConstant.long] as? Double ?? 0.0
             

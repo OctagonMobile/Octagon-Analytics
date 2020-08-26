@@ -297,7 +297,7 @@ class Panel {
 
 extension Panel {
     //MARK: Date Histogram Filtering methods
-    private var mappedIntervalValue: String? {
+    var mappedIntervalValue: String? {
         guard let interval = bucketAggregation?.params?.interval else { return nil }
         switch interval {
         case .unKnown:  return nil
