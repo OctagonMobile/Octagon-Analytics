@@ -75,8 +75,8 @@ class DashboardItem: NSObject {
         self.id             =   responseModel.id
         self.type           =   responseModel.type
         self.desc           =   responseModel.desc
-        self.fromTime       =   responseModel.fromTime
-        self.toTime         =   responseModel.toTime
+        self.fromTime       =   responseModel.fromTime ?? ""
+        self.toTime         =   responseModel.toTime ?? ""
         self.searchQuery    =   responseModel.searchQuery
         
         let panelsList  =   responseModel.panels.compactMap { (panelService) -> Panel? in
