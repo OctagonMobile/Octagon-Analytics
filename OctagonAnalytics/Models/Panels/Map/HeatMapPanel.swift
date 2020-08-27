@@ -34,9 +34,6 @@ class HeatMapPanel: Panel, WMSLayerProtocol {
      - returns:  Array of Map Details Object
      */
     override func parseData(_ result: Any?) -> [Any] {
-        let jsonData = try! JSONSerialization.data(withJSONObject: result, options: [])
-        let decoded = String(data: jsonData, encoding: .utf8)!
-        print(decoded)
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
             let filterAggDict = aggregationsDict["filter_agg"] as? [String: Any],
@@ -102,7 +99,7 @@ class HeatMapPanel: Panel, WMSLayerProtocol {
     
     override func requestParams() -> VizDataParamsBase? {
         guard let indexPatternId = visState?.indexPatternId else { return nil }
-        let reqParameters = MapVizParams([indexPatternId])
+        let reqParameters = MapVizParams(indexPatternId)
         reqParameters.panelType = visState?.type ?? .unKnown
         reqParameters.timeFrom = dashboardItem?.fromTime
         reqParameters.timeTo = dashboardItem?.toTime
