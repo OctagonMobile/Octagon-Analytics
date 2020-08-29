@@ -79,7 +79,7 @@ Open the Settings App and configure Octagon Analytics.
 *  App Theme (Light/Dark).
 *  Localization(English/Arabic)
 *  Supported visualizations are mentioned in [wiki](https://github.com/OctagonMobile/Octagon-Analytics/wikis/home#supported-visualizations) page.
-*   Video Generation - BarChart Race.
+*   Video Generation - BarChart Race & Vector Map.
 
 ## Contributing<a id="contributing"></a>
 We welcome pull requests from the community!
