@@ -1,6 +1,9 @@
 # Octagon Analytics
 
 This is the native iOS Application for [Kibana](https://www.elastic.co/products/kibana).<br/>
+
+Click [here](https://apps.apple.com/us/app/octagon-analytics/id1492910295) to download Octagon Analytics app.
+
 Supported Devices: iPhone & iPad.
 
 ## Table of Contents
