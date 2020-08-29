@@ -119,3 +119,21 @@ extension Date {
         return df.string(from: self)
     }
 }
+
+enum DateFormat: String {
+    case simple = "dd-MM-yyyy"
+    case simpleReverse = "yyyy-MM-dd"
+    case withSeconds = "yyyy-MM-dd hh:mm:ss"
+    case withSecondsAmPm = "yyyy-MM-dd hh:mm:ss a"
+}
+
+extension Date {
+
+    func stringVal(format: DateFormat = .simple) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format.rawValue
+        return formatter.string(from: self)
+    }
+  
+}

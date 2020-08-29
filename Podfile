@@ -35,6 +35,11 @@ target 'OctagonAnalytics' do
 #HeatMap pods
     pod 'WMSKit', :git => 'https://github.com/OctagonMobile/WMSKit.git'
     pod 'DTMHeatmap'
+    
+#VectorMap
+    pod 'GoogleMaps', '3.9.0'
+    pod 'GooglePlaces', '3.9.0'
+    pod 'Google-Maps-iOS-Utils', '3.1.4'
 
 #Custom Template
     pod 'EverLayout', :git => 'https://github.com/OctagonMobile/EverLayout.git'

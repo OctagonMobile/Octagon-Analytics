@@ -10,14 +10,11 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class WorldMapView: UIView {
+class WorldMapView: UIView, CountryGeoJsonParser {
 
-    typealias WorldMapViewCompletionBlock = (_ completed: Bool,_ error: NSError?) -> Void
     typealias WorldMapViewTapBlock = (_ selectedCountryCode: String,_ countryName: String) -> Void
     typealias WorldMapViewRegionChange = (_ animated: Bool) -> Void
-
-    var geoJsonFileName: String             =   "CountriesBoundary"
-
+    
     var countryToBeHighlighted: [String]    =   []
     
     var normalColor: UIColor                =   .gray
@@ -28,21 +25,20 @@ class WorldMapView: UIView {
 
     var mapViewRegionChangeBlock: WorldMapViewRegionChange?
 
-    var loadingCompleted: WorldMapViewCompletionBlock?
-
     @IBOutlet weak var mapView: MKMapView!
     
-    private var regionList: [WorldMapVectorRegion]   =   []
+    var regionList: [WorldMapVectorRegion]   =   []
+    var onLayout: (() -> Void)?
 
     //MARK:
     override init(frame: CGRect) {
         super.init(frame: frame)
-        readGeoJsonFile()
+        regionList = readCountryGeoJson()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        readGeoJsonFile()
+        regionList = readCountryGeoJson()
     }
     
     override func awakeFromNib() {
@@ -56,63 +52,16 @@ class WorldMapView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         zoomOutMapToMaximum()
+        onLayout?()
     }
+    
     
     private func zoomOutMapToMaximum() {
         guard let mapView = mapView else { return }
-        let coordinateSpan = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 360)
-        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: coordinateSpan)
+        mapView.mapType = .mutedStandard
+        let region = MKCoordinateRegion(.world)
         mapView.setRegion(region, animated: true)
-    }
-    
-    private func readGeoJsonFile() {
         
-        guard let path = Bundle.main.path(forResource: geoJsonFileName, ofType: "geojson") else {
-            loadingCompleted?(false, errorWithDesc("GeoJson File not found"))
-            return
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let data = try Data(contentsOf: url, options: Data.ReadingOptions.mappedIfSafe)
-            let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
-            guard let countriesData = jsonData?["features"] as? [[String: Any]]  else {
-                loadingCompleted?(false, errorWithDesc("Invalid Data Format"))
-                return
-            }
-            
-            for details in countriesData {
-                
-                let properties = details["properties"] as? [String: Any]
-//                let name = properties?["ADMIN"] as? String ?? ""
-//                let code = properties?["ISO_A3"] as? String ?? ""
-                
-                let name = properties?["name"] as? String ?? ""
-                let code = details["id"] as? String ?? ""
-
-                let geometry = details["geometry"] as? [String: Any]
-                var coordinates = (geometry?["coordinates"] as? [[[[Double]]]]) ?? []
-                
-                if coordinates.count <= 0 {
-                    if let list = (geometry?["coordinates"] as? [[[Double]]]) {
-                        coordinates = [list]
-                    }
-                }
-                
-                guard code != "ATA" else {
-                    
-                    continue
-                }
-
-                let countryDetails = WorldMapVectorRegion(name: name, code: code, polygonSet: coordinates)
-                guard countryDetails.coordinatesList.count > 0 else { continue }
-                regionList.append(countryDetails)
-            }
-        
-            loadingCompleted?(true, nil)
-        } catch {
-            loadingCompleted?(false, errorWithDesc(error.localizedDescription))
-        }
     }
     
     private func errorWithDesc(_ desc: String) -> NSError {
@@ -120,7 +69,7 @@ class WorldMapView: UIView {
     }
     
     private func addTapGestureToDetectRegionSelection() {
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_ :)))
+        let singleTapGesture = UITapGestureRecognizer(target: self, action:     #selector(handleTapGesture(_ :)))
         singleTapGesture.cancelsTouchesInView = false
         mapView?.addGestureRecognizer(singleTapGesture)
         
@@ -190,7 +139,6 @@ extension WorldMapView: MKMapViewDelegate {
         // Dismiss location details pop up if shown
         mapViewRegionChangeBlock?(animated)
     }
-
 }
 
 extension WorldMapView {
@@ -204,31 +152,6 @@ extension WorldMapView {
             let polygonViewPoint: CGPoint = polygonRenderer.point(for: currentMapPoint)
             
             return polygonRenderer.path.contains(polygonViewPoint)
-        }
-    }
-    
-    struct WorldMapVectorRegion {
-        var name: String?
-        var code: String?
-        var coordinatesList: [[CLLocationCoordinate2D]]   =   []
-        
-        init(name: String?, code: String?, polygonSet: [[[[Double]]]]) {
-            self.name = name
-            self.code = code
-            
-            for set in polygonSet {
-                
-                var list: [CLLocationCoordinate2D] = []
-                
-                for eachPolygon in set {
-                    for point in eachPolygon {
-                        guard let lat = point.last, let long = point.first else { continue }
-                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                        list.append(coordinate)
-                    }
-                }
-                coordinatesList.append(list)
-            }
         }
     }
 }

@@ -403,6 +403,24 @@ extension UIColor {
             return colors
         }
     }
+    
+    struct VectorMapVideoColorsSet {
+        private static var colorHexa: [String] = ["#FFFCE0", "#FFF7B4", "#FFF182", "#FDE452", "#FFD436", "#FFBE3B", "#FAAB14", "#FF9433", "#FF7B33", "#FF6714", "#FF4606", "#F90101", "#D20000", "#B50000", "#860000", "#650000"]
+        
+        static func colors(_ count: Int) -> [UIColor] {
+            var colors: [UIColor]   =   []
+            var colorIndex  =   0
+            for _ in 0..<count {
+                if colorIndex >= colorHexa.count {
+                    colorIndex = 0
+                }
+                colors.append(UIColor.colorFromHexString(colorHexa[colorIndex]))
+                colorIndex += 1
+            }
+            return colors
+        }
+    }
+
 }
 
 ////////////////////////////////////// Font Extension //////////////////////////////////////

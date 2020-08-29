@@ -13,9 +13,9 @@ import MBProgressHUD
 
 enum VideoType: String {
     case barChartRace   =   "BarChart Race"
-    case heatMap        =   "HeatMap"
+    case vectorMap        =   "Vector Map"
     
-    static var all: [VideoType]    =   [.barChartRace, .heatMap]
+    static var all: [VideoType]    =   [.barChartRace, .vectorMap]
 }
 
 class VideoConfigureViewController: FormViewController {
@@ -49,7 +49,7 @@ class VideoConfigureViewController: FormViewController {
     private func createForm() {
         form +++ Section("")
 
-            /*
+            
             <<< SegmentedRow<VideoType>() {
                 $0.tag      =   FormTag.videoType
                 $0.options  =   VideoType.all
@@ -59,15 +59,19 @@ class VideoConfigureViewController: FormViewController {
                     return type.rawValue
                 }
                 $0.cellSetup { (cell, row) in
-                    cell.segmentedControl.backgroundColor = CurrentTheme.enabledStateBackgroundColor
-//                    cell.segmentedControl.selectedSegmentTintColor = CurrentTheme.titleColor
-                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor], for: .normal)
-                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.selectedTitleColor], for: .selected)
+                    
+                    let textStyle = CurrentTheme.textStyleWith(14, weight: .regular)
+                    cell.segmentedControl.backgroundColor = CurrentTheme.videoTypeSegmentBackgroundColor
+                    cell.segmentedControl.selectedSegmentTintColor = CurrentTheme.videoTypeSegmentSelectedColor
+                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor, NSAttributedString.Key.font: textStyle.font], for: .normal)
+                    cell.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: CurrentTheme.titleColor, NSAttributedString.Key.font: textStyle.font], for: .selected)
                 }
                 $0.cellUpdate { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
+                    let segmentWidth: CGFloat = isIPhone ? 300 : 500
+                    cell.setControlWidth(segmentWidth)
                 }
-            }*/
+            }
             
             <<< OAPickerInputRow<IndexPattern>() {
                 $0.title = "Index Pattern".localiz()
@@ -419,12 +423,14 @@ class VideoConfigureViewController: FormViewController {
                 return
             }
             
-            guard let result = res as? [VideoContent], !result.isEmpty else {
+            if let result = res as? [VectorMapContainer], !result.isEmpty  {
+                NavigationManager.shared.showVectorMapTimeline(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
+
+            } else if let result = res as? [VideoContent], !result.isEmpty {
+                NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
+            } else {
                 self.showAlert("No data found!")
-                return
             }
-            
-            NavigationManager.shared.showBarchartRace(self.navigationController!, data: result, config: self.videoContentLoader.configContent)
         }
     }
     
