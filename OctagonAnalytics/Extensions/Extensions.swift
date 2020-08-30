@@ -9,6 +9,7 @@
 import Foundation
 import MBProgressHUD
 import OctagonAnalyticsService
+import Eureka
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -339,5 +340,87 @@ extension URL {
 extension OAServiceError {
     var asNSError: NSError {
         return NSError(domain: AppName, code: 1001, userInfo: [NSLocalizedDescriptionKey: self.errorDescription])
+    }
+}
+
+extension Double {
+    func round(to places: Int) -> Double {
+           let divisor = pow(10.0, Double(places))
+           return (self * divisor).rounded() / divisor
+    }
+    
+    var formatToKandM: String{
+        let num = self
+        let thousandNum = num/1000
+        let millionNum = num/1000000
+        if self >= 1000 && num < 1000000{
+            if(floor(thousandNum) == thousandNum){
+                return("\(Int(thousandNum))K")
+            }
+            return("\(thousandNum.round(to:1))K")
+        }
+        if self > 1000000{
+            if(floor(millionNum) == millionNum){
+                return("\(Int(thousandNum))K")
+            }
+            return ("\(millionNum.round(to:1))M")
+        }
+        else{
+            if(floor(num) == num){
+                return ("\(Int(num))")
+            }
+            return ("\(num)")
+        }
+
+    }
+}
+
+
+protocol Orderable {
+    associatedtype OrderElement: Equatable
+    var orderElement: OrderElement { get }
+}
+extension Array where Element: Orderable {
+
+    func reorder(basedOn preferredOrder: [Element.OrderElement]) -> [Element] {
+        sorted {
+            guard let first = preferredOrder.firstIndex(of: $0.orderElement) else {
+                return false
+            }
+
+            guard let second = preferredOrder.firstIndex(of: $1.orderElement) else {
+                return true
+            }
+
+            return first < second
+        }
+    }
+}
+
+extension SegmentedCell {
+    func setControlWidth(_ width: CGFloat) {
+        guard let segmentedControl = segmentedControl else { return }
+        let widthConstraint = NSLayoutConstraint(
+            item: segmentedControl,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: width
+        )
+        
+        let centerConstraint = NSLayoutConstraint(
+            item: segmentedControl,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0
+        )
+        addConstraint(centerConstraint)
+
+        addConstraints([widthConstraint, centerConstraint])
     }
 }

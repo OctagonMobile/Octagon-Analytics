@@ -22,7 +22,7 @@ struct ChartLegend: ChartLegendType, Equatable {
     
     init(text: String,
          color: UIColor,
-         textColor: UIColor = CurrentTheme.disabledStateBackgroundColor,
+         textColor: UIColor = CurrentTheme.vectorMapLegendTitleColor,
          font: UIFont? = CurrentTheme.caption1TextStyle().font,
          shape: LegendIconShape) {
         self.text = text
@@ -33,5 +33,13 @@ struct ChartLegend: ChartLegendType, Equatable {
     
     static func == (lhs: ChartLegend, rhs: ChartLegend) -> Bool {
         return lhs.text == rhs.text && lhs.color.isEqual(rhs.color)
+    }
+}
+
+
+extension ChartLegend: Orderable {
+    typealias OrderElement = String
+    var orderElement: String {
+        return text
     }
 }

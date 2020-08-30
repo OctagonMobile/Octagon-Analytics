@@ -32,7 +32,11 @@ class Bucket {
             return shouldShowBucketValue ? metricValue : docCount
         } else if aggregationsCount == 1 || metricType != .count {
             return shouldShowBucketValue ? metricValue : docCount
-        } else {
+        }
+//        else if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
+//            return shouldShowBucketValue ? bucketValue : docCount
+//        }
+        else {
             return (metricType == .count) ? docCount : metricValue
         }
     }

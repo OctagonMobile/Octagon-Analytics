@@ -49,7 +49,6 @@
 		513B634F24AE0AF30060F7C4 /* OAPickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */; };
 		513B635C24B1D2DE0060F7C4 /* OADateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B635B24B1D2DE0060F7C4 /* OADateRow.swift */; };
 		513D89792175F725001B12D6 /* WorldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D89782175F724001B12D6 /* WorldMapView.swift */; };
-		513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 513D897C2175F796001B12D6 /* CountriesBoundary.geojson */; };
 		513D89802175FBE8001B12D6 /* VectorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */; };
 		513D898221761035001B12D6 /* CountryCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 513D898121761035001B12D6 /* CountryCodes.plist */; };
 		513F3F80206A3E9C00221F27 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 513F3F7E206A3E9B00221F27 /* TPKeyboardAvoidingScrollView.m */; };
@@ -210,12 +209,24 @@
 		F117847724892BCF00FF4F0E /* ChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */; };
 		F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847824892BE500FF4F0E /* ChartLegendType.swift */; };
 		F117847B24892CAE00FF4F0E /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117847A24892CAE00FF4F0E /* ChartLegend.swift */; };
+		F1251E8B24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */; };
+		F1251E8D24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */; };
 		F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C18244BFDF900FB5494 /* DataTableType.swift */; };
 		F12A7C1B244C020100FB5494 /* SwiftDataTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */; };
 		F12BFE862483C168009A3753 /* SunburstProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12BFE852483C168009A3753 /* SunburstProvider.swift */; };
+		F12CA8D524C444BE00890BAC /* VectorMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CB24C444BD00890BAC /* VectorMapView.swift */; };
+		F12CA8D624C444BE00890BAC /* VectorMapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */; };
+		F12CA8D824C444BE00890BAC /* VectorTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */; };
+		F12CA8D924C444BE00890BAC /* VectorRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8CF24C444BD00890BAC /* VectorRegion.swift */; };
+		F12CA8DA24C444BE00890BAC /* BoundaryPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */; };
+		F12CA8DB24C444BE00890BAC /* VectorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12CA8D124C444BD00890BAC /* VectorMap.swift */; };
+		F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */; };
 		F13376A1247FEB23008A5D3D /* PieChartProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13376A0247FEB23008A5D3D /* PieChartProvider.swift */; };
 		F145885A23D5BF99006641FD /* BarChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145885923D5BF99006641FD /* BarChartDataProvider.swift */; };
 		F166BF5124974E65003DD669 /* BarChartRaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */; };
+		F16B3FF924E13FD300A6AE8E /* VectorMapBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16B3FF824E13FD300A6AE8E /* VectorMapBaseView.swift */; };
+		F16B3FFB24E13FFC00A6AE8E /* VectorMapBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F16B3FFA24E13FFC00A6AE8E /* VectorMapBaseView.xib */; };
+		F16B3FFD24E14BB600A6AE8E /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = F16B3FFC24E14BB600A6AE8E /* style.json */; };
 		F17AA029240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */; };
 		F17AA02A240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */; };
 		F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */; };
@@ -224,6 +235,8 @@
 		F1A84BE02472807300455B76 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BDF2472807300455B76 /* Bucket.swift */; };
 		F1A84BE22472808300455B76 /* AggResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BE12472808300455B76 /* AggResult.swift */; };
 		F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A84BE42472828200455B76 /* ApiConstants.swift */; };
+		F1CA6B1024EA6D2D008D177F /* CountryGeoJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA6B0F24EA6D2D008D177F /* CountryGeoJsonParser.swift */; };
+		F1F410B124E2A79A00D1ADD3 /* CountriesBoundary.geojson in Resources */ = {isa = PBXBuildFile; fileRef = F1F410B024E2A79A00D1ADD3 /* CountriesBoundary.geojson */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -274,7 +287,6 @@
 		513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAPickerInputRow.swift; sourceTree = "<group>"; };
 		513B635B24B1D2DE0060F7C4 /* OADateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OADateRow.swift; sourceTree = "<group>"; };
 		513D89782175F724001B12D6 /* WorldMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldMapView.swift; sourceTree = "<group>"; };
-		513D897C2175F796001B12D6 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 		513D897F2175FBE8001B12D6 /* VectorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMapViewController.swift; sourceTree = "<group>"; };
 		513D898121761035001B12D6 /* CountryCodes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CountryCodes.plist; sourceTree = "<group>"; };
 		513F3F7E206A3E9B00221F27 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
@@ -447,12 +459,24 @@
 		F117847524892BCF00FF4F0E /* ChartLegendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartLegendTableViewCell.xib; sourceTree = "<group>"; };
 		F117847824892BE500FF4F0E /* ChartLegendType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendType.swift; sourceTree = "<group>"; };
 		F117847A24892CAE00FF4F0E /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
+		F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelper.swift"; sourceTree = "<group>"; };
+		F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTimelineBaseViewController.swift; sourceTree = "<group>"; };
 		F12A7C18244BFDF900FB5494 /* DataTableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableType.swift; sourceTree = "<group>"; };
 		F12A7C1A244C020100FB5494 /* SwiftDataTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTableAdapter.swift; sourceTree = "<group>"; };
 		F12BFE852483C168009A3753 /* SunburstProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunburstProvider.swift; sourceTree = "<group>"; };
+		F12CA8CB24C444BD00890BAC /* VectorMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMapView.swift; sourceTree = "<group>"; };
+		F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMapContainer.swift; sourceTree = "<group>"; };
+		F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTimelineViewController.swift; sourceTree = "<group>"; };
+		F12CA8CF24C444BD00890BAC /* VectorRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorRegion.swift; sourceTree = "<group>"; };
+		F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundaryPolygon.swift; sourceTree = "<group>"; };
+		F12CA8D124C444BD00890BAC /* VectorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMap.swift; sourceTree = "<group>"; };
+		F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VectorTimelineViewController.xib; sourceTree = "<group>"; };
 		F13376A0247FEB23008A5D3D /* PieChartProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartProvider.swift; sourceTree = "<group>"; };
 		F145885923D5BF99006641FD /* BarChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartDataProvider.swift; sourceTree = "<group>"; };
 		F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRaceViewController.swift; sourceTree = "<group>"; };
+		F16B3FF824E13FD300A6AE8E /* VectorMapBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMapBaseView.swift; sourceTree = "<group>"; };
+		F16B3FFA24E13FFC00A6AE8E /* VectorMapBaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VectorMapBaseView.xib; sourceTree = "<group>"; };
+		F16B3FFC24E14BB600A6AE8E /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		F17AA025240E7F3F00BDB6B7 /* FilterInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F17AA026240E7F3F00BDB6B7 /* FilterInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F17AA027240E7F3F00BDB6B7 /* FiltersInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersInfoView.xib; sourceTree = "<group>"; };
@@ -461,6 +485,8 @@
 		F1A84BDF2472807300455B76 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		F1A84BE12472808300455B76 /* AggResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggResult.swift; sourceTree = "<group>"; };
 		F1A84BE42472828200455B76 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		F1CA6B0F24EA6D2D008D177F /* CountryGeoJsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryGeoJsonParser.swift; sourceTree = "<group>"; };
+		F1F410B024E2A79A00D1ADD3 /* CountriesBoundary.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CountriesBoundary.geojson; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -750,9 +776,10 @@
 		513D89772175F717001B12D6 /* VectorMap */ = {
 			isa = PBXGroup;
 			children = (
-				513D897C2175F796001B12D6 /* CountriesBoundary.geojson */,
+				F1F410B024E2A79A00D1ADD3 /* CountriesBoundary.geojson */,
 				513D89782175F724001B12D6 /* WorldMapView.swift */,
 				513D898121761035001B12D6 /* CountryCodes.plist */,
+				F1CA6B0F24EA6D2D008D177F /* CountryGeoJsonParser.swift */,
 			);
 			path = VectorMap;
 			sourceTree = "<group>";
@@ -871,6 +898,7 @@
 				5169E88B1FFCEC5600B9239D /* NSValueExtension */,
 				5130A1031FA70518003D0525 /* UIViewControllerExtension.swift */,
 				51840DEB1FCE932B007B8D38 /* Extensions.swift */,
+				F1251E8A24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1115,8 +1143,10 @@
 		51C46F0C248F9F7F00EA0AAC /* VideoTimeline */ = {
 			isa = PBXGroup;
 			children = (
+				F1251E8C24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift */,
 				51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */,
 				F166BF5024974E65003DD669 /* BarChartRaceViewController.swift */,
+				F12CA8C924C444BD00890BAC /* VectorMapTimeLine */,
 			);
 			path = VideoTimeline;
 			sourceTree = "<group>";
@@ -1312,6 +1342,23 @@
 			path = DataTable;
 			sourceTree = "<group>";
 		};
+		F12CA8C924C444BD00890BAC /* VectorMapTimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				F12CA8CE24C444BD00890BAC /* VectorTimelineViewController.swift */,
+				F12CA8D324C444BD00890BAC /* VectorTimelineViewController.xib */,
+				F16B3FFC24E14BB600A6AE8E /* style.json */,
+				F16B3FF824E13FD300A6AE8E /* VectorMapBaseView.swift */,
+				F16B3FFA24E13FFC00A6AE8E /* VectorMapBaseView.xib */,
+				F12CA8CB24C444BD00890BAC /* VectorMapView.swift */,
+				F12CA8CC24C444BD00890BAC /* VectorMapContainer.swift */,
+				F12CA8CF24C444BD00890BAC /* VectorRegion.swift */,
+				F12CA8D024C444BD00890BAC /* BoundaryPolygon.swift */,
+				F12CA8D124C444BD00890BAC /* VectorMap.swift */,
+			);
+			path = VectorMapTimeLine;
+			sourceTree = "<group>";
+		};
 		F133769F247FEAF4008A5D3D /* MultiLayerPieChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -1355,7 +1402,8 @@
 				513467C91F9DD1B900F9B67D /* Sources */,
 				513467CA1F9DD1B900F9B67D /* Frameworks */,
 				513467CB1F9DD1B900F9B67D /* Resources */,
-				DD7DD43C7F0420738702518B /* [CP] Embed Pods Frameworks */,
+				BB6103FE512123EC988440C0 /* [CP] Embed Pods Frameworks */,
+				B7EDBF09481E182C4189A7A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1422,6 +1470,7 @@
 				516E2A991FBAB10D00E4D752 /* SavedSearch.storyboard in Resources */,
 				516292E81FA06171008A547B /* Charts.storyboard in Resources */,
 				513A909F229AA17400B7E844 /* Exo2-Bold.otf in Resources */,
+				F16B3FFD24E14BB600A6AE8E /* style.json in Resources */,
 				5127EB98222D3DB7000C4E79 /* DashboardListHeaderView.xib in Resources */,
 				5139104F21F0ACCF00304D21 /* TileCarouselView.xib in Resources */,
 				F17AA02B240E7F3F00BDB6B7 /* FiltersInfoView.xib in Resources */,
@@ -1437,6 +1486,7 @@
 				51F0E62622CA14A9001B390A /* CustomTemplate.json in Resources */,
 				5133779124680B7E001AB9AF /* RangeControlsView.xib in Resources */,
 				51C46F12248FB5ED00EA0AAC /* TimelineVideo.storyboard in Resources */,
+				F1F410B124E2A79A00D1ADD3 /* CountriesBoundary.geojson in Resources */,
 				51CD9AA323F2A35B005ACD46 /* TutorialLoginCarouselView.xib in Resources */,
 				519D85B922C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml in Resources */,
 				514211D821807E29006E64DD /* FaceTileCollectionViewCell.xib in Resources */,
@@ -1445,14 +1495,15 @@
 				F117847324892B3600FF4F0E /* ChartLegendsView.xib in Resources */,
 				51CD9AA023F29E6A005ACD46 /* TutorialConfigCarouselView.xib in Resources */,
 				51CFC6A21FB9BDC700B99018 /* SavedSearchTableViewCell.xib in Resources */,
+				F12CA8DD24C444BE00890BAC /* VectorTimelineViewController.xib in Resources */,
 				51192C9B1FDD40E100C67459 /* TileVideoCollectionViewCell.xib in Resources */,
-				513D897D2175F796001B12D6 /* CountriesBoundary.geojson in Resources */,
 				51E8BF4620F38048004B5D20 /* QuickDatePickerCollectionViewCell.xib in Resources */,
 				51E9464F221BF08500F30D1F /* Settings.plist in Resources */,
 				511342831FFE24C300A7787E /* LocationPopUpView.xib in Resources */,
 				51363A1D22E6E812003EDDE5 /* exportOptions.plist in Resources */,
 				5114A1AD2074B9B000F3A419 /* MapTrackControlView.xib in Resources */,
 				51E8BF4C20F38048004B5D20 /* DatePickerCollectionReusableView.xib in Resources */,
+				F16B3FFB24E13FFC00A6AE8E /* VectorMapBaseView.xib in Resources */,
 				513467D81F9DD1B900F9B67D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1460,25 +1511,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DD43D1BB9FD8DF43BD68068A /* [CP] Check Pods Manifest.lock */ = {
+		B7EDBF09481E182C4189A7A0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OctagonAnalytics-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD7DD43C7F0420738702518B /* [CP] Embed Pods Frameworks */ = {
+		BB6103FE512123EC988440C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1554,6 +1607,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DD43D1BB9FD8DF43BD68068A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OctagonAnalytics-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1563,6 +1634,7 @@
 			files = (
 				51CD9A9A23F28108005ACD46 /* TutorialViewController.swift in Sources */,
 				516292E31FA05E2E008A547B /* BarChartViewController.swift in Sources */,
+				F12CA8D824C444BE00890BAC /* VectorTimelineViewController.swift in Sources */,
 				513F3F83206A3EDD00221F27 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				51C46F172492709B00EA0AAC /* IndexPattern.swift in Sources */,
 				513049BD21D20DC2003392A0 /* LayerSwitchHolderView.swift in Sources */,
@@ -1580,6 +1652,7 @@
 				51923ABF207E13490023FE27 /* MapTrackingViewController.swift in Sources */,
 				514211D921807E29006E64DD /* FaceTileCollectionViewCell.swift in Sources */,
 				51E8BF4B20F38048004B5D20 /* CalendarPickerView.swift in Sources */,
+				F1251E8D24CD9DDB0033F74E /* VideoTimelineBaseViewController.swift in Sources */,
 				51743CBE22B1143200C92E73 /* SSCustomTemplateDataProvider.swift in Sources */,
 				518DD0BF243F422100522314 /* GaugeVisState.swift in Sources */,
 				51D7EC2C200DD3A400BF23F5 /* DateHelpers.swift in Sources */,
@@ -1596,6 +1669,7 @@
 				513467D11F9DD1B900F9B67D /* AppDelegate.swift in Sources */,
 				51E9464A221BEE6C00F30D1F /* SettingsViewController.swift in Sources */,
 				F117847124892B2C00FF4F0E /* ChartLegendsView.swift in Sources */,
+				F16B3FF924E13FD300A6AE8E /* VectorMapBaseView.swift in Sources */,
 				516292EA1FA06319008A547B /* StoryboardManager.swift in Sources */,
 				51F0E62A22CDCC57001B390A /* CustomCardCell.swift in Sources */,
 				51840DFC1FCED792007B8D38 /* TilePanel.swift in Sources */,
@@ -1608,6 +1682,8 @@
 				5174FBA4219C105E003BEB1E /* Graph.swift in Sources */,
 				51D493F91FE15C6100CC4A05 /* TileAudioCollectionViewCell.swift in Sources */,
 				51841ECC2063D59800A9C856 /* SPUserResizableView.m in Sources */,
+				F1CA6B1024EA6D2D008D177F /* CountryGeoJsonParser.swift in Sources */,
+				F12CA8DB24C444BE00890BAC /* VectorMap.swift in Sources */,
 				51D3E70B1FF5094200CC4F2B /* DashboardItem.swift in Sources */,
 				51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */,
 				51E94653221C281200F30D1F /* AuthenticationViewController.swift in Sources */,
@@ -1626,6 +1702,7 @@
 				51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */,
 				51CB2D181FBDA043007BC0A0 /* ChartBaseViewController.swift in Sources */,
 				51C5DFC4221D8AB6003DE8B1 /* TouchIdHelper.swift in Sources */,
+				F1251E8B24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift in Sources */,
 				5136038F2226713A002D12B6 /* WebContentViewController.swift in Sources */,
 				51E5311D1FFBAABD0065680B /* MapDetails.swift in Sources */,
 				51477DE92068E6AE00955394 /* User.swift in Sources */,
@@ -1641,6 +1718,7 @@
 				512D8C3823AFA4F0005A6B92 /* TagCloudVisState.swift in Sources */,
 				518DD0BC243F400F00522314 /* GaugeViewController.swift in Sources */,
 				51CB2D211FBDA141007BC0A0 /* PanelBaseViewController.swift in Sources */,
+				F12CA8D524C444BE00890BAC /* VectorMapView.swift in Sources */,
 				51E8BF4E20F38048004B5D20 /* QuickDatePickerView.swift in Sources */,
 				513D89792175F725001B12D6 /* WorldMapView.swift in Sources */,
 				516292DC1FA05677008A547B /* PieChartViewController.swift in Sources */,
@@ -1659,10 +1737,12 @@
 				514211DD21807F44006E64DD /* FaceTileViewController.swift in Sources */,
 				51CD9AA523F2A366005ACD46 /* TutorialLoginCarouselView.swift in Sources */,
 				516E2A9E1FBAB2AA00E4D752 /* SavedSearchPopOverViewController.swift in Sources */,
+				F12CA8DA24C444BE00890BAC /* BoundaryPolygon.swift in Sources */,
 				51840DF21FCEA2F5007B8D38 /* MetricsViewController.swift in Sources */,
 				51664E551FAB109600D01AC7 /* MosaicLayout.m in Sources */,
 				F117847624892BCF00FF4F0E /* ChartLegendTableViewCell.swift in Sources */,
 				5146FE7D240BD2F50014A67D /* ControlsPanel.swift in Sources */,
+				F12CA8D624C444BE00890BAC /* VectorMapContainer.swift in Sources */,
 				51CFC6A51FB9C4F800B99018 /* SavedSearch.swift in Sources */,
 				F1A84BE52472828200455B76 /* ApiConstants.swift in Sources */,
 				51677F49206D080200C7751A /* DropDownPopOverViewController.swift in Sources */,
@@ -1701,6 +1781,7 @@
 				516EEEF421CF9DC4000A723D /* BaseHeatMapViewController.swift in Sources */,
 				5157C51E207A40B300CF0EB9 /* MapTrackingAnnotationView.swift in Sources */,
 				51CB2D231FBDA14C007BC0A0 /* DashboardListingViewController.swift in Sources */,
+				F12CA8D924C444BE00890BAC /* VectorRegion.swift in Sources */,
 				F117847924892BE500FF4F0E /* ChartLegendType.swift in Sources */,
 				51E93DBD22F1B9F8006F3C3D /* MarkDownViewController.swift in Sources */,
 				51840DF91FCEC314007B8D38 /* TileBaseCollectionViewCell.swift in Sources */,
@@ -1875,10 +1956,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Rameez Ibrahim (64H8D93LZ4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Rameez Ibrahim (64H8D93LZ4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1888,11 +1969,11 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
-				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/OctagonAnalytics-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1906,10 +1987,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Rameez Ibrahim (64H8D93LZ4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Rameez Ibrahim (64H8D93LZ4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
@@ -1920,11 +2001,11 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
-				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Kibana-Go AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "OctagonAnalytics/ThirdParty/DKTagCloudView/OctagonAnalytics-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -49,9 +49,27 @@ class VideoContentLoader {
                 completion?(nil, error?.asNSError)
                 return
             }
-            
+//<<<<<<< HEAD
+
             if let res = result as? VideoContentListResponse {
                 self?.videoContentList = res.buckets.compactMap({ VideoContent($0) })
+//=======
+
+//            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] as? [AnyHashable: Any?],
+//                let hitsDictionary = finalResult["aggregations"] as? [AnyHashable: Any?],
+//                let hitsResult = hitsDictionary["dateHistogramName"] as? [String: Any],
+//                let buckets = hitsResult["buckets"] as? [[String: Any]] {
+//                switch self?.configContent.videoType {
+//                case .barChartRace?:
+//                    self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
+//                    completion?(self?.videoContentList, nil)
+//                case .vectorMap?:
+//                    let vectorMapData = Mapper<VectorMapContainer>().mapArray(JSONArray: buckets)
+//                    completion?(vectorMapData, nil)
+//                case .none:
+//                    completion?(nil, nil)
+//                }
+//>>>>>>> develop
             }
             completion?(self?.videoContentList, nil)
         }
@@ -64,8 +82,8 @@ class VideoContentLoader {
             let spanType = configContent.spanType,
             let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
         
-        let fromDateStr = queryDateFormatter.string(from: configContent.fromDate)
-        let toDateStr = queryDateFormatter.string(from: configContent.toDate)
+        let fromDateStr = queryDateFormatter.string(from: configContent.fromDate.dateAtStartOf(.day))
+        let toDateStr = queryDateFormatter.string(from: configContent.toDate.dateAtEndOf(.day))
 
         let query = [ "range":
             ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]

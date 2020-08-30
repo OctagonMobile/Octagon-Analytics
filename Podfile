@@ -2,7 +2,7 @@ platform :ios, '13.0'
 use_frameworks!
 
 target 'OctagonAnalytics' do
-  pod 'OctagonAnalyticsService', :git => 'https://github.com/OctagonMobile/OctagonAnalyticsService.git'
+  pod 'OctagonAnalyticsService', :git => 'https://github.com/OctagonMobile/OctagonAnalyticsService.git', :branch => 'mapVizSupport'
   pod 'AlamofireImage'
   pod 'AlamofireObjectMapper', :git => 'https://github.com/T-Pro/AlamofireObjectMapper.git', :branch => 'master'
 
@@ -35,6 +35,11 @@ target 'OctagonAnalytics' do
 #HeatMap pods
     pod 'WMSKit', :git => 'https://github.com/OctagonMobile/WMSKit.git'
     pod 'DTMHeatmap'
+    
+#VectorMap
+    pod 'GoogleMaps', '3.9.0'
+    pod 'GooglePlaces', '3.9.0'
+    pod 'Google-Maps-iOS-Utils', '3.1.4'
 
 #Custom Template
     pod 'EverLayout', :git => 'https://github.com/OctagonMobile/EverLayout.git'
