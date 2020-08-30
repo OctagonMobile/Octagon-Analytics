@@ -164,9 +164,6 @@ class Panel {
             return
         }
         ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
-            let data = try! JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
-            let decoded = String(bytes: data, encoding: .utf8)!
-            print(decoded)
             guard error == nil else {
                 self?.resetDataSource()
                 completion?(nil, error?.asNSError)
