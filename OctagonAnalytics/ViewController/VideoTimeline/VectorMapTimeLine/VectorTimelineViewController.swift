@@ -303,7 +303,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     private func updateLegends(_ ranges: [ClosedRange<Int>: UIColor]) {
         var chartLegends = [ChartLegend]()
         for (range, color) in ranges {
-            chartLegends.append(ChartLegend.init(text: range.toKAndMString, color: color, shape: .rect(width: 25, height: 20)))
+            chartLegends.append(ChartLegend.init(text: range.toKAndMString, color: color, textColor: CurrentTheme.vectorMapLegendTitleColor, shape: .rect(width: 25, height: 20)))
         }
         let keySorted = ranges.keys.sorted { $0.upperBound < $1.upperBound }
         let keySortedMinimal = keySorted.map { $0.toKAndMString }
