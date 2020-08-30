@@ -12,7 +12,7 @@ import GoogleMapsUtils
 
 class VectorMapBaseView: UIView {
    
-    private let apiKey = "AIzaSyD7RIY2kWvdwpg2LGRkChAgQgjEVNAmAT4"
+    private let apiKey = ""
 
     var mapView: GMSMapView!
     private var heatmapLayer: GMUHeatmapTileLayer!
