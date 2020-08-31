@@ -87,7 +87,16 @@ extension AggResult {
             if let childBuckets = bucket.subAggsResult?.buckets {
                 children = bucketsToNodes(buckets: childBuckets)
             }
-            let node = PieChartNode(name: bucket.key, children: children, value: bucket.displayValue, showName: false, image: nil, backgroundColor: color, associatedObject: bucket)
+            
+            var nodeName = bucket.key
+            if bucket.bucketType == .dateHistogram {
+                if let keyValue = Int(bucket.key) {
+                    let date = Date(milliseconds: keyValue)
+                    nodeName = date.toFormat("YYYY-MM-dd HH:mm:ss")
+                }
+            }
+
+            let node = PieChartNode(name: nodeName, children: children, value: bucket.displayValue, showName: false, image: nil, backgroundColor: color, associatedObject: bucket)
             nodes.append(node)
         }
         return nodes
@@ -117,7 +126,15 @@ extension AggResult {
     private func createLegends() -> [Legend] {
         var legends:[Legend] = []
         for (key, color) in colorsDict {
-            legends.append((key, color))
+            var keyText = key
+            if let bucket = buckets.filter({ $0.key == key }).first,
+            bucket.bucketType == .dateHistogram {
+                if let keyValue = Int(bucket.key) {
+                    let date = Date(milliseconds: keyValue)
+                    keyText = date.toFormat("YYYY-MM-dd HH:mm:ss")
+                }
+            }
+            legends.append((keyText, color))
         }
         return legends
     }
