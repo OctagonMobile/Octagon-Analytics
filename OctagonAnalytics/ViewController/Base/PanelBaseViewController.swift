@@ -325,8 +325,11 @@ extension PanelBaseViewController {
             var key = currentBucket?.key ?? ""
             if let rangeBucket = currentBucket as? RangeBucket {
                 key = rangeBucket.stringValue
+            } else if currentBucket?.bucketType == BucketType.dateHistogram {
+                let milliSeconds = Int(currentBucket?.key ?? "") ?? 0
+                let date = Date(milliseconds: milliSeconds)
+                key = date.toFormat("YYYY-MM-dd")
             }
-            
             if rowData.isEmpty {
                 rowData.append(DataTableValue.string(key, bucket))
                 if currentBucket!.displayValue.isInteger {

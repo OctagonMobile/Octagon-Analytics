@@ -76,12 +76,7 @@ class Bucket {
         switch bucketType {
             case .dateHistogram:
                 if let dateKey = dictionary[BucketConstant.key] {
-                    if let keyValue = dateKey as? Int {
-                        let date = Date(milliseconds: keyValue)
-                        key = date.toFormat("YYYY-MM-dd")
-                    } else {
-                        key = "\(dateKey)"
-                    }
+                    key = "\(dateKey)"
                 }
             default:
                 key = bucketValueAsString(dictionary)
