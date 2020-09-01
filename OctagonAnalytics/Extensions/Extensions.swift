@@ -321,25 +321,9 @@ extension CGRect {
     }
 }
 
-extension URL {
-
-    func URLByAppendingQueryParameters(_ params: [String: String]?) -> URL? {
-        guard let parameters = params,
-          var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
-            return self
-        }
-
-        var mutableQueryItems: [URLQueryItem] = urlComponents.queryItems ?? []
-        mutableQueryItems.append(contentsOf: parameters.compactMap({ URLQueryItem(name: $0, value: $1)}))
-
-        urlComponents.queryItems = mutableQueryItems
-        return urlComponents.url
-    }
-}
-
 extension OAServiceError {
     var asNSError: NSError {
-        return NSError(domain: AppName, code: 1001, userInfo: [NSLocalizedDescriptionKey: self.errorDescription])
+        return NSError(domain: AppName, code: 1001, userInfo: [NSLocalizedDescriptionKey: self.errorDescription ?? SomethingWentWrong])
     }
 }
 

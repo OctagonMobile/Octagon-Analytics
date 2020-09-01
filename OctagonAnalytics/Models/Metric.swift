@@ -32,6 +32,9 @@ class Metric {
 
         guard let metric = filteredMetric?.first,
             panel?.visState?.otherAggregationsArray.isEmpty == false else {
+                if filteredMetric?.first?.field.isEmpty == false {
+                    computed += " " + (filteredMetric?.first?.field ?? "")
+                }
             return computed
         }
         

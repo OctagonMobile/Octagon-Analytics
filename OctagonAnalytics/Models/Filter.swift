@@ -142,12 +142,12 @@ struct LocationFilter: FilterProtocol {
     
     var dataParams: [String : Any] {
         return [FilterConstants.type: type.rawValue,
+                FilterConstants.inverted: isInverted,
                   FilterConstants.field: fieldName,
                   FilterConstants.value: ["top_left": ["lat": coordinateRectangle.topLeft.latitude, "lon": coordinateRectangle.topLeft.longitude],
             "top_right": ["lat": coordinateRectangle.topRight.latitude, "lon": coordinateRectangle.topRight.longitude],
             "bottom_left": ["lat": coordinateRectangle.bottomLeft.latitude, "lon": coordinateRectangle.bottomLeft.longitude],
-            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude],
-            FilterConstants.inverted: isInverted]
+            "bottom_right": ["lat": coordinateRectangle.bottomRight.latitude, "lon": coordinateRectangle.bottomRight.longitude]]
         ]
 
     }
