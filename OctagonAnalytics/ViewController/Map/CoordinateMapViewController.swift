@@ -123,8 +123,6 @@ extension CoordinateMapViewController {
         let metersInLatitude = loc1.distance(from: loc2)
         let metersInLongitude = loc3.distance(from: loc4)
         let radiusInMetres = max(metersInLatitude/2.0, metersInLongitude/2.0)
-        print("radius")
-        print(radiusInMetres)
         return radiusInMetres
     }
 }
