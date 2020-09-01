@@ -105,7 +105,7 @@ extension CoordinateMapViewController {
     }
     
     func getScaledRadius(range: DoubleRange, value: Double) -> CLLocationDistance {
-        let convertedValue = convertToNewRange(value, range, DoubleRange(min: 20, max: 50))
+        let convertedValue = convertToNewRange(value, range, DoubleRange(min: 10, max: 30))
         return getRadius(for: convertedValue)
     }
     
