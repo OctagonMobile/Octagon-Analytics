@@ -34,25 +34,22 @@ class CoordinateMapViewController: BaseHeatMapViewController {
     
     private func drawPoints(_ locationsArray: [[String: Any?]]) {
         
-        let currentZoomLevel = mapView.getZoom()
         let mapType = (panel?.visState as? MapVisState)?.mapType ?? MapVisStateService.MapType.unknown
         var radius: CLLocationDistance = 1000
         
         if mapType == MapVisStateService.MapType.shadedCircleMarkers {
-            radius = radiusForShadedCircleMarkers(currentZoomLevel)
+            radius = getShadedRadius()
         }
         
         let minimumValue = mapPanel?.mapDetail.min(by:  { $0.docCount < $1.docCount })?.docCount ?? 0.0
         let maximumValue = mapPanel?.mapDetail.max(by:  { $0.docCount < $1.docCount })?.docCount ?? 0.0
         let oldRange = DoubleRange(min: minimumValue, max: maximumValue)
-
         for item in locationsArray {
             guard let loc = item["location"] as? CLLocation else { continue }
             let value = item["docCount"] as? Double ?? 0.0
             if mapType == MapVisStateService.MapType.scaledCircleMarkers {
-                radius = radiusForScaledCircleMarkers(currentZoomLevel, value: value, oldRange: oldRange)
+                radius = getScaledRadius(range: oldRange, value: value)
             }
-
             let circle = MKCircle(center: loc.coordinate, radius: radius)
             mapView.addOverlay(circle)
         }
@@ -103,52 +100,31 @@ extension CoordinateMapViewController {
 
 extension CoordinateMapViewController {
     
-    fileprivate func radiusForShadedCircleMarkers(_ zoomLevel: Double) -> CLLocationDistance {
-        var radius: CLLocationDistance = 1000
-        switch zoomLevel {
-        case 0...1.3:
-            radius = 15000
-        case 1.3...5.2:
-            radius = 12000
-        case 5.2...7.8:
-            radius = 10000
-        case 7.8...11.7:
-            radius = 4000
-        case 11.7...14.3:
-            radius = 700
-        case 14.3...16.9:
-            radius = 100
-        case 16.9...20.0:
-            radius = 50
-        default:
-            radius = 1000
-        }
-        return radius
+    func getShadedRadius() -> CLLocationDistance {
+        return getRadius(for: 35)
     }
     
-    fileprivate func radiusForScaledCircleMarkers(_ zoomLevel: Double, value: Double, oldRange: DoubleRange) -> CLLocationDistance {
+    func getScaledRadius(range: DoubleRange, value: Double) -> CLLocationDistance {
+        let convertedValue = convertToNewRange(value, range, DoubleRange(min: 20, max: 50))
+        return getRadius(for: convertedValue)
+    }
+    
+    func getRadius(for width: Double) -> CLLocationDistance {
+        let region = mapView.convert(CGRect(x: 0, y: 0, width: width, height: width),
+                                     toRegionFrom: mapView)
+        let span = region.span
+        let center = region.center
         
-        var newRange = DoubleRange(min: 100, max: 1000)
-        switch zoomLevel {
-        case 0...1.3:
-            newRange = DoubleRange(min: 12000, max: 15000)
-        case 1.3...5.2:
-            newRange = DoubleRange(min: 8000, max: 12000)
-        case 5.2...7.8:
-            newRange = DoubleRange(min: 5000, max: 8000)
-        case 7.8...11.7:
-            newRange = DoubleRange(min: 2000, max: 5000)
-        case 11.7...14.3:
-            newRange = DoubleRange(min: 700, max: 2000)
-        case 14.3...16.9:
-            newRange = DoubleRange(min: 100, max: 700)
-        case 16.9...20.0:
-            newRange = DoubleRange(min: 50, max: 100)
-        default:
-            newRange = DoubleRange(min: 100, max: 1000)
-        }
-
-        let newValue = convertToNewRange(value, oldRange, newRange)
-        return newValue
+        let loc1 = CLLocation(latitude: center.latitude - span.latitudeDelta * 0.5, longitude: center.longitude)
+        let loc2 = CLLocation(latitude: center.latitude + span.latitudeDelta * 0.5, longitude: center.longitude)
+        let loc3 = CLLocation(latitude: center.latitude, longitude: center.longitude - span.longitudeDelta * 0.5)
+        let loc4 = CLLocation(latitude: center.latitude, longitude: center.longitude + span.longitudeDelta * 0.5)
+        
+        let metersInLatitude = loc1.distance(from: loc2)
+        let metersInLongitude = loc3.distance(from: loc4)
+        let radiusInMetres = max(metersInLatitude/2.0, metersInLongitude/2.0)
+        print("radius")
+        print(radiusInMetres)
+        return radiusInMetres
     }
 }

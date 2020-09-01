@@ -26,7 +26,7 @@ class HeatMapViewController: BaseHeatMapViewController {
         let maximumValue = mapPanel?.mapDetail.max(by:  { $0.docCount < $1.docCount })?.docCount ?? 110.0
 
         let oldRange = DoubleRange(min: minimumValue, max: maximumValue)
-        let newRange = DoubleRange(min: 100, max: 1100)
+        let newRange = DoubleRange(min: 4.5, max: 5)
         let locationsArray: [[String: Any?]] = mapPanel?.mapDetail.compactMap( {
             
             let docCount = convertToNewRange($0.docCount, oldRange, newRange)
