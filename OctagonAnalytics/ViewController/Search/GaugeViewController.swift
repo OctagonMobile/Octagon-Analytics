@@ -45,7 +45,9 @@ class GaugeViewController: PanelBaseViewController {
         
         if !isGaugeView {
             gaugeView.titleFontSize = 15.0
-            gaugeView.titleText = visState.metricAggregationsArray.first?.field ?? ""
+            if let metricAggs = visState.metricAggregationsArray.first {
+                gaugeView.titleText = metricAggs.metricType.displayValue + " " + metricAggs.field
+            }
         }
         
         let colors = CurrentTheme.gaugeRangeColors
