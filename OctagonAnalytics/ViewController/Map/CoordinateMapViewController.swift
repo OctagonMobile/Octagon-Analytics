@@ -34,6 +34,26 @@ class CoordinateMapViewController: BaseHeatMapViewController {
     
     private func drawPoints(_ locationsArray: [[String: Any?]]) {
         
+        applyOverlays(locationsArray)
+        
+        if locationsArray.count > 0, tapGesture == nil {
+            tapGesture = UITapGestureRecognizer(target: self, action: #selector(BaseHeatMapViewController.tapGestureHandler(_:)))
+            mapView.addGestureRecognizer(tapGesture!)
+        }
+        
+        guard zoomToShowAllAnnotation else { return }
+        zoomForAllOverlays(locationsArray)
+    }
+    
+    func removeOverlays() {
+        mapView.overlays.forEach { (overlay) in
+            if overlay is MKCircle {
+                mapView.removeOverlay(overlay)
+            }
+        }
+    }
+    
+    func applyOverlays(_ locationsArray: [[String: Any?]]) {
         let mapType = (panel?.visState as? MapVisState)?.mapType ?? MapVisStateService.MapType.unknown
         var radius: CLLocationDistance = 1000
         
@@ -53,17 +73,9 @@ class CoordinateMapViewController: BaseHeatMapViewController {
             let circle = MKCircle(center: loc.coordinate, radius: radius)
             mapView.addOverlay(circle)
         }
-        
-        if locationsArray.count > 0, tapGesture == nil {
-            tapGesture = UITapGestureRecognizer(target: self, action: #selector(BaseHeatMapViewController.tapGestureHandler(_:)))
-            mapView.addGestureRecognizer(tapGesture!)
-        }
-        
-        guard zoomToShowAllAnnotation else { return }
-        zoomForAllOverlays()
     }
     
-    func zoomForAllOverlays() {
+    func zoomForAllOverlays(_ locationsArray: [[String: Any?]]) {
         let allCircles = mapView.overlays.filter({ $0 is MKCircle })
 
         guard allCircles.count > 0 else { return }
@@ -75,6 +87,8 @@ class CoordinateMapViewController: BaseHeatMapViewController {
             .reduce(initial) { $0.union($1.boundingMapRect) }
         mapView.setVisibleMapRect(mapRect, edgePadding: insets, animated: true)
         zoomToShowAllAnnotation = false
+        removeOverlays()
+        applyOverlays(locationsArray)
     }
 
 }
