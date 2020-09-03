@@ -7,31 +7,24 @@
 //
 
 import Foundation
-import ObjectMapper
+import OctagonAnalyticsService
 
-struct VectorMapContainer: Mappable {
+struct VectorMapContainer {
 
     var date: Date!
     var data: [VectorMap]!
+    
+    //MARK: Functions
+    init(_ responseModel: VideoContentService) {
+        self.date = responseModel.date
+        self.data = responseModel.entries.compactMap({ VectorMap($0) })
+    }
     
     init(date: Date, data: [VectorMap]) {
         self.date = date
         self.data = data
     }
-    init?(map: Map) {
-        
-    }
     
-    
-    mutating func mapping(map: Map) {
-           if let dateString = map.JSON["key_as_string"] as? String {
-               date = dateString.formattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-           }
-           
-           guard let aggsFields = map.JSON["aggs_Fields"] as? [String: Any],
-               let buckets = aggsFields["buckets"] as? [[String : Any]] else { return }
-           data = Mapper<VectorMap>().mapArray(JSONArray: buckets)
-    }
 }
 
 extension VectorMapContainer {
