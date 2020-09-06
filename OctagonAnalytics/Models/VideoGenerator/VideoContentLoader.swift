@@ -42,9 +42,14 @@ class VideoContentLoader {
     }
             
     func loadVideoData(_ completion: CompletionBlock?) {
-        guard let indexPattern = configContent.indexPattern else { return }
+        guard let indexPattern = configContent.indexPattern,
+            let timeFieldName = configContent.timeField?.name else { return }
+        
+        let fromDate = configContent.fromDate.dateAtStartOf(.day)
+        let toDate = configContent.toDate.dateAtEndOf(.day)
 
-        ServiceProvider.shared.loadVideoContent(indexPattern.title, query: generatedQuery()) { [weak self] (result, error) in
+        ServiceProvider.shared.loadVideoContent(indexPattern.title, fromDate: fromDate, toDate: toDate, timeField: timeFieldName, query: generatedQuery()) { [weak self] (result, error) in
+            
             guard error == nil else {
                 completion?(nil, error?.asNSError)
                 return
@@ -71,14 +76,7 @@ class VideoContentLoader {
             let fieldName = configContent.field?.name,
             let spanType = configContent.spanType,
             let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
-        
-        let fromDateStr = queryDateFormatter.string(from: configContent.fromDate.dateAtStartOf(.day))
-        let toDateStr = queryDateFormatter.string(from: configContent.toDate.dateAtEndOf(.day))
 
-        let query = [ "range":
-            ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]
-
-        
         let datHistogram = ["field":"\(timeFieldName)", "interval": "1\(spanType.code)"]
         
         let maxAggs = ["sum": ["field": valueToDisplayFieldName]]
@@ -88,7 +86,7 @@ class VideoContentLoader {
         let middleLevelAggs: [String : Any] = ["terms": ["field": fieldName, "size": 500], "aggs": innerMostAggs]
         let topMostAggs: [String : Any] = ["date_histogram": datHistogram, "aggs": ["aggs_Fields": middleLevelAggs]]
         
-        return ["query": query, "size": 0, "aggs": ["dateHistogramName" : topMostAggs]]
+        return ["aggs": ["dateHistogramName" : topMostAggs]]
     }
 }
 
