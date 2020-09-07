@@ -16,8 +16,7 @@ class TutorialViewController: BaseViewController {
     var showAutoFill: Bool  =   true
     var tutorialAutoFillActionBlock: TutorialButtonActionBlock?
 
-    private var tutorials: [TutorialType]   =   [TutorialType.config,
-                                                 TutorialType.settings,
+    private var tutorials: [TutorialType]   =   [TutorialType.settings,
                                                  TutorialType.login]
     
 
@@ -25,13 +24,11 @@ class TutorialViewController: BaseViewController {
     @IBOutlet weak var tutorialCarouselView: iCarousel!
 
     public enum TutorialType {
-        case config
         case settings
         case login
         
         var cellId: String {
             switch self {
-            case .config: return NibNames.tutorialConfigCarouselView
             case .settings: return NibNames.tutorialSettingsCarouselView
             case .login: return NibNames.tutorialLoginCarouselView
             }
@@ -116,7 +113,6 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
 
 extension TutorialViewController {
     struct NibNames {
-        static let tutorialConfigCarouselView = "TutorialConfigCarouselView"
         static let tutorialSettingsCarouselView = "TutorialSettingsCarouselView"
         static let tutorialLoginCarouselView = "TutorialLoginCarouselView"
     }

@@ -14,7 +14,6 @@
 //Tutorial
 "Watch Tutorial"    =   "مشاهدة البرنامج التعليمي";
 "Auto Fill"         =   "ملء السيارات";
-"DownloadOctagonAnalyticsPlugin"    =   "قم بتنزيل / تثبيت \"Octagon-Analytics Plugin\" لـ Kibana";
 "CustomKibanaConfiguration" =   "الإشارة إلى Kibana الخاصة بك عن طريق تغيير الإعدادات التالية";
 "UseDemoAccount"            =   "استخدام حساب تجريبي للعب";
 
