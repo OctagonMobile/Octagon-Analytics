@@ -39,7 +39,8 @@ class TutorialViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
-        if Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5601" {
+        if Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5601" &&
+            Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5602" {
             // Remove the Login Credentials Tutorial
             tutorials.removeLast()
         }
