@@ -163,19 +163,20 @@ class Panel {
         guard let reqParameters = requestParams() else {
             return
         }
-        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result, error) in
-            guard error == nil else {
-                self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
-            }
+        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result) in
             
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) else {
+            switch result {
+            case .failure(let error):
                 self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) {
+                    completion?(parsedData, nil)
+                } else {
+                    self?.resetDataSource()
+                    completion?(nil, nil)
+                }
             }
-            completion?(parsedData, error?.asNSError)
         }
     }
     

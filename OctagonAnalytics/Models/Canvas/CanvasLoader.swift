@@ -17,20 +17,18 @@ class CanvasLoader {
     //MARK: Functions
     func loadCanvasList(_ completion: CompletionBlock?) {
         
-        ServiceProvider.shared.loadCanvasList(1, pageSize: Constant.perPage) { [weak self] (result, error) in
-
-            guard error == nil else {
+        ServiceProvider.shared.loadCanvasList(1, pageSize: Constant.perPage) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 self?.canvasList.removeAll()
-                completion?(nil, error?.asNSError)
-                return
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let list = data as? CanvasListResponse {
+                    self?.total = list.total
+                    self?.canvasList = list.canvasList.compactMap({ Canvas($0) })
+                }
+                completion?(self?.canvasList, nil)
             }
-            
-            if let list = result as? CanvasListResponse {
-                self?.total = list.total
-                self?.canvasList = list.canvasList.compactMap({ Canvas($0) })
-            }
-            
-            completion?(self?.canvasList, nil)
         }
     }
 }
