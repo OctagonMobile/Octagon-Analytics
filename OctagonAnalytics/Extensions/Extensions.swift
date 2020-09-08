@@ -321,9 +321,9 @@ extension CGRect {
     }
 }
 
-extension OAServiceError {
+extension OAError {
     var asNSError: NSError {
-        return NSError(domain: AppName, code: 1001, userInfo: [NSLocalizedDescriptionKey: self.errorDescription ?? SomethingWentWrong])
+        return NSError(domain: AppName, code: code, userInfo: [NSLocalizedDescriptionKey: self.errorDescription ?? SomethingWentWrong])
     }
 }
 

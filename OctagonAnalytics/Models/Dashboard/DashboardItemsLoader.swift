@@ -31,19 +31,18 @@ class DashboardItemsLoader: NSObject {
      */
     func loadDashBoardItems(_ completion: CompletionBlock?) {
         
-        ServiceProvider.shared.loadDashboards(pageNumber, pageSize: Constant.pageSize) { [weak self] (result, error) in
+        ServiceProvider.shared.loadDashboards(pageNumber, pageSize: Constant.pageSize) { [weak self] (result) in
             
-            guard error == nil else {
+            switch result {
+            case .failure(let error):
                 self?.dashBoardItems.removeAll()
-                completion?(self?.dashBoardItems, error?.asNSError)
-                return
+                completion?(self?.dashBoardItems, error.asNSError)
+            case .success(let data):
+                if let res = data as? DashboardListResponse {
+                    self?.dashBoardItems = res.dashboards.compactMap({ DashboardItem($0) }).sorted(by:  {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending} )
+                }
+                completion?(self?.dashBoardItems, nil)
             }
-            
-            if let res = result as? DashboardListResponse {
-                self?.dashBoardItems = res.dashboards.compactMap({ DashboardItem($0) }).sorted(by:  {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending} )
-            }
-            completion?(self?.dashBoardItems, error?.asNSError)
-
         }
     }
 }

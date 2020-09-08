@@ -52,20 +52,20 @@ class SavedSearchPanel: Panel {
             reqParameters.filters = filtersList
         }
 
-        ServiceProvider.shared.loadSavedSearchData(reqParameters) { [weak self] (result, error) in
-
-            guard error == nil else {
+        ServiceProvider.shared.loadSavedSearchData(reqParameters) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? [[AnyHashable: Any?]], let parsedData = self?.parseSavedSearch(res) {
+                    completion?(parsedData, nil)
+                } else {
+                    self?.resetDataSource()
+                    completion?(nil, nil)
+                    return
+                }
             }
-
-            guard let res = result as? [[AnyHashable: Any?]], let parsedData = self?.parseSavedSearch(res) else {
-                self?.resetDataSource()
-                completion?(nil, error?.asNSError)
-                return
-            }
-            completion?(parsedData, error?.asNSError)
         }
     }
     

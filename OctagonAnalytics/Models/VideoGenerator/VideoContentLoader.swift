@@ -26,18 +26,18 @@ class VideoContentLoader {
     //MARK: Functions
     func loadIndexPatters(_ completion: CompletionBlock?) {
         
-        ServiceProvider.shared.loadIndexPatterns(1, pageSize: Constant.pageSize) { [weak self] (result, error) in
-            guard error == nil else {
+        ServiceProvider.shared.loadIndexPatterns(1, pageSize: Constant.pageSize) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 self?.indexPattersList.removeAll()
-                completion?(self?.indexPattersList, error?.asNSError)
-                return
+                completion?(self?.indexPattersList, error.asNSError)
+            case .success(let data):
+                if let res = data as? IndexPatternsListResponse{
+                    self?.indexPattersList = res.indexPatterns.compactMap({ IndexPattern($0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
+                }
+                
+                completion?(self?.indexPattersList, nil)
             }
-            
-            if let res = result as? IndexPatternsListResponse{
-                self?.indexPattersList = res.indexPatterns.compactMap({ IndexPattern($0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
-            }
-            
-            completion?(self?.indexPattersList, error?.asNSError)
         }
     }
             
@@ -48,15 +48,13 @@ class VideoContentLoader {
         let fromDate = configContent.fromDate.dateAtStartOf(.day)
         let toDate = configContent.toDate.dateAtEndOf(.day)
 
-        ServiceProvider.shared.loadVideoContent(indexPattern.title, fromDate: fromDate, toDate: toDate, timeField: timeFieldName, query: generatedQuery()) { [weak self] (result, error) in
-            
-            guard error == nil else {
-                completion?(nil, error?.asNSError)
-                return
-            }
-            
-            if let res = result as? VideoContentListResponse {
-                switch self?.configContent.videoType {
+        ServiceProvider.shared.loadVideoContent(indexPattern.title, fromDate: fromDate, toDate: toDate, timeField: timeFieldName, query: generatedQuery()) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? VideoContentListResponse {
+                    switch self?.configContent.videoType {
                     case .barChartRace?:
                         self?.videoContentList = res.buckets.compactMap({ VideoContent($0) })
                         completion?(self?.videoContentList, nil)
@@ -65,6 +63,7 @@ class VideoContentLoader {
                         completion?(vectorMapData, nil)
                     case .none:
                         completion?(nil, nil)
+                    }
                 }
             }
         }
