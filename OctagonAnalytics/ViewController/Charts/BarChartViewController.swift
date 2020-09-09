@@ -88,6 +88,9 @@ class BarChartViewController: ChartBaseViewController {
         leftAxis?.axisMinimum = 0.0; // this replaces startAtZero = YES
         leftAxis?.gridColor = theme.separatorColor
         leftAxis?.labelTextColor = theme.disabledStateBackgroundColor
+        let yFormatter = YAxisBarChartFormatter()
+        leftAxis?.valueFormatter = yFormatter
+        
         let rightAxis = barChartView?.rightAxis
         rightAxis?.enabled = false
         

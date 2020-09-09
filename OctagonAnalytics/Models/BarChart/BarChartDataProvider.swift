@@ -215,7 +215,19 @@ class BarChartFormatter: NSObject, IAxisValueFormatter {
         guard index >= 0 && index < valueList.count else {
             return ""
         }
-        
-        return valueList[index].keyAsString
+        let keyAsString = valueList[index].keyAsString
+        let formatter = Formatter.withSeparator
+        if let number = formatter.number(from: keyAsString),
+            let numAsString = formatter.string(from: number) {
+            return numAsString
+        } else {
+            return keyAsString
+        }
+    }
+}
+
+class YAxisBarChartFormatter: NSObject, IAxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return NSNumber.init(value: value).formattedWithSeparator
     }
 }
