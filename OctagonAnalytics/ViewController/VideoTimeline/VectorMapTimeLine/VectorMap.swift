@@ -845,6 +845,10 @@ let countryCodeArray = [
  ],
  [
    "code": "USA",
+   "country": "US"
+ ],
+ [
+   "code": "USA",
    "country": "United States"
  ],
  [
