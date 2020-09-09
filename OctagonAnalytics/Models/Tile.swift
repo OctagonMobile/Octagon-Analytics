@@ -7,27 +7,10 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import Alamofire
 
-enum TileType: String {
-    case unknown        = "unknown"
-    case photo          = "Photo"
-    case audio          = "Audio"
-    case video          = "Video"
-    
-    var name: String {
-        switch self {
-        case .photo: return "PHOTO"
-        case .audio: return "AUDIO"
-        case .video: return "VIDEO"
-        default: return "Unknown"
-        }
-    }
-    
-}
-
-class Tile: Mappable {
+class Tile {
     
     var type: TileType          = .unknown
     var timestamp: Date?
@@ -45,28 +28,25 @@ class Tile: Mappable {
     }
 
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
-    
-    func mapping(map: Map) {
-        
-        type          <- (map[TileConstant.type],EnumTransform<TileType>())
+    init(_ dict: [String: Any]) {
+        if let tileType = dict[TileConstant.type] as? String {
+            type    =   TileType(rawValue: tileType) ?? .unknown
+        }
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        if let dateString = map[TileConstant.timestamp].currentValue as? String, let _date = dateFormatter.date(from: dateString) {
+        if let dateString = dict[TileConstant.timestamp] as? String, let _date = dateFormatter.date(from: dateString) {
             timestamp = _date
         }
 
-        thumbnailUrl            <- map[TileConstant.thumbnailUrl]
-        imageUrl                <- map[TileConstant.imageUrl]
-        videoUrl                <- map[TileConstant.videoUrl]
-        audioUrl                <- map[TileConstant.audioUrl]
-        imageHash               <- map[TileConstant.imageHash]
+        thumbnailUrl            = dict[TileConstant.thumbnailUrl] as? String ?? ""
+        imageUrl                = dict[TileConstant.imageUrl] as? String ?? ""
+        videoUrl                = dict[TileConstant.videoUrl] as? String ?? ""
+        audioUrl                = dict[TileConstant.audioUrl] as? String ?? ""
+        imageHash               = dict[TileConstant.imageHash] as? String ?? ""
     }
-    
+        
     func loadImageHashesFor(_ panel: TilePanel, _ completion: @escaping CompletionBlock) {
         
         
