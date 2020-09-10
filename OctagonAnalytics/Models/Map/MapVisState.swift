@@ -29,6 +29,7 @@ class MapVisState: VisState {
     var userField: String          = ""
     var locationField: String      = ""
     var timeField: String          = ""
+    var faceUrlField: String            = ""
 
     var mapType: MapVisStateService.MapType        = .unknown
     
@@ -51,6 +52,7 @@ class MapVisState: VisState {
         self.userField  =   mapVisService.userField
         self.locationField  =  mapVisService.locationField
         self.timeField  =   mapVisService.timeField
+        self.faceUrlField    =   mapVisService.faceUrl
         self.mapType    =   mapVisService.mapType
         self.mapLayers  =   mapVisService.mapLayers.compactMap({ MapLayer($0) })
     }

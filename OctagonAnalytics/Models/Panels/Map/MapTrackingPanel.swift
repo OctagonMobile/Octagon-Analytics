@@ -60,7 +60,9 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
                     let time = sourceDict[timeField] as? String,
                     let location = sourceDict[locationField] as? String,
                     !userId.isEmpty && !time.isEmpty && !location.isEmpty {
-                    return ["userID":userId, "timestamp":time, "location": location]
+                    let faceUrlField = (visState as? MapVisState)?.faceUrlField ?? ""
+                    let faceUrl = sourceDict[faceUrlField] ?? ""
+                    return ["userID":userId, "timestamp":time, "location": location, "faceUrl": faceUrl]
                 }
 
             }
