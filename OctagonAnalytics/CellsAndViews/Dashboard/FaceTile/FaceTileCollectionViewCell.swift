@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class FaceTileCollectionViewCell: TileBaseCollectionViewCell {
 
@@ -37,24 +38,21 @@ class FaceTileCollectionViewCell: TileBaseCollectionViewCell {
         
         faceImageView.image = nil
 
-        guard let urlString = faceTile?.faceUrl  else {
+        guard let urlString = faceTile?.faceUrl, let url = URL(string: urlString) else {
             return
         }
         
         imageLoadingIndicator.startAnimating()
-        
-        DataManager.shared.loadImage(imageUrl: urlString) { [weak self] (image, error) in
+        faceImageView?.af.setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageLoadingIndicator.stopAnimating()
-
-            guard error == nil else {
+            guard let image =  try? response.result.get() else {
                 self?.faceImageView.image = nil
                 self?.faceTile?.thumbnailImage = nil
                 return
             }
-
-            self?.faceImageView.image = image as? UIImage
-            self?.faceTile?.thumbnailImage = image as? UIImage
+            
+            self?.faceTile?.thumbnailImage = image
             
             self?.faceImageView?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
 
@@ -62,7 +60,6 @@ class FaceTileCollectionViewCell: TileBaseCollectionViewCell {
                 self?.faceImageView?.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
         }
-
     }
 
 }

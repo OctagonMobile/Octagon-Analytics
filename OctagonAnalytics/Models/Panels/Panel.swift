@@ -147,6 +147,9 @@ class Panel {
         case .inputControls:
             visState = InputControlsVisState(responseVisState)
 
+        case .faceTile:
+            visState = FaceTileVisState(responseVisState)
+
         default:
             visState    =   VisState(responseVisState)
         }

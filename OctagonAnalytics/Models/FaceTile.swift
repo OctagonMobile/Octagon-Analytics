@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class FaceTile: Mappable {
+class FaceTile {
 
     var fileName: String    =   ""
     
@@ -18,12 +18,9 @@ class FaceTile: Mappable {
     var thumbnailImage: UIImage?
     
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
-    
-    func mapping(map: Map) {
-        fileName                <- map[FaceTileConstant.fileName]
-        faceUrl                 <- map[FaceTileConstant.faceUrl]
+    init(_ dict: [String: Any]) {
+        fileName    = dict[FaceTileConstant.fileName] as? String ?? ""
+        faceUrl     = dict[FaceTileConstant.faceUrl] as? String ?? ""
+
     }
 }

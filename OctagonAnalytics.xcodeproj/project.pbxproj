@@ -136,6 +136,7 @@
 		51B0C9AF1FC17CD700BDF269 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0C9AE1FC17CD700BDF269 /* Session.swift */; };
 		51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */; };
 		51B7C42E2059099400565D99 /* MetricVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B7C42D2059099400565D99 /* MetricVisState.swift */; };
+		51B8D382250A714C00A8992A /* FaceTileVisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B8D381250A714C00A8992A /* FaceTileVisState.swift */; };
 		51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */; };
 		51C46F12248FB5ED00EA0AAC /* TimelineVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C46F11248FB5ED00EA0AAC /* TimelineVideo.storyboard */; };
 		51C46F15248FC8EB00EA0AAC /* VideoContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C46F14248FC8EB00EA0AAC /* VideoContentLoader.swift */; };
@@ -380,6 +381,7 @@
 		51ACB32F21C790BD008E2D4D /* CoordinateMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateMapViewController.swift; sourceTree = "<group>"; };
 		51B0C9AE1FC17CD700BDF269 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		51B7C42D2059099400565D99 /* MetricVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricVisState.swift; sourceTree = "<group>"; };
+		51B8D381250A714C00A8992A /* FaceTileVisState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTileVisState.swift; sourceTree = "<group>"; };
 		51C46F0D248F9FAA00EA0AAC /* VideoConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConfigureViewController.swift; sourceTree = "<group>"; };
 		51C46F11248FB5ED00EA0AAC /* TimelineVideo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimelineVideo.storyboard; sourceTree = "<group>"; };
 		51C46F14248FC8EB00EA0AAC /* VideoContentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContentLoader.swift; sourceTree = "<group>"; };
@@ -840,6 +842,7 @@
 			isa = PBXGroup;
 			children = (
 				51512B6F2056975B00DD0C8E /* TileVisState.swift */,
+				51B8D381250A714C00A8992A /* FaceTileVisState.swift */,
 			);
 			path = Tile;
 			sourceTree = "<group>";
@@ -1693,6 +1696,7 @@
 				51F0E62822CDCB7B001B390A /* CustomTemplateLayout.swift in Sources */,
 				51E8BF4820F38048004B5D20 /* MultiDatePickerViewController.swift in Sources */,
 				51192C9A1FDD40E100C67459 /* TileVideoCollectionViewCell.swift in Sources */,
+				51B8D382250A714C00A8992A /* FaceTileVisState.swift in Sources */,
 				51CB2D181FBDA043007BC0A0 /* ChartBaseViewController.swift in Sources */,
 				51C5DFC4221D8AB6003DE8B1 /* TouchIdHelper.swift in Sources */,
 				F1251E8B24C9ACE20033F74E /* UIView+AutoLayoutHelper.swift in Sources */,
