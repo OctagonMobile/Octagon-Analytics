@@ -130,7 +130,7 @@ class ThumbnailView: UIView {
         
         thumbnailImageView.image = nil
         imageActivityIndicator.startAnimating()
-        ImageResponseSerializer.addAcceptableImageContentTypes(["image/svg+xml"])
+        ImageResponseSerializer.addAcceptableImageContentTypes(["image/svg+xml", "image/png", "image/jpg", "binary/octet-stream"])
         thumbnailImageView.af.setImage(withURL: thumbnailUrl, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.flipFromTop(1.0), runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageActivityIndicator.stopAnimating()

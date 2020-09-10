@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import MBProgressHUD
 import TGPControls
+import OctagonAnalyticsService
 
 class TileViewController: PanelBaseViewController {
 
