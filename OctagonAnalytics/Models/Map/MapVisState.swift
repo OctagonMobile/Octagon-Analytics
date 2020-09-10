@@ -27,6 +27,8 @@ class MapVisState: VisState {
 
     /// This field is used in MapTracking Panel (Filtering key)
     var userField: String          = ""
+    var locationField: String      = ""
+    var timeField: String          = ""
 
     var mapType: MapVisStateService.MapType        = .unknown
     
@@ -47,6 +49,8 @@ class MapVisState: VisState {
         self.format     =   mapVisService.format
         self.defaultLayerName   =   mapVisService.defaultLayerName
         self.userField  =   mapVisService.userField
+        self.locationField  =  mapVisService.locationField
+        self.timeField  =   mapVisService.timeField
         self.mapType    =   mapVisService.mapType
         self.mapLayers  =   mapVisService.mapLayers.compactMap({ MapLayer($0) })
     }

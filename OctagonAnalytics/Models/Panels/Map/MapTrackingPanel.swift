@@ -9,6 +9,7 @@
 import UIKit
 import OctagonAnalyticsService
 import SwiftDate
+import ObjectMapper
 
 class MapTrackingPanel: Panel, WMSLayerProtocol {
 
@@ -39,40 +40,50 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
      - returns:  Array of Map Track Object
      */
     
-//    override func parseData(_ result: Any?) -> [Any] {
-//
-//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
-//            let hitsDict = responseJson.first?["hits"] as? [String: Any],
-//            var hitsArray = hitsDict["hits"] as? [[String: Any]] else {
-//                tracks.removeAll()
-//                return []
-//        }
-//
-//        // Remove track if empty data
-//        hitsArray = hitsArray.compactMap({ (dict) -> [String: Any]? in
-//            let isValid = (dict["userID"] as? String)?.isEmpty == false &&
-//                (dict["timestamp"] as? String)?.isEmpty == false &&
-//                (dict["location"] as? String)?.isEmpty == false
-//            return isValid ? dict : nil
-//        })
-//
-//        // Parse all items to Tracks
-//        tracks = Mapper<MapTrackPoint>().mapArray(JSONArray: hitsArray)
-//
-//        // Grouping and sorting
-//        pathTrackersArray = groupAndSortTracks()
-//
-//        // Consider only grouped items
-//        tracks = pathTrackersArray.flatMap({ $0.mapTrackPoints })
-//
-//        // Sort Items
-//        sortedTracks = tracks.sorted(by: { (first, second) -> Bool in
-//            guard let firstDate = first.timestamp, let secondDate = second.timestamp else { return false }
-//            return firstDate <= secondDate
-//        })
-//
-//        return tracks
-//    }
+    override func parseData(_ result: Any?) -> [Any] {
+
+        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
+            let hitsDict = responseJson.first?["hits"] as? [String: Any],
+            var hitsArray = hitsDict["hits"] as? [[String: Any]] else {
+                tracks.removeAll()
+                return []
+        }
+
+        // Remove track if empty data
+        hitsArray = hitsArray.compactMap({ (dict) -> [String: Any]? in
+            if let sourceDict = dict["_source"] as? [String: Any],
+                let userField = (visState as? MapVisState)?.userField,
+                let locationField = (visState as? MapVisState)?.locationField,
+                let timeField = (visState as? MapVisState)?.timeField {
+              
+                if let userId = sourceDict[userField] as? String,
+                    let time = sourceDict[timeField] as? String,
+                    let location = sourceDict[locationField] as? String,
+                    !userId.isEmpty && !time.isEmpty && !location.isEmpty {
+                    return ["userID":userId, "timestamp":time, "location": location]
+                }
+
+            }
+            return nil
+        })
+
+        // Parse all items to Tracks
+        tracks = Mapper<MapTrackPoint>().mapArray(JSONArray: hitsArray)
+
+        // Grouping and sorting
+        pathTrackersArray = groupAndSortTracks()
+
+        // Consider only grouped items
+        tracks = pathTrackersArray.flatMap({ $0.mapTrackPoints })
+
+        // Sort Items
+        sortedTracks = tracks.sorted(by: { (first, second) -> Bool in
+            guard let firstDate = first.timestamp, let secondDate = second.timestamp else { return false }
+            return firstDate <= secondDate
+        })
+
+        return tracks
+    }
         
     //MARK: Private Functions
     
