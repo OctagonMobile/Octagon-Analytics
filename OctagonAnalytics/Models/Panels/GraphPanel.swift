@@ -50,7 +50,7 @@ class GraphPanel: Panel {
                 return nil
         }
         
-        graphData = NeoGraph(JSON: data)
+        graphData = NeoGraph(data)
         return graphData
     }
     
