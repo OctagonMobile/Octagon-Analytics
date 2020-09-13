@@ -268,7 +268,7 @@ class Panel {
             var headers = [String]()
             for aggregation in visState?.aggregationsArray ?? [] {
                 if aggregation.metricType != .unKnown {
-                    headers.append(aggregation.metricType.rawValue)
+                    headers.append((aggregation.metricType == .uniqueCount ? "Unique Count" : aggregation.metricType.rawValue))
                 } else if !aggregation.field.isEmpty {
                     headers.append(aggregation.field)
                 }
