@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import OctagonAnalyticsService
 
 class HeatMapPanel: Panel, WMSLayerProtocol {
@@ -43,7 +42,11 @@ class HeatMapPanel: Panel, WMSLayerProtocol {
                 return []
         }
         
-        mapDetail = Mapper<MapDetails>().mapArray(JSONArray: bucketsArray)
+        mapDetail.removeAll()
+        for bucket in bucketsArray {
+            let detail = MapDetails(data: bucket)
+            mapDetail.append(detail)
+        }
         return mapDetail
     }
     

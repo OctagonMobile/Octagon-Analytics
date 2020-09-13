@@ -7,38 +7,28 @@
 //
 
 import UIKit
-import ObjectMapper
 import CoreLocation
 
-class MapDetails: ChartContent, Mappable {
-   
-    required init?(map: Map) {
-        
-    }
-
+class MapDetails: ChartContent {
     var location: CLLocation?
     
     var type: String        = ""
-    
-    //MARK: Functions
 
-    func mapping(map: Map) {
-        if let keyValue = map.JSON[BucketConstant.key] {
-            key   = "\(keyValue)"
+    init(data: [String: Any]) {
+        super.init()
+        if let keyValue = data[BucketConstant.key] {
+            key = "\(keyValue)"
         }
-        docCount            <- map[BucketConstant.docCount]
-        bucketValue         <- map[BucketConstant.bucketValue]
+        docCount = data[BucketConstant.docCount] as? Double ?? 0.0
+        bucketValue = data[BucketConstant.bucketValue]  as? Double ?? 0.0
+        type = data[BucketConstant.type] as? String ?? ""
         
-        type <- map[BucketConstant.type]
-        
-        if let dict = map.JSON["3"] as? [String: Any],
+        if let dict = data["3"] as? [String: Any],
             let locationDict = dict[MapDetailsConstant.location] as? [String: Any] {
             let lat = locationDict[MapDetailsConstant.lat] as? Double ?? 0.0
             let longitude = locationDict[MapDetailsConstant.long] as? Double ?? 0.0
-            
             location = CLLocation(latitude: lat, longitude: longitude)
         }
-        
     }
-
+    
 }

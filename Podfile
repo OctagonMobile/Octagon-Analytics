@@ -4,7 +4,6 @@ use_frameworks!
 target 'OctagonAnalytics' do
   pod 'OctagonAnalyticsService', :git => 'https://github.com/OctagonMobile/OctagonAnalyticsService.git'
   pod 'AlamofireImage'
-  pod 'AlamofireObjectMapper', :git => 'https://github.com/T-Pro/AlamofireObjectMapper.git', :branch => 'master'
 
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'

@@ -9,7 +9,6 @@
 import UIKit
 import OctagonAnalyticsService
 import SwiftDate
-import ObjectMapper
 
 class MapTrackingPanel: Panel, WMSLayerProtocol {
 
@@ -70,7 +69,11 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
         })
 
         // Parse all items to Tracks
-        tracks = Mapper<MapTrackPoint>().mapArray(JSONArray: hitsArray)
+        tracks.removeAll()
+        for hits in hitsArray {
+            let track = MapTrackPoint(data: hits)
+            tracks.append(track)
+        }
 
         // Grouping and sorting
         pathTrackersArray = groupAndSortTracks()
