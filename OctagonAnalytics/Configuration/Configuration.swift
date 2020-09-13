@@ -8,6 +8,7 @@
 
 import Foundation
 import OctagonAnalyticsService
+import AlamofireImage
 
 fileprivate let defScheme   =   "http"
 fileprivate let defBaseUrl  =   "ec2-35-158-106-139.eu-central-1.compute.amazonaws.com"
@@ -133,6 +134,11 @@ class SettingsBundleHelper {
         case basic      =   "Basic"
         case keycloak   =   "Keycloak"
         case none       =   "None"
+    }
+    
+    class func initialAppConfiguration() {
+        registerUserDefaults()
+        ImageResponseSerializer.addAcceptableImageContentTypes(["image/svg+xml", "image/png", "image/jpg", "binary/octet-stream"])
     }
     
     class func registerUserDefaults() {

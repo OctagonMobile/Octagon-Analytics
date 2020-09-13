@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Activate Localization
         LanguageManager.shared.defaultLanguage = LanguageManager.shared.deviceLanguage ?? .en
         
-        SettingsBundleHelper.registerUserDefaults()
+        SettingsBundleHelper.initialAppConfiguration()
         UserDefaults.standard.set(true, forKey: LoginViewController.UserDefaultKeys.enableFaceIdPrompt)
 
         // Apply Theme

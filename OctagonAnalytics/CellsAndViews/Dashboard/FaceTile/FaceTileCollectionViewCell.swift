@@ -43,7 +43,7 @@ class FaceTileCollectionViewCell: TileBaseCollectionViewCell {
         }
         
         imageLoadingIndicator.startAnimating()
-        faceImageView?.af.setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true) { [weak self] (response) in
+        faceImageView?.af.setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.curlDown(0.2), runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageLoadingIndicator.stopAnimating()
             guard let image =  try? response.result.get() else {
@@ -53,12 +53,6 @@ class FaceTileCollectionViewCell: TileBaseCollectionViewCell {
             }
             
             self?.faceTile?.thumbnailImage = image
-            
-            self?.faceImageView?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-
-            UIView.animate(withDuration: 0.5, animations: {
-                self?.faceImageView?.transform = CGAffineTransform(scaleX: 1, y: 1)
-            })
         }
     }
 
