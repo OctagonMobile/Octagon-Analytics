@@ -28,7 +28,7 @@ class Bucket {
         let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .min || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
-        if metricType == .median || metricType == .topHit {
+        if metricType == .median || metricType == .topHit || metricType == .uniqueCount {
             return bucketValue
         }  else if bucketType == .range {
             return shouldShowBucketValue ? metricValue : docCount
@@ -64,7 +64,12 @@ class Bucket {
                     bucketValue         =   valueDict["50.0"] as? Double ?? 0.0
                 }
             }
-        } else if metricType == .topHit {
+        } else if metricType == .uniqueCount {
+            if let firstMetricId = visState.metricAggregationsArray.first?.id,
+                let dict = dictionary[firstMetricId] as? [String: Any] {
+                bucketValue         =   dict[BucketConstant.value] as? Double ?? 0.0
+            }
+        }  else if metricType == .topHit {
             bucketValue = parseTopHitValue(dict: dictionary)
         } else {
             bucketValue         =   dictionary[BucketConstant.bucketValue] as? Double ?? 0.0
