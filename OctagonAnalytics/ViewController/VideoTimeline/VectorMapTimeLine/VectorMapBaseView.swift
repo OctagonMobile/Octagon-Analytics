@@ -43,7 +43,7 @@ class VectorMapBaseView: UIView {
         } catch {
           NSLog("One or more of the map styles failed to load. \(error)")
         }
-        
+        gmView.isMyLocationEnabled = false
         gmView.delegate = self
         gmView.isBuildingsEnabled = false
         gmView.settings.zoomGestures = true

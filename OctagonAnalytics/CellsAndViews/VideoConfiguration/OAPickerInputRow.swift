@@ -12,6 +12,7 @@ open class _OAPickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UI
 
     var titleLabel: UILabel!
     var valueTextField: UITextField!
+    var infoButton: UIButton!
 
     lazy public var picker: UIPickerView = {
         let picker = UIPickerView()
@@ -36,6 +37,8 @@ open class _OAPickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UI
         editingAccessoryType = .none
         picker.delegate = self
         picker.dataSource = self
+        
+        infoButton?.isHidden = pickerInputRow?.shouldHideInfoButton ?? false
     }
     
     private func setupLabels() {
@@ -47,18 +50,33 @@ open class _OAPickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UI
         valueTextField.isEnabled = false
         contentView.addSubview(valueTextField)
         
+        let infoButtonSize: CGFloat = 20.0
+        infoButton = UIButton(type: .custom)
+        infoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        infoButton.addTarget(self, action: #selector(_OAPickerInputCell.infoButtonAction(_:)), for: .touchUpInside)
+        infoButton.setImage(UIImage(named: "info"), for: .normal)
+        infoButton.imageView?.contentMode = .scaleAspectFit
+        infoButton.layer.cornerRadius = infoButtonSize / 2.0
+        contentView.addSubview(infoButton)
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         valueTextField.translatesAutoresizingMaskIntoConstraints = false
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
 
         var constraints = [NSLayoutConstraint]()
-        let views: [String: UIView] = ["titleLabel": titleLabel!, "valueTextField": valueTextField!, "holderView": self.contentView]
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[titleLabel]-20-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[valueTextField]-20-|", options: [], metrics: nil, views: views)
+        let views: [String: UIView] = ["titleLabel": titleLabel!, "valueTextField": valueTextField!, "infoButton": infoButton, "holderView": self.contentView]
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[titleLabel]-5-[infoButton(20)]-20-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[valueTextField]-5-[infoButton]-20-|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[titleLabel]-5-[valueTextField]-10-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=10)-[infoButton(20)]-(>=10)-|", options: [.alignAllCenterX], metrics: nil, views: views)
         contentView.addConstraints(constraints)
         NSLayoutConstraint.activate(constraints)
+        infoButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
     }
 
+    @objc func infoButtonAction(_ sender: UIButton) {
+        self.pickerInputRow?.infoButtonAction?(self as! OAPickerInputCell<T>, sender)
+    }
 
     deinit {
         picker.delegate = nil
@@ -141,6 +159,9 @@ open class _OAPickerInputRow<T> : Row<OAPickerInputCell<T>>, NoValueDisplayTextC
     open var noValueDisplayText: String? = nil
 
     open var options = [T]()
+
+    open var infoButtonAction: ((Cell, UIButton) -> Void)?
+    open var shouldHideInfoButton: Bool = false
 
     required public init(tag: String?) {
         super.init(tag: tag)

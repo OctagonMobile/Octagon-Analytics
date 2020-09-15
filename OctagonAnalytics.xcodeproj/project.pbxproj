@@ -128,6 +128,8 @@
 		51923AC0207E13490023FE27 /* HeatMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51923ABE207E13490023FE27 /* HeatMapViewController.swift */; };
 		519AD5E92014B8C800F41CB4 /* DashboardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519AD5E82014B8C800F41CB4 /* DashboardListCollectionViewCell.swift */; };
 		519D85B922C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml in Resources */ = {isa = PBXBuildFile; fileRef = 519D85B822C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml */; };
+		519F53592510BA56006D559B /* OAStepperRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F53582510BA56006D559B /* OAStepperRow.swift */; };
+		519F535B2510BCEB006D559B /* OAStepperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 519F535A2510BCEB006D559B /* OAStepperCell.xib */; };
 		51A0E2A021EF504800BCA651 /* TileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A0E29F21EF504800BCA651 /* TileInfoViewController.swift */; };
 		51A6B3291FCD3FE400F6A3E8 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B3271FCD3FD600F6A3E8 /* Panel.swift */; };
 		51A6B32A1FCD3FE700F6A3E8 /* MetricPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */; };
@@ -374,6 +376,8 @@
 		5194DA5B221AC9F300DDC611 /* HorizontalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalGradientView.swift; sourceTree = "<group>"; };
 		519AD5E82014B8C800F41CB4 /* DashboardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		519D85B822C39E7200D8990A /* ProfileCardCollectionViewCell-Dark.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ProfileCardCollectionViewCell-Dark.xml"; sourceTree = "<group>"; };
+		519F53582510BA56006D559B /* OAStepperRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAStepperRow.swift; sourceTree = "<group>"; };
+		519F535A2510BCEB006D559B /* OAStepperCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OAStepperCell.xib; sourceTree = "<group>"; };
 		51A0E29F21EF504800BCA651 /* TileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileInfoViewController.swift; sourceTree = "<group>"; };
 		51A6B3271FCD3FD600F6A3E8 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		51A6B3281FCD3FD600F6A3E8 /* MetricPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPanel.swift; sourceTree = "<group>"; };
@@ -595,6 +599,8 @@
 			children = (
 				513B635B24B1D2DE0060F7C4 /* OADateRow.swift */,
 				513B634E24AE0AF30060F7C4 /* OAPickerInputRow.swift */,
+				519F53582510BA56006D559B /* OAStepperRow.swift */,
+				519F535A2510BCEB006D559B /* OAStepperCell.xib */,
 			);
 			path = VideoConfiguration;
 			sourceTree = "<group>";
@@ -1455,6 +1461,7 @@
 				515DD7F91FC53DDB009EC716 /* Settings.bundle in Resources */,
 				51677F4B206D0A1D00C7751A /* DropDownMenu.plist in Resources */,
 				513A909C229AA17400B7E844 /* Exo2-Regular.otf in Resources */,
+				519F535B2510BCEB006D559B /* OAStepperCell.xib in Resources */,
 				51CDDEDE2468120400A68861 /* ListOptionControlsView.xib in Resources */,
 				5136038C2226706E002D12B6 /* Search.storyboard in Resources */,
 				5174FBBA219C4EAB003BEB1E /* GraphNodeView.xib in Resources */,
@@ -1680,6 +1687,7 @@
 				51C46F0E248F9FAA00EA0AAC /* VideoConfigureViewController.swift in Sources */,
 				51E94653221C281200F30D1F /* AuthenticationViewController.swift in Sources */,
 				51B21A6E23B0B4220099A208 /* HorizontalGradientView.swift in Sources */,
+				519F53592510BA56006D559B /* OAStepperRow.swift in Sources */,
 				F12A7C19244BFDF900FB5494 /* DataTableType.swift in Sources */,
 				5164A92F1F9F0BC800BE2358 /* ThemeManager.swift in Sources */,
 				5146FE7B2407BB3F0014A67D /* Controls.swift in Sources */,
