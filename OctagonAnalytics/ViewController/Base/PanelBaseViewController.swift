@@ -358,7 +358,7 @@ extension PanelBaseViewController {
         for agg in aggs {
             if agg.schema == "metric" {
 //                headerTitles.insert(agg.field, at: 0)
-                metricType = agg.metricType.rawValue.capitalized
+                metricType = (agg.metricType == .uniqueCount ? "Unique Count" : agg.metricType.rawValue.capitalized)
             } else {
                 headerTitles.append(agg.field)
             }
