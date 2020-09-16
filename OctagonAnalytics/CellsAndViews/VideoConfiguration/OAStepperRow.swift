@@ -18,6 +18,11 @@ open class OAStepperCell: StepperCell {
         infoButton?.isHidden = (row as? _OAStepperRow)?.shouldHideInfoButton ?? false
     }
     
+    open override func update() {
+        super.update()
+        textLabel?.text = nil
+    }
+    
     @IBAction func infoButtonAction(_ sender: UIButton) {
         (row as? _OAStepperRow)?.infoButtonAction?(self, sender)
     }
