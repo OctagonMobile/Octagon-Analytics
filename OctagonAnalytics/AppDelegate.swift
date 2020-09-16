@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Initial entry point to the application based on configuration
         NavigationManager.shared.setupInitialEntryPoint()
         
-        ServiceConfiguration.configure(Configuration.shared.baseUrl, version: Configuration.shared.kibVersion)
+        let config = Configuration.shared
+        ServiceConfiguration.configure(config.baseUrl, version: config.kibVersion, keycloackEnabled: SettingsBundleHelper.isKeycloakLoginEnabled())
 
         return true
     }

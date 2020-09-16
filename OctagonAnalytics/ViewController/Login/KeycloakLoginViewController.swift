@@ -9,6 +9,7 @@
 import UIKit
 import AeroGearOAuth2
 import MBProgressHUD
+import OctagonAnalyticsService
 
 class KeycloakLoginViewController: BaseViewController {
 
@@ -49,6 +50,7 @@ class KeycloakLoginViewController: BaseViewController {
                 return
             }
             
+            ServiceConfiguration.keycloakAccessToken = Session.shared.keyCloakAccessToken
             NavigationManager.shared.showDashboardList()
         }
     }
