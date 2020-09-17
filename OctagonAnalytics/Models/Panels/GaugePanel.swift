@@ -43,8 +43,36 @@ class GaugePanel: Panel {
                 let valueDict = values.first  {
                 gaugeValue         =   valueDict["value"] as? CGFloat ?? 0.0
             }
+        } else if metricType == .topHit {
+            gaugeValue = CGFloat(parseTopHitValue(dict: contentDict))
         } else {
             gaugeValue         =   contentDict["value"] as? CGFloat ?? 0.0
         }
     }
+}
+
+extension GaugePanel {
+    func parseTopHitValue(dict: [String: Any]) -> Double {
+        guard let metricAgg = visState?.metricAggregationsArray.first else {
+            return 0.0
+        }
+        var values: [Double] = []
+        if let hitsDict = dict[BucketConstant.hits] as? [String : Any],
+            let hitsArray = hitsDict[BucketConstant.hits] as? [[String: Any]] {
+            for hit in hitsArray {
+                if let source = hit[BucketConstant.source] as? [String: Any],
+                    let value = source[metricAgg.field] as? Double {
+                    values.append(value)
+                }
+            }
+        }
+        
+        if let aggregate = metricAgg.params?.aggregate {
+            let value = values.apply(aggregate: aggregate)
+            return  Double(round(100*value)/100)
+        }
+        
+        return 0
+    }
+    
 }
