@@ -1405,8 +1405,8 @@
 				513467C91F9DD1B900F9B67D /* Sources */,
 				513467CA1F9DD1B900F9B67D /* Frameworks */,
 				513467CB1F9DD1B900F9B67D /* Resources */,
-				14FC1ED663E113EE0543121D /* [CP] Embed Pods Frameworks */,
-				D87F09609DA776B496573703 /* [CP] Copy Pods Resources */,
+				4589A1364BE753BF34929A46 /* [CP] Embed Pods Frameworks */,
+				0C2E1C7C7D38FD89354F7E8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1514,7 +1514,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14FC1ED663E113EE0543121D /* [CP] Embed Pods Frameworks */ = {
+		0C2E1C7C7D38FD89354F7E8B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4589A1364BE753BF34929A46 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1584,26 +1604,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D87F09609DA776B496573703 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OctagonAnalytics/Pods-OctagonAnalytics-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD43D1BB9FD8DF43BD68068A /* [CP] Check Pods Manifest.lock */ = {
@@ -1959,7 +1959,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1969,7 +1969,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "Octagon Analytics";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
@@ -1990,7 +1990,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Rameez Ibrahim (8KRW74BQV2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 64H8D93LZ4;
 				ENABLE_BITCODE = NO;
@@ -2001,7 +2001,7 @@
 				INFOPLIST_FILE = OctagonAnalytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.octagonMobile.kibanaGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8078f7d-203f-4b73-aab2-e69cb1f3d629";
