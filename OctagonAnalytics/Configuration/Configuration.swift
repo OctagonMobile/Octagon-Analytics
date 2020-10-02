@@ -12,7 +12,7 @@ import AlamofireImage
 
 fileprivate let defScheme   =   "http"
 fileprivate let defBaseUrl  =   "ec2-35-158-106-139.eu-central-1.compute.amazonaws.com"
-fileprivate let defPort     =   "5602"
+fileprivate let defPort     =   "5601"
 fileprivate let defKibVersion   =   VersionType.v732.rawValue
 
 enum Environment: String {
