@@ -6,64 +6,45 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 
-import ObjectMapper
+import OctagonAnalyticsService
 
 class GaugeVisState: VisState {
-
-    enum GaugeType: String {
-        case gauge      =   "gauge"
-        case goal       =   "goal"
-    }
     
-    var gaugeType: GaugeType    =   .gauge
+    var gaugeType: GaugeVisStateService.GaugeType    =   .gauge
     var gauge: Gauge?
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        gaugeType       <-  (map["type"],EnumTransform<GaugeType>())
+        guard let gaugeVisState = responseModel as? GaugeVisStateService else { return }
+        gaugeType   =   gaugeVisState.gaugeType
         
-        if let params = map.JSON["params"] as? [String: Any],
-            let guageContent = params["gauge"] as? [String: Any] {
-            gauge           =  Mapper<Gauge>().map(JSONObject: guageContent)
+        if let gaugeService = gaugeVisState.gauge {
+            gauge       =   Gauge(gaugeService)
         }
     }
 }
 
-class Gauge: Mappable {
+class Gauge {
     
-    enum GaugeSubType: String {
-        case arc    =   "Arc"
-        case circle =   "Circle"
-    }
-
     var ranges: [GaugeRange] =   []
     
-    var subType: GaugeSubType  =   .arc
+    var subType: GaugeService.GaugeSubType  =   .arc
     
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        
-        subType     <-  (map["gaugeType"],EnumTransform<GaugeSubType>())
-        
-        if let colorsRangeList = map.JSON["colorsRange"] as? [[String : Any]] {
-            ranges =   Mapper<GaugeRange>().mapArray(JSONArray: colorsRangeList)
-        }
+    init(_ responseModel: GaugeService) {
+        self.subType    =   responseModel.subType
+        self.ranges     =   responseModel.ranges.compactMap({ GaugeRange($0) })
     }
 }
 
-class GaugeRange: Mappable {
+class GaugeRange {
     
     var from: CGFloat   =   0.0
     var to: CGFloat     =   0.0
 
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        from    <-  map["from"]
-        to      <-  map["to"]
+    init(_ responseModel: GaugeRangeService) {
+        self.from   =   responseModel.from
+        self.to     =   responseModel.to
     }
-
 }

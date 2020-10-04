@@ -15,7 +15,6 @@
 //Tutorial
 "Watch Tutorial"    =   "Watch Tutorial";
 "Auto Fill"         =   "Auto Fill";
-"DownloadOctagonAnalyticsPlugin"    =   "Download/Install the \"Octagon-Analytics Plugin\" for your Kibana";
 "CustomKibanaConfiguration" =   "Pointing to your own Kibana by changing the following settings";
 "UseDemoAccount"            =   "Use demo account to play";
 
@@ -113,12 +112,12 @@
 "Select From Date"      =   "Select From Date";
 "To Date"               =   "To Date";
 "Select To Date"        =   "Select To Date";
-"Span"                  =   "Span";
-"Select Span"           =   "Select Span";
+"TimeInterval"          =   "Time Interval";
+"Select TimeInterval"   =   "Select Time Interval";
 "No data found!"        =   "No data found!";
 "Please select Index Pattern"   =   "Please select Index Pattern";
 "Please select Time Field"  =   "Please select Time Field";
 "Please select Field"       =   "Please select Field";
 "Please select Value To Display"    =   "Please select Value To Display";
-"Please select Span"    =   "Please select Span";
+"Please select Span"    =   "Please select Time Interval";
 "VectorMap Video"       =   "Vector Map Video";

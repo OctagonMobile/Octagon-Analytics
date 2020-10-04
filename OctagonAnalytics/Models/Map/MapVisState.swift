@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class MapVisState: VisState {
 
@@ -27,8 +27,11 @@ class MapVisState: VisState {
 
     /// This field is used in MapTracking Panel (Filtering key)
     var userField: String          = ""
+    var locationField: String      = ""
+    var timeField: String          = ""
+    var faceUrlField: String            = ""
 
-    var mapType: MapType        = .unknown
+    var mapType: MapVisStateService.MapType        = .unknown
     
     var mapLayers:  [MapLayer]      =   []
 
@@ -36,26 +39,27 @@ class MapVisState: VisState {
     private var mapUrl_l: String      =       ""
 
     //MARK:
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        mapUrl_l          <- map["params.wms.url"]
-        version         <- map["params.wms.options.version"]
-        transparent     <- map["params.wms.options.transparent"]
-        styles          <- map["params.wms.options.styles"]
-        format          <- map["params.wms.options.format"]
-        defaultLayerName    <- map["params.wms.options.layers"]
-        userField       <- map["params.user_field"]
-        mapType         <- (map["params.mapType"],EnumTransform<MapType>())
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        if let params = map.JSON["params"] as? [String: Any], let layersList = params["quickButtons"] as? [[String: Any]] {
-            mapLayers = Mapper<MapLayer>().mapArray(JSONArray: layersList)
-        }
+        guard let mapVisService = responseModel as? MapVisStateService else { return }
+        self.mapUrl_l   =   mapVisService.mapUrl
+        self.version    =   mapVisService.version
+        self.transparent    =   mapVisService.transparent
+        self.styles     =   mapVisService.styles
+        self.format     =   mapVisService.format
+        self.defaultLayerName   =   mapVisService.defaultLayerName
+        self.userField  =   mapVisService.userField
+        self.locationField  =  mapVisService.locationField
+        self.timeField  =   mapVisService.timeField
+        self.faceUrlField    =   mapVisService.faceUrl
+        self.mapType    =   mapVisService.mapType
+        self.mapLayers  =   mapVisService.mapLayers.compactMap({ MapLayer($0) })
     }
-
 }
 
 extension MapVisState {
-    
+
     struct HeatMapServiceConstant {
         static let queryString = "?request=GetCapabilities&Service=WMS"
         static let version = "1.3.0"
@@ -64,26 +68,16 @@ extension MapVisState {
         static let tileSize = "256"
         static let transparent = true
     }
-    
-    enum MapType: String {
-        case unknown                =   "Unknown"
-        case heatMap                =   "Heatmap"
-        case scaledCircleMarkers    =   "Scaled Circle Markers"
-        case shadedCircleMarkers    =   "Shaded Circle Markers"
-        case shadedGeohashGrid      =   "Shaded Geohash Grid"
-    }
 }
 
-class MapLayer: Mappable {
+class MapLayer {
     
     var layerName: String       =   ""
     var buttonTitle: String     =   ""
 
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        buttonTitle         <-  map["label"]
-        layerName           <-  map["layers"]
+    init(_ responseModel: MapLayerService) {
+        self.layerName      =   responseModel.layerName
+        self.buttonTitle    =   responseModel.buttonTitle
     }
 }

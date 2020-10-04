@@ -7,17 +7,18 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class MarkDownVisState: VisState {
 
     var markdownText: String    =   ""
     var fontSize: CGFloat       =   12.0
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: VisStateService) {
+        super.init(responseModel)
         
-        markdownText    <-  map["params.markdown"]
-        fontSize        <-  map["params.fontSize"]
+        guard let markDownVisService = responseModel as? MarkDownVisStateService else { return }
+        self.markdownText   =   markDownVisService.markdownText
+        self.fontSize       =   markDownVisService.fontSize
     }
 }

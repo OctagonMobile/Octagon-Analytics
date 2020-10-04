@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
+import OctagonAnalyticsService
 
 class TileBaseCollectionViewCell: UICollectionViewCell {
 

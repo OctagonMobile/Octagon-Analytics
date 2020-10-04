@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import Alamofire
 
 class GraphPanel: Panel {
@@ -51,7 +50,7 @@ class GraphPanel: Panel {
                 return nil
         }
         
-        graphData = NeoGraph(JSON: data)
+        graphData = NeoGraph(data)
         return graphData
     }
     

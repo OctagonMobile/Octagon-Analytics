@@ -5,25 +5,19 @@
 //  Created by Rameez on 11/06/2020.
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
-import ObjectMapper
+import OctagonAnalyticsService
 import BarChartRace
 
-class VideoContent: Mappable {
+class VideoContent {
     var date: Date?
     var entries: [VideoEntry]   =   []
 
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        if let dateString = map.JSON["key_as_string"] as? String {
-            date = dateString.formattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        }
-        
-        guard let aggsFields = map.JSON["aggs_Fields"] as? [String: Any],
-            let buckets = aggsFields["buckets"] as? [[String : Any]] else { return }
-        entries = Mapper<VideoEntry>().mapArray(JSONArray: buckets)
+    init(_ responseModel: VideoContentService) {
+        self.date   =   responseModel.date
+        self.entries    =   responseModel.entries.compactMap({ VideoEntry($0) })
     }
+    
 }
 
 extension VideoContent {
@@ -38,7 +32,7 @@ extension VideoContent {
     }
 }
 
-class VideoEntry: Mappable, Equatable {
+class VideoEntry: Equatable {
     
     var title: String       =   ""
     var value: CGFloat      =   0.0
@@ -48,11 +42,9 @@ class VideoEntry: Mappable, Equatable {
         self.value = value
     }
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        title       <-  map["key"]
-        value       <-  map["max_field.value"]
+    init(_ responseModel: VideoEntryService) {
+        self.title  =   responseModel.title
+        self.value  =   responseModel.value
     }
     
     static func == (lhs: VideoEntry, rhs: VideoEntry) -> Bool {

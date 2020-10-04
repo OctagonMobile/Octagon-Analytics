@@ -10,6 +10,7 @@ import UIKit
 import AeroGearOAuth2
 import LanguageManager_iOS
 import SwiftDate
+import OctagonAnalyticsService
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Activate Localization
         LanguageManager.shared.defaultLanguage = LanguageManager.shared.deviceLanguage ?? .en
         
-        SettingsBundleHelper.registerUserDefaults()
+        SettingsBundleHelper.initialAppConfiguration()
         UserDefaults.standard.set(true, forKey: LoginViewController.UserDefaultKeys.enableFaceIdPrompt)
 
         // Apply Theme
@@ -37,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Initial entry point to the application based on configuration
         NavigationManager.shared.setupInitialEntryPoint()
+        
+        let config = Configuration.shared
+        ServiceConfiguration.configure(config.baseUrl, version: config.kibVersion, keycloackEnabled: SettingsBundleHelper.isKeycloakLoginEnabled())
 
         return true
     }

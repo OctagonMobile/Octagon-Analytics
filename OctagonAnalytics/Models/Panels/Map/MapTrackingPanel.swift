@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import SwiftDate
 
 class MapTrackingPanel: Panel, WMSLayerProtocol {
@@ -25,9 +25,11 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
     private let numberOfItemsToShowOnMap    = 20
     
     //MARK:
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        isRealTime <- map["visState.params.realTime"]
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
+        
+        guard let mapTrackingPanelService = responseModel as? MapTrackingPanelService else { return }
+        self.isRealTime =   mapTrackingPanelService.isRealTime
     }
     
     /**
@@ -38,31 +40,47 @@ class MapTrackingPanel: Panel, WMSLayerProtocol {
      */
     
     override func parseData(_ result: Any?) -> [Any] {
-        
+
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let hitsDict = responseJson.first?["hits"] as? [String: Any],
             var hitsArray = hitsDict["hits"] as? [[String: Any]] else {
                 tracks.removeAll()
                 return []
         }
-                
+
         // Remove track if empty data
         hitsArray = hitsArray.compactMap({ (dict) -> [String: Any]? in
-            let isValid = (dict["userID"] as? String)?.isEmpty == false &&
-                (dict["timestamp"] as? String)?.isEmpty == false &&
-                (dict["location"] as? String)?.isEmpty == false
-            return isValid ? dict : nil
+            if let sourceDict = dict["_source"] as? [String: Any],
+                let userField = (visState as? MapVisState)?.userField,
+                let locationField = (visState as? MapVisState)?.locationField,
+                let timeField = (visState as? MapVisState)?.timeField {
+              
+                if let userId = sourceDict[userField] as? String,
+                    let time = sourceDict[timeField] as? String,
+                    let location = sourceDict[locationField] as? String,
+                    !userId.isEmpty && !time.isEmpty && !location.isEmpty {
+                    let faceUrlField = (visState as? MapVisState)?.faceUrlField ?? ""
+                    let faceUrl = sourceDict[faceUrlField] ?? ""
+                    return ["userID":userId, "timestamp":time, "location": location, "faceUrl": faceUrl]
+                }
+
+            }
+            return nil
         })
 
         // Parse all items to Tracks
-        tracks = Mapper<MapTrackPoint>().mapArray(JSONArray: hitsArray)
+        tracks.removeAll()
+        for hits in hitsArray {
+            let track = MapTrackPoint(data: hits)
+            tracks.append(track)
+        }
 
         // Grouping and sorting
         pathTrackersArray = groupAndSortTracks()
 
         // Consider only grouped items
         tracks = pathTrackersArray.flatMap({ $0.mapTrackPoints })
-        
+
         // Sort Items
         sortedTracks = tracks.sorted(by: { (first, second) -> Bool in
             guard let firstDate = first.timestamp, let secondDate = second.timestamp else { return false }

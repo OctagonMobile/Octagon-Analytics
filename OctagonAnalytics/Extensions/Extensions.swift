@@ -8,6 +8,7 @@
 
 import Foundation
 import MBProgressHUD
+import OctagonAnalyticsService
 import Eureka
 
 extension Formatter {
@@ -320,23 +321,11 @@ extension CGRect {
     }
 }
 
-extension URL {
-
-    func URLByAppendingQueryParameters(_ params: [String: String]?) -> URL? {
-        guard let parameters = params,
-          var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
-            return self
-        }
-
-        var mutableQueryItems: [URLQueryItem] = urlComponents.queryItems ?? []
-        mutableQueryItems.append(contentsOf: parameters.compactMap({ URLQueryItem(name: $0, value: $1)}))
-
-        urlComponents.queryItems = mutableQueryItems
-        return urlComponents.url
+extension OAError {
+    var asNSError: NSError {
+        return NSError(domain: AppName, code: code, userInfo: [NSLocalizedDescriptionKey: self.errorDescription ?? SomethingWentWrong])
     }
 }
-
-
 
 extension Double {
     func round(to places: Int) -> Double {

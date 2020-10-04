@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import OctagonAnalyticsService
 
 class LineChartViewController: BarChartViewController, LineChartDataProvider {
 

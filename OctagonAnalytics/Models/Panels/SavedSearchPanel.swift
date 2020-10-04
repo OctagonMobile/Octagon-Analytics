@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ObjectMapper
 import Alamofire
+import OctagonAnalyticsService
 
 class SavedSearchPanel: Panel {
 
@@ -36,27 +36,36 @@ class SavedSearchPanel: Panel {
      - parameter completion: Call back once the server returns the response.
      */
     func loadSavedSearch(_ pageNumber: Int, _ completion: CompletionBlock?) {
-        
-        let urlString = UrlComponents.savedSearchData
-        
-        var params = dataParams()
-        params?["pageSize"] = Constant.pageSize
-        params?["pageNum"] = pageNumber
-        
-        DataManager.shared.loadData(urlString, methodType: .post, encoding: JSONEncoding.default, parameters: params) { [weak self] (result, error) in
-            
-            guard error == nil else {
+                
+        guard let indexPatternId = visState?.indexPatternId else { return }
+        let reqParameters = SavedSearchDataParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
+        reqParameters.savedSearchId = id
+        reqParameters.pageNum = pageNumber
+        reqParameters.pageSize = Constant.pageSize
+        reqParameters.searchQueryPanel = searchQuery
+        reqParameters.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+
+        ServiceProvider.shared.loadSavedSearchData(reqParameters) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 self?.resetDataSource()
-                completion?(nil, error)
-                return
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? [[AnyHashable: Any?]], let parsedData = self?.parseSavedSearch(res) {
+                    completion?(parsedData, nil)
+                } else {
+                    self?.resetDataSource()
+                    completion?(nil, nil)
+                    return
+                }
             }
-            
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res["result"], let parsedData = self?.parseSavedSearch(finalResult) else {
-                self?.resetDataSource()
-                completion?(nil, error)
-                return
-            }
-            completion?(parsedData, error)
         }
     }
     
@@ -83,8 +92,8 @@ class SavedSearchPanel: Panel {
         
         columns                 = hitsDict["columns"] as? [String] ?? []
         totalSavedSearchCount   = hitsDict["total"] as? Int ?? 0
-        hits                    = Mapper<SavedSearch>().mapArray(JSONArray: hitsArray)
-        
+        hits                    = hitsArray.compactMap({ SavedSearch($0) })
+
         return hits
     }
 

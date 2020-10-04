@@ -7,20 +7,17 @@
 //
 
 import Foundation
-import ObjectMapper
+import OctagonAnalyticsService
 
-struct VectorMap: Mappable {
+struct VectorMap {
     
     var countryCode: String!
     var value: Float!
-    
-    init?(map: Map) {
-        
-    }
-    
-    mutating func mapping(map: Map) {
-        countryCode <-  map["key"]
-        value       <-  map["max_field.value"]
+   
+    //MARK: Functions
+    init(_ responseModel: VideoEntryService) {
+        self.countryCode = responseModel.title
+        self.value = Float(responseModel.value)
     }
     
 }
@@ -845,6 +842,10 @@ let countryCodeArray = [
  [
    "code": "GBR",
    "country": "United Kingdom"
+ ],
+ [
+   "code": "USA",
+   "country": "US"
  ],
  [
    "code": "USA",

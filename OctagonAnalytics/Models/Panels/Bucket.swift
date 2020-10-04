@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
 
 class Bucket {
     
@@ -27,10 +28,12 @@ class Bucket {
         let shouldShowBucketValue = (metricType == .sum || metricType == .max || metricType == .min || metricType == .average || metricType == .median || metricType == .topHit)
 
         //The condition (aggregation count == 1) is added because if there are more than 1 subbuckets present for the visualization then we should be showing the docCount/metricValue based on metricType or else we should show docCount/bucketValue based on metricType
-        if bucketType == .range {
+        if metricType == .median || metricType == .topHit || metricType == .uniqueCount {
+            return bucketValue
+        }  else if bucketType == .range {
             return shouldShowBucketValue ? metricValue : docCount
-        } else if aggregationsCount == 1 || metricType == .median || metricType == .topHit {
-            return shouldShowBucketValue ? bucketValue : docCount
+        } else if aggregationsCount == 1 || metricType != .count {
+            return shouldShowBucketValue ? metricValue : docCount
         } else {
             return (metricType == .count) ? docCount : metricValue
         }
@@ -53,13 +56,20 @@ class Bucket {
 
         if metricType == .median {
             if let firstMetricId = visState.metricAggregationsArray.first?.id,
-                let dict = dictionary[firstMetricId] as? [String: Any],
-                
-                let values = dict [BucketConstant.values] as? [[String: Any]],
-                let valueDict = values.first  {
-                bucketValue         =   valueDict[BucketConstant.value] as? Double ?? 0.0
+                let dict = dictionary[firstMetricId] as? [String: Any] {
+                if let values = dict [BucketConstant.values] as? [[String: Any]],
+                    let valueDict = values.first  {
+                    bucketValue         =   valueDict[BucketConstant.value] as? Double ?? 0.0
+                } else if let valueDict = dict [BucketConstant.values] as? [String: Any] {
+                    bucketValue         =   valueDict["50.0"] as? Double ?? 0.0
+                }
             }
-        } else if metricType == .topHit {
+        } else if metricType == .uniqueCount {
+            if let firstMetricId = visState.metricAggregationsArray.first?.id,
+                let dict = dictionary[firstMetricId] as? [String: Any] {
+                bucketValue         =   dict[BucketConstant.value] as? Double ?? 0.0
+            }
+        }  else if metricType == .topHit {
             bucketValue = parseTopHitValue(dict: dictionary)
         } else {
             bucketValue         =   dictionary[BucketConstant.bucketValue] as? Double ?? 0.0
@@ -110,7 +120,7 @@ class Bucket {
             var filter: FilterProtocol
             switch bucket.bucketType {
             case .dateHistogram:
-                let interval = otherAggs.params?.interval ?? AggregationParams.IntervalType.unKnown
+                let interval = otherAggs.params?.interval ?? AggregationParamsService.IntervalType.unKnown
                 let customInterval = otherAggs.params?.customInterval ?? ""
                 filter = DateHistogramFilter(fieldName: otherAggs.field, fieldValue: val, type: otherAggs.bucketType, interval: interval, customInterval: customInterval, selectedComponants: selectedDateComponant)
             default:

@@ -6,8 +6,7 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 
-import ObjectMapper
-import Alamofire
+import OctagonAnalyticsService
 import SwiftDate
 
 class VideoContentLoader {
@@ -26,58 +25,45 @@ class VideoContentLoader {
     
     //MARK: Functions
     func loadIndexPatters(_ completion: CompletionBlock?) {
-        let params: [String : Any] = ["type": "index-pattern",
-                                      "per_page": Constant.pageSize]
-        DataManager.shared.loadData(UrlComponents.savedObjects, parameters: params) { [weak self] (result, error) in
-            guard error == nil else {
+        
+        ServiceProvider.shared.loadIndexPatterns(1, pageSize: Constant.pageSize) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 self?.indexPattersList.removeAll()
-                completion?(self?.indexPattersList, error)
-                return
+                completion?(self?.indexPattersList, error.asNSError)
+            case .success(let data):
+                if let res = data as? IndexPatternsListResponse{
+                    self?.indexPattersList = res.indexPatterns.compactMap({ IndexPattern($0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
+                }
+                
+                completion?(self?.indexPattersList, nil)
             }
-            
-            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] {
-                self?.indexPattersList = self?.parseIndexPattersList(finalResult) ?? []
-            }
-            
-            completion?(self?.indexPattersList, error)
         }
     }
-    
-    private func parseIndexPattersList(_ result: Any?) -> [IndexPattern] {
-        guard let dict = result as? [String: Any?],
-            let savedObjectsList = dict["saved_objects"] as? [[String: Any]] else {
-            return []
-        }
-        
-        let list = savedObjectsList.compactMap({ IndexPattern(JSON: $0) }).sorted(by: {$0.title.localizedCaseInsensitiveCompare($1.title) == ComparisonResult.orderedAscending})
-        return list
-    }
-        
+            
     func loadVideoData(_ completion: CompletionBlock?) {
-        guard let indexPattern = configContent.indexPattern else { return }
-        let queryParams: [String : String] =
-            ["method": "POST",
-             "path": "\(indexPattern.title)/_search"]
+        guard let indexPattern = configContent.indexPattern,
+            let timeFieldName = configContent.timeField?.name else { return }
+        
+        let fromDate = configContent.fromDate.dateAtStartOf(.day)
+        let toDate = configContent.toDate.dateAtEndOf(.day)
 
-        DataManager.shared.loadData(UrlComponents.videoData, queryParametres: queryParams, parameters: generatedQuery()) { [weak self] (result, error) in
-            guard error == nil else {
-                completion?(nil, error)
-                return
-            }
-
-            if let res = result as? [AnyHashable: Any?], let finalResult = res["result"] as? [AnyHashable: Any?],
-                let hitsDictionary = finalResult["aggregations"] as? [AnyHashable: Any?],
-                let hitsResult = hitsDictionary["dateHistogramName"] as? [String: Any],
-                let buckets = hitsResult["buckets"] as? [[String: Any]] {
-                switch self?.configContent.videoType {
-                case .barChartRace?:
-                    self?.videoContentList = Mapper<VideoContent>().mapArray(JSONArray: buckets)
-                    completion?(self?.videoContentList, nil)
-                case .vectorMap?:
-                    let vectorMapData = Mapper<VectorMapContainer>().mapArray(JSONArray: buckets)
-                    completion?(vectorMapData, nil)
-                case .none:
-                    completion?(nil, nil)
+        ServiceProvider.shared.loadVideoContent(indexPattern.title, fromDate: fromDate, toDate: toDate, timeField: timeFieldName, query: generatedQuery()) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? VideoContentListResponse {
+                    switch self?.configContent.videoType {
+                    case .barChartRace?:
+                        self?.videoContentList = res.buckets.compactMap({ VideoContent($0) })
+                        completion?(self?.videoContentList, nil)
+                    case .vectorMap?:
+                        let vectorMapData = res.buckets.compactMap({ VectorMapContainer($0) })
+                        completion?(vectorMapData, nil)
+                    case .none:
+                        completion?(nil, nil)
+                    }
                 }
             }
         }
@@ -89,14 +75,7 @@ class VideoContentLoader {
             let fieldName = configContent.field?.name,
             let spanType = configContent.spanType,
             let valueToDisplayFieldName = configContent.valueToDisplay?.name else { return [:] }
-        
-        let fromDateStr = queryDateFormatter.string(from: configContent.fromDate.dateAtStartOf(.day))
-        let toDateStr = queryDateFormatter.string(from: configContent.toDate.dateAtEndOf(.day))
 
-        let query = [ "range":
-            ["\(timeFieldName)": [ "gte": fromDateStr,"lte": toDateStr]]]
-
-        
         let datHistogram = ["field":"\(timeFieldName)", "interval": "1\(spanType.code)"]
         
         let maxAggs = ["sum": ["field": valueToDisplayFieldName]]
@@ -106,7 +85,7 @@ class VideoContentLoader {
         let middleLevelAggs: [String : Any] = ["terms": ["field": fieldName, "size": 500], "aggs": innerMostAggs]
         let topMostAggs: [String : Any] = ["date_histogram": datHistogram, "aggs": ["aggs_Fields": middleLevelAggs]]
         
-        return ["query": query, "size": 0, "aggs": ["dateHistogramName" : topMostAggs]]
+        return ["aggs": ["dateHistogramName" : topMostAggs]]
     }
 }
 

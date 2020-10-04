@@ -29,7 +29,7 @@ class GraphNodeView: UIView {
         self.layer.cornerRadius = self.frame.size.width / 2
         titleLabel.text = selectedNode.number ?? selectedNode.name
         if let imageBaseUrl = imageBaseUrl, let urlString = selectedNode.imageUrl, let url = URL(string: imageBaseUrl + urlString) {
-            nodeImageView.af_setImage(withURL: url)
+            nodeImageView.af.setImage(withURL: url)
         }
 
     }

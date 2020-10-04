@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ObjectMapper
 
-class MapTrackPoint: ChartContent, Mappable {
+class MapTrackPoint: ChartContent {
 
     /// Timestamp
     var timestamp: Date?
@@ -29,30 +28,25 @@ class MapTrackPoint: ChartContent, Mappable {
         return timestamp.toFormat("YYYY-MM-dd HH:mm:ss")
     }
     
-    required init?(map: Map) {
-        
-    }
-    
-    //MARK:
-    func mapping(map: Map) {
-        
-        if let keyValue = map.JSON["key"] {
-            key   = "\(keyValue)"
+    init(data: [String: Any]) {
+        super.init()
+        if let keyValue = data["key"] {
+            key = "\(keyValue)"
         }
-        docCount            <- map["doc_count"]
-        bucketValue         <- map["bucketValue"]
+        docCount = data["doc_count"] as? Double ?? 0.0
+        bucketValue = data["bucketValue"] as? Double ?? 0.0
         
-        userField       <-  map["userID"]
-        imageIconUrl    <-  map["faceUrl"]
+        userField = data["userID"] as? String ?? ""
+        imageIconUrl = data["faceUrl"] as? String ?? ""
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        if let dateString = map["timestamp"].currentValue as? String, let _date = dateFormatter.date(from: dateString) {
+        if let dateString = data["timestamp"] as? String, let _date = dateFormatter.date(from: dateString) {
             timestamp = _date
         }
 
-        if let locationString = map.JSON["location"] as? String {
+        if let locationString = data["location"] as? String {
             let coordinates = locationString.components(separatedBy: ",")
             guard let latString = coordinates.first, let longitudeString = coordinates.last else { return }
             let lat = CLLocationDegrees(latString) ?? 0.0

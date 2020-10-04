@@ -14,7 +14,6 @@
 //Tutorial
 "Watch Tutorial"    =   "مشاهدة البرنامج التعليمي";
 "Auto Fill"         =   "ملء السيارات";
-"DownloadOctagonAnalyticsPlugin"    =   "قم بتنزيل / تثبيت \"Octagon-Analytics Plugin\" لـ Kibana";
 "CustomKibanaConfiguration" =   "الإشارة إلى Kibana الخاصة بك عن طريق تغيير الإعدادات التالية";
 "UseDemoAccount"            =   "استخدام حساب تجريبي للعب";
 
@@ -112,12 +111,12 @@
 "Select From Date"      =   "حدد من التاريخ";
 "To Date"               =   "حتى الآن";
 "Select To Date"        =   "حدد حتى الآن";
-"Span"                  =   "Span";
-"Select Span"           =   "حدد Span";
+"TimeInterval"          =   "الفاصل الزمني";
+"Select TimeInterval"   =   "حدد الفاصل الزمني";
 "No data found!"        =   "لاتوجد بيانات!";
 "Please select Index Pattern"   =   "يرجى تحديد نمط الفهرس";
 "Please select Time Field"  =   "يرجى تحديد حقل الوقت";
 "Please select Field"       =   "يرجى تحديد الحقل";
 "Please select Value To Display"    =   "يرجى تحديد القيمة للعرض";
-"Please select Span"    =   "يرجى تحديد Span";
+"Please select Span"    =   "الرجاء تحديد الفاصل الزمني";
 "VectorMap Video"       =   "فيديو خريطة متجه";

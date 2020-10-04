@@ -9,6 +9,7 @@
 import UIKit
 import AeroGearOAuth2
 import AeroGearHttp
+import OctagonAnalyticsService
 
 class Session: NSObject {
 
@@ -57,27 +58,27 @@ class Session: NSObject {
     //MARK:
     func login(_ completion: CompletionBlock?) {
         // Service Call here
-        
-        let urlComponant = UrlComponant.login
-        let params: [String: Any] = ["username": user.userName,
-                                     "password": user.password]
-        DataManager.shared.loadData(urlComponant, methodType: .post, parameters: params) { (response, error) in
-            guard error == nil else {
-                completion?(false, error)
-                return
+        ServiceProvider.shared.loginWith(user.userName, password: user.password) { (result) in
+            switch result {
+            case .failure(let error):
+                completion?(false, error.asNSError)
+            case .success(_):
+                self.isLoggedIn = true
+                completion?(true, nil)
             }
-            
-            self.isLoggedIn = true
-            completion?(true, nil)
-
         }
     }
     
     func logout(_ completion:CompletionBlock?) {
         // Service Call here
-        
-        let urlComponant = UrlComponant.logout
-        DataManager.shared.loadData(urlComponant, methodType: .post, parameters: nil, completion: completion)
+        ServiceProvider.shared.logout { (result) in
+            switch result {
+            case .failure(let error):
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                completion?(data, nil)
+            }
+        }
         self.isLoggedIn = false
     }
     

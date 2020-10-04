@@ -88,6 +88,9 @@ class BarChartViewController: ChartBaseViewController {
         leftAxis?.axisMinimum = 0.0; // this replaces startAtZero = YES
         leftAxis?.gridColor = theme.separatorColor
         leftAxis?.labelTextColor = theme.disabledStateBackgroundColor
+        let yFormatter = YAxisBarChartFormatter()
+        leftAxis?.valueFormatter = yFormatter
+        
         let rightAxis = barChartView?.rightAxis
         rightAxis?.enabled = false
         
@@ -105,7 +108,9 @@ class BarChartViewController: ChartBaseViewController {
         bucketsList = chartContentList.reduce([]) { (res, item) -> [Bucket] in
             return res + item.items
         }
-        legendLabel.text = panel?.visState?.metricAggregationsArray.first?.metricType.rawValue.capitalized
+        let metricType = panel?.visState?.metricAggregationsArray.first?.metricType
+        let metricValue = metricType == .uniqueCount ? "Unique Count" : panel?.visState?.metricAggregationsArray.first?.metricType.rawValue.capitalized
+        legendLabel.text = metricValue
 
         xAxis?.centerAxisLabelsEnabled = isGroupedBarChart
         xAxis?.resetCustomAxisMax()

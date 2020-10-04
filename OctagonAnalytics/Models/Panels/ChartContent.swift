@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
 
 class ChartContent {
     var key: String             =   ""

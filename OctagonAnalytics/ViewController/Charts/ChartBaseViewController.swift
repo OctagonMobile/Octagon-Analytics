@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import OctagonAnalyticsService
 
 class ChartBaseViewController: PanelBaseViewController {
 

@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import OctagonAnalyticsService
+import AlamofireImage
 
 fileprivate let defScheme   =   "http"
 fileprivate let defBaseUrl  =   "ec2-35-158-106-139.eu-central-1.compute.amazonaws.com"
 fileprivate let defPort     =   "5601"
+fileprivate let defKibVersion   =   VersionType.v732.rawValue
 
 enum Environment: String {
     
@@ -57,6 +60,9 @@ enum Environment: String {
         return "KEYCLOAK_REALM"
     }
 
+    var kibVersion: VersionType {
+        return SettingsBundleHelper.kibVersion
+    }
 }
 
 class Configuration {
@@ -108,6 +114,9 @@ class Configuration {
         return Configuration.shared.environment.keyCloakRealm
     }
 
+    var kibVersion: VersionType {
+        return Configuration.shared.environment.kibVersion
+    }
 }
 
 class SettingsBundleHelper {
@@ -118,12 +127,18 @@ class SettingsBundleHelper {
         static let authentication = "Authentication"
         static let themeKey = "theme"
         static let enableXPack = "enableXPack"
+        static let kibVersion = "kibVersion"
     }
     
     enum AuthenticationType: String {
         case basic      =   "Basic"
         case keycloak   =   "Keycloak"
         case none       =   "None"
+    }
+    
+    class func initialAppConfiguration() {
+        registerUserDefaults()
+        ImageResponseSerializer.addAcceptableImageContentTypes(["image/svg+xml", "image/png", "image/jpg", "binary/octet-stream"])
     }
     
     class func registerUserDefaults() {
@@ -150,6 +165,9 @@ class SettingsBundleHelper {
             userDefaults.set(AuthenticationType.basic.rawValue, forKey: SettingsBundleKeys.authentication)
         }
 
+        if userDefaults.string(forKey: SettingsBundleKeys.kibVersion) == nil {
+            userDefaults.set(defKibVersion, forKey: SettingsBundleKeys.kibVersion)
+        }
         userDefaults.synchronize()
     }
     
@@ -186,6 +204,13 @@ class SettingsBundleHelper {
             return Theme(rawValue: themeName) ?? Theme.light
         }
         return Theme.light
+    }
+    
+    static var kibVersion: VersionType {
+        if let kibVersion = UserDefaults.standard.string(forKey: SettingsBundleKeys.kibVersion) {
+            return VersionType(rawValue: kibVersion) ?? VersionType.v654
+        }
+        return VersionType.v654
     }
     
     class func setVersionAndBuildNumber() {

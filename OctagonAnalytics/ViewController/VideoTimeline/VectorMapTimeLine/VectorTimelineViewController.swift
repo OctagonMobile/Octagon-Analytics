@@ -32,14 +32,15 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     private var timeInterVal: TimeInterval =  0.4
     private var deviceRotated: Bool = false
     private var regionList: [WorldMapVectorRegion] = []
-    private lazy var data: [[String: [VectorMap]]]  = {
+    private lazy var videoData: [[String: [VectorMap]]]  = {
         var index = 0
-        return correct().map {
+        let grouped: [[String: [VectorMap]]] = correct().map {
             defer {
                 index += 1
             }
            return $0.reGroup(by: ranges)
         }
+        return grouped
     }()
     var vectorMapData: [VectorMapContainer]! {
         didSet {
@@ -63,7 +64,8 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
                 var corrected = map
                 let filtered = countryCodeArray.filter {
                     let country = ($0["country"]!).lowercased().replacingOccurrences(of: " ", with: "_")
-                    return country == map.countryCode
+                    let dataCountry = map.countryCode.lowercased().replacingOccurrences(of: " ", with: "_")
+                    return country == dataCountry || $0["code"]?.lowercased() == dataCountry
                 }
                 if let code = filtered.first?["code"] {
                     corrected.countryCode = countryCodes[code] ?? code
@@ -243,11 +245,11 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
         state = .play
         let rangeColorDict = Dictionary(uniqueKeysWithValues: zip(ranges.map{$0}, colors))
         updateLegends(rangeColorDict)
-        if currentIndex >= data.count {
+        if currentIndex >= videoData.count {
             currentIndex = 0
         }
         timer = Timer.scheduledTimer(withTimeInterval: timeInterVal, repeats: true) { (timer) in
-            if self.currentIndex >= self.data.count {
+            if self.currentIndex >= self.videoData.count {
                 timer.invalidate()
                 self.state = .notStarted
                 if self.recorder.isRecording {
@@ -269,7 +271,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     
     
     private func highlight(index: Int) {
-        let content = data[index]
+        let content = videoData[index]
         let shouldShowTime = videoConfig?.spanType == SpanType.hours ||
             videoConfig?.spanType == SpanType.minutes ||
             videoConfig?.spanType == SpanType.seconds
@@ -303,7 +305,7 @@ class VectorTimelineViewController: VideoTimelineBaseViewController, CountryGeoJ
     private func updateLegends(_ ranges: [ClosedRange<Int>: UIColor]) {
         var chartLegends = [ChartLegend]()
         for (range, color) in ranges {
-            chartLegends.append(ChartLegend.init(text: range.toKAndMString, color: color, shape: .rect(width: 25, height: 20)))
+            chartLegends.append(ChartLegend.init(text: range.toKAndMString, color: color, textColor: CurrentTheme.vectorMapLegendTitleColor, shape: .rect(width: 25, height: 20)))
         }
         let keySorted = ranges.keys.sorted { $0.upperBound < $1.upperBound }
         let keySortedMinimal = keySorted.map { $0.toKAndMString }

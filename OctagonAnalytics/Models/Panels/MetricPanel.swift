@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import Alamofire
 
 class MetricPanel: Panel {
@@ -18,15 +18,17 @@ class MetricPanel: Panel {
     var metricsList: [Metric] = []
     
     //MARK: Functions
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        metricsList = Mapper<Metric>().mapArray(JSONObject: map.JSON) ?? []
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
+        
+        guard let panelService = responseModel as? MetricPanelService else { return }
+        self.metricsList    =   panelService.metricsList.compactMap({ Metric($0) })
+        
         metricsList = metricsList.map {
             $0.panel = self
             return $0
         }
-    }
-    
+    }    
     
     override func resetDataSource() {
         super.resetDataSource()
@@ -46,8 +48,8 @@ class MetricPanel: Panel {
                 metricsList.removeAll()
                 return []
         }
-        
-        metricsList = Mapper<Metric>().mapArray(JSONArray: metricsArray)
+
+        metricsList = metricsArray.compactMap({ Metric($0) })
         metricsList = metricsList.map {
             $0.panel = self
             return $0

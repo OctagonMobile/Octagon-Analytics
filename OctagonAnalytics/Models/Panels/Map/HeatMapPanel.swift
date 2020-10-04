@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class HeatMapPanel: Panel, WMSLayerProtocol {
 
@@ -35,13 +35,18 @@ class HeatMapPanel: Panel, WMSLayerProtocol {
     override func parseData(_ result: Any?) -> [Any] {
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?["aggregations"] as? [String: Any],
-            let bucketsContent = aggregationsDict[AggregationId.bucket.rawValue] as? [String: Any],
+            let filterAggDict = aggregationsDict["filter_agg"] as? [String: Any],
+            let bucketsContent = filterAggDict[AggregationId.bucket.rawValue] as? [String: Any],
             let bucketsArray = bucketsContent["buckets"] as? [[String: Any]] else {
                 mapDetail.removeAll()
                 return []
         }
         
-        mapDetail = Mapper<MapDetails>().mapArray(JSONArray: bucketsArray)
+        mapDetail.removeAll()
+        for bucket in bucketsArray {
+            let detail = MapDetails(data: bucket)
+            mapDetail.append(detail)
+        }
         return mapDetail
     }
     
@@ -93,6 +98,28 @@ class HeatMapPanel: Panel, WMSLayerProtocol {
             
         }
         return zoom
+    }
+    
+    override func requestParams() -> VizDataParamsBase? {
+        guard let indexPatternId = visState?.indexPatternId else { return nil }
+        let reqParameters = MapVizParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
+        reqParameters.searchQueryPanel = searchQuery
+        reqParameters.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+        
+        // In case of date histogram send the interval
+        if bucketType == .dateHistogram, let interval = mappedIntervalValue {
+            reqParameters.interval = "\(interval)"
+        }
+
+        reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
+        return reqParameters
     }
 }
 

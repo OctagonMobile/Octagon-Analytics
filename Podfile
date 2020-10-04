@@ -2,9 +2,8 @@ platform :ios, '13.0'
 use_frameworks!
 
 target 'OctagonAnalytics' do
-  pod 'Alamofire'
+  pod 'OctagonAnalyticsService', :git => 'https://github.com/OctagonMobile/OctagonAnalyticsService.git'
   pod 'AlamofireImage'
-  pod 'AlamofireObjectMapper', '5.2.1'
 
 #Charts
     pod 'Charts', :git => 'https://github.com/OctagonMobile/Charts.git'

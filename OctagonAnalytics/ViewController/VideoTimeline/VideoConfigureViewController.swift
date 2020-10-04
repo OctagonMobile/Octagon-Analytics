@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import SwiftDate
 import MBProgressHUD
+import AMPopTip
 
 enum VideoType: String {
     case barChartRace   =   "BarChart Race"
@@ -22,6 +23,8 @@ class VideoConfigureViewController: FormViewController {
 
     var videoContentLoader  =   VideoContentLoader()
     
+    fileprivate let popTip = PopTip()
+
     @IBOutlet weak var generateVideoButton: UIButton!
     
     fileprivate lazy var hud: MBProgressHUD = {
@@ -44,6 +47,11 @@ class VideoConfigureViewController: FormViewController {
         createForm()
         tableView.tableFooterView = UIView()
         loadIndexPatters()
+        
+        popTip.bubbleColor = CurrentTheme.darkBackgroundColorSecondary
+        popTip.shouldDismissOnTap = true
+        popTip.shouldDismissOnTapOutside = true
+        popTip.shouldDismissOnSwipeOutside = true
     }
     
     private func createForm() {
@@ -71,6 +79,9 @@ class VideoConfigureViewController: FormViewController {
                     let segmentWidth: CGFloat = isIPhone ? 300 : 500
                     cell.setControlWidth(segmentWidth)
                 }
+                $0.onChange { (row) in
+                    self.popTip.hide()
+                }
             }
             
             <<< OAPickerInputRow<IndexPattern>() {
@@ -79,6 +90,9 @@ class VideoConfigureViewController: FormViewController {
                 $0.add(rule: RuleRequired(msg: ErrorMessages.indexPatternError))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
                 $0.options = videoContentLoader.indexPattersList
+                $0.infoButtonAction = { (cell, sender) in
+                    self.showToolTip("Data set which should be used to generate the Video", rect: sender.frame, cell: cell)
+                }
                 $0.displayValueFor = {
                     guard let indexPattern = $0 else { return nil }
                     return indexPattern.title
@@ -142,6 +156,9 @@ class VideoConfigureViewController: FormViewController {
                     }
                     return false
                 }
+                $0.infoButtonAction = { (cell, sender) in
+                    self.showToolTip("TimeField linked to data changes", rect: sender.frame, cell: cell)
+                }
                 $0.displayValueFor = {
                     guard let field = $0 else { return nil }
                     return field.name
@@ -194,6 +211,9 @@ class VideoConfigureViewController: FormViewController {
                     guard let field = $0 else { return nil }
                     return field.name
                 }
+                $0.infoButtonAction = { (cell, sender) in
+                    self.showToolTip("Field used to group the Data", rect: sender.frame, cell: cell)
+                }
                 $0.cellSetup { (cell, row) in
                     cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
                     cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
@@ -238,6 +258,11 @@ class VideoConfigureViewController: FormViewController {
                     }
                     return false
                 }
+                $0.infoButtonAction = { (cell, sender) in
+                    let videoTypeRow = self.form.rowBy(tag: FormTag.videoType) as? SegmentedRow<VideoType>
+                    let val =  (videoTypeRow?.value == .barChartRace) ? "legnth of bar" : "color of area"
+                    self.showToolTip("Count value will define the \(val)", rect: sender.frame, cell: cell)
+                }
                 $0.displayValueFor = {
                     guard let field = $0 else { return nil }
                     return field.name
@@ -274,7 +299,7 @@ class VideoConfigureViewController: FormViewController {
                 }
             }
             
-            <<< StepperRow() {
+            <<< OAStepperRow() {
                 $0.title = "Top Count".localiz()
                 $0.tag = FormTag.maxCount
                 $0.value = Double(videoContentLoader.configContent.topMaxNumber)
@@ -296,7 +321,11 @@ class VideoConfigureViewController: FormViewController {
                     guard let val = $0 else { return nil }
                     return "\(Int(val))"
                 }
-
+                $0.infoButtonAction = { (cell, sender) in
+                    let videoTypeRow = self.form.rowBy(tag: FormTag.videoType) as? SegmentedRow<VideoType>
+                    let val =  (videoTypeRow?.value == .barChartRace) ? "bars" : "colored area's"
+                    self.showToolTip("Defines number of \(val)", rect: sender.frame, cell: cell)
+                }
             }
             
             <<< OADateRow() {
@@ -356,17 +385,18 @@ class VideoConfigureViewController: FormViewController {
             }
             
             <<< OAPickerInputRow<SpanType>() {
-                $0.title = "Span".localiz()
+                $0.title = "TimeInterval".localiz()
                 $0.tag = FormTag.span
                 $0.options = SpanType.spanTypeListFor(videoContentLoader.configContent.fromDate, toDate: videoContentLoader.configContent.toDate)
                 $0.add(rule: RuleRequired(msg: ErrorMessages.spanError))
                 $0.validationOptions = .validatesOnChangeAfterBlurred
+                $0.shouldHideInfoButton = true
                 $0.cellSetup { (cell, row) in
                     cell.backgroundColor = CurrentTheme.cellBackgroundColor
                     cell.titleLabel?.style(CurrentTheme.textStyleWith(cell.titleLabel.font.pointSize, weight: .regular))
                     cell.valueTextField?.style(CurrentTheme.textStyleWith(cell.valueTextField.font!.pointSize, weight: .regular))
                     cell.titleLabel?.textColor = CurrentTheme.standardColor
-                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select Span".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
+                    cell.valueTextField.attributedPlaceholder = NSAttributedString(string: "Select TimeInterval".localiz(), attributes: [NSAttributedString.Key.foregroundColor: CurrentTheme.enabledStateBackgroundColor])
                 }
                 $0.displayValueFor = {
                     guard let val = $0 else { return nil }
@@ -398,6 +428,19 @@ class VideoConfigureViewController: FormViewController {
                 }
                 
             }
+    }
+    
+    private func showToolTip(_ message: String, rect: CGRect, cell: UITableViewCell) {
+        if popTip.isVisible {
+            popTip.hide()
+        }
+        let rectInCollectionView = tableView.convert(rect, from: cell)
+        let rectInView = view.convert(rectInCollectionView, from: tableView)
+        popTip.show(text: message, direction: .autoHorizontal, maxWidth: 200, in: view, from: rectInView)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        popTip.hide()
     }
     
     private func loadIndexPatters() {

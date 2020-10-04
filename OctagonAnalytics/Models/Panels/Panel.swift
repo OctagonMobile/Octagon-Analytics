@@ -7,44 +7,17 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 import Alamofire
 import SwiftDate
 
-// MARK: PanelType
-enum PanelType: String {
-    case unKnown    =   "unKnown"
-    case pieChart   =   "pie"
-    case histogram  =   "histogram"
-    case tagCloud   =   "tagcloud"
-    case t4pTagcloud   =   "t4p-tagcloud"
-    case table      =   "table"
-    case search     =   "search"
-    case metric     =   "metric"
-    case tile       =   "t4p-tile"
-    case heatMap    =   "tile_map"
-    case mapTracking    =   "t4p-map"
-    case vectorMap      =   "vectormap"
-    case regionMap      =   "region_map"
-    case faceTile       =   "t4p-face"
-    case neo4jGraph     =   "t4p-neo4j-graph-graph"
-    case html           =   "html"
-    case line           =   "line"
-    case horizontalBar  =   "horizontal_bar"
-    case markdown       =   "markdown"
-    case area           =   "area"
-    case gauge          =   "gauge"
-    case goal           =   "goal"
-    case inputControls  =    "input_control_vis"
-}
-
 // MARK: Panel
-class Panel: Mappable {
+class Panel {
 
     /**
      Panel Id.
      */
-    fileprivate var id                              = ""
+    internal var id                              = ""
     
     /**
      Panel Index.
@@ -85,11 +58,6 @@ class Panel: Mappable {
      Search query string.
      */
     var searchQuery                     = ""
-
-    /**
-     Index (Note : Currently note used).
-     */
-    var index: String                   = ""
     
     /**
      List of chart items.
@@ -137,64 +105,53 @@ class Panel: Mappable {
     // Counter used to parse data only
     fileprivate var counter: Int = 0
     
-    //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
-    }
-    
-    func mapping(map: Map) {
-        id          <- map[PanelConstant.id]
-        panelIndex  <- map[PanelConstant.index]
-        row         <- map[PanelConstant.row]
-        column      <- map[PanelConstant.column]
-        width       <- map[PanelConstant.width]
-        height      <- map[PanelConstant.height]
-        index       <- map[PanelConstant.searchIndex]
-        searchQuery <- map[PanelConstant.searchQuery]
-
-        // Manual mapping based on visualization type
-        if let visStateJson = (map.JSON[PanelConstant.visState] as? [String: Any]) {
+    //MARK: Functions    
+    init(_ responseModel: PanelService) {
+        self.id     =   responseModel.id ?? ""
+        self.panelIndex =   Int(responseModel.panelIndex) ?? 0
+        self.row        =   responseModel.row
+        self.column     =   responseModel.column
+        self.width      =   responseModel.width
+        self.height     =   responseModel.height
+        self.searchQuery    =   responseModel.searchQuery
+        
+        guard let responseVisState = responseModel.visState else { return }
+        switch responseModel.visState?.type {
+        case .pieChart:
+            visState    =   PieChartVisState(responseVisState)
+        
+        case .tagCloud, .t4pTagcloud:
+            visState = TagCloudVisState(responseVisState)
             
-            guard let type = visStateJson[PanelConstant.type] as? String,
-                let panelType = PanelType(rawValue: type) else {
-                    visState <- map[PanelConstant.visState]
-                return
-            }
+        case .tile:
+            visState = TileVisState(responseVisState)
             
-            switch panelType {
-            case .pieChart:
-                visState = Mapper<PieChartVisState>().map(JSONObject: visStateJson)
-                
-            case .tagCloud, .t4pTagcloud:
-                visState = Mapper<TagCloudVisState>().map(JSONObject: visStateJson)
-
-            case .tile:
-                visState = Mapper<TileVisState>().map(JSONObject: visStateJson)
-
-            case .metric:
-                visState = Mapper<MetricVisState>().map(JSONObject: visStateJson)
-
-            case .heatMap, .mapTracking:
-                visState = Mapper<MapVisState>().map(JSONObject: visStateJson)
-
-            case .neo4jGraph:
-                visState = Mapper<GraphVisState>().map(JSONObject: visStateJson)
-
-            case .html:
-                visState = Mapper<WebContentVisState>().map(JSONObject: visStateJson)
-
-            case .markdown:
-                visState = Mapper<MarkDownVisState>().map(JSONObject: visStateJson)
+        case .metric:
+            visState = MetricVisState(responseVisState)
             
-            case .gauge, .goal:
-                visState = Mapper<GaugeVisState>().map(JSONObject: visStateJson)
-                
-            case .inputControls:
-                visState = Mapper<InputControlsVisState>().map(JSONObject: visStateJson)
+        case .heatMap, .mapTracking:
+            visState = MapVisState(responseVisState)
+            
+        case .neo4jGraph:
+            visState = GraphVisState(responseVisState)
+            
+        case .html:
+            visState = WebContentVisState(responseVisState)
+            
+        case .markdown:
+            visState = MarkDownVisState(responseVisState)
+            
+        case .gauge, .goal:
+            visState = GaugeVisState(responseVisState)
+            
+        case .inputControls:
+            visState = InputControlsVisState(responseVisState)
 
-            default:
-                visState <- map[PanelConstant.visState]
-            }
+        case .faceTile:
+            visState = FaceTileVisState(responseVisState)
+
+        default:
+            visState    =   VisState(responseVisState)
         }
     }
     
@@ -206,26 +163,46 @@ class Panel: Mappable {
     func loadChartData(_ completion: CompletionBlock?) {
         // Load ChartData using id
 
-        let urlString = UrlComponents.visualizationData
-
-        let params: [String: Any]? = dataParams()
-        
-        DataManager.shared.loadData(urlString, methodType: .post, encoding: JSONEncoding.default, parameters: params) { [weak self] (result, error) in
-            
-            
-            guard error == nil else {
-                self?.resetDataSource()
-                completion?(nil, error)
-                return
-            }
-            
-            guard let res = result as? [AnyHashable: Any?], let finalResult = res[PanelConstant.result], let parsedData = self?.parseData(finalResult) else {
-                self?.resetDataSource()
-                completion?(nil, error)
-                return
-            }
-            completion?(parsedData, error)
+        guard let reqParameters = requestParams() else {
+            return
         }
+        ServiceProvider.shared.loadVisualizationData(reqParameters) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.resetDataSource()
+                completion?(nil, error.asNSError)
+            case .success(let data):
+                if let res = data as? [AnyHashable: Any?], let finalResult = res["responses"], let parsedData = self?.parseData(finalResult) {
+                    completion?(parsedData, nil)
+                } else {
+                    self?.resetDataSource()
+                    completion?(nil, nil)
+                }
+            }
+        }
+    }
+    
+    func requestParams() -> VizDataParamsBase? {
+        guard let indexPatternId = visState?.indexPatternId else { return nil }
+        let reqParameters = VizDataParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
+        reqParameters.searchQueryPanel = searchQuery
+        reqParameters.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+        
+        // In case of date histogram send the interval
+        if bucketType == .dateHistogram, let interval = mappedIntervalValue {
+            reqParameters.interval = "\(interval)"
+        }
+
+        reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
+        return reqParameters
     }
     
     /**
@@ -277,6 +254,7 @@ class Panel: Mappable {
      */
     internal func parseData(_ result: Any?) -> [Any] {
         // Parse here and update/create chart item
+//        guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
         guard let responseJson = result as? [[String: Any]], visState?.type != .unKnown,
             let aggregationsDict = responseJson.first?[PanelConstant.aggregations] as? [String: Any] else {
                 return []
@@ -286,12 +264,13 @@ class Panel: Mappable {
         
         
         // Parse table headers for Tables
-        if visState?.type == .table , let headersArray = responseJson.first?[PanelConstant.tableHeaders] as? [[String: Any]] {
-            //Sub Buckets Support
+        if visState?.type == .table {
             var headers = [String]()
-            for headerDict in headersArray {
-                if let header = headerDict[PanelConstant.label] as? String {
-                    headers.append(header)
+            for aggregation in visState?.aggregationsArray ?? [] {
+                if aggregation.metricType != .unKnown {
+                    headers.append((aggregation.metricType == .uniqueCount ? "Unique Count" : aggregation.metricType.rawValue))
+                } else if !aggregation.field.isEmpty {
+                    headers.append(aggregation.field)
                 }
             }
             if headers.count > 1 {
@@ -321,7 +300,7 @@ class Panel: Mappable {
 
 extension Panel {
     //MARK: Date Histogram Filtering methods
-    private var mappedIntervalValue: String? {
+    var mappedIntervalValue: String? {
         guard let interval = bucketAggregation?.params?.interval else { return nil }
         switch interval {
         case .unKnown:  return nil
@@ -349,45 +328,45 @@ extension Panel {
         
         var value = "1"
         if let year = year, year > 1 {
-            return value + AggregationParams.IntervalType.yearly.rawValue
+            return value + AggregationParamsService.IntervalType.yearly.rawValue
         }
         
         if let year = year, let month = month,
             year == 1 || month > 1 {
-            return value + AggregationParams.IntervalType.monthly.rawValue
+            return value + AggregationParamsService.IntervalType.monthly.rawValue
         }
         
         if let month = month,
             month <= 6 && month >= 1 {
-            return value + AggregationParams.IntervalType.weekly.rawValue
+            return value + AggregationParamsService.IntervalType.weekly.rawValue
         }
         
         if let week = week,
             week <= 5 && week >= 1 {
-            return value + AggregationParams.IntervalType.daily.rawValue
+            return value + AggregationParamsService.IntervalType.daily.rawValue
         }
         
         if let days = days,
             days <= 7 && days >= 1 {
             value = "12"
-            return value + AggregationParams.IntervalType.hourly.rawValue
+            return value + AggregationParamsService.IntervalType.hourly.rawValue
         }
         
         if let hour = hour,
             hour <= 24 && hour > 1 {
-            return value + AggregationParams.IntervalType.hourly.rawValue
+            return value + AggregationParamsService.IntervalType.hourly.rawValue
         }
         
         if let hour = hour, let minutes = minutes,
             hour == 1 || (hour < 1 && minutes >= 10) {
             value = "5"
-            return value + AggregationParams.IntervalType.minute.rawValue
+            return value + AggregationParamsService.IntervalType.minute.rawValue
         }
         
         if let minutes = minutes,
             minutes <= 10 && minutes > 0 {
             value = "10"
-            return value + AggregationParams.IntervalType.second.rawValue
+            return value + AggregationParamsService.IntervalType.second.rawValue
         }
 
         var millisecondsToAdd = 200
@@ -395,7 +374,7 @@ extension Panel {
             millisecondsToAdd   =   10
         }
 
-        return "\(millisecondsToAdd)" + AggregationParams.IntervalType.millisecond.rawValue
+        return "\(millisecondsToAdd)" + AggregationParamsService.IntervalType.millisecond.rawValue
     }
 }
 

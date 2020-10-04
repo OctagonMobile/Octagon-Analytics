@@ -7,19 +7,16 @@
 //
 
 import UIKit
-import ObjectMapper
 
-class NeoGraph: Mappable {
+class NeoGraph {
     
     var nodesList: [NeoGraphNode]   =   []
     var edgesList: [NeoGraphEdge]   =   []
 
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
+    init(_ dict: [String: Any]) {
         
-        guard let data = map.JSON["data"] as? [[String: Any]] else { return }
+        guard let data = dict["data"] as? [[String: Any]] else { return }
 
         nodesList.removeAll()
         edgesList.removeAll()
@@ -29,8 +26,8 @@ class NeoGraph: Mappable {
             let nodesArray = graphDict["nodes"] as? [[String: Any]] ?? []
             let relationshipsArray = graphDict["relationships"] as? [[String: Any]] ?? []
 
-            let graphNodeList = Mapper<NeoGraphNode>().mapArray(JSONArray: nodesArray)
-            let edges = Mapper<NeoGraphEdge>().mapArray(JSONArray: relationshipsArray)
+            let graphNodeList = nodesArray.compactMap({ NeoGraphNode($0) })
+            let edges = relationshipsArray.compactMap({NeoGraphEdge($0)})
             nodesList.append(contentsOf: graphNodeList)
             edgesList.append(contentsOf: edges)
         }
@@ -38,7 +35,7 @@ class NeoGraph: Mappable {
 }
 
 
-class NeoGraphNode: Mappable {
+class NeoGraphNode {
 
     var id: String?
     
@@ -49,17 +46,18 @@ class NeoGraphNode: Mappable {
     var imageUrl: String?
 
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        id              <-      map["id"]
-        name            <-      map["properties.name"]
-        number          <-      map["properties.number"]
-        imageUrl        <-      map["properties.url"]
+    init(_ dict: [String: Any]) {
+        id              =      dict["id"] as? String
+        
+        if let properties = dict["properties"] as? [String: Any] {
+            name            =      properties["name"] as? String
+            number          =      properties["number"] as? String
+            imageUrl        =      properties["url"] as? String
+        }
     }
 }
 
-class NeoGraphEdge: Mappable {
+class NeoGraphEdge {
     
     var id: String?
     var type: String?
@@ -67,12 +65,10 @@ class NeoGraphEdge: Mappable {
     var endNodeId: String?
     
     //MARK: Functions
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        id                  <-      map["id"]
-        type                <-      map["type"]
-        startNodeId         <-      map["startNode"]
-        endNodeId           <-      map["endNode"]
+    init(_ dict: [String: Any]) {
+        id                  =      dict["id"] as? String
+        type                =      dict["type"] as? String
+        startNodeId         =      dict["startNode"] as? String
+        endNodeId           =      dict["endNode"] as? String
     }
 }

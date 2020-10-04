@@ -37,10 +37,10 @@ class TileCarouselView: UIView {
         imageView.image = nil
         guard let urlString = tile?.imageUrl, let url = URL(string: urlString) else { return }
         imageActivityIndicator.startAnimating()
-        imageView?.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true) { [weak self] (response) in
+        imageView?.af.setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true) { [weak self] (response) in
             
             self?.imageActivityIndicator.stopAnimating()
-            guard let _ = response.result.value else {
+            guard let _ =  try? response.result.get() else {
                 self?.errorLabel.text = response.error?.localizedDescription
                 self?.errorLabel.isHidden = false
                 return

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Octagon Mobile. All rights reserved.
 //
 
-import ObjectMapper
+import OctagonAnalyticsService
 
 class ControlsPanel: Panel {
     
@@ -14,6 +14,30 @@ class ControlsPanel: Panel {
     
     var minAgg: CGFloat?
 
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
+        
+        guard let controlsPanelService = responseModel as? ControlsPanelService else { return }
+        self.maxAgg =   controlsPanelService.maxAgg
+        self.minAgg =   controlsPanelService.minAgg
+    }
+    
+    override func requestParams() -> VizDataParamsBase? {
+        
+        var controlsList: [ControlsParams] = []
+        
+        for control in (visState as? InputControlsVisState)?.controls ?? [] {
+            let controlParam = ControlsParams(control.type, indexPatternId: control.indexPattern, fieldName: control.fieldName)
+            controlsList.append(controlParam)
+        }
+        let reqParam = ControlsVizDataParams(controlsList)
+        reqParam.panelType = visState?.type ?? .unKnown
+        reqParam.timeFrom = dashboardItem?.fromTime
+        reqParam.timeTo = dashboardItem?.toTime
+        reqParam.searchQueryPanel = searchQuery
+        reqParam.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+        return reqParam
+    }
     /**
      Parse the data into Metrics List.
      
@@ -28,7 +52,7 @@ class ControlsPanel: Panel {
         
         let type = (visState as? InputControlsVisState)?.controls.first?.type
         
-        if type == Control.ControlType.range {
+        if type == ControlService.ControlType.range {
             let maxAggDict = aggregationsDict["maxAgg"] as? [String: Any]
             self.maxAgg = maxAggDict?["value"] as? CGFloat
             let minAggDict = aggregationsDict["minAgg"] as? [String: Any]

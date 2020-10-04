@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
-class Metric: Mappable {
+class Metric {
     var id: String = ""
     var type: String    = ""
     var value: NSNumber  = NSNumber(value: 0)
@@ -32,6 +32,9 @@ class Metric: Mappable {
 
         guard let metric = filteredMetric?.first,
             panel?.visState?.otherAggregationsArray.isEmpty == false else {
+                if filteredMetric?.first?.field.isEmpty == false {
+                    computed += " " + (filteredMetric?.first?.field ?? "")
+                }
             return computed
         }
         
@@ -45,16 +48,24 @@ class Metric: Mappable {
     }
     
     //MARK: Functions
-    required init?(map: Map) {
-        // Empty Method
+    init(_ responseModel: MetricService) {
+        self.id     =   responseModel.id
+        self.type   =   responseModel.type
+        self.labelStr   =   responseModel.label
+        self.labelInt   =   Int(responseModel.label)
+        self.value      =   responseModel.value
     }
     
-    func mapping(map: Map) {
-        id              <- map[MetricConstant.id]
-        type            <- map[MetricConstant.type]
-        labelStr        <- map[MetricConstant.label]
-        labelInt        <- map[MetricConstant.label]
-        value           <- map[MetricConstant.value]
+    init(_ dict: [String: Any]) {
+        self.id         =   dict["id"] as? String ?? ""
+        self.type       =   dict["type"] as? String ?? ""
+        self.labelStr   =   dict["label"] as? String ?? ""
+        if let label = self.labelStr {
+            self.labelInt   =   Int(label)
+        }
+        
+        if let val = dict["value"] as? Double {
+            self.value      =   NSNumber(value: val)
+        }
     }
-
 }

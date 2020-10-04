@@ -44,7 +44,7 @@ class MapTrackingAnnotationView: MKAnnotationView {
         let imageView = UIImageView(image: placeHolderImage)
         imageView.contentMode = .scaleAspectFit
         if let imageIconUrlString = annotation?.imageIconUrl, let url = URL(string:imageIconUrlString) {
-            imageView.af_setImage(withURL: url, placeholderImage: placeHolderImage)
+            imageView.af.setImage(withURL: url, placeholderImage: placeHolderImage)
             imageView.style(.roundCorner(5.0, 1.0, .white))
             innerViewFrame.size.height = height
             self.style(.shadow(opacity: 1.0, colorAlpha: 1.0))

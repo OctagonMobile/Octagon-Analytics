@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cmr-if-fdn" customClass="OAStepperCell" customModule="OctagonAnalytics" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cmr-if-fdn" id="KWh-mK-6GP">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-vd-JuX">
+                        <rect key="frame" x="20" y="22" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8N-xQ-AIf">
+                        <rect key="frame" x="25" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="l7H-d5-xo0"/>
+                            <constraint firstAttribute="height" constant="20" id="oqp-qi-BEr"/>
+                        </constraints>
+                        <state key="normal" image="info"/>
+                        <connections>
+                            <action selector="infoButtonAction:" destination="cmr-if-fdn" eventType="touchUpInside" id="plf-3s-80T"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-K3-UFh">
+                        <rect key="frame" x="295" y="22" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-ht-eZq">
+                        <rect key="frame" x="300" y="6" width="94" height="32"/>
+                    </stepper>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Gxd-ht-eZq" secondAttribute="bottom" constant="5" id="1AD-Qt-ymy"/>
+                    <constraint firstItem="7zv-K3-UFh" firstAttribute="centerY" secondItem="KWh-mK-6GP" secondAttribute="centerY" id="78c-iU-kxS"/>
+                    <constraint firstItem="7zv-K3-UFh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="b8N-xQ-AIf" secondAttribute="trailing" constant="5" id="Cev-yd-KhZ"/>
+                    <constraint firstItem="Gxd-ht-eZq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KWh-mK-6GP" secondAttribute="top" constant="5" id="CgL-dP-lf9"/>
+                    <constraint firstItem="b8N-xQ-AIf" firstAttribute="leading" secondItem="zaH-vd-JuX" secondAttribute="trailing" constant="5" id="Ehg-oX-Bb7"/>
+                    <constraint firstItem="zaH-vd-JuX" firstAttribute="leading" secondItem="KWh-mK-6GP" secondAttribute="leading" constant="20" id="R3r-2i-fhT"/>
+                    <constraint firstItem="Gxd-ht-eZq" firstAttribute="centerY" secondItem="KWh-mK-6GP" secondAttribute="centerY" id="Rve-K3-iaE"/>
+                    <constraint firstItem="b8N-xQ-AIf" firstAttribute="centerY" secondItem="KWh-mK-6GP" secondAttribute="centerY" id="ZXo-0U-OEr"/>
+                    <constraint firstAttribute="trailing" secondItem="Gxd-ht-eZq" secondAttribute="trailing" constant="20" id="gPN-Or-MmY"/>
+                    <constraint firstItem="Gxd-ht-eZq" firstAttribute="leading" secondItem="7zv-K3-UFh" secondAttribute="trailing" constant="5" id="qcC-Vs-IID"/>
+                    <constraint firstItem="zaH-vd-JuX" firstAttribute="centerY" secondItem="KWh-mK-6GP" secondAttribute="centerY" id="xkb-Wu-iJP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="infoButton" destination="b8N-xQ-AIf" id="h0j-hH-dpz"/>
+                <outlet property="stepper" destination="Gxd-ht-eZq" id="fyy-ib-AoD"/>
+                <outlet property="titleLabel" destination="zaH-vd-JuX" id="Z5c-rA-eBQ"/>
+                <outlet property="valueLabel" destination="7zv-K3-UFh" id="Ypm-9b-FMp"/>
+            </connections>
+            <point key="canvasLocation" x="-155" y="-344"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="info" width="28" height="28"/>
+    </resources>
+</document>

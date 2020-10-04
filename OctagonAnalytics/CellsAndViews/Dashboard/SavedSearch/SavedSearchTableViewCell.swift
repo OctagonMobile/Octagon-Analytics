@@ -8,6 +8,7 @@
 
 import UIKit
 import LanguageManager_iOS
+import OctagonAnalyticsService
 
 class SavedSearchTableViewCell: UITableViewCell {
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 import iCarousel
 
 class TileInfoViewController: BaseViewController {

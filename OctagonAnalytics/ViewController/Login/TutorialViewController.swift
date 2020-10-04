@@ -16,8 +16,7 @@ class TutorialViewController: BaseViewController {
     var showAutoFill: Bool  =   true
     var tutorialAutoFillActionBlock: TutorialButtonActionBlock?
 
-    private var tutorials: [TutorialType]   =   [TutorialType.config,
-                                                 TutorialType.settings,
+    private var tutorials: [TutorialType]   =   [TutorialType.settings,
                                                  TutorialType.login]
     
 
@@ -25,13 +24,11 @@ class TutorialViewController: BaseViewController {
     @IBOutlet weak var tutorialCarouselView: iCarousel!
 
     public enum TutorialType {
-        case config
         case settings
         case login
         
         var cellId: String {
             switch self {
-            case .config: return NibNames.tutorialConfigCarouselView
             case .settings: return NibNames.tutorialSettingsCarouselView
             case .login: return NibNames.tutorialLoginCarouselView
             }
@@ -42,7 +39,8 @@ class TutorialViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
-        if Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5601" {
+        if Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5601" &&
+            Configuration.shared.baseUrl != "http://ec2-35-158-106-139.eu-central-1.compute.amazonaws.com:5602" {
             // Remove the Login Credentials Tutorial
             tutorials.removeLast()
         }
@@ -116,7 +114,6 @@ extension TutorialViewController: iCarouselDataSource, iCarouselDelegate {
 
 extension TutorialViewController {
     struct NibNames {
-        static let tutorialConfigCarouselView = "TutorialConfigCarouselView"
         static let tutorialSettingsCarouselView = "TutorialSettingsCarouselView"
         static let tutorialLoginCarouselView = "TutorialLoginCarouselView"
     }

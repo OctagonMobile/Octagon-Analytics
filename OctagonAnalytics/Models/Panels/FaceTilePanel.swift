@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import OctagonAnalyticsService
 
 class FaceTilePanel: Panel {
     
@@ -18,11 +18,33 @@ class FaceTilePanel: Panel {
      */
     var faceTileList: [FaceTile] = []
     
-    
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    override init(_ responseModel: PanelService) {
+        super.init(responseModel)
         
-        filterName      <-  map["visState.params.file"]
+        guard let faceTilePanelService = responseModel as? FaceTilePanelService else { return }
+        self.filterName = faceTilePanelService.filterName
+    }
+    
+    override func requestParams() -> VizDataParamsBase? {
+        guard let faceTileVisState = (visState as? FaceTileVisState),
+            let indexPatternId = visState?.indexPatternId else { return nil }
+        let reqParameters = FaceTileVizDataParams(indexPatternId)
+        reqParameters.panelType = visState?.type ?? .unKnown
+        reqParameters.timeFrom = dashboardItem?.fromTime
+        reqParameters.timeTo = dashboardItem?.toTime
+        reqParameters.searchQueryPanel = searchQuery
+        reqParameters.searchQueryDashboard = dashboardItem?.searchQuery ?? ""
+
+        if let filtersList = dataParams()?[FilterConstants.filters] as? [[String: Any]] {
+            reqParameters.filters = filtersList
+        }
+        
+        reqParameters.aggregationsArray = visState?.serviceAggregationsList ?? []
+        
+        reqParameters.box = faceTileVisState.box
+        reqParameters.faceUrl = faceTileVisState.faceUrl ?? ""
+        reqParameters.file = faceTileVisState.file ?? ""
+        return reqParameters
     }
     /**
      Parse the data into Tiles object.
@@ -37,9 +59,9 @@ class FaceTilePanel: Panel {
                 faceTileList.removeAll()
                 return []
         }
-        
+
         faceTileList.removeAll()
-        
+
         // Parse the response to create list of face tile object
         var parsedArray: [[String: Any]] = []
         for item in metricsArray {
@@ -51,7 +73,7 @@ class FaceTilePanel: Panel {
                 parsedArray.append(dict)
             }
         }
-        faceTileList = Mapper<FaceTile>().mapArray(JSONArray: parsedArray)
+        faceTileList = parsedArray.compactMap({ FaceTile($0) })
         return faceTileList
     }
     

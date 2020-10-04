@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import MarqueeLabel
+import OctagonAnalyticsService
 
 typealias FilterAppliedActionBlock = (_ sender: PanelBaseViewController,_ item: FilterProtocol) -> Void
 typealias SelectFieldActionBlock = (_ sender: Any,_ item: FilterProtocol,_ widgetRect: CGRect?) -> Void
@@ -329,7 +330,6 @@ extension PanelBaseViewController {
                 let date = Date(milliseconds: milliSeconds)
                 key = date.toFormat("YYYY-MM-dd")
             }
-            
             if rowData.isEmpty {
                 rowData.append(DataTableValue.string(key, bucket))
                 if currentBucket!.displayValue.isInteger {
@@ -358,7 +358,7 @@ extension PanelBaseViewController {
         for agg in aggs {
             if agg.schema == "metric" {
 //                headerTitles.insert(agg.field, at: 0)
-                metricType = agg.metricType.rawValue.capitalized
+                metricType = (agg.metricType == .uniqueCount ? "Unique Count" : agg.metricType.rawValue.capitalized)
             } else {
                 headerTitles.append(agg.field)
             }

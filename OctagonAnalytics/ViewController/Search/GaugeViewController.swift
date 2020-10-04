@@ -45,7 +45,9 @@ class GaugeViewController: PanelBaseViewController {
         
         if !isGaugeView {
             gaugeView.titleFontSize = 15.0
-            gaugeView.titleText = visState.metricAggregationsArray.first?.field ?? ""
+            if let metricAggs = visState.metricAggregationsArray.first {
+                gaugeView.titleText = metricAggs.metricType.displayValue + " " + metricAggs.field
+            }
         }
         
         let colors = CurrentTheme.gaugeRangeColors
@@ -58,8 +60,8 @@ class GaugeViewController: PanelBaseViewController {
         
         let ranges: [SGRanges] = rangesList.enumerated().compactMap { (index, element) in
             
-            let fromValue = floor(element.from) == element.from ? "\(Int(element.from))" : "\(element.from)"
-            let toValue = floor(element.to) == element.to ? "\(Int(element.to))" : "\(element.to)"
+            let fromValue = NSNumber(value: Float(element.from)).formattedWithSeparator2Decimal
+            let toValue = NSNumber(value: Float(element.to)).formattedWithSeparator2Decimal
 
             let title = isGaugeView ? "\(fromValue) - \(toValue)" : "Goal: \(toValue)"
             if index >= colors.count {
