@@ -17,11 +17,8 @@ Supported Devices: iPhone & iPad.
 
 ## Prerequisites<a id="prerequisites"></a>
 Make sure that you have the following applications:
-1.  Kibana server(v-6.5.4) with Octagon-Analytics-Plugin :
-	* [Build](https://octagonmobile.github.io/Octagon-Analytics-Plugin-Download/Octagon-Analytics-6.5.4.zip).
-	* [Source Code](https://github.com/OctagonMobile/Octagon-Analytics-Plugin.git).
-2.  Xcode (version 11.0 or above).
-3.  [Cocoapods](https://cocoapods.org) installed on Mac.
+1.  Xcode (version 11.0 or above).
+2.  [Cocoapods](https://cocoapods.org) installed on Mac.
 
 ## Installation<a id="installation"></a>
 
