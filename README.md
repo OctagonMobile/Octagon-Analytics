@@ -20,6 +20,12 @@ Make sure that you have the following applications:
 1.  Xcode (version 11.0 or above).
 2.  [Cocoapods](https://cocoapods.org) installed on Mac.
 
+
+*NOTE: Supported Authentication:*
+- OpenDistro for Elasticsearch
+- Search Guard
+- Keycloak
+
 ## Installation<a id="installation"></a>
 
 * Checkout the sourcecode from [here](https://github.com/OctagonMobile/Octagon-Analytics.git).
@@ -89,3 +95,4 @@ We welcome pull requests from the community!
 
 
 * Kibana is a trademark of Elasticsearch BV, registered in the US and in other countries.
+* Elasticsearch is a trademark of Elasticsearch B.V., registered in the U.S. and in other countries.
